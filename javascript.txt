@@ -1,0 +1,192 @@
+事件是可以被javascript检测到的行为
+在事件值里直接写js代码
+onchange   文本内容改变事件
+onselect   文本内容选中事件
+onblur   光标移开事件
+onUnload   关闭网页事件
+不要在文档加载完之后使用document.write() 这会覆盖文档
+dom.property  dom API
+dom.style.property  css API
+
+dom.add/remove EventListener();  推荐使用这种方式  ，且各事件不会相互覆盖
+
+事件流  页面中接收事件的顺序  事件冒泡和捕获  常用冒泡
+
+事件处理  三种
+1html  耦合
+2dom0 级    dom事件处理属性  onclick属性   缺点 覆盖 移除是赋值null
+3dom2 级    addEventListener（‘事件名注意去掉on’，‘事件处理函数’，‘true：事件捕获，false：冒泡’）    attachEvent/detachEvent("onclick",function)  ie8以下
+兼容  if判断是否有该属性 2-ie8-0
+
+事件对象  触发dom事件时产生一个对象
+
+属性方法  e.type  e.target  e.stopPropagation  e.preventDefault();
+
+
+js 操作dom属性 css  增删改查  事件 动画
+
+ByName     dom数组
+ByTagName  dom数组
+
+getAttribute/set   dataset.attr    属性值大多为String  存取数据 
+
+dom.nodeType  数字  nodeName  大写String
+
+表单dom 都有type value 属性
+
+parent.insertBefore（dom, refChild）;
+
+document.body.offsetHeight||document.documentElement.scrollHeight;   是否包括滚动条
+
+
+模块化规范   
+
+AMD --RequireJS     异步加载，依赖前置，提前执行   定义模块：Define（['require','foo'],function（）{}）  Require加载模块（依赖前置）require(['foo','bar'],function(foo,bar){});
+
+CMD --SeaJS      同步加载，依赖就近，延迟执行    define定义exports导出    define(function(require,exports,module){});module上存储了当前模块的一些对象
+require(./a) 直接引用，require.async('index',function(index){})异步导入。
+
+
+六、 Prototype模式的验证方法
+为了配合prototype属性，Javascript定义了一些辅助方法，帮助我们使用它。，
+6.1 isPrototypeOf()
+这个方法用来判断，某个proptotype对象和某个实例之间的关系。
+　　alert(Cat.prototype.isPrototypeOf(cat1)); //true
+　　alert(Cat.prototype.isPrototypeOf(cat2)); //true
+6.2 hasOwnProperty()
+每个实例对象都有一个hasOwnProperty()方法，用来判断某一个属性到底是本地属性，还是继承自prototype对象的属性。
+　　alert(cat1.hasOwnProperty("name")); // true
+　　alert(cat1.hasOwnProperty("type")); // false
+6.3 in运算符
+in运算符可以用来判断，某个实例是否含有某个属性，不管是不是本地属性。
+　　alert("name" in cat1); // true
+　　alert("type" in cat1); // true
+in运算符还可以用来遍历某个对象的所有属性。
+　　for(var prop in cat1) { alert("cat1["+prop+"]="+cat1[prop]); }
+
+js作用域
+函数级作用域（区别于块级作用域）内部的变量，内部都能访问，外部不能访问内部的变量，内部能访问外部的变量，若有相同的变量，采用按执行顺序，就近原则    ---js调用/访问前置,按顺序执行，但是先收集所有定义
+
+闭包 返回函数 test（）（）；
+使能访问到内部的变量（返回的函数返回了内部的变量） 容易造成内存泄露
+
+this 使用  指当前对象（环境） 谁调用者  闭包时则一般指向window
+由于 javascript的动态性（解释执行，当然也有简单的预编译过程），this的指向在运行时才确定。这个特性在给我们带来迷惑的同时也带来了编程上的 自由和灵活，结合apply(call)方法，可以使JS变得异常强大。
+
+
+var i = 100;
+	~function(){
+		console.log(i);
+	}();
+作用相当于（） 把后面变成表达式
+
+
+它们还可以接受第二个参数，对于indexOf，表示从该位置开始向后匹配；对于lastIndexOf，表示从该位置起向前匹配。
+
+"hello world".indexOf("o", 6)
+// 7
+
+"hello world".lastIndexOf("o", 6)
+// 4
+
+charAt方法返回一个字符串的给定位置的字符，位置从0开始编号。
+
+var s = new String("abc");
+
+s.charAt(1) // "b"
+s.charAt(s.length-1) // "c"
+这个方法完全可以用数组下标替代。
+
+"abc"[1] // "b"
+
+localeCompare  字符串方法 比较两个字母大小  ASCII码
+
+split方法还可以接受第二个参数，限定返回数组的最大成员数。
+"a|b|c".split("|", 2) // ["a", "b"]
+"a|b|c".split("|", 3) // ["a", "b", "c"]
+"a|b|c".split("|", 4) // ["a", "b", "c"]
+
+如果分割规则为空字符串，则返回数组的成员是原字符串的每一个字符。
+
+"a|b|c".split("")
+// ["a", "|", "b", "|", "c"]
+
+如果满足分割规则的两个部分紧邻着（即中间没有其他字符），则返回数组之中会有一个空字符串。
+
+"a||c".split("|")
+// ["a", "", "c"]
+
+["a","b","c"].toString()
+"a,b,c"
+
+与搜索和替换相关的有4个方法，它们都允许使用正则表达式。
+
+match：用于确定原字符串是否匹配某个子字符串，返回匹配的子字符串数组。
+var matches = "cat, bat, sat, fat".match("at");
+
+matches // ["at"]
+matches.index // 1
+matches.input // "cat, bat, sat, fat"
+search：等同于match，但是返回值不一样。
+"cat, bat, sat, fat".search("at")
+// 1
+replace：用于替换匹配的字符串。
+replace方法用于替换匹配的子字符串，一般情况下只替换第一个匹配（除非使用带有g修饰符的正则表达式）。
+
+"aaa".replace("a", "b")
+// "baa"
+
+split：将字符串按照给定规则分割，返回一个由分割出来的各部分组成的新数组。
+
+
+Array.slice方法返回指定位置的数组成员组成的新数组，原数组不变。
+
+Array.splice();
+splice方法用于删除元素，并可以在被删除的位置添加入新的数组元素。它的返回值是被删除的元素。需要特别注意的是，该方法会改变原数组。
+
+slice方法的一个重要应用，是将类似数组的对象转为真正的数组。
+
+Array.prototype.slice.call({ 0: 'a', 1: 'b', length: 2 })
+// ['a', 'b']
+
+Array.prototype.slice.call(document.querySelectorAll("div"));
+
+Array.prototype.slice.call(arguments);
+splice的第一个参数是删除的起始位置，第二个参数是被删除的元素个数。如果后面还有更多的参数，则表示这些就是要被插入数组的新元素。
+
+var a = ["a","b","c","d","e","f"];
+
+a.splice(4,2)
+// ["e", "f"]
+
+a
+// ["a", "b", "c", "d"]
+上面代码从原数组位置4开始，删除了两个数组成员。
+
+var a = ["a","b","c","d","e","f"];
+
+a.splice(4,2,1,2)
+// ["e", "f"]
+
+a
+// ["a", "b", "c", "d", 1, 2]
+上面代码除了删除成员，还插入了两个新成员。
+
+如果只是单纯地插入元素，splice方法的第二个参数可以设为0。
+
+var a = [1,1,1];
+
+a.splice(1,0,2)
+// []
+
+a
+// [1, 2, 1, 1]
+如果只提供第一个参数，则实际上等同于将原数组在指定位置拆分成两个数组。
+
+var a = [1,2,3,4];
+
+a.splice(2)
+// [3, 4]
+
+a
+// [1, 2]

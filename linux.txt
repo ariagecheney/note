@@ -1,0 +1,157 @@
+Ctrl+d	键盘输入结束或退出终端
+Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
+Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
+Ctrl+a	将光标移至输入行头，相当于Home键
+Ctrl+e	将光标移至输入行末，相当于End键
+Ctrl+k	剪切从光标所在位置到行末 Ctrl+u
+ctrl + y 粘贴
+ALT + B - 跳回上一个空格
+Alt+Backspace	向前删除一个单词
+CTRL + W - 剪切光标前一个单词
+Shift+PgUp	将终端显示向上滚动
+Shift+PgDn	将终端显示向下滚动
+
+
+Shell 常用通配符：
+
+字符	含义
+*	匹配 0 或多个字符
+?	匹配任意一个字符
+[list]	匹配 list 中的任意单一字符
+[!list]	匹配 除list 中的任意单一字符以外的字符
+[c1-c2]	匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]
+{string1,string2,...}	匹配 sring1 或 string2 (或更多)其一字符串
+{c2..c2}	匹配 c1-c2 中全部字符 如{1..10}
+
+
+在Research UNIX、BSD、OS X 和 Linux 中，手册通常被分为8个区段，安排如下：
+
+区段	说明
+1	一般命令
+2	系统调用
+3	库函数，涵盖了C标准函数库
+4	特殊文件（通常是/dev中的设备）和驱动程序
+5	文件格式和约定
+6	游戏和屏保
+7	杂项
+8	系统管理命令和守护进程
+要查看相应区段的内容，就在 man 后面加上相应区段的数字即可，如：
+
+$ man 3 printf
+
+
+通常 man 手册中的内容很多，你可能不太容易找到你想要的结果，不过幸运的是你可以在 man 中使用搜索，/<你要搜索的关键字>，查找到后你可以使用n键切换到下一个关键字所在处，shift+n为上一个关键字所在处。使用Space(空格键)翻页，Enter(回车键)向下滚动一行，或者使用j,k（vim编辑器的移动键）进行向前向后滚动一行。按下h键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下q退出。
+
+想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用--help参数，大部分命令都会带有这个参数，如：
+
+whoami
+打印当前用户
+who am i 
+当前终端登录用户
+pwd
+打印当前目录
+exit
+退出当前用户
+
+
+sudo adduser lilei    --> su -l lilei  退出当前用户跟退出终端一样可以使用 exit 命令或者使用快捷键 Ctrl+d。
+
+groups shiyanlou  自己属于哪些用户组
+
+cat /etc/group | grep -E "shiyanlou|sudo"  group_name:password:GID:user_list
+
+sudo usermod -G sudo lilei  添加用户到用户组
+
+删除用户是很简单的事：
+
+$ sudo deluser lilei --remove-home
+
+deluser USER
+  remove a normal user from the system
+  example: deluser mike
+
+  --remove-home             remove the users home directory and mail spool
+  --remove-all-files        remove all files owned by user
+  --backup                  backup files before removing.
+  --backup-to <DIR>         target directory for the backups.
+                            Default is the current directory.
+  --system                  only remove if system user
+
+delgroup GROUP
+deluser --group GROUP
+  remove a group from the system
+  example: deluser --group students
+
+  --system                  only remove if system group
+  --only-if-empty           only remove if no members left
+
+deluser USER GROUP
+  remove the user from a group
+  example: deluser mike students
+
+general options:
+  --quiet | -q      don't give process information to stdout
+  --help | -h       usage message
+  --version | -v    version number and copyright
+  --conf | -c FILE  use FILE as configuration file
+
+
+  显示除了 '.'(当前目录)，'..' 上一级目录之外的所有包含隐藏文件（Linux 下以 '.' 开头的文件为隐藏文件）
+$ ls -A
+
+
+当然，你可以同时使用 '-A' 和 '-l' 参数：
+
+$ ls -Al
+查看某一个目录的完整属性，而不是显示目录里面的文件属性：
+
+$ ls -dl <目录名>
+显示所有文件大小，并以普通人类能看懂的方式呈现：
+$ ls -AsSh
+其中小 s 为显示文件大小，大 S 为按文件大小排序，若需要知道如何按其它方式排序，请使用“man”命令查询。
+
+
+修改文件所有者   sudo chown shiyanlou iphone6
+
+修改权限：
+
+$ chmod 700 iphone6
+chmod go-rw iphone6
+一般必须有sudo权限才能用这两个命令
+
+目录
+
+
+- 表示上一次所在目录，～ 通常表示当前用户的"home"目录
+
+提示：在进行目录切换的过程中请多使用 Tab 键自动补全，可避免输入错误，连续按两次Tab可以显示全部候选结果
+
+复制和删除目录  加-r参数
+
+nl命令，添加行号并打印，这是个比cat -n更专业的行号打印命令
+-b : 指定添加行号的方式，主要有两种：
+    -b a:表示无论是否为空行，同样列出行号("cat -n"就是这种方式)
+    -b t:只列出非空行的编号并列出（默认为这种方式）
+-n : 设置行号的样式，主要有三种：
+    -n ln:在行号字段最左端显示
+    -n rn:在行号字段最右边显示，且不加 0
+    -n rz:在行号字段最右边显示，且加 0
+-w : 行号字段占用的位数(默认为 6 位)
+
+
+更直接的只看一行， 加上-n参数，后面紧跟行数：
+
+$ tail -n 1 /etc/passwd    -f 参数 实时刷新
+
+查看文件类型   file /bin/ls
+
+vimtutor  vim学习
+
+环境变量就是作用域比自定义变量要大，如Shell 的环境变量作用于自身和它的子进程。在所有的 UNIX 和类 UNIX 系统中，每个进程都有其各自的环境变量设置，且默认情况下，当一个进程被创建时，处理创建过程中明确指定的话，它将继承其父进程的绝大部分环境设置。Shell 程序也作为一个进程运行在操作系统之上，而我们在 Shell中运行的大部分命令都将以 Shell 的子进程的方式运行。
+
+命令  说明
+set 显示当前 Shell 所有环境变量，包括其内建环境变量（与 Shell 外观等相关），用户自定义变量及导出的环境变量
+env 显示与当前用户相关的环境变量，还可以让命令在指定环境中运行
+export  显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量
+
+zsh  bash  启动一个新的子进程  exit  退出  变量的作用域：自定义，环境变量
