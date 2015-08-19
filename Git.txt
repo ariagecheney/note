@@ -2,7 +2,7 @@ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 因为是分布式所以必须每台机器进行认证
 注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
-git config -l 列出该仓库下的参数
+git config -l --local 列出该仓库下的参数
 user.name pmz user.email pmz010
 初始化一个Git仓库，使用git init命令。在当前文件夹下初始化
 
@@ -18,7 +18,7 @@ user.name pmz user.email pmz010
 如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
 
 
-HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。
 
 穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all
 
@@ -83,7 +83,8 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
 
-关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有店分支时，使用这个命令可以完成本地新分支与远程薪分支的跟踪）
+git checkout
 
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 
@@ -104,8 +105,15 @@ Git鼓励大量使用分支：分支只是指向某个commit对象的引用
 
 创建+切换分支：git checkout -b <name>
 
-合并某分支到当前分支：git merge <name>
+合并某分支到当前分支：git merge <name> (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff master origin/master 查看本地与远程的版本历史区别
 
+[remote "origin"]
+	url = git@github.com:pmzgit/note.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+		远程仓库master分支（refs/heads/master：commit SHA1 hash）
+		本地远程跟踪origin/master分支（refs/remotes/origin/master：commit SHA1 hash）
+		+ 代表强制non-fast-forward  不建议修改远程仓库店历史commit（例如版本倒退，并覆盖），也不建议强制push（git push origin +master）
+		否则别人fetch时（此时强制+）
 删除分支：git branch -d <name>
 
 当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
@@ -144,7 +152,7 @@ http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b0
 
 现在，你的小伙伴要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是他用这个命令创建本地dev分支：
 
-$ git checkout -b dev origin/dev
+$ git checkout -b dev origin/dev（此时也完成了远程dev分支与本地新建dev分支的跟踪绑定）
 
 首先，可以试图用git push origin branch-name推送自己的修改；
 
@@ -154,7 +162,11 @@ $ git checkout -b dev origin/dev
 
 没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
 
-如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to=origin/dev dev
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to=origin/dev dev（旧版本git  该命令为git branch --track | --set-upstream dev origin/dev 此时本地 .git/config 文件zhong新增一项配置：
+[branch "dev"]
+	remote = origin
+	merge = refs/heads/dev   
+merge指 本地dev 跟踪远程的ref/heads/下的dev分支
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
 小结
@@ -165,7 +177,7 @@ $ git checkout -b dev origin/dev
 
 从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
 
-在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致（若此时远程已有分支v1 git fetch origin 后 可直接用 git checkout v1 创建并跟踪远程v1）；
 
 建立本地分支和远程分支的关联，使用git branch --set-upstream-to=origin/dev dev
 
