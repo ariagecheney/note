@@ -22,6 +22,9 @@ dom.add/remove EventListener();  推荐使用这种方式  ，且各事件不会
 
 属性方法  e.type  e.target  e.stopPropagation  e.preventDefault();
 
+javascript   异常
+事件   onselect   onunload  onmouseover   onchange   onfocus  
+dom   NodeList数组  每一个node都有很多属性  事件的this传入触发该事件的元素dom == 时间对象的target属性   
 
 js 操作dom属性 css  增删改查  事件 动画
 

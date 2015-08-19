@@ -1,37 +1,6 @@
-javascript   异常
-事件   onselect   onunload  onmouseover   onchange   onfocus  
-dom   NodeList数组  每一个node都有很多属性  事件的this传入触发该事件的元素dom    
+css兼容性:1 浏览器 2 语法版本 2012.9.18  
 
 
-
-继承
-属性选择器在ie6以下不支持
-background-clip和origin
-id class 资源加载顺序不一样
-outline  轮廓
-position static absolute relative fixed
-
-盒子模型  border-radius box-shadow border-image
-
-外边距叠加   遵循最大原则
-css常用操作
-对齐
-margin 水平
-position   4个植  absolute  脱离文档流
-float  左右 inline-block    脱离文档流
-
-图片 opacity 0-1
-
-多类选择器  .class.class{}    class = "class1 class2"  Id选择器不能结合使用
-
-相邻选择器 同一个父亲，该元素之后的所有同级元素都起效果 == 同辈选择器 ~
-
-2D 3D转换   transform属性
-过度   transition   prop time   效果+时间
-动画   animation  名称+时间 属性  遵循@keyframes
-多列  column-count ， gap rule width 设计瀑布流
-
-window。top.document.compatMode  标准模式怪异模式 
 
 优化 
 文件合并
@@ -45,10 +14,76 @@ css hack
 
 css reset
 
-css优先级
 css sprite
 
-属性选择器早在CSS2中就被引入了，其主要作用就是为带有指定属性的HTML 元素设置样式。使用CSS3属性选择器，你可以只指定元素的某个属性，或者你还可以同时指定元素的某个属性和其对应的属性值。
+css优先级
+
+
+
+渲染规则   
+1.计算权重
+2.就近规则
+3.!important
+( 	当!important第一次在CSS1中被介绍时是这样规定的，即一个由开发者声明的!important样式要比一个由用户声明的!important样式获得更大的权重。为了提高访问性，在CSS2 中它被颠倒了过来。
+    如果!important被用于一个简写的样式属性，那么这条简写的样式属性所代表的子属性都会被作用上!important。
+    关键字!important必须放在一行样式的末尾并且要放在该行分号前，否则就没有效果。 （不过分号前的空格不会影响它）
+    如果因为一些特殊原因，你不得不在一个代码块中声明两个同样的属性，那么请把!important加在第一个属性后面，因为这样做会让所有浏览器中第一个属性的权重更大，而IE6除外（这是一个只有IE6才有的hack，但是不会影响你的CSS）
+    在IE6和IE7中如果你使用不同的单词替代!important（像!hotdog），这条CSS样式依然会获得更大的权重，但是其他浏览器却会忽略它。
+)
+window。top.document.compatMode  标准模式怪异模式 
+
+css动画
+
+2D 3D转换   transform属性
+过度   transition   prop time   效果（属性）+时间
+动画   animation  名称+时间 属性  遵循@keyframes
+
+
+
+
+
+
+继承
+属性选择器在ie6以下不支持
+background-clip和origin
+id class 资源加载顺序不一样
+outline  轮廓
+图片 opacity 0-1
+
+
+
+
+
+css常用操作
+
+盒子模型  border-radius box-shadow border-image
+外边距叠加   遵循最大原则
+对齐
+margin 水平
+position   4个值  absolute  脱离文档流
+position static absolute relative fixed
+float  左右 inline-block    脱离文档流
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+
+
+
+
+
+多列  column-count ， gap rule width 设计瀑布流
+
+
+
+
+多类选择器  .class.class{}    class = "class1 class2"  Id选择器不能结合使用
+
+相邻选择器 + 同一个父亲，该元素之后的所有同级元素都起效果 == 同辈选择器 ~
+
+属性选择器早在CSS2中就被引入了，其主要作用就是为带有指定属性的HTML元素设置样式。使用CSS3属性选择器，你可以只指定元素的某个属性，或者你还可以同时指定元素的某个属性和其对应的属性值。
 
 在CSS2中引入了一些属性选择器，而CSS3在CSS2的基础上对属性选择器进行了扩展，新增了3个属性选择器，使得属性选择器有了通配符的概念，这三个属性选择器与CSS2的属性选择器共同构成了CSS功能强大的属性选择器。
 
@@ -59,24 +94,6 @@ CSS3的属性选择器主要包括以下几种：
 2. E[attr$="value"]：指定了属性名，并且有属性值，而且属性值是以value结束的；
 
 3. E[attr*="value"]：指定了属性名，并且有属性值，而且属值中包含了value；
-
-.wrap {
-	 width: 300px;
-	 height: 30px;
-	 padding-top:10px;
-	 border: 3px solid #ccc;
-}
-.wrap a {
-	 float: left;
-	 height: 20px;
-	 width: 20px;
-	 border-radius: 10px;
-	 text-align: center;
-	 background: #92EF09;
-	 color: red;
-	 margin: 0 5px 0 5px;
-}
-
 
 匹配开始值
 E[attr^="value"]属性选择器，指的是选择attr属性值以“value”开头的所有元素，也就是说，所选择的属性其对应的属性值是以“value”开始的。
@@ -404,3 +421,43 @@ p:empty {
 在CSS3之前，需要使用图像文件才能达到同样效果，如果只靠样式就能完成圆角边框的绘制，对界面设计者来说无疑是一件可喜的事情。
 
 到目前为止，Safari浏览器、Firefox浏览器、Opera浏览器及Chrome浏览器都支持这种绘制圆角边框的样式。
+
+
+box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+border-radius:3px;
+border-color:#ccc;
+height:1.94em;
+line-height:1.94em;
+text-indent:0.8em;
+border:0;
+margin:0;
+-webkit-appearance:none;
+background-color:#fff;
+color:#333;
+outline:0;
+background-clip:border-box;
+-webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+        text-rendering: auto;
+            -webkit-writing-mode: horizontal-tb;
+
+p:first-line { font-variant: small-caps; }
+a:link:after { content: " (" attr(href) ")"; }
+
+.wrap {
+	 width: 300px;
+	 height: 30px;
+	 padding-top:10px;
+	 border: 3px solid #ccc;
+}
+.wrap a {
+	 float: left;
+	 height: 20px;
+	 width: 20px;
+	 border-radius: 10px;
+	 text-align: center;
+	 background: #92EF09;
+	 color: red;
+	 margin: 0 5px 0 5px;
+}

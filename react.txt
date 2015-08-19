@@ -5,16 +5,20 @@ React是Facebook开源的一个用于构建用户界面的Javascript库，已经
 
 React顺应了Web开发组件化的趋势。应用React时，你总是应该从UI出发抽象出不同 的组件，然后像搭积木一样把它们拼装起来：
 
-lego
-
 不过，React定义组件的方式和AngularJS截然不同。如果说HTML是一个轮子，AngularJS 的指令/Directive则是给这个轮子镶了个金边，而React，重新造了个轮子： JSX。
-
-qie
 
 React抛弃HTML另起炉灶的原因之一是性能的考虑：DOM操作非常之慢。React引入了 虚拟DOM的概念：开发者操作虚拟DOM，React在必要的时候将它们渲染到真正的 DOM上 —— 有点像游戏开发中的双缓冲区/Double Buffer帧重绘。
 
 引入虚拟DOM的另一个好处是，容易引入不同的渲染引擎。比如将你的应用代码渲染 到真实的DOM，或者nodejs服务端的无头DOM，或者，iOS/Android平台组件 —— 这就是 React Native ：
 
+facebook 需要解决问题：构建数据不断变化的大型应用     
+
+数据变化引发两个问题1、大量dom操作（react解决，自动dom操作，特点声明式）2、逻辑极其复杂（react解决：状态对应内容）
+
+React的核心是组件，组件的设计目的是提高代码复用率、降低测试难度和代码复杂度。
+提高代码复用率：组件将数据和逻辑封装，类似面向对象中的类。
+降低测试难度：组件高内聚低耦合，很容易对单个组件进行测试。
+降低代码复杂度：直观的语法可以极大提高可读性。
 
 
 <!DOCTYPE html>

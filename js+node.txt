@@ -120,7 +120,9 @@ data-属性选择器同样适用于 js和css  '[data-text-colour="red"]'
 
 
 2015.3.5--Node.js
-Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+Node.js是一个事件驱动非阻塞型I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+node 学习 http://nodeschool.io/zh-cn/#workshopper-list
+
 模块接口的唯一变化是使用 module.exports = Hello 代替了exports.hello = function(){}。 在外部引用该模块时，其接口对象就是要输出的 Hello 对象本身，而不是原先的 exports。
 为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。4类模块，原生和3类文件模块。
 Node.js 所有的异步I/O 操作在完成时都会发送一个事件到事件队列。

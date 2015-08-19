@@ -209,3 +209,40 @@ Target:
 Documented:javadoc
 Inherited
 
+
+
+//spring
+/*
+@RequestMapping(params={"uname=小明"}) --编码问题
+*/
+
+
+
+
+/*
+	Web监听器
+	用于监听ServletContext，httpSession，ServletRequest等域对象的创建和销毁事件
+	监听域对象属性发生修改的事件
+	可以在事件发生前，后做一些操作
+	优先级  监听器》过滤器》Servlet 其中监听器和过滤器都是按照注册顺序作为启动顺序
+	按监听器对象分类    监听应用程序环境对象ServletContext的事件监听器，用户会话对象HttpSession,请求消息对象ServletRequest
+	按监听事件分类    监听域对象自身的创建和销毁，域对象中属性的增加和删除，监听HttpSession域中某对象状态
+	一对多  参考js事件模型
+	 dom 域对象；  
+	 事件 创建和销毁 
+	 事件处理  各实现接口listener的方法 
+	 事件对象 方法参数
+	 作用：定时器   全局属性对象
+	 HttpSessionListener  统计在线人数  访问日志记录 sessionConfig
+	 ServletRequestListener  读取参数  记录访问历史  先Requestinit  sessioncreate  Requestdestroy
+
+	 以及域对象中各属性的增加，删除和替换注意要和域对象的生命周期结合使用
+
+	 session钝化机制：把服务器中不经常使用的session对象暂时序列化到系统文件或数据库中，当被使用时反序列化到内存中，整个过程有服务器自动完成
+	 钝化后的文件保存在：安装路径apache-tomcat-8.0.24\work\Catalina\localhost\项目名\SESSION.ser 当重新启动时，加载并删除
+	 session钝化机制由sessionManager管理
+	 standardManager和persistentManager默认情况下tomcat提供两个钝化驱动类FileStor  和JDBCStore
+
+	 该监听器不需要在web.xml中注册，且是普通的javabean去继承HttpSessionBindingListener
+	 httpsessionactivationListener 以及实现  serialation接口
+*/
