@@ -2,7 +2,7 @@ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 因为是分布式所以必须每台机器进行认证
 注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
-
+git config -l 列出该仓库下的参数
 user.name pmz user.email pmz010
 初始化一个Git仓库，使用git init命令。在当前文件夹下初始化
 
@@ -20,7 +20,7 @@ user.name pmz user.email pmz010
 
 HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
 
-穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all
 
 要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
@@ -89,11 +89,12 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
 
-要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。git clone git@github.com:michaelliao/gitskills.git
+要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。git clone git@github.com:michaelliao/gitskills.git （destion dir）
+克隆到的仓库会有一个origin/master（远程跟踪分支，用户只读），据其还会产生一个master分支（跟踪分支，用户可写），指向最新commit（HEAD）
 
 Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
 
-Git鼓励大量使用分支：
+Git鼓励大量使用分支：分支只是指向某个commit对象的引用
 
 查看当前分支：git branch
 
