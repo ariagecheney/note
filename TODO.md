@@ -1,0 +1,2 @@
+- [ ] linux 变量 `source` `.bashrc` 
+- [ ] linux git upgrade,complet and prompt 
