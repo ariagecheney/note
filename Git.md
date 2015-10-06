@@ -17,6 +17,7 @@
 	//git config crud
 	git config --global --add or --unset or name value or --get
 ```
+
 *. git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 因为是分布式所以必须每台机器进行认证
