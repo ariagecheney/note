@@ -1,14 +1,38 @@
-git config --global user.name "Your Name"
+## git分布式
+1. 每个电脑都有版本控制数据库，有很多工作模式。而svn是只有中央库有版本控制数据库
+2. 每个历史版本存储完整的文件，svn存储文件差异
+3. git有更强的撤销修改和修改版本历史的能力
+
+## git [官方网站](http://git-scm.com/)
+
+```
+	git --version
+	//git help
+	git config --help
+	man git-config
+	//alias
+	git config --global alias.co checkout
+	git config --global alias.st status
+	git config --global alias.lol "log --oneline"
+	//git config crud
+	git config --global --add or --unset or name value or --get
+```
+*. git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 因为是分布式所以必须每台机器进行认证
 注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
 git config -l --local 列出该仓库下的参数
-user.name pmz user.email pmz010
-初始化一个Git仓库，使用git init命令。在当前文件夹下初始化
+user.name pmzgit user.email pmz00
+配置有三个级别，优先级由高到低 --local --global(当前用户) --system（当前系统所有用户）
+
+*. git 使用40个16进制字符的	SHA-1 Hash 来唯一标识对象。
+	git 有四种对象：tag -> commit -> tree > blob (tree包含tree和blob对象，树形结构)
+
+*. 初始化一个Git仓库，1. 使用git init命令。在当前文件夹下初始化 `git init`. 2. git clone local_repo dist_dir_name
 
 添加文件到Git仓库，分两步：
 
-第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件 `git add a.md b.txt`；
 
 第二步，使用命令git commit，完成。
 
@@ -83,7 +107,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
 
-关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有店分支时，使用这个命令可以完成本地新分支与远程薪分支的跟踪）
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有该分支时，使用这个命令可以完成本地新分支与远程薪分支的跟踪）
 git checkout
 
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
@@ -136,7 +160,7 @@ Git分支十分强大，在团队开发中应该充分应用。
 合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
 
 
-bug分支  
+bug分支
 修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
 
 当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
@@ -165,7 +189,7 @@ $ git checkout -b dev origin/dev（此时也完成了远程dev分支与本地新
 如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to=origin/dev dev（旧版本git  该命令为git branch --track | --set-upstream dev origin/dev 此时本地 .git/config 文件zhong新增一项配置：
 [branch "dev"]
 	remote = origin
-	merge = refs/heads/dev   
+	merge = refs/heads/dev
 merge指 本地dev 跟踪远程的ref/heads/下的dev分支
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 

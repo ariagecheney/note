@@ -23,15 +23,15 @@ dom.add/remove EventListener();  推荐使用这种方式  ，且各事件不会
 属性方法  e.type  e.target  e.stopPropagation  e.preventDefault();
 
 javascript   异常
-事件   onselect   onunload  onmouseover   onchange   onfocus  
-dom   NodeList数组  每一个node都有很多属性  事件的this传入触发该事件的元素dom == 时间对象的target属性   
+事件   onselect   onunload  onmouseover   onchange   onfocus
+dom   NodeList数组  每一个node都有很多属性  事件的this传入触发该事件的元素dom == 时间对象的target属性
 
 js 操作dom属性 css  增删改查  事件 动画
 
 ByName     dom数组
 ByTagName  dom数组
 
-getAttribute/set   dataset.attr    属性值大多为String  存取数据 
+getAttribute/set   dataset.attr    属性值大多为String  存取数据
 
 dom.nodeType  数字  nodeName  大写String
 
@@ -42,7 +42,7 @@ parent.insertBefore（dom, refChild）;
 document.body.offsetHeight||document.documentElement.scrollHeight;   是否包括滚动条
 
 
-模块化规范   
+模块化规范
 
 AMD --RequireJS     异步加载，依赖前置，提前执行   定义模块：Define（['require','foo'],function（）{}）  Require加载模块（依赖前置）require(['foo','bar'],function(foo,bar){});
 
@@ -122,6 +122,18 @@ split方法还可以接受第二个参数，限定返回数组的最大成员数
 ["a","b","c"].toString()
 "a,b,c"
 
+join方法以参数作为分隔符，将所有数组成员组成一个字符串返回。如果不提供参数，默认用逗号分隔。
+
+var a = [1,2,3,4];
+
+a.join() // "1,2,3,4"
+a.join('') // '1234'
+a.join("|") // "1|2|3|4"
+通过函数的call方法，join方法（即Array.prototype.join）也可以用于字符串。
+
+Array.prototype.join.call('hello', '-')
+// "h-e-l-l-o"
+
 与搜索和替换相关的有4个方法，它们都允许使用正则表达式。
 
 match：用于确定原字符串是否匹配某个子字符串，返回匹配的子字符串数组。
@@ -194,7 +206,7 @@ a.splice(2)
 a
 // [1, 2]
 
-window.open('http://www.sina.com','_blank'); 
+window.open('http://www.sina.com','_blank');
 这句代码的实际意思是把一个连接在一个指定的框架（frame）内打开，_self
 
 ,_top,_blank,这些是专有的框架名。
@@ -230,6 +242,51 @@ d,referrer,title,URL),基本上没有多大的用处，要说有用的，我认�
 
 location对象表示载入窗口的URL，同时还可以用于解析URL，比如要获得GET请求后的参数可以使用
 
-location.search 
+location.search
 
 简而言之，如果浏览器加载并执行脚本，会引起页面的渲染被暂停，甚至还会阻塞其他资源(比如图片)的加载。为了更快的给用户呈现网页内容，
+
+
+// The .bind method from Prototype.js
+Function.prototype.bind = function(){
+var fn = this, args = Array.prototype.slice.call(arguments), object = args.shift();
+return function(){
+return fn.apply(object,
+args.concat(Array.prototype.slice.call(arguments)));
+};
+};
+对于那些不支持bind方法的老式浏览器，可以自行定义bind方法。
+
+if(!('bind' in Function.prototype)){
+    Function.prototype.bind = function(){
+        var fn = this;
+        var context = arguments[0];
+        var args = Array.prototype.slice.call(arguments, 1);
+        return function(){
+            return fn.apply(context, args);
+        }
+    }
+}
+
+== Object.keys();可枚举，自身    Object.getOwnPropertyNames() 自身所有
+Object.create(原型)继承   实例对象.hasOwnProperty("name"); 判断是否为自己的属性 ===
+
+判断一个对象是否具有某个属性(忽略不可枚举)（不管是自身的还是继承的），使用in运算符。 for in
+
+
+获得对象的所有属性（不管是自身的还是继承的，以及是否可枚举），可以使用下面的函数。
+
+function inheritedPropertyNames(obj) {
+  var props = {};
+  while(obj) {
+    Object.getOwnPropertyNames(obj).forEach(function(p) {
+      props[p] = true;
+    });
+    obj = Object.getPrototypeOf(obj);
+  }
+  return Object.getOwnPropertyNames(props);
+}
+用法如下：
+
+inheritedPropertyNames(Date)
+// ["caller", "constructor", "toString", "UTC", "call", "parse", "prototype", "__defineSetter__", "__lookupSetter__", "length", "arguments", "bind", "__lookupGetter__", "isPrototypeOf", "toLocaleString", "propertyIsEnumerable", "valueOf", "apply", "__defineGetter__", "name", "now", "hasOwnProperty"]
