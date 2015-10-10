@@ -39,14 +39,18 @@ user.name pmzgit user.email pmz00
 
 
 * 要随时掌握工作区的状态，使用git status命令。
-如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。  
+`git diff`:工作区与暂存区差异
+`git diff --cached`: 暂存区与历史记录差异
+`git diff HEAD~2 -- path`: 历史记录与工作区差异，指定文件的
+`git diff --cached HEAD~2`: 暂存区与历史记录差异
+`git diff HEAD HEAD~2`:当前历史记录与上一个历史记录差异（横向，注意顺序）
+`git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command
+`git diff --word-diff` :强烈推荐，增减，不同颜色
 
-
-HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。
-
-穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)
-
-要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+* HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commitid，工作区和暂存区都被当前commit的工作区和暂存区覆盖。 (--mixed 只修改暂存区，--soft之移动master和head)
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)  
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。  
 
 
 版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
@@ -65,21 +69,17 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 现在，你又理解了Git是如何跟踪修改的，每次修改，如果不add到暂存区，那就不会加入到commit中
 
 
-命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
-
-一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
-
-一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-
-总之，就是让这个文件回到最近一次git commit或git add时的状态。
-
-git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+* 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：(note: `git checkout commitid/tag/分支明/HEAD~n -- file`: 用指定的历史提交的暂存区和工作区，覆盖当前的暂存区和工作区。同理`git reset commitid/tag/分支名 -- file`,则只是覆盖暂存区的内容)  
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态,实际上是用暂存区对象复制到工作区，来达到撤销工作区修改的目的；  
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。  
+总之，就是让这个文件回到最近一次git commit或git add时的状态。  
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。  
 
 又到了小结时间。
 
 场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
 
-场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，此时，暂存区与当前历史提交没有差异，实际上也是向下复制，第二步按场景1操作。
 
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
@@ -140,7 +140,7 @@ git checkout
 		否则别人fetch时（此时强制+）
 
 
-当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。或者放弃本次合并操作： `git merge --abort`
 
 用git log --graph命令可以看到分支合并图。 git log --graph --pretty=oneline --abbrev-commit
 
@@ -163,7 +163,10 @@ Git分支十分强大，在团队开发中应该充分应用。
 
 当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
 http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137602359178794d966923e5c4134bc8bf98dfb03aea3000
-
+`git stash save -a "stash_name"`  
+`git stash list`  
+`git stash pop --index stash_ref` = `git stash apply --index stash@{0}` and `git stash drop stash@{0}`  
+`git stash clear` 删除所有stash
 
 开发一个新feature，最好新建一个分支；
 
@@ -189,6 +192,12 @@ $ git checkout -b dev origin/dev（此时也完成了远程dev分支与本地新
 	remote = origin
 	merge = refs/heads/dev
 merge指 本地dev 跟踪远程的ref/heads/下的dev分支
+`git checkout remote_branch` :如果远程仓库存在本地不存在的分支时，可以用  `git fetch origin` 后，再用开头的命令直接用fetch后的远程跟踪分支信息创建并跟踪了一个与远程分支对应的本地分支。  
+**使用修改配置方式，新建分支并跟踪远程分支**  
+`git branch dev`  
+`git config branch.dev.remote origin` : 设置跟踪远程仓库信息，制定origin对应的remote配置    
+`git config branch.dev.merge refs/heads/dev` : 表示跟踪远程仓库的 dev分支
+
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
 小结
@@ -204,6 +213,11 @@ merge指 本地dev 跟踪远程的ref/heads/下的dev分支
 建立本地分支和远程分支的关联，使用git branch --set-upstream-to=origin/dev dev
 
 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+
+* `git commit --amend` : use a new commit replace current commit.    
+`git rebase master` 合并分支的另一种方法，线性合并，在master重演当前分支历史（注意从HEAD后开始演示当前分支所有店历史提交，但是从HEAD之后新生成的提交历史hash，所以经常要处理冲突），以使master分支历史呈线性的。可以指定要重演当前分支指定提交版本分界，注意不包含该分界点。`git rebase --onto master current_certain_commitid` ,
+
+
 
 
 * Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。  
@@ -231,10 +245,13 @@ git tag -s tagname -m "blablabla..."可以用PGP签名标签；
 让Git显示颜色，会让命令输出看起来更醒目：git config --global color.ui true
 
 
-忽略某些文件时，需要编写.gitignore；
-
+* 忽略某些文件时，需要编写.gitignore；  
 .gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+* 未跟踪的文件的删除  
+`git clean -n`:提醒git会删除那些文件。  
+`git clean -f`:git会强制删除由以上命令提醒要删除的文件  
+`git clean -n -X`: 与.gitignore 文件相反，会提醒要删除的文件中配置的文件  
+`git clean -X -f`: 同楼上  
 
+* `git rever commitid` 对commitid引入的改变取反， 然后应用到新的提交，并移动分支和HEAD 到新的提交。
 设置别名：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375234012342f90be1fc4d81446c967bbdc19e7c03d3000
-
-git@github.com:pmzgit/note.git

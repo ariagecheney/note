@@ -1,3 +1,4 @@
+##快捷键
 Ctrl+d	键盘输入结束或退出终端
 Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
 Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
@@ -11,6 +12,14 @@ CTRL + W - 剪切光标前一个单词
 Shift+PgUp	将终端显示向上滚动
 Shift+PgDn	将终端显示向下滚动
 
+* crtl + alt + 方向键 ：工作区切换 
+* shift + crtl + alt + 方向键 ：把当前窗口移到另一个工作区
+* super + d ：显示桌面
+* shift + f10 ： 鼠标右键
+* ctrl + alt + backspace ： 重启会话
+* super + l ： 锁定屏幕
+* alt + f7 ： 激活移动窗口功能，方向键移动，enter键确定
+* alt + enter ： 显示文件属性
 
 Shell 常用通配符：
 
@@ -279,16 +288,17 @@ $ dd if=/dev/stdin of=test bs=10 count=1 conv=ucase
 输出的结果中每一行表示一个设备或虚拟设备,每一行最前面是设备名，然后是 on 后面是挂载点，type 后面表示文件系统类型，再后面是挂载选项（比如可以在挂载时设定以只读方式挂载等等）。
 
 mount [-o [操作选项]] [-t 文件系统类型] [-w|--rw|--ro] [文件系统源] [挂载点]
- mount -o loop -t ext4 virtual.img /mnt 
-# 也可以省略挂载类型，很多时候 mount 会自动识别
+ mount -o loop -t ext4 virtual.img /mnt  
+ 
+* 也可以省略挂载类型，很多时候 mount 会自动识别
 
-# 以只读方式挂载
+* 以只读方式挂载
 $ mount -o loop --ro virtual.img /mnt
-# 或者mount -o loop,ro virtual.img /mnt
+或者mount -o loop,ro virtual.img /mnt
 
 使用 umount 命令卸载已挂载磁盘
 
-# 命令格式 sudo umount 已挂载设备名或者挂载点，如：
+* 命令格式 sudo umount 已挂载设备名或者挂载点，如：
 $ sudo umount /mnt
 
 在类 UNIX 系统中，/dev/loop（或称vnd （vnode disk）、lofi（循环文件接口））是一种伪设备，这种设备使得文件可以如同块设备一般被访问。
@@ -331,23 +341,28 @@ autoclean	移除已安装的软件的旧版本软件包
 
 你还应该掌握的是如何重新安装软件包。 很多时候我们需要重新安装一个软件包，比如你的系统被破坏，或者一些错误的配置导致软件无法正常工作。
 sudo apt-get --reinstall install w3m
-# 更新软件源
+
+* 更新软件源
 $ sudo apt-get update
-# 升级没有依赖问题的软件包
+
+* 升级没有依赖问题的软件包
 $ sudo apt-get upgrade
-# 升级并解决依赖关系
+
+* 升级并解决依赖关系
 $ sudo apt-get dist-upgrade
-# 不保留配置文件的移除
+
+* 不保留配置文件的移除
 $ sudo apt-get purge w3m
-# 或者 sudo apt-get --purge remove
-# 移除不再需要的被依赖的软件包
+ 或者 sudo apt-get --purge remove
+
+* 移除不再需要的被依赖的软件包
 $ sudo apt-get autoremove
-apt-cache 命令则是针对本地数据进行相关操作的工具，search 顾名思义在本地的数据库中寻找有关 softname1 softname2 …… 相关软件的信息。
+
+* apt-cache 命令则是针对本地数据进行相关操作的工具，search 顾名思义在本地的数据库中寻找有关 softname1 softname2 …… 相关软件的信息。
 sudo apt-cache search softname1 softname2 softname3……
 
 
-dpkg常用参数介绍：
-
+* dpkg常用参数介绍：
 参数	说明
 -i	安装指定deb包
 -R	后面加上目录名，用于安装该目录下的所有deb安装包
@@ -369,3 +384,15 @@ $ sudo apt-get -f install
 
 使用dpkg -L查看deb包目录信息
 $ sudo dpkg -L emacs24
+`sudo dpkg -l | grep soft_name` 搜索系统中安装的指定软件
+
+linux 查看硬件信息
+lscpu 查看cpu统计信息 或者 cat /proc/cpuinfo 查看每个cpu信息，如cpu型号，主频
+
+查看概要内存情况 free -h 查看内存详细使用情况 cat /proc/meminfo
+
+查看内存硬件（主板槽位信息）dmidecode -t memeory
+* `getconf LONG_BIT` 查看操作系统位数  
+`lsb_release -a` 查看当前系统版本信息
+`uname -a` 查看系统内核信息
+ 
