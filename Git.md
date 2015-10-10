@@ -18,34 +18,33 @@
 	git config --global --add or --unset or name value or --get
 ```
 
-*. git config --global user.name "Your Name"
-$ git config --global user.email "email@example.com"
-因为是分布式所以必须每台机器进行认证
-注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+## git 工作流程
+
+* `git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"`
+
+	因为是分布式所以必须每台机器进行认证,注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
 git config -l --local 列出该仓库下的参数
 user.name pmzgit user.email pmz00
 配置有三个级别，优先级由高到低 --local --global(当前用户) --system（当前系统所有用户）
 
-*. git 使用40个16进制字符的	SHA-1 Hash 来唯一标识对象。
+* git 使用40个16进制字符的	SHA-1 Hash 来唯一标识对象。
 	git 有四种对象：tag -> commit -> tree > blob (tree包含tree和blob对象，树形结构)
 
-*. 初始化一个Git仓库，1. 使用git init命令。在当前文件夹下初始化 `git init`. 2. git clone local_repo dist_dir_name
+* 初始化一个Git仓库，1. 使用git init命令。在当前文件夹下初始化 `git init`. 2. git clone local_repo dist_dir_name
 
-添加文件到Git仓库，分两步：
-
+* 添加文件到Git仓库，分两步:    
 第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件 `git add a.md b.txt`；
-
 第二步，使用命令git commit，完成。
 
 
-要随时掌握工作区的状态，使用git status命令。
-
+* 要随时掌握工作区的状态，使用git status命令。
 如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
 
 
 HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。
 
-穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)
 
 要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
@@ -84,21 +83,18 @@ git reset命令既可以回退版本，也可以把暂存区的修改回退到�
 
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
-Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：
+* Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：
 这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：
 现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
-现在，文件就从版本库中被删除了。
-
-另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：git checkout -- test.txt
-
+现在，文件就从版本库中被删除了。`git rm file` 删除了工作区和暂存区 `git rm --cached file` 只删除了暂存区  
+另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：git checkout -- test.txt  
 git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
+* `git mv file1.txt file2.txt` 重命名操作，工作区和暂存区文件名都更改了，但是根据文件内容生成的暂存区索引SHA-1 Hash码，并没有更改，因为只是重命名操作，内容并没有更改。
 
-
-要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+* 要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
 第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
-
 $ ssh-keygen -t rsa -C "youremail@example.com"
 你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。
 
@@ -115,53 +111,54 @@ git checkout
 
 分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
 
-要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。git clone git@github.com:michaelliao/gitskills.git （destion dir）
-克隆到的仓库会有一个origin/master（远程跟踪分支，用户只读），据其还会产生一个master分支（跟踪分支，用户可写），指向最新commit（HEAD）
+* 要克隆一个仓库，首先必须知道仓库的地址，然后使用`git clone`命令克隆。  
+`git clone git@github.com:michaelliao/gitskills.git （destion dir）`克隆到的仓库会有一个origin/master（远程跟踪分支，用户只读），据其还会产生一个master分支（跟踪分支，用户可写），指向最新commit（HEAD）
 
-Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+* Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
 
-Git鼓励大量使用分支：分支只是指向某个commit对象的引用
+* Git鼓励大量使用分支：分支只是指向某个commit对象的引用
 
 查看当前分支：git branch
 
-创建分支：git branch <name>
+创建分支：git branch name
 
-切换分支：git checkout <name>
+切换分支：git checkout name
 
-创建+切换分支：git checkout -b <name>
+创建+切换分支：git checkout -b name
 
-合并某分支到当前分支：git merge <name> (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff master origin/master 查看本地与远程的版本历史区别
+删除分支：git branch -d name
 
-[remote "origin"]
+* 合并某分支到当前分支：git merge name (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff master origin/master 查看本地与远程的版本历史区别
+
+> [remote "origin"]  
+
 	url = git@github.com:pmzgit/note.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 		远程仓库master分支（refs/heads/master：commit SHA1 hash）
 		本地远程跟踪origin/master分支（refs/remotes/origin/master：commit SHA1 hash）
 		+ 代表强制non-fast-forward  不建议修改远程仓库店历史commit（例如版本倒退，并覆盖），也不建议强制push（git push origin +master）
 		否则别人fetch时（此时强制+）
-删除分支：git branch -d <name>
+
 
 当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
 
 用git log --graph命令可以看到分支合并图。 git log --graph --pretty=oneline --abbrev-commit
 
 
-分支管理策略
+* 分支管理策略  
 在实际开发中，我们应该按照几个基本原则进行分支管理：
 
-首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
-
-那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
-
+* 首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；  
 你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
 
 
 Git分支十分强大，在团队开发中应该充分应用。
 
-合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+* 合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
 
 
-bug分支
+* bug分支
 修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
 
 当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
@@ -209,15 +206,12 @@ merge指 本地dev 跟踪远程的ref/heads/下的dev分支
 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 
 
-Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。
+* Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。  
+命令git tag name用于新建一个标签，默认为HEAD，也可以指定一个commit id；  
+git tag -a tagname -m "blablabla..."可以指定标签信息；  
+git tag -s tagname -m "blablabla..."可以用PGP签名标签；
 
-命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
-
-git tag -a <tagname> -m "blablabla..."可以指定标签信息；
-
-git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
-
-命令git tag可以查看所有标签。
+命令git tag可以查看所有标签。`git show tag_name` show detail tag info
 
 命令git push origin <tagname>可以推送一个本地标签；
 
