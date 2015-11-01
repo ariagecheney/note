@@ -1,4 +1,4 @@
-##快捷键
+#快捷键
 Ctrl+d	键盘输入结束或退出终端
 Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
 Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
@@ -179,7 +179,8 @@ whereis只能搜索二进制文件(-b)，man帮助文件(-m)和源代码文件(-
 
 locate 快而全
 locate /etc/sh  查找 /etc 下所有以 sh 开头的文件，它不只是在 etc 目录下查找并会自动递归子目录进行查找
-locate /usr/share/\*.jpg
+locate /udo mkdir jvm
+
 
 通过"/var/lib/mlocate/mlocate.db"数据库查找，不过这个数据库也不是实时更新的，系统会使用定时任务每天自动执行updatedb命令更新一次，所以有时候你刚添加的文件，它可能会找不到，需要手动执行一次updatedb命令（在我们的环境中必须先执行一次该命令）。
 想只统计数目可以加上-c参数，-i参数可以忽略大小写进行查找，whereis 的-b,-m，-s同样可以是使用。
@@ -227,7 +228,7 @@ zip -r -9 -q -o shiyanlou_9.zip /home/shiyanlou -x ~/*.zip
 du命令查看打包后文件的大小  du -h -d 0 *.zip ~ | sort 
 -d, --max-depth（所查看文件的深度）
 
-unzip -d 目标目录 -l 不解压之差看压缩包内容 -O（大写） 指定编码
+unzip -d 目标目录 -l 不解压只查看压缩包内容 -O（大写） 指定编码
 unzip -q shiyanlou.zip -d ziptest
 unzip -l shiyanlou.zip
 unzip -O GBK 中文压缩文件.zip
@@ -241,7 +242,7 @@ unrar x shiyanlou.rar
 mkdir tmp
 $ unrar e shiyanlou.rar tmp/
 
-tar -c 创建一个tar包 -f指定创建的文件名 -v可视化输出打包文件（默认去掉前面店绝对路径/使用-P保留绝对路径） 解包一个文件(-x参数)到指定路径的已存在目录(-C参数)：  只查看不解包文件-t参数：
+tar -c 创建一个tar包 -f指定创建的文件名 -v可视化输出打包文件（默认去掉前面的绝对路径/使用-P保留绝对路径） 解包一个文件(-x参数)到指定路径的已存在目录(-C参数)：  只查看不解包文件-t参数, r 追加文档到tar文件尾部.
 保留文件属性和跟随链接（符号链接或软链接），有时候我们使用tar备份文件当你在其他主机还原时希望保留文件的属性(-p参数)和备份链接指向的源文件而不是链接本身(-h参数)：
 
 tar -cf shiyanlou.tar ~
@@ -249,7 +250,7 @@ mkdir tardir
 $ tar -xf shiyanlou.tar -C tardir
 tar -tf shiyanlou.tar
 tar -cphf etc.tar /etc
-
+tar -rvf shiyanlou.tar file_extra.txt
 我们只需要在创建 tar 文件的基础上添加-z参数，使用gzip来压缩/解压缩文件：
 
 压缩文件格式	参数
@@ -395,4 +396,67 @@ lscpu 查看cpu统计信息 或者 cat /proc/cpuinfo 查看每个cpu信息，如
 * `getconf LONG_BIT` 查看操作系统位数  
 `lsb_release -a` 查看当前系统版本信息
 `uname -a` 查看系统内核信息
- 
+
+## jdk install
+我们把JDK安装到这个路径：/usr/lib/jvm
+如果没有这个目录（第一次当然没有），我们就新建一个目录
+
+cd /usr/lib
+sudo mkdir jvm
+建立好了以后，我们来到刚才下载好的压缩包的目录，解压到我们刚才新建的文件夹里面去，并且修改好名字方便我们管理
+
+sudo tar zxvf ./jdk-7-linux-i586.tar.gz  -C /usr/lib/jvm
+cd /usr/lib/jvm
+sudo mv jdk1.7.0_05/ jdk7
+
+ 3.配置环境变量
+
+gedit /etx/profile
+
+在打开的文件的末尾添加
+
+export JAVA_HOME=/usr/lib/jvm/jdk7
+
+
+export JRE_HOME=${JAVA_HOME}/jre 
+
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
+
+
+export PATH=${JAVA_HOME}/bin:$PATH
+
+保存退出，然后输入下面的命令来使之生效
+
+source ~/.bashrc
+
+ 4.配置默认JDK
+
+由于一些Linux的发行版中已经存在默认的JDK，如OpenJDK等。所以为了使得我们刚才安装好的JDK版本能成为默认的JDK版本，我们还要进行下面的配置。
+执行下面的命令：
+
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk7/bin/java 300
+
+
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk7/bin/javac 300
+
+ 注意：如果以上两个命令出现找不到路径问题，只要重启一下计算机在重复上面两行代码就OK了。
+
+执行下面的代码可以看到当前各种JDK版本和配置：
+
+sudo update-alternatives --config java
+
+ 5.测试
+
+打开一个终端，输入下面命令：
+
+java -version
+
+显示结果：
+
+java version "1.7.0_05"
+Java(TM) SE Runtime Environment (build 1.7.0_05-b05)
+
+
+Java HotSpot(TM) Server VM (build 23.1-b03, mixed mode)
+
+这表示java命令已经可以运行了。

@@ -5,6 +5,14 @@
 
 ## git [官方网站](http://git-scm.com/)
 
+## ubuntu 安装,升级或卸载Git
+```
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+// 卸载Git
+sudo apt-get remove git
+```
 ```
 	git --version
 	//git help

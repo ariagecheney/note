@@ -1,3 +1,4 @@
 - [ ] linux 变量 `source` `.bashrc` 
 - [ ] linux git upgrade,complet and prompt 
 - [ ] linux shell线程, 加密GPG SSH
+
