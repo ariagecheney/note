@@ -5,6 +5,14 @@
 
 ## git [官方网站](http://git-scm.com/)
 
+## ubuntu 安装,升级或卸载Git
+```
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+// 卸载Git
+sudo apt-get remove git
+```
 ```
 	git --version
 	//git help
@@ -48,7 +56,7 @@ user.name pmzgit user.email pmz00
 `git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command
 `git diff --word-diff` :强烈推荐，增减，不同颜色
 
-* HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commitid，工作区和暂存区都被当前commit的工作区和暂存区覆盖。 (--mixed 只修改暂存区，--soft之移动master和head)
+* HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commitid，工作区和暂存区都被当前commit的工作区和暂存区覆盖。 (--mixed 只修改暂存区，--soft之移动master和head) 
 穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)  
 要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。  
 
@@ -216,7 +224,7 @@ merge指 本地dev 跟踪远程的ref/heads/下的dev分支
 
 * `git commit --amend` : use a new commit replace current commit.    
 `git rebase master` 合并分支的另一种方法，线性合并，在master重演当前分支历史（注意从HEAD后开始演示当前分支所有店历史提交，但是从HEAD之后新生成的提交历史hash，所以经常要处理冲突），以使master分支历史呈线性的。可以指定要重演当前分支指定提交版本分界，注意不包含该分界点。`git rebase --onto master current_certain_commitid` ,
-
+   
 
 
 
@@ -255,3 +263,5 @@ git tag -s tagname -m "blablabla..."可以用PGP签名标签；
 
 * `git rever commitid` 对commitid引入的改变取反， 然后应用到新的提交，并移动分支和HEAD 到新的提交。
 设置别名：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375234012342f90be1fc4d81446c967bbdc19e7c03d3000
+
+git@github.com:pmzgit/note.git

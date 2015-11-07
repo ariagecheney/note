@@ -1,7 +1,7 @@
 ## TODO List
-- [ ] linux 变量 `source` `.bashrc`
-- [ ] linux git upgrade,complet and prompt
-- [ ] linux ssh teamviewer
+- [x] linux 变量 `source` `.bashrc`
+- [x] linux git upgrade,complet and prompt
+- [x] linux ssh teamviewer
 - [ ] linux shell线程, 加密GPG SSH
 - [ ] linux 开发环境配置
 - [ ] 项目源码
