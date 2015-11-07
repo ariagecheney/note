@@ -1,6 +1,26 @@
+[mysql manual in chinase](http://doc.mysql.cn/mysql5/refman-5.1-zh.html-chapter/ "中文")
+[w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)
+[runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
 sql 对大小写不敏感
 日期
 基于集合理论
+
+## 在创建mysql数据库的时候如何支持UTF-8编码
+
+1. 用工具
+CHARSET 选择 utf8
+COLLATION 选择 utf8_general_ci
+
+
+2. 用SQL语句
+GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
+UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+## 解决cmd下，乱码问题
+你也可以使用 在 windows 中 dos 中 mysql -uroot --default-character-set=gbk ...
+
+连接方式 （注意 在Windows 下 不管你的数据是什么格式的 都得用gbk ,原因是 dos 中文只支持 gbk ）
+
  order by排序 返回游标不能做表达式 select atime, deathnumber, province from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东' order by 2
 
 不同值统计 select count(distinct deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东';
@@ -84,7 +104,7 @@ select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd having count(pwd) <
 
 当我们在 WHERE 子句或 HAVING 子句中插入另一个 SQL 语句时，我们就有一个 subquery 的架构。第一，它可以被用来连接表格。另外，有的时候 subquery 是唯一能够连接两个表格的方式。
 
-SELECT SUM(Sales) FROM Store_Information WHERE Store_name IN (SELECT store_name FROM Geography 
+SELECT SUM(Sales) FROM Store_Information WHERE Store_name IN (SELECT store_name FROM Geography
 WHERE region_name = 'West');
 
 
@@ -101,6 +121,6 @@ ifconfig eth0 192.168.254.200 netmask 255.255.255.0
 
 mysql 命令下执行脚本
 
-第一种方式：在未连接数据库的情况下，输入 mysql -h localhost -u root -p 123456  < d:\book.sql 回车即可；
+第一种方式：在未连接数据库的情况下，输入 mysql -h localhost -u root -p 123456 database < d:\book.sql 回车即可；
 
 第二种方式：在已连接数据库的情况下，此时命令提示符为mysql>，输入 source d:\book.sql  或者 \. d:\book.sql 回车即可。

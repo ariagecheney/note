@@ -1,8 +1,8 @@
-css兼容性:1 浏览器 2 语法版本 2012.9.18  
+css兼容性:1 浏览器 2 语法版本 2012.9.18
 
 
 
-优化 
+优化
 文件合并
 文件压缩
 cdn
@@ -20,7 +20,7 @@ css优先级
 
 
 
-渲染规则   
+渲染规则
 1.计算权重
 2.就近规则
 3.!important
@@ -30,7 +30,7 @@ css优先级
     如果因为一些特殊原因，你不得不在一个代码块中声明两个同样的属性，那么请把!important加在第一个属性后面，因为这样做会让所有浏览器中第一个属性的权重更大，而IE6除外（这是一个只有IE6才有的hack，但是不会影响你的CSS）
     在IE6和IE7中如果你使用不同的单词替代!important（像!hotdog），这条CSS样式依然会获得更大的权重，但是其他浏览器却会忽略它。
 )
-window。top.document.compatMode  标准模式怪异模式 
+window。top.document.compatMode  标准模式怪异模式
 
 css动画
 
@@ -101,7 +101,7 @@ E[attr^="value"]属性选择器，指的是选择attr属性值以“value”开�
 如下，我们设置a标签的href属性值的背景色：
 
 .wrap a[href^="http://"]{background:orange;color:blue;}
- 
+
 .wrap a[href^="mailto:"]{background:blue;color:orange;}
 上面代码选择了a标签的href属性，并且选取属性值为"http://"和"mailto:"开头的所有a标签，改变其颜色。
 
@@ -461,3 +461,5 @@ a:link:after { content: " (" attr(href) ")"; }
 	 color: red;
 	 margin: 0 5px 0 5px;
 }
+# Exemples
+1. font:italic bold 50px verdana;
