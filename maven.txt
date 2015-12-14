@@ -23,6 +23,7 @@ mvn clean--》mvn package   编译》打包
 传递性依赖：scope 依赖的范围--》编译范围（compile），已提供范围（provided），运行时范围（runtime），测试范围（test），系统范围（system）
 
 maven仓库：一个存放了所有依赖的仓库，其通过依赖的坐标对其进行管理。--》mvn install --》pom里远程仓库配置，开源中国
+http://search.maven.org/   maven central repo  maven.oschina.net
 
 项目站点报告：在项目pom里配置 site插件
 <plugin>

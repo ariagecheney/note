@@ -1,3 +1,9 @@
+Firefox 插件
+
+
+
+
+
 chrome  各插件使用快捷键
 划词翻译   ctrl+q
 
@@ -242,3 +248,4 @@ Ctrl+Y : 向下滚动一行
 Ctrl+E : 向上滚动一行
 Ctrl+F : 下一页
 Ctrl+B : 上一页
+11 http://yanhaijing.com/tool/2014/10/24/my-sublime/    颜海镜sublimenote

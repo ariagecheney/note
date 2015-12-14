@@ -12,7 +12,7 @@ CTRL + W - 剪切光标前一个单词
 Shift+PgUp	将终端显示向上滚动
 Shift+PgDn	将终端显示向下滚动
 
-* crtl + alt + 方向键 ：工作区切换 
+* crtl + alt + 方向键 ：工作区切换
 * shift + crtl + alt + 方向键 ：把当前窗口移到另一个工作区
 * super + d ：显示桌面
 * shift + f10 ： 鼠标右键
@@ -55,7 +55,7 @@ $ man 3 printf
 
 whoami
 打印当前用户
-who am i 
+who am i
 当前终端登录用户
 pwd
 打印当前目录
@@ -68,6 +68,8 @@ sudo adduser lilei    --> su -l lilei  退出当前用户跟退出终端一样�
 groups shiyanlou  自己属于哪些用户组
 
 cat /etc/group | grep -E "shiyanlou|sudo"  group_name:password:GID:user_list
+
+cat /etc/passwd 查看系统所有用户，uid 500之前为系统用户
 
 sudo usermod -G sudo lilei  添加用户到用户组
 
@@ -197,7 +199,7 @@ find应该是这几个命令中最强大的了，它不但可以通过文件类�
 指定目录下搜索指定文件名的文件：
 
 $ find /etc/ -name interfaces
-注意 find 命令的路径是作为第一个参数的， 基本命令格式为 
+注意 find 命令的路径是作为第一个参数的， 基本命令格式为
 find [path] [option] [action]
 与时间相关的命令参数：
 
@@ -225,7 +227,7 @@ $ find ~ -newer /home/shiyanlou/Code
 zip -r 递归打包 -o 输出文件，其后紧跟打包输出文件名 -q安静模式 -【1-9】压缩级别，默认为最高9  -x 排除文件不压缩，只能使用绝对路径，否则不起作用。
 zip -r -9 -q -o shiyanlou_9.zip /home/shiyanlou -x ~/*.zip
 -e 加密 -l参数将LF转换为CR+LF 兼容windows
-du命令查看打包后文件的大小  du -h -d 0 *.zip ~ | sort 
+du命令查看打包后文件的大小  du -h -d 0 *.zip ~ | sort
 -d, --max-depth（所查看文件的深度）
 
 unzip -d 目标目录 -l 不解压只查看压缩包内容 -O（大写） 指定编码
@@ -237,7 +239,7 @@ rar a 添加一个目录  d删除某个文件 l 查看不解压
 rar a shiyanlou.rar .
 rar d shiyanlou.rar .zshrc
 rar l shiyanlou.rar
-unrar x 全路经解压  e 去掉路径解压 
+unrar x 全路经解压  e 去掉路径解压
 unrar x shiyanlou.rar
 mkdir tmp
 $ unrar e shiyanlou.rar tmp/
@@ -290,7 +292,7 @@ $ dd if=/dev/stdin of=test bs=10 count=1 conv=ucase
 
 mount [-o [操作选项]] [-t 文件系统类型] [-w|--rw|--ro] [文件系统源] [挂载点]
  mount -o loop -t ext4 virtual.img /mnt  
- 
+
 * 也可以省略挂载类型，很多时候 mount 会自动识别
 
 * 以只读方式挂载
@@ -418,7 +420,7 @@ gedit /etx/profile
 export JAVA_HOME=/usr/lib/jvm/jdk7
 
 
-export JRE_HOME=${JAVA_HOME}/jre 
+export JRE_HOME=${JAVA_HOME}/jre
 
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
 

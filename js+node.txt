@@ -1,40 +1,40 @@
-ÒªÊÇÁ½¸öÖµÀàÐÍ²»Í¬£¬·µ»Øfalse 
-ÒªÊÇÁ½¸öÖµ¶¼ÊÇnumberÀàÐÍ£¬²¢ÇÒÊýÖµÏàÍ¬£¬·µ»Øtrue 
-ÒªÊÇÁ½¸öÖµ¶¼ÊÇstirng£¬²¢ÇÒÁ½¸öÖµµÄStringÄÚÈÝÏàÍ¬£¬·µ»Øtrue 
-ÒªÊÇÁ½¸öÖµ¶¼ÊÇtrue»òÕß¶¼ÊÇfalse£¬·µ»Øtrue 
-ÒªÊÇÁ½¸öÖµ¶¼ÊÇÖ¸ÏòÏàÍ¬µÄObject£¬Array»òÕßfunction£¬·µ»Øtrue 
-ÒªÊÇÁ½¸öÖµ¶¼ÊÇnull»òÕß¶¼ÊÇundefined£¬·µ»Øtrue 
-==²Ù×÷·û£º 
-Èç¹ûÁ½¸öÖµ¾ßÓÐÏàÍ¬ÀàÐÍ£¬»á½øÐÐ===±È½Ï£¬·µ»Ø===µÄ±È½ÏÖµ 
-Èç¹ûÁ½¸öÖµ²»¾ßÓÐÏàÍ¬ÀàÐÍ£¬Ò²ÓÐ¿ÉÄÜ·µ»Øtrue 
-Èç¹ûÒ»¸öÖµÊÇnullÁíÒ»¸öÖµÊÇundefined£¬·µ»Øtrue 
-Èç¹ûÒ»¸öÖµÊÇstringÁí¸öÊÇnumber£¬»á°Ñstring×ª»»³ÉnumberÔÙ½øÐÐ±È½Ï 
-Èç¹ûÒ»¸öÖµÊÇtrue£¬»á°ÑËü×ª³É1ÔÙ±È½Ï£¬false»á×ª³É0 
-Èç¹ûÒ»¸öÖµÊÇObject£¬ÁíÒ»¸öÊÇnumber»òÕßstring£¬»á°ÑObjectÀûÓÃ valueOf()»òÕßtoString()×ª»»³ÉÔ­Ê¼ÀàÐÍÔÙ½øÐÐ±È½Ï 
+ï»¿è¦æ˜¯ä¸¤ä¸ªå€¼ç±»åž‹ä¸åŒï¼Œè¿”å›žfalse
+è¦æ˜¯ä¸¤ä¸ªå€¼éƒ½æ˜¯numberç±»åž‹ï¼Œå¹¶ä¸”æ•°å€¼ç›¸åŒï¼Œè¿”å›žtrue
+è¦æ˜¯ä¸¤ä¸ªå€¼éƒ½æ˜¯stirngï¼Œå¹¶ä¸”ä¸¤ä¸ªå€¼çš„Stringå†…å®¹ç›¸åŒï¼Œè¿”å›žtrue
+è¦æ˜¯ä¸¤ä¸ªå€¼éƒ½æ˜¯trueæˆ–è€…éƒ½æ˜¯falseï¼Œè¿”å›žtrue
+è¦æ˜¯ä¸¤ä¸ªå€¼éƒ½æ˜¯æŒ‡å‘ç›¸åŒçš„Objectï¼ŒArrayæˆ–è€…functionï¼Œè¿”å›žtrue
+è¦æ˜¯ä¸¤ä¸ªå€¼éƒ½æ˜¯nullæˆ–è€…éƒ½æ˜¯undefinedï¼Œè¿”å›žtrue
+==æ“ä½œç¬¦ï¼š
+å¦‚æžœä¸¤ä¸ªå€¼å…·æœ‰ç›¸åŒç±»åž‹ï¼Œä¼šè¿›è¡Œ===æ¯”è¾ƒï¼Œè¿”å›ž===çš„æ¯”è¾ƒå€¼
+å¦‚æžœä¸¤ä¸ªå€¼ä¸å…·æœ‰ç›¸åŒç±»åž‹ï¼Œä¹Ÿæœ‰å¯èƒ½è¿”å›žtrue
+å¦‚æžœä¸€ä¸ªå€¼æ˜¯nullå¦ä¸€ä¸ªå€¼æ˜¯undefinedï¼Œè¿”å›žtrue
+å¦‚æžœä¸€ä¸ªå€¼æ˜¯stringå¦ä¸ªæ˜¯numberï¼Œä¼šæŠŠstringè½¬æ¢æˆnumberå†è¿›è¡Œæ¯”è¾ƒ
+å¦‚æžœä¸€ä¸ªå€¼æ˜¯trueï¼Œä¼šæŠŠå®ƒè½¬æˆ1å†æ¯”è¾ƒï¼Œfalseä¼šè½¬æˆ0
+å¦‚æžœä¸€ä¸ªå€¼æ˜¯Objectï¼Œå¦ä¸€ä¸ªæ˜¯numberæˆ–è€…stringï¼Œä¼šæŠŠObjectåˆ©ç”¨ valueOf()æˆ–è€…toString()è½¬æ¢æˆåŽŸå§‹ç±»åž‹å†è¿›è¡Œæ¯”è¾ƒ
 
-//¡°||¡±ÔËËã·ûµÄÔËËã·¨ÔòÈçÏÂ£º
- 
-Èç¹û||×ó²à±í´ïÊ½µÄÖµÎªÕæÖµ£¬Ôò·µ»Ø×ó²à±í´ïÊ½µÄÖµ£»·ñÔò·µ»ØÓÒ²à±í´ïÊ½µÄÖµ¡£
-Èç¹û&&×ó²à±í´ïÊ½µÄÖµÎªÕæÖµ£¬Ôò·µ»ØÓÒ²à±í´ïÊ½µÄÖµ£»·ñÔò·µ»Ø×ó²à±í´ïÊ½µÄÖµ¡£
-new Date()½ÓÊÕºÁÃëºÍÈÕÆÚ×Ö·û´®£¬ÒÔ¼°±íÊ¾Äê£¬ÔÂ£¨»ùÓÚ0£©£¬ÈÕ£¬Ê±£¨0-23£©£¬·Ö£¨0-60£©£¬Ãë£¬ºÁÃë£¨µ«ÊÇÕâ»ùÓÚ±¾µØÊ±¼ä£¬¶ø²»ÊÇGMTÊ±¼ä£©£¬·µ»Ø¶ÔÏó¡£»ðºüÖ»Ö§³Ö¡®2/1/2015¡¯»òÕß¡®Ó¢ÎÄÔÂÃû ÈÕ£¬Äê¡¯·ñÔò·µ»ØNaN¡£Date.parse()½ÓÊÕÈÕÆÚ×Ö·û´®Date.parse("2011-10-10T14:48:00")£¬»òÕßÈÕÆÚ¶ÔÏó¡£Date.now()·µ»Øµ÷ÓÃ¸Ãº¯ÊýµÄÊ±¼äºÁÃëÊý¡£
-Ä¬ÈÏÇé¿öÏÂ£¬Date¶ÔÏó·µ»ØµÄ¶¼ÊÇµ±Ç°Ê±ÇøµÄÊ±¼ä¡£Date.UTC·½·¨¿ÉÒÔ·µ»ØUTCÊ±¼ä£¨ÊÀ½ç±ê×¼Ê±¼ä£©¡£¸Ã·½·¨½ÓÊÜÄê¡¢ÔÂ¡¢ÈÕµÈ±äÁ¿×÷Îª²ÎÊý£¬·µ»Øµ±Ç°¾àÀë1970Äê1ÔÂ1ÈÕ 00:00:00 UTCµÄºÁÃëÊý¡£¸Ã·½·¨µÄ²ÎÊýÓÃ·¨ÓëDate¹¹Ôìº¯ÊýÍêÈ«Ò»ÖÂ£¬±ÈÈçÔÂ´Ó0¿ªÊ¼¼ÆËã¡£
-dateObj.toLocaleString()="2015/2/28 ÉÏÎç10:40:23" dateObj.toString()="Sat Feb 28 2015 10:40:23 GMT+0800 (ÖÐ¹ú±ê×¼Ê±¼ä)"¡£µ«ÊÇvalueOf() getTime()·½·¨·µ»ØÈÕÆÚµÄºÁÃëÊý¡£ËùÒÔÈÕÆÚ¶ÔÏó¿ÉÒÔÖ±½Ó±È½Ï´óÐ¡£¬ÒòÎªÇ¿ÖÆ×ª»»£¬µ÷ÓÃ¶ÔÏóµÄvalueOf£¨£©·½·¨¡£¼õ·¨×ª»»ÎªÊýÖµ£¬¼Ó·¨×ª»»Îª×Ö·û´®£¨utc£©
-¸ñÊ½»¯·½·¨£ºvar testDate = new Date(2015,1,28,16,30,30,233);
+//â€œ||â€è¿ç®—ç¬¦çš„è¿ç®—æ³•åˆ™å¦‚ä¸‹ï¼š
+
+å¦‚æžœ||å·¦ä¾§è¡¨è¾¾å¼çš„å€¼ä¸ºçœŸå€¼ï¼Œåˆ™è¿”å›žå·¦ä¾§è¡¨è¾¾å¼çš„å€¼ï¼›å¦åˆ™è¿”å›žå³ä¾§è¡¨è¾¾å¼çš„å€¼ã€‚
+å¦‚æžœ&&å·¦ä¾§è¡¨è¾¾å¼çš„å€¼ä¸ºçœŸå€¼ï¼Œåˆ™è¿”å›žå³ä¾§è¡¨è¾¾å¼çš„å€¼ï¼›å¦åˆ™è¿”å›žå·¦ä¾§è¡¨è¾¾å¼çš„å€¼ã€‚
+new Date()æŽ¥æ”¶æ¯«ç§’å’Œæ—¥æœŸå­—ç¬¦ä¸²ï¼Œä»¥åŠè¡¨ç¤ºå¹´ï¼Œæœˆï¼ˆåŸºäºŽ0ï¼‰ï¼Œæ—¥ï¼Œæ—¶ï¼ˆ0-23ï¼‰ï¼Œåˆ†ï¼ˆ0-60ï¼‰ï¼Œç§’ï¼Œæ¯«ç§’ï¼ˆä½†æ˜¯è¿™åŸºäºŽæœ¬åœ°æ—¶é—´ï¼Œè€Œä¸æ˜¯GMTæ—¶é—´ï¼‰ï¼Œè¿”å›žå¯¹è±¡ã€‚ç«ç‹åªæ”¯æŒâ€˜2/1/2015â€™æˆ–è€…â€˜è‹±æ–‡æœˆå æ—¥ï¼Œå¹´â€™å¦åˆ™è¿”å›žNaNã€‚Date.parse()æŽ¥æ”¶æ—¥æœŸå­—ç¬¦ä¸²Date.parse("2011-10-10T14:48:00")ï¼Œæˆ–è€…æ—¥æœŸå¯¹è±¡ã€‚Date.now()è¿”å›žè°ƒç”¨è¯¥å‡½æ•°çš„æ—¶é—´æ¯«ç§’æ•°ã€‚
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒDateå¯¹è±¡è¿”å›žçš„éƒ½æ˜¯å½“å‰æ—¶åŒºçš„æ—¶é—´ã€‚Date.UTCæ–¹æ³•å¯ä»¥è¿”å›žUTCæ—¶é—´ï¼ˆä¸–ç•Œæ ‡å‡†æ—¶é—´ï¼‰ã€‚è¯¥æ–¹æ³•æŽ¥å—å¹´ã€æœˆã€æ—¥ç­‰å˜é‡ä½œä¸ºå‚æ•°ï¼Œè¿”å›žå½“å‰è·ç¦»1970å¹´1æœˆ1æ—¥ 00:00:00 UTCçš„æ¯«ç§’æ•°ã€‚è¯¥æ–¹æ³•çš„å‚æ•°ç”¨æ³•ä¸ŽDateæž„é€ å‡½æ•°å®Œå…¨ä¸€è‡´ï¼Œæ¯”å¦‚æœˆä»Ž0å¼€å§‹è®¡ç®—ã€‚
+dateObj.toLocaleString()="2015/2/28 ä¸Šåˆ10:40:23" dateObj.toString()="Sat Feb 28 2015 10:40:23 GMT+0800 (ä¸­å›½æ ‡å‡†æ—¶é—´)"ã€‚ä½†æ˜¯valueOf() getTime()æ–¹æ³•è¿”å›žæ—¥æœŸçš„æ¯«ç§’æ•°ã€‚æ‰€ä»¥æ—¥æœŸå¯¹è±¡å¯ä»¥ç›´æŽ¥æ¯”è¾ƒå¤§å°ï¼Œå› ä¸ºå¼ºåˆ¶è½¬æ¢ï¼Œè°ƒç”¨å¯¹è±¡çš„valueOfï¼ˆï¼‰æ–¹æ³•ã€‚å‡æ³•è½¬æ¢ä¸ºæ•°å€¼ï¼ŒåŠ æ³•è½¬æ¢ä¸ºå­—ç¬¦ä¸²ï¼ˆutcï¼‰
+æ ¼å¼åŒ–æ–¹æ³•ï¼švar testDate = new Date(2015,1,28,16,30,30,233);
 testDate.toDateString()="Sat Feb 28 2015"
-testDate.toTimeString()="16:30:30 GMT+0800"×¢Òâ»ðºüºÍchrome²»Ò»Ñù¡£
+testDate.toTimeString()="16:30:30 GMT+0800"æ³¨æ„ç«ç‹å’Œchromeä¸ä¸€æ ·ã€‚
 testDate.toLocaleDateString()="2015/2/28"
-testDate.toLocaleTimeString()="ÏÂÎç4:30:30"
-¼´Ê¹×Ö·û´®°üº¬Ë«×Ö½Ú×Ö·û£¬Ã¿¸ö×Ö·ûÒ²ÈÔËãÒ»¸ö×Ö·û¡£×Ö·û´®·ÃÎÊ¸ö±ð×Ö·û·½·¨¡®abc¡¯[2]='c'
-Êý×éµÄslice£¨£©·½·¨£¬²»Ó°ÏìÔ­Êý×é£¬Ö»ÊÇ¸ù¾ÝÆðÊ¼½áÊøÎ»ÖÃ¸´ÖÆ¡£Èç¹ûÎª¸ºÊý£¬ÓÃÊý×é³¤¶È¼ÓÉÏ¸ÃÊýÈ·¶¨Ë÷ÒýÎ»ÖÃ¡£splice£¨£©»á¸Ä±äÔ­Êý×é1É¾³ý£ºsplice£¨2,2£©£»2²åÈësplice£¨2,0£¬¡®red¡¯£¬¡®yellow¡¯£©£»3Ìæ»»splice£¨2,1£¬¡®red¡¯£¬¡®yellow¡¯£©¸Ã·½·¨·µ»ØÉ¾³ýÏî×é³ÉµÄÊý×é£¬²»É¾ÔòÎª[]£»
-×Ö·û´®µÄÇÐÆ¬·½·¨ÓÐÈý¸ö£¬slice()Óësubstring£¨£©ÏàËÆ£¬µ«ÊÇsubstr£¨£©µÚ¶þ¸ö²ÎÊý´ú±í¸öÊý¡£×¢Òâ´«Èë¸ºÊýµÄÊ±ºò²»Ò»Ñù¡£ÇÒµÚ¶þ¸ö²ÎÊý¿ÉÑ¡¡£
-×Ö·û´®·ÃÎÊË÷ÒýµÄ·½·¨indexOf()ºÍlastIndexOf£¨£©£¬»¹ÓÐµÚ¶þ¸ö²ÎÊý£¬¾ÍÊÇ¿ªÊ¼²éÕÒÖ¸¶¨×Ö·ûµÄÆðÊ¼Ë÷ÒýÎ»ÖÃ£¬¶øÊý×éÃ»ÓÐ£¬µ«¶¼ÊÇÓÃÈ«µÈ²Ù×÷¡£
-×Ö·û´®µÄtrim£¨£©·½·¨£¬·µ»ØµÄÊÇ¸±±¾¡£IE8ÒÔÇ°×¢ÒâÓÃtrimLeft£¨£©timeRight£¨£©·½·¨¡£
-escape²»±àÂë×Ö·ûÓÐ69¸ö£º*£¬+£¬-£¬.£¬/£¬@£¬_£¬0-9£¬a-z£¬A-Z
+testDate.toLocaleTimeString()="ä¸‹åˆ4:30:30"
+å³ä½¿å­—ç¬¦ä¸²åŒ…å«åŒå­—èŠ‚å­—ç¬¦ï¼Œæ¯ä¸ªå­—ç¬¦ä¹Ÿä»ç®—ä¸€ä¸ªå­—ç¬¦ã€‚å­—ç¬¦ä¸²è®¿é—®ä¸ªåˆ«å­—ç¬¦æ–¹æ³•â€˜abcâ€™[2]='c'
+æ•°ç»„çš„sliceï¼ˆï¼‰æ–¹æ³•ï¼Œä¸å½±å“åŽŸæ•°ç»„ï¼Œåªæ˜¯æ ¹æ®èµ·å§‹ç»“æŸä½ç½®å¤åˆ¶ã€‚å¦‚æžœä¸ºè´Ÿæ•°ï¼Œç”¨æ•°ç»„é•¿åº¦åŠ ä¸Šè¯¥æ•°ç¡®å®šç´¢å¼•ä½ç½®ã€‚spliceï¼ˆï¼‰ä¼šæ”¹å˜åŽŸæ•°ç»„1åˆ é™¤ï¼šspliceï¼ˆ2,2ï¼‰ï¼›2æ’å…¥spliceï¼ˆ2,0ï¼Œâ€˜redâ€™ï¼Œâ€˜yellowâ€™ï¼‰ï¼›3æ›¿æ¢spliceï¼ˆ2,1ï¼Œâ€˜redâ€™ï¼Œâ€˜yellowâ€™ï¼‰è¯¥æ–¹æ³•è¿”å›žåˆ é™¤é¡¹ç»„æˆçš„æ•°ç»„ï¼Œä¸åˆ åˆ™ä¸º[]ï¼›
+å­—ç¬¦ä¸²çš„åˆ‡ç‰‡æ–¹æ³•æœ‰ä¸‰ä¸ªï¼Œslice()ä¸Žsubstringï¼ˆï¼‰ç›¸ä¼¼ï¼Œä½†æ˜¯substrï¼ˆï¼‰ç¬¬äºŒä¸ªå‚æ•°ä»£è¡¨ä¸ªæ•°ã€‚æ³¨æ„ä¼ å…¥è´Ÿæ•°çš„æ—¶å€™ä¸ä¸€æ ·ã€‚ä¸”ç¬¬äºŒä¸ªå‚æ•°å¯é€‰ã€‚
+å­—ç¬¦ä¸²è®¿é—®ç´¢å¼•çš„æ–¹æ³•indexOf()å’ŒlastIndexOfï¼ˆï¼‰ï¼Œè¿˜æœ‰ç¬¬äºŒä¸ªå‚æ•°ï¼Œå°±æ˜¯å¼€å§‹æŸ¥æ‰¾æŒ‡å®šå­—ç¬¦çš„èµ·å§‹ç´¢å¼•ä½ç½®ï¼Œè€Œæ•°ç»„æ²¡æœ‰ï¼Œä½†éƒ½æ˜¯ç”¨å…¨ç­‰æ“ä½œã€‚
+å­—ç¬¦ä¸²çš„trimï¼ˆï¼‰æ–¹æ³•ï¼Œè¿”å›žçš„æ˜¯å‰¯æœ¬ã€‚IE8ä»¥å‰æ³¨æ„ç”¨trimLeftï¼ˆï¼‰timeRightï¼ˆï¼‰æ–¹æ³•ã€‚
+escapeä¸ç¼–ç å­—ç¬¦æœ‰69ä¸ªï¼š*ï¼Œ+ï¼Œ-ï¼Œ.ï¼Œ/ï¼Œ@ï¼Œ_ï¼Œ0-9ï¼Œa-zï¼ŒA-Z
 
-encodeURI²»±àÂë×Ö·ûÓÐ82¸ö£º!£¬#£¬$£¬&£¬'£¬(£¬)£¬*£¬+£¬,£¬-£¬.£¬/£¬:£¬;£¬=£¬?£¬@£¬_£¬~£¬0-9£¬a-z£¬A-Z
+encodeURIä¸ç¼–ç å­—ç¬¦æœ‰82ä¸ªï¼š!ï¼Œ#ï¼Œ$ï¼Œ&ï¼Œ'ï¼Œ(ï¼Œ)ï¼Œ*ï¼Œ+ï¼Œ,ï¼Œ-ï¼Œ.ï¼Œ/ï¼Œ:ï¼Œ;ï¼Œ=ï¼Œ?ï¼Œ@ï¼Œ_ï¼Œ~ï¼Œ0-9ï¼Œa-zï¼ŒA-Z
 
-encodeURIComponent²»±àÂë×Ö·ûÓÐ71¸ö£º!£¬ '£¬(£¬)£¬*£¬-£¬.£¬_£¬~£¬0-9£¬a-z£¬A-Z
-Êý×éµÄsort£¨£©×Ô¶¨ÒåÅÅÐò£ºÒ»°ã»á°ÑÊý×éµÄÃ¿¸öÔªËØµ÷ÓÃtoString£¨£©·½·¨ÔÙ½øÐÐ±È½Ï£¬¼´Ê¹ÊÇÊýÖµ¡£Èç¹û¼òµ¥µÄ×Ô¶¨ÒåÅÅÐò£¨ÔªËØÎªÊýÖµ»òÕß¶ÔÏóµÄvalueOf£¨£©·½·¨·µ»ØµÄÊÇÊýÖµ£¬Ôò¿ÉÊ¹ÓÃ¼òµ¥·½·¨£ºfunction com(a,b){return a-b}ÉýÐò£¬·´Ðò¿ÉÒÔµ÷ÓÃreverse£¨£©·½·¨£©;Èç¹ûÊÇ¶Ô¶ÔÏóÅÅÐò£¨°´ÕÕÆäÖÐµÄÄ³Ò»¸öÊôÐÔ£©£ºfunction comparestime(a,b)
+encodeURIComponentä¸ç¼–ç å­—ç¬¦æœ‰71ä¸ªï¼š!ï¼Œ 'ï¼Œ(ï¼Œ)ï¼Œ*ï¼Œ-ï¼Œ.ï¼Œ_ï¼Œ~ï¼Œ0-9ï¼Œa-zï¼ŒA-Z
+æ•°ç»„çš„sortï¼ˆï¼‰è‡ªå®šä¹‰æŽ’åºï¼šä¸€èˆ¬ä¼šæŠŠæ•°ç»„çš„æ¯ä¸ªå…ƒç´ è°ƒç”¨toStringï¼ˆï¼‰æ–¹æ³•å†è¿›è¡Œæ¯”è¾ƒï¼Œå³ä½¿æ˜¯æ•°å€¼ã€‚å¦‚æžœç®€å•çš„è‡ªå®šä¹‰æŽ’åºï¼ˆå…ƒç´ ä¸ºæ•°å€¼æˆ–è€…å¯¹è±¡çš„valueOfï¼ˆï¼‰æ–¹æ³•è¿”å›žçš„æ˜¯æ•°å€¼ï¼Œåˆ™å¯ä½¿ç”¨ç®€å•æ–¹æ³•ï¼šfunction com(a,b){return a-b}å‡åºï¼Œååºå¯ä»¥è°ƒç”¨reverseï¼ˆï¼‰æ–¹æ³•ï¼‰;å¦‚æžœæ˜¯å¯¹å¯¹è±¡æŽ’åºï¼ˆæŒ‰ç…§å…¶ä¸­çš„æŸä¸€ä¸ªå±žæ€§ï¼‰ï¼šfunction comparestime(a,b)
     {
         if(a.ctime==0)
         {
@@ -46,26 +46,26 @@ encodeURIComponent²»±àÂë×Ö·ûÓÐ71¸ö£º!£¬ '£¬(£¬)£¬*£¬-£¬.£¬_£¬~£¬0-9£¬a-z£¬A-Z
         }
         return parseInt(a.ctime)-parseInt(b.ctime);
     }
-Á½ÖÖ·½Ê½Ê¹ÓÃin²Ù×÷·û£ºµ¥¶ÀÊ¹ÓÃÊ±£¬inÔÚÍ¨¹ý¶ÔÏóÄÜ¹»·ÃÎÊ¸ø¶¨ÊôÐÔÊ±·µ»Øtrue£¬ÎÞÂÛÊôÐÔÔÚÊµÀýÖÐ»¹ÊÇÔ­ÐÍÖÐ¡££¬Object.keys()·µ»Ø¶ÔÏóÖÐËùÓÐ¿ÉÃ¶¾ÙµÄÊôÐÔ¡£¶øObject.getOwnPropertyNames(),ÎÞÂÛÊÇ·ñ¿ÉÃ¶¾Ù¶¼ÏÔÊ¾³öÀ´¡£¶¼¿ÉÓÃÀ´Ìæ´úfor-in·½·¨
-±Õ°üµÄ×¢Òâ£º±Õ°ü£¨ÄäÃûº¯ÊýµÄÒ»ÖÖÌØ¶¨ÒâÒå£©Ö»ÄÜÈ¡µÃ°üº¬º¯ÊýÖÐÈÎºÎ±äÁ¿µÄ×îÖÕÖµ¡£
-Ã¿¸öº¯ÊýÔÚ±»µ÷ÓÃÊ±£¬Æä»î¶¯¶ÔÏó¾Í×Ô¶¯»á»ñÈ¡Á½¸öÌØÊâ±äÁ¿£ºthis£¬arguments¡£ÄÚ²¿º¯ÊýÔÚËÑË÷ÕâÁ½¸ö±äÁ¿Ê±£¬Ö»»áËÑË÷Æä»î¶¯¶ÔÏóÎªÖ¹¡£Òò´ËÓÀÔ¶Ò²²»¿ÉÄÜÖ±½Ó·ÃÎÊÍâ²¿º¯ÊýÖÐµÄÕâÁ½¸ö±äÁ¿¡£Òò´ËÒª°ÑÍâ²¿×÷ÓÃÓòÖÐµÄÕâÁ½¸ö±äÁ¿±£´æÔÚ±Õ°üÄÜ¹»·ÃÎÊµÄ±äÁ¿Àï¡£
-jsÓÃË½ÓÐ×÷ÓÃÓò£¨±Õ°ü£©Ä£·ÂÆäËûÓïÑÔµÄ¿é¼¶×÷ÓÃÓò¡££¨function£¨£©{
-	//ÕâÀï¿ÉÒÔ¶¨ÓÚ±äÁ¿£¬´Ëº¯ÊýÖ´ÐÐÍê±Ï£¬ÔòË½ÓÐ±äÁ¿£¨ÓÃvarÉùÃ÷£©È«²¿Ïú»Ù
+ä¸¤ç§æ–¹å¼ä½¿ç”¨inæ“ä½œç¬¦ï¼šå•ç‹¬ä½¿ç”¨æ—¶ï¼Œinåœ¨é€šè¿‡å¯¹è±¡èƒ½å¤Ÿè®¿é—®ç»™å®šå±žæ€§æ—¶è¿”å›žtrueï¼Œæ— è®ºå±žæ€§åœ¨å®žä¾‹ä¸­è¿˜æ˜¯åŽŸåž‹ä¸­ã€‚ï¼ŒObject.keys()è¿”å›žå¯¹è±¡ä¸­æ‰€æœ‰å¯æžšä¸¾çš„å±žæ€§ã€‚è€ŒObject.getOwnPropertyNames(),æ— è®ºæ˜¯å¦å¯æžšä¸¾éƒ½æ˜¾ç¤ºå‡ºæ¥ã€‚éƒ½å¯ç”¨æ¥æ›¿ä»£for-inæ–¹æ³•
+é—­åŒ…çš„æ³¨æ„ï¼šé—­åŒ…ï¼ˆåŒ¿åå‡½æ•°çš„ä¸€ç§ç‰¹å®šæ„ä¹‰ï¼‰åªèƒ½å–å¾—åŒ…å«å‡½æ•°ä¸­ä»»ä½•å˜é‡çš„æœ€ç»ˆå€¼ã€‚
+æ¯ä¸ªå‡½æ•°åœ¨è¢«è°ƒç”¨æ—¶ï¼Œå…¶æ´»åŠ¨å¯¹è±¡å°±è‡ªåŠ¨ä¼šèŽ·å–ä¸¤ä¸ªç‰¹æ®Šå˜é‡ï¼šthisï¼Œargumentsã€‚å†…éƒ¨å‡½æ•°åœ¨æœç´¢è¿™ä¸¤ä¸ªå˜é‡æ—¶ï¼Œåªä¼šæœç´¢å…¶æ´»åŠ¨å¯¹è±¡ä¸ºæ­¢ã€‚å› æ­¤æ°¸è¿œä¹Ÿä¸å¯èƒ½ç›´æŽ¥è®¿é—®å¤–éƒ¨å‡½æ•°ä¸­çš„è¿™ä¸¤ä¸ªå˜é‡ã€‚å› æ­¤è¦æŠŠå¤–éƒ¨ä½œç”¨åŸŸä¸­çš„è¿™ä¸¤ä¸ªå˜é‡ä¿å­˜åœ¨é—­åŒ…èƒ½å¤Ÿè®¿é—®çš„å˜é‡é‡Œã€‚
+jsç”¨ç§æœ‰ä½œç”¨åŸŸï¼ˆé—­åŒ…ï¼‰æ¨¡ä»¿å…¶ä»–è¯­è¨€çš„å—çº§ä½œç”¨åŸŸã€‚ï¼ˆfunctionï¼ˆï¼‰{
+	//è¿™é‡Œå¯ä»¥å®šäºŽå˜é‡ï¼Œæ­¤å‡½æ•°æ‰§è¡Œå®Œæ¯•ï¼Œåˆ™ç§æœ‰å˜é‡ï¼ˆç”¨varå£°æ˜Žï¼‰å…¨éƒ¨é”€æ¯
 
-}£©£¨£©
-ÊµÀýÖÐµÄÖ¸Õë×ÜÊÇÖ¸ÏòÔ­ÐÍ(ÔÚ¸ü¸ÄÔ­ÐÍÇ°µÄÊµÀý)
-×éºÏÊ¹ÓÃ¹¹Ôìº¯ÊýºÍÔ­ÐÍÄ£Ê½ÊÇ¶¨ÒåÒýÓÃÀàÐÍµÄÒ»ÖÖÄ¬ÈÏÄ£Ê½
-¼ÄÉú¹¹Ôìº¯ÊýÄ£Ê½£ºÊÊÓÃÎªjs±ê×¼ÒýÓÃÀàÐÍ¸ü¸Ä»òÌí¼ÓÊôÐÔ¡¢»ò·½·¨Ê±Ê¹ÓÃµÄ¹¹Ôìº¯ÊýÄ£Ê½£¬ÒòÎªÕâÖÖ·½Ê½²»»áÆÆ»µ±ê×¼¿âµÄÃüÃû¿Õ¼ä¡£Í¬ÑùÎÞ·¨ÓÃinstanceofÈ·¶¨ÆäÓ¦ÓÃÀàÐÍ£¬ÒòÎªÆä±¾ÖÊ»¹ÊÇÍ¬jsÒÑÓÐÒýÓÃÀàÐÍÏàÍ¬¡£
-ÎÈÍ×¹¹Ôìº¯ÊýÄ£Ê½£ºÊÊºÏ¶¨Òå¶ÔÏóÓµÓÐË½ÓÐÊôÐÔºÍ·½·¨µÄÄÜÁ¦µÄÊµÀý¡£×¢Òâ³õÊ¼»¯Ê±²»ÓÃnew²Ù×÷·û£¬²¢ÇÒÔÚ³õÊ¼»¯Ê±´«ÈëË½ÓÐ±äÁ¿¡£
-¼Ì³Ð
-×éºÏ¼Ì³Ð£ºÊ¹ÓÃÔ­ÐÍÁ´ÊµÏÖ¶Ô¸¸¶ÔÏóÔ­ÐÍÊôÐÔºÍ·½·¨µÄ¼Ì³Ð£¬½èÓÃ¹¹Ôìº¯ÊýÊµÏÖ¶Ô¸¸¶ÔÏóÊµÀýÊôÐÔºÍ·½·¨µÄ¼Ì³Ð¡£×¢ÒâÕâÖÖ»úÖÆÀûÓÃÁËÊµÀýÊôÐÔ»á¸²¸ÇÔ­ÐÍÖÐÍ¬ÃûµÄÊôÐÔºÍ·½·¨£¬¼´Ô­ÐÍÁ´ËÑË÷»úÖÆ
-¼ÄÉú×éºÏÊ½¼Ì³Ð£º
+}ï¼‰ï¼ˆï¼‰
+å®žä¾‹ä¸­çš„æŒ‡é’ˆæ€»æ˜¯æŒ‡å‘åŽŸåž‹(åœ¨æ›´æ”¹åŽŸåž‹å‰çš„å®žä¾‹)
+ç»„åˆä½¿ç”¨æž„é€ å‡½æ•°å’ŒåŽŸåž‹æ¨¡å¼æ˜¯å®šä¹‰å¼•ç”¨ç±»åž‹çš„ä¸€ç§é»˜è®¤æ¨¡å¼
+å¯„ç”Ÿæž„é€ å‡½æ•°æ¨¡å¼ï¼šé€‚ç”¨ä¸ºjsæ ‡å‡†å¼•ç”¨ç±»åž‹æ›´æ”¹æˆ–æ·»åŠ å±žæ€§ã€æˆ–æ–¹æ³•æ—¶ä½¿ç”¨çš„æž„é€ å‡½æ•°æ¨¡å¼ï¼Œå› ä¸ºè¿™ç§æ–¹å¼ä¸ä¼šç ´åæ ‡å‡†åº“çš„å‘½åç©ºé—´ã€‚åŒæ ·æ— æ³•ç”¨instanceofç¡®å®šå…¶åº”ç”¨ç±»åž‹ï¼Œå› ä¸ºå…¶æœ¬è´¨è¿˜æ˜¯åŒjså·²æœ‰å¼•ç”¨ç±»åž‹ç›¸åŒã€‚
+ç¨³å¦¥æž„é€ å‡½æ•°æ¨¡å¼ï¼šé€‚åˆå®šä¹‰å¯¹è±¡æ‹¥æœ‰ç§æœ‰å±žæ€§å’Œæ–¹æ³•çš„èƒ½åŠ›çš„å®žä¾‹ã€‚æ³¨æ„åˆå§‹åŒ–æ—¶ä¸ç”¨newæ“ä½œç¬¦ï¼Œå¹¶ä¸”åœ¨åˆå§‹åŒ–æ—¶ä¼ å…¥ç§æœ‰å˜é‡ã€‚
+ç»§æ‰¿
+ç»„åˆç»§æ‰¿ï¼šä½¿ç”¨åŽŸåž‹é“¾å®žçŽ°å¯¹çˆ¶å¯¹è±¡åŽŸåž‹å±žæ€§å’Œæ–¹æ³•çš„ç»§æ‰¿ï¼Œå€Ÿç”¨æž„é€ å‡½æ•°å®žçŽ°å¯¹çˆ¶å¯¹è±¡å®žä¾‹å±žæ€§å’Œæ–¹æ³•çš„ç»§æ‰¿ã€‚æ³¨æ„è¿™ç§æœºåˆ¶åˆ©ç”¨äº†å®žä¾‹å±žæ€§ä¼šè¦†ç›–åŽŸåž‹ä¸­åŒåçš„å±žæ€§å’Œæ–¹æ³•ï¼Œå³åŽŸåž‹é“¾æœç´¢æœºåˆ¶
+å¯„ç”Ÿç»„åˆå¼ç»§æ‰¿ï¼š
 
-javascript ×÷ÓÃÓòÎªº¯Êý×÷ÓÃÓò£¬²¢ÇÒÊÇ¾²Ì¬×÷ÓÃÓò£¬¼´×÷ÓÃÓòµÄÇ¶Ì×¹ØÏµ£¬ÊÇÔÚ¶¨ÒåÊ±È·¶¨µÄ£¬¶ø²»ÊÇÔÚÔËÐÐÊ±È·¶¨µÄ¡££¨´Ê·¨·ÖÎö£ºÔËÐÐÊ±»·¾³£©e.g£ºvar scope = 'top'; var f1 = function(){console.log(scope)}; var f2 = function(){var scope = 'local'; f1()}; f2();  ¡®top¡¯¡£ÉÏÏÂÎÄ¶ÔÏó¿ÉÒÔËµÊÇ¾²Ì¬×÷ÓÃÓòµÄ²¹³ä¡£º¯ÊýºÍ¶ÔÏóµÄËùÊô¹ØÏµÔÚµ÷ÓÃÊ±²ÅÌåÏÖ³öÀ´¡£callºÍapply£¬¿ÉÒÔ¸Ä±äº¯ÊýÖ´ÐÐµÄÉÏÏÂÎÄ¡£
+javascript ä½œç”¨åŸŸä¸ºå‡½æ•°ä½œç”¨åŸŸï¼Œå¹¶ä¸”æ˜¯é™æ€ä½œç”¨åŸŸï¼Œå³ä½œç”¨åŸŸçš„åµŒå¥—å…³ç³»ï¼Œæ˜¯åœ¨å®šä¹‰æ—¶ç¡®å®šçš„ï¼Œè€Œä¸æ˜¯åœ¨è¿è¡Œæ—¶ç¡®å®šçš„ã€‚ï¼ˆè¯æ³•åˆ†æžï¼šè¿è¡Œæ—¶çŽ¯å¢ƒï¼‰e.gï¼švar scope = 'top'; var f1 = function(){console.log(scope)}; var f2 = function(){var scope = 'local'; f1()}; f2();  â€˜topâ€™ã€‚ä¸Šä¸‹æ–‡å¯¹è±¡å¯ä»¥è¯´æ˜¯é™æ€ä½œç”¨åŸŸçš„è¡¥å……ã€‚å‡½æ•°å’Œå¯¹è±¡çš„æ‰€å±žå…³ç³»åœ¨è°ƒç”¨æ—¶æ‰ä½“çŽ°å‡ºæ¥ã€‚callå’Œapplyï¼Œå¯ä»¥æ”¹å˜å‡½æ•°æ‰§è¡Œçš„ä¸Šä¸‹æ–‡ã€‚
 
-±Õ°ü£ºÓÉº¯Êý£¨»·¾³£©¼°Æä·â±ÕµÄ×ÔÓÉ±äÁ¿£¨ÒýÓÃµÄ±äÁ¿£¬±»¸´ÖÆ³ÉÒ»·Ý¸±±¾£©×é³ÉµÄ¼¯ºÏÌå
-ÓÃÍ¾1£ºÇ¶Ì×»Øµ÷º¯Êý2£ºÊµÏÖË½ÓÐ³ÉÔ±£¨°ÑÒ»¸ö¶ÔÏóÓÃ±Õ°ü·â×°ÆðÀ´£¬Ö»·µ»ØÒ»¸ö·ÃÎÊÆ÷µÄ¶ÔÏó£©
-Object.observe·½·¨ÓÃÓÚ¹Û²ì¶ÔÏóÊôÐÔµÄ±ä»¯¡£
+é—­åŒ…ï¼šç”±å‡½æ•°ï¼ˆçŽ¯å¢ƒï¼‰åŠå…¶å°é—­çš„è‡ªç”±å˜é‡ï¼ˆå¼•ç”¨çš„å˜é‡ï¼Œè¢«å¤åˆ¶æˆä¸€ä»½å‰¯æœ¬ï¼‰ç»„æˆçš„é›†åˆä½“
+ç”¨é€”1ï¼šåµŒå¥—å›žè°ƒå‡½æ•°2ï¼šå®žçŽ°ç§æœ‰æˆå‘˜ï¼ˆæŠŠä¸€ä¸ªå¯¹è±¡ç”¨é—­åŒ…å°è£…èµ·æ¥ï¼Œåªè¿”å›žä¸€ä¸ªè®¿é—®å™¨çš„å¯¹è±¡ï¼‰
+Object.observeæ–¹æ³•ç”¨äºŽè§‚å¯Ÿå¯¹è±¡å±žæ€§çš„å˜åŒ–ã€‚
 var o = {};
 
 Object.observe(o, function(changes) {
@@ -79,205 +79,205 @@ o.foo = 2; // update, 'foo', 1
 delete o.foo; // delete, 'foo', 2
 
 
-Ê¹ÓÃattributes·½·¨´æÈ¡ data-* ×Ô¶¨ÒåÊôÐÔµÄÖµ
+ä½¿ç”¨attributesæ–¹æ³•å­˜å– data-* è‡ªå®šä¹‰å±žæ€§çš„å€¼
 
-<div id = "user" uid = "12345" uname = "½Å±¾Ö®¼Ò" > </div>
+<div id = "user" uid = "12345" uname = "è„šæœ¬ä¹‹å®¶" > </div>
 
 var user = document . getElementById ( 'user' ) ;
-var userName = user . getAttribute ( 'uname' ) ; // userName = '½Å±¾Ö®¼Ò'
+var userName = user . getAttribute ( 'uname' ) ; // userName = 'è„šæœ¬ä¹‹å®¶'
 var userId = user . getAttribute ( 'uid' ) ; // userId = '12345'
 
-datasetÊôÐÔ´æÈ¡data-*×Ô¶¨ÒåÊôÐÔµÄÖµ
+datasetå±žæ€§å­˜å–data-*è‡ªå®šä¹‰å±žæ€§çš„å€¼
 
-ÕâÖÖ·½Ê½Í¨¹ý·ÃÎÊÒ»¸öÔªËØµÄ dataset ÊôÐÔÀ´´æÈ¡ data-* ×Ô¶¨ÒåÊôÐÔµÄÖµ¡£Õâ¸ö dataset ÊôÐÔÊÇHTML5 JavaScript APIµÄÒ»²¿·Ö£¬ÓÃÀ´·µ»ØÒ»¸öËùÓÐÑ¡ÔñÔªËØ data- ÊôÐÔµÄDOMStringMap¶ÔÏó¡£
+è¿™ç§æ–¹å¼é€šè¿‡è®¿é—®ä¸€ä¸ªå…ƒç´ çš„ dataset å±žæ€§æ¥å­˜å– data-* è‡ªå®šä¹‰å±žæ€§çš„å€¼ã€‚è¿™ä¸ª dataset å±žæ€§æ˜¯HTML5 JavaScript APIçš„ä¸€éƒ¨åˆ†ï¼Œç”¨æ¥è¿”å›žä¸€ä¸ªæ‰€æœ‰é€‰æ‹©å…ƒç´  data- å±žæ€§çš„DOMStringMapå¯¹è±¡ã€‚
 
-Ê¹ÓÃÕâÖÖ·½·¨Ê±£¬²»ÊÇÊ¹ÓÃÍêÕûµÄÊôÐÔÃû£¬Èç data-uid À´´æÈ¡Êý¾Ý£¬Ó¦¸ÃÈ¥µôdata- Ç°×º¡£
+ä½¿ç”¨è¿™ç§æ–¹æ³•æ—¶ï¼Œä¸æ˜¯ä½¿ç”¨å®Œæ•´çš„å±žæ€§åï¼Œå¦‚ data-uid æ¥å­˜å–æ•°æ®ï¼Œåº”è¯¥åŽ»æŽ‰data- å‰ç¼€ã€‚
 
-»¹ÓÐÒ»µãÌØ±ð×¢ÒâµÄÊÇ£º data- ÊôÐÔÃûÈç¹û°üº¬ÁËÁ¬×Ö·û£¬ÀýÈç£ºdata-date-of-birth £¬Á¬×Ö·û½«±»È¥µô£¬²¢×ª»»ÎªÍÕ·åÊ½µÄÃüÃû£¬Ç°ÃæµÄÊôÐÔÃû×ª»»ºóÓ¦¸ÃÊÇ£º dateOfBirth 
+è¿˜æœ‰ä¸€ç‚¹ç‰¹åˆ«æ³¨æ„çš„æ˜¯ï¼š data- å±žæ€§åå¦‚æžœåŒ…å«äº†è¿žå­—ç¬¦ï¼Œä¾‹å¦‚ï¼šdata-date-of-birth ï¼Œè¿žå­—ç¬¦å°†è¢«åŽ»æŽ‰ï¼Œå¹¶è½¬æ¢ä¸ºé©¼å³°å¼çš„å‘½åï¼Œå‰é¢çš„å±žæ€§åè½¬æ¢åŽåº”è¯¥æ˜¯ï¼š dateOfBirth
 
-// Ê¹ÓÃsetAttributeÉèÖÃ data- ÊôÐÔ
+// ä½¿ç”¨setAttributeè®¾ç½® data- å±žæ€§
 user . setAttribute ( 'site' , 'http://www.jb51.net' ) ;
 
 
-<div id="user" data-id="1234567890" data-name="½Å±¾Ö®¼Ò" data-date-of-birth>ÂëÍ·</div>
+<div id="user" data-id="1234567890" data-name="è„šæœ¬ä¹‹å®¶" data-date-of-birth>ç å¤´</div>
 <script type="text/javascript">
 var el = document.querySelector('#user');
 console.log(el.id); // 'user'
-console.log(el.dataset);//Ò»¸öDOMStringMap
+console.log(el.dataset);//ä¸€ä¸ªDOMStringMap
 console.log(el.dataset.id); // '1234567890'
-console.log(el.dataset.name); // '½Å±¾Ö®¼Ò'
+console.log(el.dataset.name); // 'è„šæœ¬ä¹‹å®¶'
 console.log(el.dataset.dateOfBirth); // ''
-el.dataset.dateOfBirth = '1985-01-05'; // ÉèÖÃdata-date-of-birthµÄÖµ.
+el.dataset.dateOfBirth = '1985-01-05'; // è®¾ç½®data-date-of-birthçš„å€¼.
 console.log('someDataAttr' in el.dataset);//false
 el.dataset.someDataAttr = 'mydata';
 console.log('someDataAttr' in el.dataset);//true
 </script>
 
-Èç¹ûÄãÏëÉ¾µôÒ»¸ö data-ÊôÐÔ £¬¿ÉÒÔÕâÃ´×ö£º delete el . dataset . id ; »òÕß el .dataset . id = null ; ¡£
-¿´ÆðÀ´ºÜÃÀ£¬¹þ¹þ£¬µ«ÊÇ²»ÐÒµÄÊÇ£¬ÐÂµÄ dataset ÊôÐÔÖ»ÓÐÔÚChrome 8+ Firefox(Gecko) 6.0+ Internet Explorer 11+ Opera 11.10+ Safari 6+ä¯ÀÀÆ÷ÖÐÊµÏÖ£¬ËùÒÔÔÚ´ËÆÚ¼ä×îºÃÓÃµÄgetAttributeºÍsetAttributeÀ´²Ù×÷¡£
+å¦‚æžœä½ æƒ³åˆ æŽ‰ä¸€ä¸ª data-å±žæ€§ ï¼Œå¯ä»¥è¿™ä¹ˆåšï¼š delete el . dataset . id ; æˆ–è€… el .dataset . id = null ; ã€‚
+çœ‹èµ·æ¥å¾ˆç¾Žï¼Œå“ˆå“ˆï¼Œä½†æ˜¯ä¸å¹¸çš„æ˜¯ï¼Œæ–°çš„ dataset å±žæ€§åªæœ‰åœ¨Chrome 8+ Firefox(Gecko) 6.0+ Internet Explorer 11+ Opera 11.10+ Safari 6+æµè§ˆå™¨ä¸­å®žçŽ°ï¼Œæ‰€ä»¥åœ¨æ­¤æœŸé—´æœ€å¥½ç”¨çš„getAttributeå’ŒsetAttributeæ¥æ“ä½œã€‚
 
-data-ÊôÐÔÑ¡ÔñÆ÷Í¬ÑùÊÊÓÃÓÚ jsºÍcss  '[data-text-colour="red"]'
+data-å±žæ€§é€‰æ‹©å™¨åŒæ ·é€‚ç”¨äºŽ jså’Œcss  '[data-text-colour="red"]'
 
 
 2015.3.5--Node.js
-Node.jsÊÇÒ»¸öÊÂ¼þÇý¶¯·Ç×èÈûÐÍI/O·þÎñ¶ËJavaScript»·¾³£¬»ùÓÚGoogleµÄV8ÒýÇæ£¬V8ÒýÇæÖ´ÐÐJavascriptµÄËÙ¶È·Ç³£¿ì£¬ÐÔÄÜ·Ç³£ºÃ¡£
-node Ñ§Ï° http://nodeschool.io/zh-cn/#workshopper-list
+Node.jsæ˜¯ä¸€ä¸ªäº‹ä»¶é©±åŠ¨éžé˜»å¡žåž‹I/OæœåŠ¡ç«¯JavaScriptçŽ¯å¢ƒï¼ŒåŸºäºŽGoogleçš„V8å¼•æ“Žï¼ŒV8å¼•æ“Žæ‰§è¡ŒJavascriptçš„é€Ÿåº¦éžå¸¸å¿«ï¼Œæ€§èƒ½éžå¸¸å¥½ã€‚
+node å­¦ä¹  http://nodeschool.io/zh-cn/#workshopper-list
 
-Ä£¿é½Ó¿ÚµÄÎ¨Ò»±ä»¯ÊÇÊ¹ÓÃ module.exports = Hello ´úÌæÁËexports.hello = function(){}¡£ ÔÚÍâ²¿ÒýÓÃ¸ÃÄ£¿éÊ±£¬Æä½Ó¿Ú¶ÔÏó¾ÍÊÇÒªÊä³öµÄ Hello ¶ÔÏó±¾Éí£¬¶ø²»ÊÇÔ­ÏÈµÄ exports¡£
-ÎªÁËÈÃNode.jsµÄÎÄ¼þ¿ÉÒÔÏà»¥µ÷ÓÃ£¬Node.jsÌá¹©ÁËÒ»¸ö¼òµ¥µÄÄ£¿éÏµÍ³¡£4ÀàÄ£¿é£¬Ô­ÉúºÍ3ÀàÎÄ¼þÄ£¿é¡£
-Node.js ËùÓÐµÄÒì²½I/O ²Ù×÷ÔÚÍê³ÉÊ±¶¼»á·¢ËÍÒ»¸öÊÂ¼þµ½ÊÂ¼þ¶ÓÁÐ¡£
+æ¨¡å—æŽ¥å£çš„å”¯ä¸€å˜åŒ–æ˜¯ä½¿ç”¨ module.exports = Hello ä»£æ›¿äº†exports.hello = function(){}ã€‚ åœ¨å¤–éƒ¨å¼•ç”¨è¯¥æ¨¡å—æ—¶ï¼Œå…¶æŽ¥å£å¯¹è±¡å°±æ˜¯è¦è¾“å‡ºçš„ Hello å¯¹è±¡æœ¬èº«ï¼Œè€Œä¸æ˜¯åŽŸå…ˆçš„ exportsã€‚
+ä¸ºäº†è®©Node.jsçš„æ–‡ä»¶å¯ä»¥ç›¸äº’è°ƒç”¨ï¼ŒNode.jsæä¾›äº†ä¸€ä¸ªç®€å•çš„æ¨¡å—ç³»ç»Ÿã€‚4ç±»æ¨¡å—ï¼ŒåŽŸç”Ÿå’Œ3ç±»æ–‡ä»¶æ¨¡å—ã€‚
+Node.js æ‰€æœ‰çš„å¼‚æ­¥I/O æ“ä½œåœ¨å®Œæˆæ—¶éƒ½ä¼šå‘é€ä¸€ä¸ªäº‹ä»¶åˆ°äº‹ä»¶é˜Ÿåˆ—ã€‚
 $ sudo npm install -g supervisor
 
-foo.jsÎÄ¼þµÄµÚÒ»ÐÐ£¬Èç¹û¼ÓÈëÁË½âÊÍÆ÷µÄÎ»ÖÃ£¬¾Í¿ÉÒÔ½«Æä×÷ÎªÃüÁîÐÐ¹¤¾ßÖ±½Óµ÷ÓÃ¡£#!/usr/bin/env node µ÷ÓÃÇ°£¬Ðè¸ü¸ÄÎÄ¼þµÄÖ´ÐÐÈ¨ÏÞ¡£$ chmod u+x myscript.js
+foo.jsæ–‡ä»¶çš„ç¬¬ä¸€è¡Œï¼Œå¦‚æžœåŠ å…¥äº†è§£é‡Šå™¨çš„ä½ç½®ï¼Œå°±å¯ä»¥å°†å…¶ä½œä¸ºå‘½ä»¤è¡Œå·¥å…·ç›´æŽ¥è°ƒç”¨ã€‚#!/usr/bin/env node è°ƒç”¨å‰ï¼Œéœ€æ›´æ”¹æ–‡ä»¶çš„æ‰§è¡Œæƒé™ã€‚$ chmod u+x myscript.js
 $ ./foo.js arg1 arg2 ...
 
-package.jsonÎÄ¼þ¿ÉÒÔÊÖ¹¤±àÐ´£¬Ò²¿ÉÒÔÊ¹ÓÃnpm initÃüÁî×Ô¶¯Éú³É¡£
+package.jsonæ–‡ä»¶å¯ä»¥æ‰‹å·¥ç¼–å†™ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨npm initå‘½ä»¤è‡ªåŠ¨ç”Ÿæˆã€‚
 
 npm install express --save
 npm install express --save-dev
-ÉÏÃæ´úÂë±íÊ¾µ¥¶À°²×°expressÄ£¿é£¬--save²ÎÊý±íÊ¾½«¸ÃÄ£¿éÐ´ÈëdependenciesÊôÐÔ£¬--save-dev±íÊ¾½«¸ÃÄ£¿éÐ´ÈëdevDependenciesÊôÐÔ¡£
+ä¸Šé¢ä»£ç è¡¨ç¤ºå•ç‹¬å®‰è£…expressæ¨¡å—ï¼Œ--saveå‚æ•°è¡¨ç¤ºå°†è¯¥æ¨¡å—å†™å…¥dependencieså±žæ€§ï¼Œ--save-devè¡¨ç¤ºå°†è¯¥æ¨¡å—å†™å…¥devDependencieså±žæ€§ã€‚
 
 npm help config   config info can be viewed
 
-npm info underscore description  ²é¿´Ä³¸öÄ£¿éµÄÐÅÏ¢
+npm info underscore description  æŸ¥çœ‹æŸä¸ªæ¨¡å—çš„ä¿¡æ¯
 
 npm install git://github.com/package/path.git
 
 npm install sax@latest
 $ npm install sax@0.1.1
-$ npm install sax@">=0.1.0 <0.2.0"   Ñ¡Ôñ°²×°Ä£¿éµÄÌØ¶¨°æ±¾
+$ npm install sax@">=0.1.0 <0.2.0"   é€‰æ‹©å®‰è£…æ¨¡å—çš„ç‰¹å®šç‰ˆæœ¬
 
-npmÔÊÐíÊ¹ÓÃÌØÊâ·ûºÅ£¬Ö¸¶¨ËùÒªÊ¹ÓÃµÄ°æ±¾·¶Î§£¬¼Ù¶¨µ±Ç°°æ±¾ÊÇ1.0.4¡£
+npmå…è®¸ä½¿ç”¨ç‰¹æ®Šç¬¦å·ï¼ŒæŒ‡å®šæ‰€è¦ä½¿ç”¨çš„ç‰ˆæœ¬èŒƒå›´ï¼Œå‡å®šå½“å‰ç‰ˆæœ¬æ˜¯1.0.4ã€‚
 
-Ö»½ÓÊÜ²¹¶¡°ü£º1.0 »òÕß 1.0.x »òÕß ~1.0.4
-Ö»½ÓÊÜÐ¡°æ±¾ºÍ²¹¶¡°ü£º1 »òÕß 1.x »òÕß ^1.0.4
-½ÓÊÜËùÓÐ¸üÐÂ£º* or x
+åªæŽ¥å—è¡¥ä¸åŒ…ï¼š1.0 æˆ–è€… 1.0.x æˆ–è€… ~1.0.4
+åªæŽ¥å—å°ç‰ˆæœ¬å’Œè¡¥ä¸åŒ…ï¼š1 æˆ–è€… 1.x æˆ–è€… ^1.0.4
+æŽ¥å—æ‰€æœ‰æ›´æ–°ï¼š* or x
 
-»¹¿ÉÒÔÊ¹ÓÃÊýÑ§ÔËËã·û£¨±ÈÈç>, <, =, >= or <=µÈ£©£¬Ö¸¶¨°æ±¾·¶Î§¡£
+è¿˜å¯ä»¥ä½¿ç”¨æ•°å­¦è¿ç®—ç¬¦ï¼ˆæ¯”å¦‚>, <, =, >= or <=ç­‰ï¼‰ï¼ŒæŒ‡å®šç‰ˆæœ¬èŒƒå›´ã€‚
 
 >2.1
 1.0.0 - 1.2.0
 >1.0.0-alpha
 >=1.0.0-rc.0 <1.0.1
 ^2 <2.2 || > 2.3
-×¢Òâ£¬Èç¹ûÊ¹ÓÃÁ¬×ÖºÅ£¬ËüµÄÁ½¶Ë±ØÐëÓÐ¿Õ¸ñ¡£Èç¹û²»´ø¿Õ¸ñ£¬»á±»npmÀí½â³ÉÔ¤·¢²¼µÄtag£¬±ÈÈç1.0.0-rc.1¡£
+æ³¨æ„ï¼Œå¦‚æžœä½¿ç”¨è¿žå­—å·ï¼Œå®ƒçš„ä¸¤ç«¯å¿…é¡»æœ‰ç©ºæ ¼ã€‚å¦‚æžœä¸å¸¦ç©ºæ ¼ï¼Œä¼šè¢«npmç†è§£æˆé¢„å‘å¸ƒçš„tagï¼Œæ¯”å¦‚1.0.0-rc.1ã€‚
 
-npm update uninstall  ¸üÐÂºÍÐ¶ÔØÄ£¿é£¨-g£© ²ÎÊýÈ«¾Ö
+npm update uninstall  æ›´æ–°å’Œå¸è½½æ¨¡å—ï¼ˆ-gï¼‰ å‚æ•°å…¨å±€
 
-npm list -g   
+npm list -g
 
 npm search
-package.jsonÎÄ¼þÓÐÒ»Ïîscripts£¬ÓÃÓÚÖ¸¶¨½Å±¾ÃüÁî£¬¹©npmÖ±½Óµ÷ÓÃ¡£
-npm run»á´´½¨Ò»¸öshell£¬Ö´ÐÐÖ¸¶¨µÄÃüÁî£¬²¢½«node_modules/.bin¼ÓÈëPATH±äÁ¿£¬ÕâÒâÎ¶×Å±¾µØÄ£¿é¿ÉÒÔÖ±½ÓÔËÐÐ¡£Ò²¾ÍÊÇËµ£¬npm run lintÖ±½ÓÔËÐÐjshint **.js¼´¿É£¬¶ø²»ÓÃ./node_modules/.bin/jshint **.js¡£
+package.jsonæ–‡ä»¶æœ‰ä¸€é¡¹scriptsï¼Œç”¨äºŽæŒ‡å®šè„šæœ¬å‘½ä»¤ï¼Œä¾›npmç›´æŽ¥è°ƒç”¨ã€‚
+npm runä¼šåˆ›å»ºä¸€ä¸ªshellï¼Œæ‰§è¡ŒæŒ‡å®šçš„å‘½ä»¤ï¼Œå¹¶å°†node_modules/.binåŠ å…¥PATHå˜é‡ï¼Œè¿™æ„å‘³ç€æœ¬åœ°æ¨¡å—å¯ä»¥ç›´æŽ¥è¿è¡Œã€‚ä¹Ÿå°±æ˜¯è¯´ï¼Œnpm run lintç›´æŽ¥è¿è¡Œjshint **.jså³å¯ï¼Œè€Œä¸ç”¨./node_modules/.bin/jshint **.jsã€‚
 
-Èç¹ûÖ±½ÓÔËÐÐnpm run²»¸ø³öÈÎºÎ²ÎÊý£¬¾Í»áÁÐ³öscriptsÊôÐÔÏÂËùÓÐÃüÁî¡£
+å¦‚æžœç›´æŽ¥è¿è¡Œnpm runä¸ç»™å‡ºä»»ä½•å‚æ•°ï¼Œå°±ä¼šåˆ—å‡ºscriptså±žæ€§ä¸‹æ‰€æœ‰å‘½ä»¤ã€‚
 
-¸ü·½±ãµÄÐ´·¨ÊÇÒýÓÃÆäËûnpm runÃüÁî¡£
+æ›´æ–¹ä¾¿çš„å†™æ³•æ˜¯å¼•ç”¨å…¶ä»–npm runå‘½ä»¤ã€‚
 
 "build": "npm run build-js && npm run build-css"
-ÉÏÃæµÄÐ´·¨ÊÇÏÈÔËÐÐnpm run build-js£¬È»ºóÔÙÔËÐÐnpm run build-css£¬Á½¸öÃüÁîÖÐ¼äÓÃ&&Á¬½Ó¡£Èç¹ûÏ£ÍûÁ½¸öÃüÁîÍ¬Ê±Æ½ÐÐÖ´ÐÐ£¬ËüÃÇÖÐ¼ä¿ÉÒÔÓÃ&Á¬½Ó¡£
+ä¸Šé¢çš„å†™æ³•æ˜¯å…ˆè¿è¡Œnpm run build-jsï¼Œç„¶åŽå†è¿è¡Œnpm run build-cssï¼Œä¸¤ä¸ªå‘½ä»¤ä¸­é—´ç”¨&&è¿žæŽ¥ã€‚å¦‚æžœå¸Œæœ›ä¸¤ä¸ªå‘½ä»¤åŒæ—¶å¹³è¡Œæ‰§è¡Œï¼Œå®ƒä»¬ä¸­é—´å¯ä»¥ç”¨&è¿žæŽ¥ã€‚
 
-scriptsÖ¸¶¨ÁËÔËÐÐ½Å±¾ÃüÁîµÄnpmÃüÁîÐÐËõÐ´£¬±ÈÈçstartÖ¸¶¨ÁËÔËÐÐnpm run startÊ±£¬ËùÒªÖ´ÐÐµÄÃüÁî¡£
+scriptsæŒ‡å®šäº†è¿è¡Œè„šæœ¬å‘½ä»¤çš„npmå‘½ä»¤è¡Œç¼©å†™ï¼Œæ¯”å¦‚startæŒ‡å®šäº†è¿è¡Œnpm run startæ—¶ï¼Œæ‰€è¦æ‰§è¡Œçš„å‘½ä»¤ã€‚
 
-curl -k https://localhost:8000   https·þÎñÆ÷
+curl -k https://localhost:8000   httpsæœåŠ¡å™¨
 
-Node.js µÄÊÂ¼þÑ­»·¶Ô¿ª·¢Õß²»¿É¼û£¬ÓÉ libev ¿âÊµÏÖ¡£libev
-Ö§³Ö¶àÖÖÀàÐÍµÄÊÂ¼þ£¬Èç ev_io¡¢ev_timer¡¢ev_signal¡¢ev_idle µÈ£¬ÔÚ Node.js ÖÐ¾ù±»
-EventEmitter ·â×°¡£libev ÊÂ¼þÑ­»·µÄÃ¿Ò»´Îµü´ú£¬ÔÚ Node.js ÖÐ¾ÍÊÇÒ»´Î Tick£¬libev ²»
-¶Ï¼ì²éÊÇ·ñÓÐ»î¶¯µÄ¡¢¿É¹©¼ì²âµÄÊÂ¼þ¼àÌýÆ÷£¬Ö±µ½¼ì²â²»µ½Ê±²ÅÍË³öÊÂ¼þÑ­»·£¬½ø³Ì½áÊø¡£
+Node.js çš„äº‹ä»¶å¾ªçŽ¯å¯¹å¼€å‘è€…ä¸å¯è§ï¼Œç”± libev åº“å®žçŽ°ã€‚libev
+æ”¯æŒå¤šç§ç±»åž‹çš„äº‹ä»¶ï¼Œå¦‚ ev_ioã€ev_timerã€ev_signalã€ev_idle ç­‰ï¼Œåœ¨ Node.js ä¸­å‡è¢«
+EventEmitter å°è£…ã€‚libev äº‹ä»¶å¾ªçŽ¯çš„æ¯ä¸€æ¬¡è¿­ä»£ï¼Œåœ¨ Node.js ä¸­å°±æ˜¯ä¸€æ¬¡ Tickï¼Œlibev ä¸
+æ–­æ£€æŸ¥æ˜¯å¦æœ‰æ´»åŠ¨çš„ã€å¯ä¾›æ£€æµ‹çš„äº‹ä»¶ç›‘å¬å™¨ï¼Œç›´åˆ°æ£€æµ‹ä¸åˆ°æ—¶æ‰é€€å‡ºäº‹ä»¶å¾ªçŽ¯ï¼Œè¿›ç¨‹ç»“æŸã€‚
 
-µ«Êµ¼ÊÉÏºÍ¶ÔÏóÓÖÓÐ±¾ÖÊµÄÇø±ð£¬ÒòÎª
-require ²»»áÖØ¸´¼ÓÔØÄ£¿é£¬Í¬Ò»¸öÊµÀý¡£Èç¹ûÄ£¿éÄ¿Â¼ÖÐÃ»ÓÐpackage.jsonÎÄ¼þ£¬node.js»á³¢ÊÔÔÚÄ£¿éÄ¿Â¼ÖÐÑ°ÕÒindex.js»òindex.nodeÎÄ¼þ½øÐÐ¼ÓÔØ¡£
-Ä£¿éÒ»µ©±»¼ÓÔØÒÔºó£¬¾Í»á±»ÏµÍ³»º´æ¡£Èç¹ûµÚ¶þ´Î»¹¼ÓÔØ¸ÃÄ£¿é£¬Ôò»á·µ»Ø»º´æÖÐµÄ°æ±¾£¬ÕâÒâÎ¶×ÅÄ£¿éÊµ¼ÊÉÏÖ»»áÖ´ÐÐÒ»´Î¡£Èç¹ûÏ£ÍûÄ£¿éÖ´ÐÐ¶à´Î£¬Ôò¿ÉÒÔÈÃÄ£¿é·µ»ØÒ»¸öº¯Êý£¬È»ºó¶à´Îµ÷ÓÃ¸Ãº¯Êý¡£
+ä½†å®žé™…ä¸Šå’Œå¯¹è±¡åˆæœ‰æœ¬è´¨çš„åŒºåˆ«ï¼Œå› ä¸º
+require ä¸ä¼šé‡å¤åŠ è½½æ¨¡å—ï¼ŒåŒä¸€ä¸ªå®žä¾‹ã€‚å¦‚æžœæ¨¡å—ç›®å½•ä¸­æ²¡æœ‰package.jsonæ–‡ä»¶ï¼Œnode.jsä¼šå°è¯•åœ¨æ¨¡å—ç›®å½•ä¸­å¯»æ‰¾index.jsæˆ–index.nodeæ–‡ä»¶è¿›è¡ŒåŠ è½½ã€‚
+æ¨¡å—ä¸€æ—¦è¢«åŠ è½½ä»¥åŽï¼Œå°±ä¼šè¢«ç³»ç»Ÿç¼“å­˜ã€‚å¦‚æžœç¬¬äºŒæ¬¡è¿˜åŠ è½½è¯¥æ¨¡å—ï¼Œåˆ™ä¼šè¿”å›žç¼“å­˜ä¸­çš„ç‰ˆæœ¬ï¼Œè¿™æ„å‘³ç€æ¨¡å—å®žé™…ä¸Šåªä¼šæ‰§è¡Œä¸€æ¬¡ã€‚å¦‚æžœå¸Œæœ›æ¨¡å—æ‰§è¡Œå¤šæ¬¡ï¼Œåˆ™å¯ä»¥è®©æ¨¡å—è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œç„¶åŽå¤šæ¬¡è°ƒç”¨è¯¥å‡½æ•°ã€‚
 
-module.exports = Hello ´úÌæÁË exports.Hello=
-Hello¡£ÔÚÍâ²¿ÒýÓÃ¸ÃÄ£¿éÊ±£¬Æä½Ó¿Ú¶ÔÏó¾ÍÊÇÒªÊä³öµÄ Hello ¶ÔÏó±¾Éí£¬¶ø²»ÊÇÔ­ÏÈµÄ
-exports¡£ÊÂÊµÉÏ£¬exports ±¾Éí½ö½öÊÇÒ»¸öÆÕÍ¨µÄ¿Õ¶ÔÏó£¬¼´ {}£¬Ëü×¨ÃÅÓÃÀ´ÉùÃ÷½Ó¿Ú£¬±¾
-ÖÊÉÏÊÇÍ¨¹ýËüÎªÄ£¿é±Õ°ü¢ÙµÄÄÚ²¿½¨Á¢ÁËÒ»¸öÓÐÏÞµÄ·ÃÎÊ½Ó¿Ú¡£ÒòÎªËüÃ»ÓÐÈÎºÎÌØÊâµÄµØ·½£¬
-ËùÒÔ¿ÉÒÔÓÃÆäËû¶«Î÷À´´úÌæ£¬Æ©ÈçÎÒÃÇÉÏÃæÀý×ÓÖÐµÄ Hello ¶ÔÏó¡£²»¿ÉÒÔÍ¨¹ý¶Ô exports Ö±½Ó¸³Öµ´úÌæ¶Ô module.exports ¸³Öµ¡£
-exports Êµ¼ÊÉÏÖ»ÊÇÒ»¸öºÍ module.exports Ö¸ÏòÍ¬Ò»¸ö¶ÔÏóµÄ±äÁ¿£¬
-Ëü±¾Éí»áÔÚÄ£¿éÖ´ÐÐ½áÊøºóÊÍ·Å£¬µ« module ²»»á£¬Òò´ËÖ»ÄÜÍ¨¹ýÖ¸¶¨
-module.exports À´¸Ä±ä·ÃÎÊ½Ó¿Ú¡£
+module.exports = Hello ä»£æ›¿äº† exports.Hello=
+Helloã€‚åœ¨å¤–éƒ¨å¼•ç”¨è¯¥æ¨¡å—æ—¶ï¼Œå…¶æŽ¥å£å¯¹è±¡å°±æ˜¯è¦è¾“å‡ºçš„ Hello å¯¹è±¡æœ¬èº«ï¼Œè€Œä¸æ˜¯åŽŸå…ˆçš„
+exportsã€‚äº‹å®žä¸Šï¼Œexports æœ¬èº«ä»…ä»…æ˜¯ä¸€ä¸ªæ™®é€šçš„ç©ºå¯¹è±¡ï¼Œå³ {}ï¼Œå®ƒä¸“é—¨ç”¨æ¥å£°æ˜ŽæŽ¥å£ï¼Œæœ¬
+è´¨ä¸Šæ˜¯é€šè¿‡å®ƒä¸ºæ¨¡å—é—­åŒ…â‘ çš„å†…éƒ¨å»ºç«‹äº†ä¸€ä¸ªæœ‰é™çš„è®¿é—®æŽ¥å£ã€‚å› ä¸ºå®ƒæ²¡æœ‰ä»»ä½•ç‰¹æ®Šçš„åœ°æ–¹ï¼Œ
+æ‰€ä»¥å¯ä»¥ç”¨å…¶ä»–ä¸œè¥¿æ¥ä»£æ›¿ï¼Œè­¬å¦‚æˆ‘ä»¬ä¸Šé¢ä¾‹å­ä¸­çš„ Hello å¯¹è±¡ã€‚ä¸å¯ä»¥é€šè¿‡å¯¹ exports ç›´æŽ¥èµ‹å€¼ä»£æ›¿å¯¹ module.exports èµ‹å€¼ã€‚
+exports å®žé™…ä¸Šåªæ˜¯ä¸€ä¸ªå’Œ module.exports æŒ‡å‘åŒä¸€ä¸ªå¯¹è±¡çš„å˜é‡ï¼Œ
+å®ƒæœ¬èº«ä¼šåœ¨æ¨¡å—æ‰§è¡Œç»“æŸåŽé‡Šæ”¾ï¼Œä½† module ä¸ä¼šï¼Œå› æ­¤åªèƒ½é€šè¿‡æŒ‡å®š
+module.exports æ¥æ”¹å˜è®¿é—®æŽ¥å£ã€‚
 
 $ npm install/i express
 
 
-Èç¹û°Ñ°ü°²×°µ½È«¾Ö£¬¿ÉÒÔÌá¸ß³ÌÐòµÄÖØ¸´ÀûÓÃ³Ì¶È£¬±ÜÃâÍ¬ÑùµÄÄÚÈÝµÄ¶à
-·Ý¸±±¾£¬µ«»µ´¦ÊÇÄÑÒÔ´¦Àí²»Í¬µÄ°æ±¾ÒÀÀµ¡£Èç¹û°Ñ°ü°²×°µ½µ±Ç°Ä¿Â¼£¬
-»òÕßËµ±¾µØ£¬Ôò²»»áÓÐ²»Í¬³ÌÐòÒÀÀµ²»Í¬°æ±¾µÄ°üµÄ³åÍ»ÎÊÌâ£¬Í¬Ê±»¹¼õ
-ÇáÁË°ü×÷ÕßµÄ API ¼æÈÝÐÔÑ¹Á¦£¬µ«È±ÏÝÔòÊÇÍ¬Ò»¸ö°ü¿ÉÄÜ»á±»°²×°Ðí¶à´Î¡£
+å¦‚æžœæŠŠåŒ…å®‰è£…åˆ°å…¨å±€ï¼Œå¯ä»¥æé«˜ç¨‹åºçš„é‡å¤åˆ©ç”¨ç¨‹åº¦ï¼Œé¿å…åŒæ ·çš„å†…å®¹çš„å¤š
+ä»½å‰¯æœ¬ï¼Œä½†åå¤„æ˜¯éš¾ä»¥å¤„ç†ä¸åŒçš„ç‰ˆæœ¬ä¾èµ–ã€‚å¦‚æžœæŠŠåŒ…å®‰è£…åˆ°å½“å‰ç›®å½•ï¼Œ
+æˆ–è€…è¯´æœ¬åœ°ï¼Œåˆ™ä¸ä¼šæœ‰ä¸åŒç¨‹åºä¾èµ–ä¸åŒç‰ˆæœ¬çš„åŒ…çš„å†²çªé—®é¢˜ï¼ŒåŒæ—¶è¿˜å‡
+è½»äº†åŒ…ä½œè€…çš„ API å…¼å®¹æ€§åŽ‹åŠ›ï¼Œä½†ç¼ºé™·åˆ™æ˜¯åŒä¸€ä¸ªåŒ…å¯èƒ½ä¼šè¢«å®‰è£…è®¸å¤šæ¬¡ã€‚
 
-¶øµ±ÎÒÃÇÊ¹ÓÃÈ«¾ÖÄ£
-Ê½°²×°Ê±£¬npm »á½«°ü°²×°µ½ÏµÍ³Ä¿Â¼£¬Æ©Èç /usr/local/lib/node_modules/£¬Í¬Ê± package.json ÎÄ
-¼þÖÐ bin ×Ö¶Î°üº¬µÄÎÄ¼þ»á±»Á´½Óµ½ /usr/local/bin/¡£/usr/local/bin/ ÊÇÔÚPATH »·¾³±äÁ¿ÖÐÄ¬ÈÏ
-¶¨ÒåµÄ£¬Òò´Ë¾Í¿ÉÒÔÖ±½ÓÔÚÃüÁîÐÐÖÐÔËÐÐ supervisor script.jsÃüÁîÁË¡£
+è€Œå½“æˆ‘ä»¬ä½¿ç”¨å…¨å±€æ¨¡
+å¼å®‰è£…æ—¶ï¼Œnpm ä¼šå°†åŒ…å®‰è£…åˆ°ç³»ç»Ÿç›®å½•ï¼Œè­¬å¦‚ /usr/local/lib/node_modules/ï¼ŒåŒæ—¶ package.json æ–‡
+ä»¶ä¸­ bin å­—æ®µåŒ…å«çš„æ–‡ä»¶ä¼šè¢«é“¾æŽ¥åˆ° /usr/local/bin/ã€‚/usr/local/bin/ æ˜¯åœ¨PATH çŽ¯å¢ƒå˜é‡ä¸­é»˜è®¤
+å®šä¹‰çš„ï¼Œå› æ­¤å°±å¯ä»¥ç›´æŽ¥åœ¨å‘½ä»¤è¡Œä¸­è¿è¡Œ supervisor script.jså‘½ä»¤äº†ã€‚
 
 
-Ê¹ÓÃÈ«¾ÖÄ£Ê½°²×°µÄ°ü²¢²»ÄÜÖ±½ÓÔÚ JavaScript ÎÄ¼þÖÐÓÃ require »ñ
-µÃ£¬ÒòÎª require ²»»áËÑË÷ /usr/local/lib/node_modules/¡£ÎÒÃÇ»áÔÚµÚ6 ÕÂ
-ÏêÏ¸½éÉÜÄ£¿éµÄ¼ÓÔØË³Ðò¡£
+ä½¿ç”¨å…¨å±€æ¨¡å¼å®‰è£…çš„åŒ…å¹¶ä¸èƒ½ç›´æŽ¥åœ¨ JavaScript æ–‡ä»¶ä¸­ç”¨ require èŽ·
+å¾—ï¼Œå› ä¸º require ä¸ä¼šæœç´¢ /usr/local/lib/node_modules/ã€‚æˆ‘ä»¬ä¼šåœ¨ç¬¬6 ç« 
+è¯¦ç»†ä»‹ç»æ¨¡å—çš„åŠ è½½é¡ºåºã€‚
 
 $ npm link express
 ./node_modules/express -> /usr/local/lib/node_modules/express
-npm link ÃüÁî²»Ö§³ÖWindows¡£
+npm link å‘½ä»¤ä¸æ”¯æŒWindowsã€‚
 
-³ýÁË½«È«¾ÖµÄ°üÁ´½Óµ½±¾µØÒÔÍâ£¬Ê¹ÓÃ npm linkÃüÁî»¹¿ÉÒÔ½«±¾µØµÄ°üÁ´½Óµ½È«¾Ö¡£
-Ê¹ÓÃ·½·¨ÊÇÔÚ°üÄ¿Â¼£¨ package.json ËùÔÚÄ¿Â¼£©ÖÐÔËÐÐ npm link ÃüÁî¡£Èç¹ûÎÒÃÇÒª¿ª·¢
-Ò»¸ö°ü£¬ÀûÓÃÕâÖÖ·½·¨¿ÉÒÔ·Ç³£·½±ãµØÔÚ²»Í¬µÄ¹¤³Ì¼ä½øÐÐ²âÊÔ¡£
+é™¤äº†å°†å…¨å±€çš„åŒ…é“¾æŽ¥åˆ°æœ¬åœ°ä»¥å¤–ï¼Œä½¿ç”¨ npm linkå‘½ä»¤è¿˜å¯ä»¥å°†æœ¬åœ°çš„åŒ…é“¾æŽ¥åˆ°å…¨å±€ã€‚
+ä½¿ç”¨æ–¹æ³•æ˜¯åœ¨åŒ…ç›®å½•ï¼ˆ package.json æ‰€åœ¨ç›®å½•ï¼‰ä¸­è¿è¡Œ npm link å‘½ä»¤ã€‚å¦‚æžœæˆ‘ä»¬è¦å¼€å‘
+ä¸€ä¸ªåŒ…ï¼Œåˆ©ç”¨è¿™ç§æ–¹æ³•å¯ä»¥éžå¸¸æ–¹ä¾¿åœ°åœ¨ä¸åŒçš„å·¥ç¨‹é—´è¿›è¡Œæµ‹è¯•ã€‚
 
-ÀýÈç´´½¨Ò»¸öÃûÎª byvoidmodule µÄÄ¿Â¼£¬È»ºóÔÚÕâ¸ö
-Ä¿Â¼ÖÐÔËÐÐnpm init£ºÕâÑù¾ÍÔÚ byvoidmodule Ä¿Â¼ÖÐÉú³ÉÒ»¸ö·ûºÏ npm ¹æ·¶µÄ package.json ÎÄ¼þ¡£´´½¨Ò»¸ö
-index.js ×÷Îª°üµÄ½Ó¿Ú£¬Ò»¸ö¼òµ¥µÄ°ü¾ÍÖÆ×÷Íê³ÉÁË¡£
-ÔÚ·¢²¼Ç°£¬ÎÒÃÇ»¹ÐèÒª»ñµÃÒ»¸öÕËºÅÓÃÓÚ½ñºóÎ¬»¤×Ô¼ºµÄ°ü£¬Ê¹ÓÃ npm adduser ¸ù¾Ý
-ÌáÊ¾ÊäÈëÓÃ»§Ãû¡¢ÃÜÂë¡¢ÓÊÏä£¬µÈ´ýÕËºÅ´´½¨Íê³É¡£Íê³Éºó¿ÉÒÔÊ¹ÓÃ npm whoami ²âÑéÊÇ
-·ñÒÑ¾­È¡µÃÁËÕËºÅ¡£
-½ÓÏÂÀ´£¬ÔÚ package.json ËùÔÚÄ¿Â¼ÏÂÔËÐÐ npm publish£¬ÉÔµÈÆ¬¿Ì¾Í¿ÉÒÔÍê³É·¢²¼ÁË¡£
-´ò¿ªä¯ÀÀÆ÷£¬·ÃÎÊ http://search.npmjs.org/ ¾Í¿ÉÒÔÕÒµ½×Ô¼º¸Õ¸Õ·¢²¼µÄ°üÁË¡£ÏÖÔÚÎÒÃÇ¿ÉÒÔÔÚ
-ÊÀ½çµÄÈÎÒâÒ»Ì¨¼ÆËã»úÉÏÊ¹ÓÃ npm install byvoidmodule ÃüÁîÀ´°²×°Ëü¡£Í¼3-6 ÊÇnpmjs.
-orgÉÏ°üµÄÃèÊöÒ³Ãæ¡£
-Èç¹ûÄãµÄ°ü½«À´ÓÐ¸üÐÂ£¬Ö»ÐèÒªÔÚ package.json ÎÄ¼þÖÐÐÞ¸Ä version ×Ö¶Î£¬È»ºóÖØÐÂ
-Ê¹ÓÃ npm publish ÃüÁî¾ÍÐÐÁË¡£Èç¹ûÄã¶ÔÒÑ·¢²¼µÄ°ü²»ÂúÒâ£¨±ÈÈçÎÒÃÇ·¢²¼µÄÕâ¸öºÁÎÞÒâ
-ÒåµÄ°ü£©£¬¿ÉÒÔÊ¹ÓÃ npm unpublish ÃüÁîÀ´È¡Ïû·¢²¼¡£
-
-
-ÔÚÃüÁîÐÐÏÂÖ´ÐÐ node debug debug.js£¬
-run Ö´ÐÐ½Å±¾£¬ÔÚµÚÒ»ÐÐÔÝÍ£
-restart ÖØÐÂÖ´ÐÐ½Å±¾
-cont, c ¼ÌÐøÖ´ÐÐ£¬Ö±µ½Óöµ½ÏÂÒ»¸ö¶Ïµã
-next, n µ¥²½Ö´ÐÐ
-step, s µ¥²½Ö´ÐÐ²¢½øÈëº¯Êý
-out, o ´Óº¯ÊýÖÐ²½³ö
-setBreakpoint(), sb() ÔÚµ±Ç°ÐÐÉèÖÃ¶Ïµã
-setBreakpoint(¡®f()¡¯), sb(...) ÔÚº¯ÊýfµÄµÚÒ»ÐÐÉèÖÃ¶Ïµã
-setBreakpoint(¡®script.js¡¯, 20), sb(...) ÔÚ script.js µÄµÚ20ÐÐÉèÖÃ¶Ïµã
-clearBreakpoint, cb(...) Çå³ýËùÓÐ¶Ïµã
-backtrace, bt ÏÔÊ¾µ±Ç°µÄµ÷ÓÃÕ»
-list(5) ÏÔÊ¾µ±Ç°Ö´ÐÐµ½µÄÇ°ºó5ÐÐ´úÂë
-watch(expr) °Ñ±í´ïÊ½ expr ¼ÓÈë¼àÊÓÁÐ±í
-unwatch(expr) °Ñ±í´ïÊ½ expr ´Ó¼àÊÓÁÐ±íÒÆ³ý
-watchers ÏÔÊ¾¼àÊÓÁÐ±íÖÐËùÓÐµÄ±í´ïÊ½ºÍÖµ
-repl ÔÚµ±Ç°ÉÏÏÂÎÄ´ò¿ª¼´Ê±ÇóÖµ»·¾³
-kill ÖÕÖ¹µ±Ç°Ö´ÐÐµÄ½Å±¾
-scripts ÏÔÊ¾µ±Ç°ÒÑ¼ÓÔØµÄËùÓÐ½Å±¾
-version ÏÔÊ¾ V8 µÄ°æ±¾
+ä¾‹å¦‚åˆ›å»ºä¸€ä¸ªåä¸º byvoidmodule çš„ç›®å½•ï¼Œç„¶åŽåœ¨è¿™ä¸ª
+ç›®å½•ä¸­è¿è¡Œnpm initï¼šè¿™æ ·å°±åœ¨ byvoidmodule ç›®å½•ä¸­ç”Ÿæˆä¸€ä¸ªç¬¦åˆ npm è§„èŒƒçš„ package.json æ–‡ä»¶ã€‚åˆ›å»ºä¸€ä¸ª
+index.js ä½œä¸ºåŒ…çš„æŽ¥å£ï¼Œä¸€ä¸ªç®€å•çš„åŒ…å°±åˆ¶ä½œå®Œæˆäº†ã€‚
+åœ¨å‘å¸ƒå‰ï¼Œæˆ‘ä»¬è¿˜éœ€è¦èŽ·å¾—ä¸€ä¸ªè´¦å·ç”¨äºŽä»ŠåŽç»´æŠ¤è‡ªå·±çš„åŒ…ï¼Œä½¿ç”¨ npm adduser æ ¹æ®
+æç¤ºè¾“å…¥ç”¨æˆ·åã€å¯†ç ã€é‚®ç®±ï¼Œç­‰å¾…è´¦å·åˆ›å»ºå®Œæˆã€‚å®ŒæˆåŽå¯ä»¥ä½¿ç”¨ npm whoami æµ‹éªŒæ˜¯
+å¦å·²ç»å–å¾—äº†è´¦å·ã€‚
+æŽ¥ä¸‹æ¥ï¼Œåœ¨ package.json æ‰€åœ¨ç›®å½•ä¸‹è¿è¡Œ npm publishï¼Œç¨ç­‰ç‰‡åˆ»å°±å¯ä»¥å®Œæˆå‘å¸ƒäº†ã€‚
+æ‰“å¼€æµè§ˆå™¨ï¼Œè®¿é—® http://search.npmjs.org/ å°±å¯ä»¥æ‰¾åˆ°è‡ªå·±åˆšåˆšå‘å¸ƒçš„åŒ…äº†ã€‚çŽ°åœ¨æˆ‘ä»¬å¯ä»¥åœ¨
+ä¸–ç•Œçš„ä»»æ„ä¸€å°è®¡ç®—æœºä¸Šä½¿ç”¨ npm install byvoidmodule å‘½ä»¤æ¥å®‰è£…å®ƒã€‚å›¾3-6 æ˜¯npmjs.
+orgä¸ŠåŒ…çš„æè¿°é¡µé¢ã€‚
+å¦‚æžœä½ çš„åŒ…å°†æ¥æœ‰æ›´æ–°ï¼Œåªéœ€è¦åœ¨ package.json æ–‡ä»¶ä¸­ä¿®æ”¹ version å­—æ®µï¼Œç„¶åŽé‡æ–°
+ä½¿ç”¨ npm publish å‘½ä»¤å°±è¡Œäº†ã€‚å¦‚æžœä½ å¯¹å·²å‘å¸ƒçš„åŒ…ä¸æ»¡æ„ï¼ˆæ¯”å¦‚æˆ‘ä»¬å‘å¸ƒçš„è¿™ä¸ªæ¯«æ— æ„
+ä¹‰çš„åŒ…ï¼‰ï¼Œå¯ä»¥ä½¿ç”¨ npm unpublish å‘½ä»¤æ¥å–æ¶ˆå‘å¸ƒã€‚
 
 
+åœ¨å‘½ä»¤è¡Œä¸‹æ‰§è¡Œ node debug debug.jsï¼Œ
+run æ‰§è¡Œè„šæœ¬ï¼Œåœ¨ç¬¬ä¸€è¡Œæš‚åœ
+restart é‡æ–°æ‰§è¡Œè„šæœ¬
+cont, c ç»§ç»­æ‰§è¡Œï¼Œç›´åˆ°é‡åˆ°ä¸‹ä¸€ä¸ªæ–­ç‚¹
+next, n å•æ­¥æ‰§è¡Œ
+step, s å•æ­¥æ‰§è¡Œå¹¶è¿›å…¥å‡½æ•°
+out, o ä»Žå‡½æ•°ä¸­æ­¥å‡º
+setBreakpoint(), sb() åœ¨å½“å‰è¡Œè®¾ç½®æ–­ç‚¹
+setBreakpoint(â€˜f()â€™), sb(...) åœ¨å‡½æ•°fçš„ç¬¬ä¸€è¡Œè®¾ç½®æ–­ç‚¹
+setBreakpoint(â€˜script.jsâ€™, 20), sb(...) åœ¨ script.js çš„ç¬¬20è¡Œè®¾ç½®æ–­ç‚¹
+clearBreakpoint, cb(...) æ¸…é™¤æ‰€æœ‰æ–­ç‚¹
+backtrace, bt æ˜¾ç¤ºå½“å‰çš„è°ƒç”¨æ ˆ
+list(5) æ˜¾ç¤ºå½“å‰æ‰§è¡Œåˆ°çš„å‰åŽ5è¡Œä»£ç 
+watch(expr) æŠŠè¡¨è¾¾å¼ expr åŠ å…¥ç›‘è§†åˆ—è¡¨
+unwatch(expr) æŠŠè¡¨è¾¾å¼ expr ä»Žç›‘è§†åˆ—è¡¨ç§»é™¤
+watchers æ˜¾ç¤ºç›‘è§†åˆ—è¡¨ä¸­æ‰€æœ‰çš„è¡¨è¾¾å¼å’Œå€¼
+repl åœ¨å½“å‰ä¸Šä¸‹æ–‡æ‰“å¼€å³æ—¶æ±‚å€¼çŽ¯å¢ƒ
+kill ç»ˆæ­¢å½“å‰æ‰§è¡Œçš„è„šæœ¬
+scripts æ˜¾ç¤ºå½“å‰å·²åŠ è½½çš„æ‰€æœ‰è„šæœ¬
+version æ˜¾ç¤º V8 çš„ç‰ˆæœ¬
 
-V8 Ìá¹©µÄµ÷ÊÔ¹¦ÄÜÊÇ»ùÓÚ TCP Ð­ÒéµÄ£¬Òò´Ë Node.js ¿ÉÒÔÇáËÉµØÊµÏÖÔ¶³Ìµ÷ÊÔ¡£ÔÚÃü
-ÁîÐÐÏÂÊ¹ÓÃÒÔÏÂÁ½¸öÓï¾äÖ®Ò»¿ÉÒÔ´ò¿ªµ÷ÊÔ·þÎñÆ÷£º
+
+
+V8 æä¾›çš„è°ƒè¯•åŠŸèƒ½æ˜¯åŸºäºŽ TCP åè®®çš„ï¼Œå› æ­¤ Node.js å¯ä»¥è½»æ¾åœ°å®žçŽ°è¿œç¨‹è°ƒè¯•ã€‚åœ¨å‘½
+ä»¤è¡Œä¸‹ä½¿ç”¨ä»¥ä¸‹ä¸¤ä¸ªè¯­å¥ä¹‹ä¸€å¯ä»¥æ‰“å¼€è°ƒè¯•æœåŠ¡å™¨ï¼š
 node --debug[=port] script.js
 node --debug-brk[=port] script.js
 
-node --debug ÃüÁîÑ¡Ïî¿ÉÒÔÆô¶¯µ÷ÊÔ·þÎñÆ÷£¬Ä¬ÈÏÇé¿öÏÂµ÷ÊÔ¶Ë¿ÚÊÇ 5858£¬Ò²¿ÉÒÔ
-Ê¹ÓÃ --debug=1234 Ö¸¶¨µ÷ÊÔ¶Ë¿ÚÎª 1234¡£Ê¹ÓÃ --debug Ñ¡ÏîÔËÐÐ½Å±¾Ê±£¬½Å±¾»áÕý³£
-Ö´ÐÐ£¬µ«²»»áÔÝÍ££¬ÔÚÖ´ÐÐ¹ý³ÌÖÐµ÷ÊÔ¿Í»§¶Ë¿ÉÒÔÁ¬½Óµ½µ÷ÊÔ·þÎñÆ÷¡£Èç¹ûÒªÇó½Å±¾ÔÝÍ£Ö´
-ÐÐµÈ´ý¿Í»§¶ËÁ¬½Ó£¬ÔòÓ¦¸ÃÊ¹ÓÃ --debug-brk Ñ¡Ïî¡£ÕâÊ±µ÷ÊÔ·þÎñÆ÷ÔÚÆô¶¯ºó»áÁ¢¿ÌÔÝÍ£
-Ö´ÐÐ½Å±¾£¬µÈ´ýµ÷ÊÔ¿Í»§¶ËÁ¬½Ó¡£
-µ±µ÷ÊÔ·þÎñÆ÷Æô¶¯ÒÔºó£¬¿ÉÒÔÓÃÃüÁîÐÐµ÷ÊÔ¹¤¾ß×÷Îªµ÷ÊÔ¿Í»§¶ËÁ¬½Ó£¬ÀýÈç£º
-//ÔÚÒ»¸öÖÕ¶ËÖÐ
+node --debug å‘½ä»¤é€‰é¡¹å¯ä»¥å¯åŠ¨è°ƒè¯•æœåŠ¡å™¨ï¼Œé»˜è®¤æƒ…å†µä¸‹è°ƒè¯•ç«¯å£æ˜¯ 5858ï¼Œä¹Ÿå¯ä»¥
+ä½¿ç”¨ --debug=1234 æŒ‡å®šè°ƒè¯•ç«¯å£ä¸º 1234ã€‚ä½¿ç”¨ --debug é€‰é¡¹è¿è¡Œè„šæœ¬æ—¶ï¼Œè„šæœ¬ä¼šæ­£å¸¸
+æ‰§è¡Œï¼Œä½†ä¸ä¼šæš‚åœï¼Œåœ¨æ‰§è¡Œè¿‡ç¨‹ä¸­è°ƒè¯•å®¢æˆ·ç«¯å¯ä»¥è¿žæŽ¥åˆ°è°ƒè¯•æœåŠ¡å™¨ã€‚å¦‚æžœè¦æ±‚è„šæœ¬æš‚åœæ‰§
+è¡Œç­‰å¾…å®¢æˆ·ç«¯è¿žæŽ¥ï¼Œåˆ™åº”è¯¥ä½¿ç”¨ --debug-brk é€‰é¡¹ã€‚è¿™æ—¶è°ƒè¯•æœåŠ¡å™¨åœ¨å¯åŠ¨åŽä¼šç«‹åˆ»æš‚åœ
+æ‰§è¡Œè„šæœ¬ï¼Œç­‰å¾…è°ƒè¯•å®¢æˆ·ç«¯è¿žæŽ¥ã€‚
+å½“è°ƒè¯•æœåŠ¡å™¨å¯åŠ¨ä»¥åŽï¼Œå¯ä»¥ç”¨å‘½ä»¤è¡Œè°ƒè¯•å·¥å…·ä½œä¸ºè°ƒè¯•å®¢æˆ·ç«¯è¿žæŽ¥ï¼Œä¾‹å¦‚ï¼š
+//åœ¨ä¸€ä¸ªç»ˆç«¯ä¸­
 $ node --debug-brk debug.js
 debugger listening on port 5858
-//ÔÚÁíÒ»¸öÖÕ¶ËÖÐ
+//åœ¨å¦ä¸€ä¸ªç»ˆç«¯ä¸­
 $ node debug 127.0.0.1:5858
 connecting... ok
 debug> n
@@ -287,12 +287,12 @@ break in /home/byvoid/debug.js:2
 3 var c = function (x) {
 4 console.log('hello ' + x + a);
 debug>
-ÊÂÊµÉÏ£¬µ±Ê¹ÓÃ node debug debug.js ÃüÁîµ÷ÊÔÊ±£¬Ö»²»¹ýÊÇÓÃ Node.js ÃüÁîÐÐ¹¤
-¾ß½«ÒÔÉÏÁ½²½¹¤×÷×Ô¶¯Íê³É¶øÒÑ¡£
+äº‹å®žä¸Šï¼Œå½“ä½¿ç”¨ node debug debug.js å‘½ä»¤è°ƒè¯•æ—¶ï¼Œåªä¸è¿‡æ˜¯ç”¨ Node.js å‘½ä»¤è¡Œå·¥
+å…·å°†ä»¥ä¸Šä¸¤æ­¥å·¥ä½œè‡ªåŠ¨å®Œæˆè€Œå·²ã€‚
 
 
-express Ñ§Ï°
-npm help json ÓÐ¹Øpackage.jsonµÄÐÅÏ¢
+express å­¦ä¹ 
+npm help json æœ‰å…³package.jsonçš„ä¿¡æ¯
 
 
  merge-descriptors@1.0.0
@@ -325,9 +325,9 @@ express-generator
 Data\Roaming\npm\node_modules\express-generator\bin\express
 express-generator@4.12.1 C:\Users\Administrator\AppData\Roaming\npm\node_modules
 \express-generator
-©À©¤©¤ sorted-object@1.0.0
-©À©¤©¤ commander@2.6.0
-©¸©¤©¤ mkdirp@0.5.0 (minimist@0.0.8)
+â”œâ”€â”€ sorted-object@1.0.0
+â”œâ”€â”€ commander@2.6.0
+â””â”€â”€ mkdirp@0.5.0 (minimist@0.0.8)
 express --help
 
     -h, --help          output usage information
@@ -372,70 +372,71 @@ destination is not empty, continue? [y/N] y
 
 npm install
 debug@2.1.3 node_modules\debug
-©¸©¤©¤ ms@0.7.0
+â””â”€â”€ ms@0.7.0
 
 ejs@2.3.1 node_modules\ejs
 
 cookie-parser@1.3.4 node_modules\cookie-parser
-©À©¤©¤ cookie-signature@1.0.6
-©¸©¤©¤ cookie@0.1.2
+â”œâ”€â”€ cookie-signature@1.0.6
+â””â”€â”€ cookie@0.1.2
 
 serve-favicon@2.2.0 node_modules\serve-favicon
-©À©¤©¤ fresh@0.2.4
-©À©¤©¤ ms@0.7.0
-©À©¤©¤ parseurl@1.3.0
-©¸©¤©¤ etag@1.5.1 (crc@3.2.1)
+â”œâ”€â”€ fresh@0.2.4
+â”œâ”€â”€ ms@0.7.0
+â”œâ”€â”€ parseurl@1.3.0
+â””â”€â”€ etag@1.5.1 (crc@3.2.1)
 
 morgan@1.5.2 node_modules\morgan
-©À©¤©¤ basic-auth@1.0.0
-©À©¤©¤ depd@1.0.0
-©¸©¤©¤ on-finished@2.2.0 (ee-first@1.1.0)
+â”œâ”€â”€ basic-auth@1.0.0
+â”œâ”€â”€ depd@1.0.0
+â””â”€â”€ on-finished@2.2.0 (ee-first@1.1.0)
 
 body-parser@1.12.2 node_modules\body-parser
-©À©¤©¤ content-type@1.0.1
-©À©¤©¤ bytes@1.0.0
-©À©¤©¤ raw-body@1.3.3
-©À©¤©¤ depd@1.0.0
-©À©¤©¤ on-finished@2.2.0 (ee-first@1.1.0)
-©À©¤©¤ qs@2.4.1
-©À©¤©¤ iconv-lite@0.4.7
-©¸©¤©¤ type-is@1.6.1 (media-typer@0.3.0, mime-types@2.0.10)
+â”œâ”€â”€ content-type@1.0.1
+â”œâ”€â”€ bytes@1.0.0
+â”œâ”€â”€ raw-body@1.3.3
+â”œâ”€â”€ depd@1.0.0
+â”œâ”€â”€ on-finished@2.2.0 (ee-first@1.1.0)
+â”œâ”€â”€ qs@2.4.1
+â”œâ”€â”€ iconv-lite@0.4.7
+â””â”€â”€ type-is@1.6.1 (media-typer@0.3.0, mime-types@2.0.10)
 
 express@4.12.3 node_modules\express
-©À©¤©¤ merge-descriptors@1.0.0
-©À©¤©¤ utils-merge@1.0.0
-©À©¤©¤ cookie-signature@1.0.6
-©À©¤©¤ methods@1.1.1
-©À©¤©¤ cookie@0.1.2
-©À©¤©¤ fresh@0.2.4
-©À©¤©¤ escape-html@1.0.1
-©À©¤©¤ range-parser@1.0.2
-©À©¤©¤ content-type@1.0.1
-©À©¤©¤ vary@1.0.0
-©À©¤©¤ finalhandler@0.3.4
-©À©¤©¤ parseurl@1.3.0
-©À©¤©¤ content-disposition@0.5.0
-©À©¤©¤ serve-static@1.9.2
-©À©¤©¤ path-to-regexp@0.1.3
-©À©¤©¤ depd@1.0.0
-©À©¤©¤ qs@2.4.1
-©À©¤©¤ etag@1.5.1 (crc@3.2.1)
-©À©¤©¤ on-finished@2.2.0 (ee-first@1.1.0)
-©À©¤©¤ proxy-addr@1.0.7 (forwarded@0.1.0, ipaddr.js@0.1.9)
-©À©¤©¤ send@0.12.2 (destroy@1.0.3, ms@0.7.0, mime@1.3.4)
-©À©¤©¤ accepts@1.2.5 (negotiator@0.5.1, mime-types@2.0.10)
-©¸©¤©¤ type-is@1.6.1 (media-typer@0.3.0, mime-types@2.0.10)
+â”œâ”€â”€ merge-descriptors@1.0.0
+â”œâ”€â”€ utils-merge@1.0.0
+â”œâ”€â”€ cookie-signature@1.0.6
+â”œâ”€â”€ methods@1.1.1
+â”œâ”€â”€ cookie@0.1.2
+â”œâ”€â”€ fresh@0.2.4
+â”œâ”€â”€ escape-html@1.0.1
+â”œâ”€â”€ range-parser@1.0.2
+â”œâ”€â”€ content-type@1.0.1
+â”œâ”€â”€ vary@1.0.0
+â”œâ”€â”€ finalhandler@0.3.4
+â”œâ”€â”€ parseurl@1.3.0
+â”œâ”€â”€ content-disposition@0.5.0
+â”œâ”€â”€ serve-static@1.9.2
+â”œâ”€â”€ path-to-regexp@0.1.3
+â”œâ”€â”€ depd@1.0.0
+â”œâ”€â”€ qs@2.4.1
+â”œâ”€â”€ etag@1.5.1 (crc@3.2.1)
+â”œâ”€â”€ on-finished@2.2.0 (ee-first@1.1.0)
+â”œâ”€â”€ proxy-addr@1.0.7 (forwarded@0.1.0, ipaddr.js@0.1.9)
+â”œâ”€â”€ send@0.12.2 (destroy@1.0.3, ms@0.7.0, mime@1.3.4)
+â”œâ”€â”€ accepts@1.2.5 (negotiator@0.5.1, mime-types@2.0.10)
+â””â”€â”€ type-is@1.6.1 (media-typer@0.3.0, mime-types@2.0.10)
 
 
 mongoDB
 
 wmic os get caption
-wmic os get osarchitecture 
-²é¿´ÏµÍ³ºÍ¼Ü¹¹
+wmic os get osarchitecture
+æŸ¥çœ‹ç³»ç»Ÿå’Œæž¶æž„
+http://docs.mongoing.com/manual-zh/   mongodb ä¸­æ–‡æ‰‹å†Œ
+http://www.runoob.com/mongodb/mongodb-aggregate.html èœé¸Ÿæ•™ç¨‹
+ä¸‹ç ¸mis å®‰è£…  é™é»˜å®‰è£… msiexec
 
-ÏÂÔÒmis °²×°  ¾²Ä¬°²×° msiexec
-
-´´½¨ÎÄ¼þ¼Ð²¢°²×°·þÎñ
+åˆ›å»ºæ–‡ä»¶å¤¹å¹¶å®‰è£…æœåŠ¡
 E:\installer\work\Mongodb64\bin>mongod.exe --dbpath "e:\installer\work\Mongodb64
 \data\db" --logpath "e:\installer\work\Mongodb64\data\log\mongod.log" --install
 --serviceName "mongodb"
@@ -443,8 +444,10 @@ E:\installer\work\Mongodb64\bin>mongod.exe --dbpath "e:\installer\work\Mongodb64
 
 E:\installer\work\Mongodb64\bin>mongod.exe --dbpath "e:\installer\work\mongodb64\da
 ta\db"
-É¾³ý·þÎñ  °Ñinstall¸Ä³Éremove
-mongodb shell  mongo¡£exe
+åˆ é™¤æœåŠ¡  æŠŠinstallæ”¹æˆremove
+
+mongodb shell  mongo.exe
+
 help
 
         db.mycoll.help()             help on collection methods
@@ -540,7 +543,7 @@ rations on this collection, inherited from server/db if set
 n for writes to the collection
         db.myColl.unsetWriteConcern( <write concern doc> ) - unsets the write co
 ncern for writes to the collection
-°²×°mogodbÇý¶¯nodeJS
+å®‰è£…mogodbé©±åŠ¨nodeJS
 
 > bson@0.2.20 install E:\myapp\microblog\node_modules\mongodb\node_modules\mongo
 db-core\node_modules\bson
@@ -560,9 +563,9 @@ E:\myapp\microblog\node_modules\mongodb\node_modules\mongodb-core\node_modules\k
 erberos>node "D:\installer\work\nodeJS\node_modules\npm\bin\node-gyp-bin\\..\..\
 node_modules\node-gyp\bin\node-gyp.js" rebuild
 mongodb@2.0.22 node_modules\mongodb
-©À©¤©¤ readable-stream@1.0.31 (inherits@2.0.1, string_decoder@0.10.31, isarray@0
+â”œâ”€â”€ readable-stream@1.0.31 (inherits@2.0.1, string_decoder@0.10.31, isarray@0
 .0.1, core-util-is@1.0.1)
-©¸©¤©¤ mongodb-core@1.1.17 (rimraf@2.2.6, mkdirp@0.5.0, bson@0.2.20, kerberos@0.
+â””â”€â”€ mongodb-core@1.1.17 (rimraf@2.2.6, mkdirp@0.5.0, bson@0.2.20, kerberos@0.
 0.9)
 
 
@@ -570,89 +573,89 @@ F:\myapp\mooc\views>npm i bower -g
 C:\Users\pmzgeek\AppData\Roaming\npm\bower -> C:\Users\pmzgeek\AppData\Roaming\n
 pm\node_modules\bower\bin\bower
 bower@1.4.1 C:\Users\pmzgeek\AppData\Roaming\npm\node_modules\bower
-©À©¤©¤ is-root@1.0.0
-©À©¤©¤ junk@1.0.1
-©À©¤©¤ stringify-object@1.0.1
-©À©¤©¤ abbrev@1.0.5
-©À©¤©¤ user-home@1.1.1
-©À©¤©¤ chmodr@0.1.0
-©À©¤©¤ which@1.0.9
-©À©¤©¤ rimraf@2.3.2
-©À©¤©¤ archy@1.0.0
-©À©¤©¤ graceful-fs@3.0.6
-©À©¤©¤ bower-logger@0.2.2
-©À©¤©¤ opn@1.0.2
-©À©¤©¤ bower-endpoint-parser@0.2.2
-©À©¤©¤ lockfile@1.0.0
-©À©¤©¤ lru-cache@2.6.2
-©À©¤©¤ nopt@3.0.1
-©À©¤©¤ retry@0.6.1
-©À©¤©¤ tmp@0.0.24
-©À©¤©¤ q@1.3.0
-©À©¤©¤ semver@2.3.2
-©À©¤©¤ mkdirp@0.5.0 (minimist@0.0.8)
-©À©¤©¤ p-throttler@0.1.1 (q@0.9.7)
-©À©¤©¤ fstream@1.0.4 (inherits@2.0.1)
-©À©¤©¤ bower-json@0.4.0 (intersect@0.0.3, graceful-fs@2.0.3, deep-extend@0.2.11)
+â”œâ”€â”€ is-root@1.0.0
+â”œâ”€â”€ junk@1.0.1
+â”œâ”€â”€ stringify-object@1.0.1
+â”œâ”€â”€ abbrev@1.0.5
+â”œâ”€â”€ user-home@1.1.1
+â”œâ”€â”€ chmodr@0.1.0
+â”œâ”€â”€ which@1.0.9
+â”œâ”€â”€ rimraf@2.3.2
+â”œâ”€â”€ archy@1.0.0
+â”œâ”€â”€ graceful-fs@3.0.6
+â”œâ”€â”€ bower-logger@0.2.2
+â”œâ”€â”€ opn@1.0.2
+â”œâ”€â”€ bower-endpoint-parser@0.2.2
+â”œâ”€â”€ lockfile@1.0.0
+â”œâ”€â”€ lru-cache@2.6.2
+â”œâ”€â”€ nopt@3.0.1
+â”œâ”€â”€ retry@0.6.1
+â”œâ”€â”€ tmp@0.0.24
+â”œâ”€â”€ q@1.3.0
+â”œâ”€â”€ semver@2.3.2
+â”œâ”€â”€ mkdirp@0.5.0 (minimist@0.0.8)
+â”œâ”€â”€ p-throttler@0.1.1 (q@0.9.7)
+â”œâ”€â”€ fstream@1.0.4 (inherits@2.0.1)
+â”œâ”€â”€ bower-json@0.4.0 (intersect@0.0.3, graceful-fs@2.0.3, deep-extend@0.2.11)
 
-©À©¤©¤ shell-quote@1.4.3 (array-filter@0.0.1, array-reduce@0.0.0, array-map@0.0.
+â”œâ”€â”€ shell-quote@1.4.3 (array-filter@0.0.1, array-reduce@0.0.0, array-map@0.0.
 0, jsonify@0.0.0)
-©À©¤©¤ request-progress@0.3.1 (throttleit@0.0.2)
-©À©¤©¤ promptly@0.2.0 (read@1.0.5)
-©À©¤©¤ github@0.2.4 (mime@1.3.4)
-©À©¤©¤ chalk@1.0.0 (escape-string-regexp@1.0.3, ansi-styles@2.0.1, supports-colo
+â”œâ”€â”€ request-progress@0.3.1 (throttleit@0.0.2)
+â”œâ”€â”€ promptly@0.2.0 (read@1.0.5)
+â”œâ”€â”€ github@0.2.4 (mime@1.3.4)
+â”œâ”€â”€ chalk@1.0.0 (escape-string-regexp@1.0.3, ansi-styles@2.0.1, supports-colo
 r@1.3.1, strip-ansi@2.0.1, has-ansi@1.0.3)
-©À©¤©¤ mout@0.11.0
-©À©¤©¤ bower-config@0.6.1 (osenv@0.0.3, graceful-fs@2.0.3, optimist@0.6.1, mout@
+â”œâ”€â”€ mout@0.11.0
+â”œâ”€â”€ bower-config@0.6.1 (osenv@0.0.3, graceful-fs@2.0.3, optimist@0.6.1, mout@
 0.9.1)
-©À©¤©¤ cardinal@0.4.4 (ansicolors@0.2.1, redeyed@0.4.4)
-©À©¤©¤ decompress-zip@0.1.0 (mkpath@0.1.0, readable-stream@1.1.13, touch@0.0.3,
+â”œâ”€â”€ cardinal@0.4.4 (ansicolors@0.2.1, redeyed@0.4.4)
+â”œâ”€â”€ decompress-zip@0.1.0 (mkpath@0.1.0, readable-stream@1.1.13, touch@0.0.3,
 binary@0.3.0)
-©À©¤©¤ configstore@0.3.2 (object-assign@2.0.0, xdg-basedir@1.0.1, osenv@0.1.0, u
+â”œâ”€â”€ configstore@0.3.2 (object-assign@2.0.0, xdg-basedir@1.0.1, osenv@0.1.0, u
 uid@2.0.1, js-yaml@3.3.0)
-©À©¤©¤ handlebars@2.0.0 (optimist@0.3.7, uglify-js@2.3.6)
-©À©¤©¤ insight@0.5.3 (object-assign@2.0.0, async@0.9.0, lodash.debounce@3.0.3, t
+â”œâ”€â”€ handlebars@2.0.0 (optimist@0.3.7, uglify-js@2.3.6)
+â”œâ”€â”€ insight@0.5.3 (object-assign@2.0.0, async@0.9.0, lodash.debounce@3.0.3, t
 ough-cookie@0.12.1, os-name@1.0.3)
-©À©¤©¤ inquirer@0.8.0 (figures@1.3.5, ansi-regex@1.1.1, mute-stream@0.0.4, throu
+â”œâ”€â”€ inquirer@0.8.0 (figures@1.3.5, ansi-regex@1.1.1, mute-stream@0.0.4, throu
 gh@2.3.7, readline2@0.1.1, lodash@2.4.2, chalk@0.5.1, rx@2.5.2, cli-color@0.3.3)
 
-©À©¤©¤ glob@4.5.3 (inherits@2.0.1, inflight@1.0.4, once@1.3.1, minimatch@2.0.4)
-©À©¤©¤ fstream-ignore@1.0.2 (inherits@2.0.1, minimatch@2.0.4)
-©À©¤©¤ request@2.53.0 (caseless@0.9.0, json-stringify-safe@5.0.0, aws-sign2@0.5.
+â”œâ”€â”€ glob@4.5.3 (inherits@2.0.1, inflight@1.0.4, once@1.3.1, minimatch@2.0.4)
+â”œâ”€â”€ fstream-ignore@1.0.2 (inherits@2.0.1, minimatch@2.0.4)
+â”œâ”€â”€ request@2.53.0 (caseless@0.9.0, json-stringify-safe@5.0.0, aws-sign2@0.5.
 0, forever-agent@0.5.2, stringstream@0.0.4, oauth-sign@0.6.0, tunnel-agent@0.4.0
 , isstream@0.1.2, node-uuid@1.4.3, qs@2.3.3, form-data@0.2.0, combined-stream@0.
 0.7, mime-types@2.0.10, http-signature@0.10.1, tough-cookie@1.0.0, hawk@2.3.1, b
 l@0.9.4)
-©À©¤©¤ bower-registry-client@0.3.0 (graceful-fs@2.0.3, request-replay@0.2.0, rim
+â”œâ”€â”€ bower-registry-client@0.3.0 (graceful-fs@2.0.3, request-replay@0.2.0, rim
 raf@2.2.8, lru-cache@2.3.1, async@0.2.10, mkdirp@0.3.5, request@2.51.0)
-©À©¤©¤ tar-fs@1.5.0 (pump@1.0.0, tar-stream@1.1.4)
-©¸©¤©¤ update-notifier@0.3.2 (is-npm@1.0.0, semver-diff@2.0.0, string-length@1.0
+â”œâ”€â”€ tar-fs@1.5.0 (pump@1.0.0, tar-stream@1.1.4)
+â””â”€â”€ update-notifier@0.3.2 (is-npm@1.0.0, semver-diff@2.0.0, string-length@1.0
 .0, latest-version@1.0.0)
 
 
 
 F:\myapp\mooc>npm i grunt -g
 grunt@0.4.5 C:\Users\pmzgeek\AppData\Roaming\npm\node_modules\grunt
-©À©¤©¤ dateformat@1.0.2-1.2.3
-©À©¤©¤ which@1.0.9
-©À©¤©¤ eventemitter2@0.4.14
-©À©¤©¤ getobject@0.1.0
-©À©¤©¤ rimraf@2.2.8
-©À©¤©¤ colors@0.6.2
-©À©¤©¤ async@0.1.22
-©À©¤©¤ grunt-legacy-util@0.2.0
-©À©¤©¤ hooker@0.2.3
-©À©¤©¤ exit@0.1.2
-©À©¤©¤ lodash@0.9.2
-©À©¤©¤ coffee-script@1.3.3
-©À©¤©¤ underscore.string@2.2.1
-©À©¤©¤ iconv-lite@0.2.11
-©À©¤©¤ nopt@1.0.10 (abbrev@1.0.5)
-©À©¤©¤ minimatch@0.2.14 (sigmund@1.0.0, lru-cache@2.6.2)
-©À©¤©¤ grunt-legacy-log@0.1.1 (underscore.string@2.3.3, lodash@2.4.2)
-©À©¤©¤ glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
-©À©¤©¤ findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)
-©¸©¤©¤ js-yaml@2.0.5 (esprima@1.0.4, argparse@0.1.16)
+â”œâ”€â”€ dateformat@1.0.2-1.2.3
+â”œâ”€â”€ which@1.0.9
+â”œâ”€â”€ eventemitter2@0.4.14
+â”œâ”€â”€ getobject@0.1.0
+â”œâ”€â”€ rimraf@2.2.8
+â”œâ”€â”€ colors@0.6.2
+â”œâ”€â”€ async@0.1.22
+â”œâ”€â”€ grunt-legacy-util@0.2.0
+â”œâ”€â”€ hooker@0.2.3
+â”œâ”€â”€ exit@0.1.2
+â”œâ”€â”€ lodash@0.9.2
+â”œâ”€â”€ coffee-script@1.3.3
+â”œâ”€â”€ underscore.string@2.2.1
+â”œâ”€â”€ iconv-lite@0.2.11
+â”œâ”€â”€ nopt@1.0.10 (abbrev@1.0.5)
+â”œâ”€â”€ minimatch@0.2.14 (sigmund@1.0.0, lru-cache@2.6.2)
+â”œâ”€â”€ grunt-legacy-log@0.1.1 (underscore.string@2.3.3, lodash@2.4.2)
+â”œâ”€â”€ glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
+â”œâ”€â”€ findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)
+â””â”€â”€ js-yaml@2.0.5 (esprima@1.0.4, argparse@0.1.16)
 
 
 
@@ -660,6 +663,6 @@ F:\myapp\mooc>npm i grunt-cli -g
 C:\Users\pmzgeek\AppData\Roaming\npm\grunt -> C:\Users\pmzgeek\AppData\Roaming\n
 pm\node_modules\grunt-cli\bin\grunt
 grunt-cli@0.1.13 C:\Users\pmzgeek\AppData\Roaming\npm\node_modules\grunt-cli
-©À©¤©¤ resolve@0.3.1
-©À©¤©¤ nopt@1.0.10 (abbrev@1.0.5)
-©¸©¤©¤ findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)
+â”œâ”€â”€ resolve@0.3.1
+â”œâ”€â”€ nopt@1.0.10 (abbrev@1.0.5)
+â””â”€â”€ findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)

@@ -290,3 +290,31 @@ function inheritedPropertyNames(obj) {
 
 inheritedPropertyNames(Date)
 // ["caller", "constructor", "toString", "UTC", "call", "parse", "prototype", "__defineSetter__", "__lookupSetter__", "length", "arguments", "bind", "__lookupGetter__", "isPrototypeOf", "toLocaleString", "propertyIsEnumerable", "valueOf", "apply", "__defineGetter__", "name", "now", "hasOwnProperty"]
+
+### js中`!!`运算符
+> `!! 表达式`类似于三元运算符，当表达式的值是非空字符串、非零数字、返回true；当值是空字符串、数字0，或null返回false
+```
+!! ""
+false
+!! "s"
+true
+!! "0"
+true
+!! 0
+false
+!! null
+false
+!! true
+true
+!! false
+false
+```
+
+### 浏览器canvas检测
+```javascript
+//判断浏览区是否支持canvas
+    function isSupportCanvas(){
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+```
