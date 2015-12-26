@@ -136,7 +136,7 @@ git checkout
 
 删除分支：git branch -d name
 
-* 合并某分支到当前分支：git merge name (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff master origin/master 查看本地与远程的版本历史区别
+* 合并某分支到当前分支：git merge name (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff origin/master master 查看远程的版本与本地历史区别
 
 > [remote "origin"]  
 
