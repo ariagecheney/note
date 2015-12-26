@@ -1,17 +1,17 @@
-#快捷键
-Ctrl+d	键盘输入结束或退出终端
-Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
-Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
-Ctrl+a	将光标移至输入行头，相当于Home键
-Ctrl+e	将光标移至输入行末，相当于End键
-Ctrl+k	剪切从光标所在位置到行末 Ctrl+u
-ctrl + y 粘贴
-ALT + B - 跳回上一个空格
-Alt+Backspace	向前删除一个单词
-CTRL + W - 剪切光标前一个单词
-Shift+PgUp	将终端显示向上滚动
-Shift+PgDn	将终端显示向下滚动
-
+# 快捷键
+* Ctrl+d	键盘输入结束或退出终端
+* Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
+* Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
+* Ctrl+a	将光标移至输入行头，相当于Home键
+* Ctrl+e	将光标移至输入行末，相当于End键
+* Ctrl+k	剪切从光标所在位置到行末 Ctrl+u
+* ctrl + y 粘贴
+* ctrl+l 清屏
+* ALT + B - 跳回上一个空格
+* Alt+Backspace	向前删除一个单词
+* CTRL + W - 剪切光标前一个单词
+* Shift+PgUp	将终端显示向上滚动
+* Shift+PgDn	将终端显示向下滚动
 * crtl + alt + 方向键 ：工作区切换
 * shift + crtl + alt + 方向键 ：把当前窗口移到另一个工作区
 * super + d ：显示桌面
@@ -122,13 +122,10 @@ $ ls -AsSh
 其中小 s 为显示文件大小，大 S 为按文件大小排序，若需要知道如何按其它方式排序，请使用“man”命令查询。
 
 
-修改文件所有者   sudo chown shiyanlou iphone6
+* 修改文件所有者   `sudo chown shiyanlou:nogroup iphone6` `chown -R liu /usr/meng`  
+ [chown man](http://man.linuxde.net/chown)
 
-修改权限：
-
-$ chmod 700 iphone6
-chmod go-rw iphone6
-一般必须有sudo权限才能用这两个命令
+* 修改权限：`$ chmod 700 iphone6``chmod go-rw iphone6`一般必须有sudo权限才能用这两个命令
 
 目录
 
@@ -182,9 +179,9 @@ whereis只能搜索二进制文件(-b)，man帮助文件(-m)和源代码文件(-
 locate 快而全
 locate /etc/sh  查找 /etc 下所有以 sh 开头的文件，它不只是在 etc 目录下查找并会自动递归子目录进行查找
 locate /udo mkdir jvm
+* 支持正则表达式  `locate --regexp aa`
 
-
-通过"/var/lib/mlocate/mlocate.db"数据库查找，不过这个数据库也不是实时更新的，系统会使用定时任务每天自动执行updatedb命令更新一次，所以有时候你刚添加的文件，它可能会找不到，需要手动执行一次updatedb命令（在我们的环境中必须先执行一次该命令）。
+通过"/var/lib/mlocate/mlocate.db"数据库查找，不过这个数据库也不是实时更新的，系统会使用定时任务每天自动执行updatedb命令更新一次，所以有时候你刚添加的文件，它可能会找不到，需要手动执行一次sudo updatedb命令（在我们的环境中必须先执行一次该命令）。
 想只统计数目可以加上-c参数，-i参数可以忽略大小写进行查找，whereis 的-b,-m，-s同样可以是使用。
 
 which小而精
@@ -221,6 +218,11 @@ $ find ~ -mtime 0
 
 $ find ~ -newer /home/shiyanlou/Code
 
+* 通过文件类型 `find . -type f` 文件类型 `find . -type d` 文件夹
+* 通过正则匹配 `find . -regex ".*\(\.txt\|\.pdf\)$"` `-iregex 忽略大小写`
+* 限定路径层级 `find . -maxdepth 1 -iname '*mongo*'`
+
+> [find 文档](http://man.linuxde.net/find "find")
 
 文件压缩
 
@@ -411,7 +413,7 @@ sudo tar zxvf ./jdk-7-linux-i586.tar.gz  -C /usr/lib/jvm
 cd /usr/lib/jvm
 sudo mv jdk1.7.0_05/ jdk7
 
- 3.配置环境变量
+ * 配置环境变量
 
 gedit /etx/profile
 
@@ -431,7 +433,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 
 source ~/.bashrc
 
- 4.配置默认JDK
+ * 配置默认JDK
 
 由于一些Linux的发行版中已经存在默认的JDK，如OpenJDK等。所以为了使得我们刚才安装好的JDK版本能成为默认的JDK版本，我们还要进行下面的配置。
 执行下面的命令：
@@ -447,7 +449,7 @@ sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk7/bin/ja
 
 sudo update-alternatives --config java
 
- 5.测试
+ * 测试
 
 打开一个终端，输入下面命令：
 
@@ -462,3 +464,18 @@ Java(TM) SE Runtime Environment (build 1.7.0_05-b05)
 Java HotSpot(TM) Server VM (build 23.1-b03, mixed mode)
 
 这表示java命令已经可以运行了。
+### uniq
+> 管道过滤唯一字符  
+
+### ln [创建链接：官方文档](http://man.linuxde.net/ln)
+### 查看当前服务和监听端口  `sudo netstat -atunlp | grep mongo`
+### ubuntu 修改主机名
+```
+//查看主机名
+topcom@master:~$ hostname
+master
+//永久修改
+vim /etc/hostname
+```
+### 复制符号连接，保留文件属性，递归操作 -dpr
+`cp -av source dest`
