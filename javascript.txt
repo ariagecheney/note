@@ -292,7 +292,7 @@ inheritedPropertyNames(Date)
 // ["caller", "constructor", "toString", "UTC", "call", "parse", "prototype", "__defineSetter__", "__lookupSetter__", "length", "arguments", "bind", "__lookupGetter__", "isPrototypeOf", "toLocaleString", "propertyIsEnumerable", "valueOf", "apply", "__defineGetter__", "name", "now", "hasOwnProperty"]
 
 ### js中`!!`运算符
-> `!! 表达式`类似于三元运算符，当表达式的值是非空字符串、非零数字、返回true；当值是空字符串、数字0，或null返回false
+> `!! 表达式`类似于三元运算符，**目的是把其他类型的变量转化成boolean型	**当表达式的值是非空字符串、非零数字、返回true；当值是空字符串、数字0，null,false,undefined,NaN返回false
 ```
 !! ""
 false
@@ -317,4 +317,29 @@ false
         var elem = document.createElement('canvas');
         return !!(elem.getContext && elem.getContext('2d'));
     }
+```
+### js中`||`和`&&` 运算符
+> 遵循短路原则，常用于判断逻辑，默认值赋值等
+>
+`2>3 && 5`返回值：false
+>
+eg:
+成长速度为5显示1个箭头；
+成长速度为10显示2个箭头；
+成长速度为12显示3个箭头；
+成长速度为15显示4个箭头；
+其他都显示都显示0各箭头。
+```
+var add_level = (add_step==5 && 1) || (add_step==10 && 2) || (add_step==12 && 3) || (add_step==15 && 4) || 0;
+//or
+var add_level={'5':1,'10':2,'12':3,'15':4}[add_step] || 0;
+```
+eg:
+成长速度为>12显示4个箭头；
+成长速度为>10显示3个箭头；
+成长速度为>5显示2个箭头；
+成长速度为>0显示1个箭头；
+成长速度为<=0显示0个箭头。
+```
+var add_level = (add_step>12 && 4) || (add_step>10 && 3) || (add_step>5 && 2) || (add_step>0 && 1) || 0;
 ```
