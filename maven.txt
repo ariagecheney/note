@@ -342,4 +342,4 @@ MAVEN_JAVA_EXE="D:\install\work\java\jdk\bin\java.exe"
 [INFO] Final Memory: 10M/64M
 [INFO] ------------------------------------------------------------------------
 
-C:\Users\美征>
+C:\Users\>

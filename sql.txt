@@ -124,3 +124,42 @@ mysql 命令下执行脚本
 第一种方式：在未连接数据库的情况下，输入 mysql -h localhost -u root -p 123456 database < d:\book.sql 回车即可；
 
 第二种方式：在已连接数据库的情况下，此时命令提示符为mysql>，输入 source d:\book.sql  或者 \. d:\book.sql 回车即可。
+
+### 聚合查询`oracle`
+```sql
+
+SELECT
+	DQBM_BM.province as 省,
+	WKKDB_BM.WKKDBMC as 等别,
+	COUNT (*) as 数量,
+	SUM (
+		DECODE (SFAQSCXKZ, '是', 1, 0)
+	) AS 已取得安全生产许可证,
+	sum(DECODE (SFAZZXJCXT, '是', 1, 0)) AS 已安装在线监测设备
+FROM
+	WKK
+join WKKDB_BM on WKK.WKKDB = WKKDB_BM.WKKDB
+JOIN DQBM_BM ON WKK.DQBM = DQBM_BM.DQBM
+GROUP BY
+	WKKDB_BM.WKKDBMC,
+	DQBM_BM.PROVINCE;
+
+--别名
+SELECT
+	QY.QYDZ AS 企业地址,
+	COUNT (s.qyid) AS 企业数量,
+	COUNT (S.AQSCXKZBH) AS 安全生产许可证,
+	SUM (s.CYRYSL) AS 从业人员数量,
+	SUM (s.yycl) AS 原油产量,
+	SUM (s.trqcl) AS 天然气产量,
+	SUM (s.yjsl),
+	SUM (GHLYJSL) AS 高含硫油井数量
+FROM
+	SYK s
+JOIN QYQK qy ON QY.QYID = s.QYID
+WHERE
+	s.syfl = 1 -- 1-> 陆油， 2-> 海油
+AND s.ZYKCJZ = 1 -- 1 -> 原油, 2 -> 天然气
+GROUP BY
+	QY.qydz;
+```
