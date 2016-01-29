@@ -246,3 +246,8 @@ Inherited
 	 该监听器不需要在web.xml中注册，且是普通的javabean去继承HttpSessionBindingListener
 	 httpsessionactivationListener 以及实现  serialation接口
 */
+/*
+-Xms2048m -Xmx4096m -XX:MaxNewSize=512m -XX:MaxPermSize=512m
+
+URIEncoding="UTF-8"
+ */
