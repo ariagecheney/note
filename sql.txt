@@ -1,6 +1,29 @@
 [mysql manual in chinase](http://doc.mysql.cn/mysql5/refman-5.1-zh.html-chapter/ "中文")
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)
 [runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
+
+###将MySQL 添加到服务中。
+
+在Windows Run中输入cmd，这时上面有提示（cmd.exe），右键单击cmd.exe, 选择Run as administrator，进入路径： d:/appspace/mysql /bin>
+
+输入  mysqld --install MySQL --defaults-file="C:\Windows\my.ini"
+
+要指定defaults-file.
+
+命令行中输入services.msc回车，可以看到MySQL已被添加到Services中，
+
+Path to executable中的内容为 
+
+d:\appspace\mysql\bin\mysqld --defaults-file=C:\windows\my.ini MySQL
+### 删除mysql服务
+mysqld --remove Mysql
+### 开启/关闭mysql服务
+net start/stop mysql
+###查看字符集
+show variables like 'character%';
+### 是在命令行中查询显示乱码（DOS不支持UTF8从MYSQL中显示），解决如下：
+
+mysql> set names gbk;
 sql 对大小写不敏感
 日期
 基于集合理论
@@ -163,3 +186,5 @@ AND s.ZYKCJZ = 1 -- 1 -> 原油, 2 -> 天然气
 GROUP BY
 	QY.qydz;
 ```
+* mysqlimport
+* 乱码

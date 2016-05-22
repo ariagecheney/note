@@ -112,7 +112,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 
 然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
 
-关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有该分支时，使用这个命令可以完成本地新分支与远程薪分支的跟踪）
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有该分支时，使用这个命令可以完成本地新分支与远程新分支的跟踪）
 git checkout
 
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
