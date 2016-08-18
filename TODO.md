@@ -8,6 +8,8 @@
 - [ ] 网络编程
 - [ ] java 解析xml
 - [ ] log4j 配置slf4j
+- [ ] 阿里云数据库
+
 ## Resource List
 * [菊部受审](http://www.jubushoushen.com/ "科学上网") `网络资源`
 * [Linux 折腾](http://www.cnblogs.com/youxia/tag/Linux/ "京山游侠")
