@@ -1,3 +1,7 @@
+//-Xms1024m -Xmx2048m -XX:MaxNewSize=512m -XX:MaxPermSize=512m
+//URIEncoding="UTF-8"
+
+
 /*3.变量的运算：
    ①自动类型转换：容量小的数据类型自动转换为容量大的数据类型。
     short s = 12;
@@ -15,12 +19,12 @@ s += 5;//s = s + 5，但是结果不会改变s的数据类型。
 //		boolean[] b = new boolean[3];
 //		b = null;
 //		System.out.println(b[0]);
-		
+
 		//第二种：
 //		String[] str = new String[4];
 //		//str[3] = new String("AA");//str[3] = "AA";
 //		System.out.println(str[3].toString());
-		
+
 		//第三种：
 		int[][] j = new int[3][];
 		j[2][0] = 12;
@@ -88,7 +92,7 @@ Set<Map.Entry<String,Integer>> set = map.entrySet();
 2.泛型不同的引用不能相互赋值。
 3.加入集合中的对象类型必须与指定的泛型类型一致。
 4.静态方法中不能使用类的泛型。
-5.如果泛型类是一个接口或抽象类，则不可创建泛型  
+5.如果泛型类是一个接口或抽象类，则不可创建泛型
   类的对象。
 6.不能在catch中使用泛型
 7.从泛型类派生子类，泛型类型需具体化
@@ -108,8 +112,8 @@ A类是B类的子类，G是带泛型声明的类或接口。则G<?> 是G<A>、G<
 
        一、枚举类
 1.如何自定义枚举类。 枚举类：类的对象是有限个的，确定的。
-   1.1 私有化类的构造器，保证不能在类的外部创建其对象 
-   1.2 在类的内部创建枚举类的实例。声明为：public static final 
+   1.1 私有化类的构造器，保证不能在类的外部创建其对象
+   1.2 在类的内部创建枚举类的实例。声明为：public static final
    1.3 若类有属性，那么属性声明为：private final 。此属性在构造器中赋值。
 2.使用enum关键字定义枚举类
 	>2.1其中常用的方法：values()  valueOf(String name);
@@ -121,7 +125,7 @@ public class TestSeason1 {
 		System.out.println(spring);
 		spring.show();
 		System.out.println(spring.getSeasonName());
-		
+
 		System.out.println();
 		//1.values()
 		Season1[] seasons = Season1.values();
@@ -134,13 +138,13 @@ public class TestSeason1 {
 		Season1 sea = Season1.valueOf(str);
 		System.out.println(sea);
 		System.out.println();
-		
+
 		Thread.State[] states = Thread.State.values();
 		for(int i = 0;i < states.length;i++){
 			System.out.println(states[i]);
 		}
 		sea.show();
-		
+
 	}
 }
 interface Info{
@@ -168,10 +172,10 @@ enum Season1 implements Info{
 			System.out.println("冬天里的一把火");
 		}
 	};
-	
+
 	private final String seasonName;
 	private final String seasonDesc;
-	
+
 	private Season1(String seasonName,String seasonDesc){
 		this.seasonName = seasonName;
 		this.seasonDesc = seasonDesc;
@@ -182,7 +186,7 @@ enum Season1 implements Info{
 	public String getSeasonDesc() {
 		return seasonDesc;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Season [seasonName=" + seasonName + ", seasonDesc="
@@ -228,9 +232,9 @@ Inherited
 	按监听器对象分类    监听应用程序环境对象ServletContext的事件监听器，用户会话对象HttpSession,请求消息对象ServletRequest
 	按监听事件分类    监听域对象自身的创建和销毁，域对象中属性的增加和删除，监听HttpSession域中某对象状态
 	一对多  参考js事件模型
-	 dom 域对象；  
-	 事件 创建和销毁 
-	 事件处理  各实现接口listener的方法 
+	 dom 域对象；
+	 事件 创建和销毁
+	 事件处理  各实现接口listener的方法
 	 事件对象 方法参数
 	 作用：定时器   全局属性对象
 	 HttpSessionListener  统计在线人数  访问日志记录 sessionConfig
