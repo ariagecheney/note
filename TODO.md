@@ -1,4 +1,5 @@
 ## TODO List
+### work
 - [x] linux 变量 `source` `.bashrc`
 - [x] linux git upgrade,complet and prompt
 - [x] linux ssh teamviewer
@@ -9,6 +10,12 @@
 - [ ] java 解析xml
 - [ ] log4j 配置slf4j
 - [ ] 阿里云数据库
+- [ ] q-dirfile:///C:/Users/ADMINI~1/AppData/Local/Temp/tmp_htm__q_dir_hlp_z.html
+
+### life
+- [ ] 三端统一工作生活系统
+
+
 
 ## Resource List
 * [菊部受审](http://www.jubushoushen.com/ "科学上网") `网络资源`
@@ -35,3 +42,5 @@
 * [编程](http://www.phpxs.com/)
 * [fehelper chromeext](http://www.baidufe.com/fehelper)
 * [javaEE spring](http://jinnianshilongnian.iteye.com/)
+* [javascriptctolib](http://javascript.ctolib.com/)
+* [gotgit](http://www.worldhello.net/gotgit/#id1)

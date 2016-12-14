@@ -479,3 +479,24 @@ vim /etc/hostname
 ```
 ### 复制符号连接，保留文件属性，递归操作 -dpr
 `cp -av source dest`
+
+### 查看硬链接ln关联的所有文件及路径  
+```bash
+ls -i  myInfo.txt
+3814056 myInfo.txt
+find / -inum 3814056 
+/home/homer/me/myInfo.txt
+/home/homer/me/.me/myInfo.txt_ln
+/home/homer/bin/myInfo.txt
+```
+
+### Bash Shell 中文件名不同颜色的含义
+
+> 蓝色－目录
+绿色－可执行文件
+红色－压缩文件
+浅蓝色－链接文件
+灰色－其他文件
+紫色－图形文件
+黄色－设备文件
+棕色－FIFO文件（先进先出，命令管道）
