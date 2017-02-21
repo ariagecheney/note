@@ -215,7 +215,42 @@ GROUP BY
 ### 正则匹配
 `SELECT name FROM person_tbl WHERE name REGEXP '^[aeiou]|ok$';`
 
-### 表sql批量导入
-
+### SELECT INTO导入
+`SELECT * INTO Persons IN 'Backup.mdb' FROM Persons`
 ### sql删除列
 `ALTER TABLE bying_flow	DROP COLUMN last_modify_time;`
+
+* 修改字段默认值
+
+alter table 表名 drop constraint 约束名字   ------说明：删除表的字段的原有约束
+
+alter table 表名 add constraint 约束名字 DEFAULT 默认值 for 字段名称 -------说明：添加一个表的字段的约束并指定默认值
+
+* 修改字段名：
+
+alter table 表名 rename column A to B
+
+* 修改字段类型：
+
+alter table 表名 alter column UnitPrice decimal(18, 4) not null
+
+* 修改增加字段：
+
+alter table 表名 ADD 字段 类型 NOT NULL Default 0
+
+```sql
+ALTER TABLE `message`
+	ADD COLUMN `parent_id` int(11) NULL AFTER `id`,
+	MODIFY COLUMN `to_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '消息对象的id，如评论他人，则应该是他人的评论的id' AFTER `from_id`,
+	ADD COLUMN `from_user_nick` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL AFTER `to_id`,
+	ADD COLUMN `from_user_head` varchar(255) NULL AFTER `from_user_nick`,
+	ADD COLUMN `to_user_nick` varchar(255) NULL AFTER `from_user_head`,
+	ADD COLUMN `to_user_head` varchar(255) NULL AFTER `to_user_nick`,
+	ADD COLUMN `star_level` int(1) NULL COMMENT '评分' AFTER `to_user_head`,
+	MODIFY COLUMN `content` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL AFTER `star_level`,
+	MODIFY COLUMN `type` int(2) NULL DEFAULT 1 COMMENT '1，反馈；2，评论，3维修单' AFTER `email`,
+	MODIFY COLUMN `rel_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '当type为评论时此id放plan_id；当type为维修单时此id放厂商id；' AFTER `create_op`,
+	MODIFY COLUMN `temp` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '当type为3（维修单）时，此字段存储维修单id' AFTER `last_modify_time`,
+	MODIFY COLUMN `temp2` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '当type为3（维修单）时，此字段存储维修单所属的订单id' AFTER `temp`;
+
+```
