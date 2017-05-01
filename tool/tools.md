@@ -6,7 +6,7 @@
 ### Packages
 
 1. atom-beautify
-2. vim-mode and ex-mode (可以添加esc键映射)  
+2. vim-mode-plus and ex-mode (可以添加esc键映射)  
 ```
 'atom-text-editor.vim-mode':
         'escape': 'vim-mode:reset-normal-mode'
@@ -22,6 +22,9 @@
 ### thems
 1. atom-material-ui
 2. seti-ui
+
+### 快捷键（vim插件环境下）
+* 注释 ctrl+/
 
 ## 2. win softwire
 * dev  
@@ -76,6 +79,20 @@
     1. sout: println
     2. psvm: main
     3. collections.for: forEach
+* jrebel
+    1. [plugin download](https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij)
+    2. 激活
+        * `http://idea.qinxi1992.cn/pmz` 加 邮箱
+        * 切换离线模式和关闭日志反馈  
+    3. 使用
+        * 设置 on frame deactivation 为 Update classes and resources
+        * [usage1](https://zeroturnaround.com/software/jrebel/quickstart/intellij/?run=ide#!/project-configuration)  
+        * [usage2](http://manuals.zeroturnaround.com/license-server/install/index.html#getting-started)  
+        * [maven project-configuration](http://manuals.zeroturnaround.com/jrebel/standalone/maven.html)     
+
+4. 破解
+    1. `license-server http://phxism.top:41017/`
+
 
 Ctrl+E，可以显示最近编辑的文件列表  
 Ctrl+F12，可以显示当前文件的结构  
@@ -99,8 +116,22 @@ CTRL+SHIFT+UP/DOWN 代码向上/下移动。
 ESC 光标返回编辑框  
 F11 mark  
 
-## 4. cmd commond
-以端口8080为例：
-1. 查找对应的端口占用的进程：netstat  -aon|findstr  "8080"，找到占用8080端口对应的程序的PID号：
-2. 根据PID号找到对应的程序：tasklist|findstr "PID号"    ，找到对应的程序名
-3. 结束该进程：taskkill /f /t /im 程序名
+## chrome plugins
+* 划词翻译   ctrl+q
+* colorZilla   提取css颜色 ctrl + alt + z  与qq冲突
+* pageRuler  
+ General Shortcuts
+ctrl + P: Enable / Disable Page Ruler  与chrome冲突  需单独设置
+Toolbar Inputs
+Up Key: Increase the value by 1
++ Shift: Increase the value by 10
+Down Key: Decrease the value by 1
++ Shift: Decrease the value by 10
+Ruler
+Arrow keys: Move the ruler by 1 pixel in any direction
++ Shift: Move the ruler by 10 pixels
++ Ctrl (Command): Expand the ruler outwards by 1 pixel
++ Shift + Ctrl (Command): Expand the ruler outwards by 10 pixels
++ Ctrl (Command) + Alt: Shrink the ruler inwards by 1 pixel
++ Shift + Ctrl (Command) + Alt: Shrink the ruler inwards by 10 pixels
+* cssviewer    chrome单独设置  alt+v

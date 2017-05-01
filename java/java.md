@@ -1,10 +1,15 @@
+### ocr 识别
+#### tesseract-ocr
+* tesseract --list-langs
+* tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]  
+
 ### 流
 * 流的本质是数据传输，根据数据传输特性将流抽象为各种类，方便更直观的进行数据操作。
 
 * IO流的分类  
 根据处理数据类型的不同分为：字符流和字节流  
 根据数据流向不同分为：输入流和输出流  
-基于磁盘操作的I/O接口：File
+基于磁盘操作的I/O接口：File  
 基于网络操作的I/O接口：Socket（不在java.io包下）
 
 * 影响IO性能的无非就是两大因素：数据的格式及存储的方式，字节流和字符流主要是数据格式方面的，后两个类是存储方式方面的：本地和网络。
@@ -78,12 +83,36 @@
 3. 异步：  
     此种方式下是指应用发起一个IO操作以后，不等待内核IO操作的完成，等内核完成IO操作以后会通知应用程序。
 
-* java NIO原理及通信模型
-
+### java NIO原理及通信模型  
     1. 由一个专门的线程来处理所有的 IO 事件，并负责分发。
     2. 事件驱动机制：事件到的时候触发，而不是同步的去监视事件。
     3. 线程通讯：线程之间通过 wait,notify 等方式通讯。保证每次上下文切换都是有意义的。减少无谓的线程切换。
 * 具体可参考：[逸情公子](http://weixiaolu.iteye.com/blog/1479656)
+
+### 多线程
+* [Java核心技术点之多线程 by absfree](http://www.jianshu.com/p/4b0721633009)
+
+### Socket 编程
+* 概述  
+socket通信是大家耳熟能详的一种进程间通信方式(IPC)，它是一种全双工的通信方式，不同于pipe这种单工方式.这篇文章将深入浅出的讲解一下什么是socket。
+我们常说的socket通信有以下二种,主要会说一下Unix domain socket
+
+* Internet domain socket  
+该socket可以用于不同主机间的通信，就像聊QQ一样只要知道了对方的QQ号就可以聊天了。socket只要知道了对方的ip地址和端口就可以通信了所以这种socket通信是基于网络协议栈的。
+
+* Unix domain socket  
+该socket用于一台主机的进程间通信，不需要基于网络协议，主要是基于文件系统的。与Internet domain socket类似，需要知道是基于哪一个文件（相同的文件路径）来通信的
+unix domain socket有2种工作模式一种是SOCK_STREAM，类似于TCP，可靠的字节流。另一种是SOCK_DGRAM，类似于UDP，不可靠的字节流。
+
+* 工作模型  
+socket通信有一个服务端，一个客服端
+服务端：创建socket—绑定文件（端口）—监听—接受客户端连接—接收/发送数据—…—关闭
+客户端：创建socket—绑定文件（端口）—连接—发送/接收数据—…—关闭
+#### 参考:  
+
+* [Unix Socket by Hly_Coder](http://www.jianshu.com/p/d4bb6d4f8e4c)  
+
+
 
 参考以下文章：  
 [残夜](http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html)
@@ -172,20 +201,114 @@ Set<Map.Entry<String,Integer>> set = map.entrySet();
 		System.out.println(o.getKey() + "--->" + o.getValue());
 	}
 
-1.泛型在集合中的使用（掌握）
-2.自定义泛型类、泛型接口、泛型方法（理解 --->使用）
-3.泛型与继承的关系
-4.通配符
+### 泛型
+* 泛型，即“参数化类型”。  
+一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。
 
+```java
+class Box<T> {
+
+    private T data;
+
+    public Box() {
+
+    }
+
+    public Box(T data) {
+        setData(data);
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+}
+```
+* 类型擦除   
+究其原因，在于Java中的泛型这一概念提出的目的，导致其只是作用于代码编译阶段，在编译过程中，对于正确检验泛型结果后，会将泛型的相关信息擦出，也就是说，成功编译过后的class文件中是不包含任何泛型信息的。泛型信息不会进入到运行时阶段。所以：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。
+```java
+public class GenericTest {
+
+    public static void main(String[] args) {
+
+        Box<String> name = new Box<String>("corn");
+        Box<Integer> age = new Box<Integer>(712);
+
+        System.out.println("name class:" + name.getClass());      // com.qqyumidi.Box
+        System.out.println("age class:" + age.getClass());        // com.qqyumidi.Box
+        System.out.println(name.getClass() == age.getClass());    // true
+
+    }
+
+}
+}
+```
+* 类型通配符  
+类型通配符一般是使用 ? 代替具体的类型实参。注意了，此处是类型实参，而不是类型形参！且Box<?>在逻辑上是Box<Integer>、Box<Number>...等所有Box<具体类型实参>的父类。由此，我们依然可以定义泛型方法，来完成此类需求。  
+
+```java
+public class GenericTest {
+
+    public static void main(String[] args) {
+
+        Box<String> name = new Box<String>("corn");
+        Box<Integer> age = new Box<Integer>(712);
+        Box<Number> number = new Box<Number>(314);
+
+        getData(name);
+        getData(age);
+        getData(number);
+    }
+
+    public static void getData(Box<?> data) {
+        System.out.println("data :" + data.getData());
+    }
+}
+```
+* 类型通配符上限、下限  
+类型通配符上限通过形如Box<? extends Number>形式定义，相对应的，类型通配符下限为Box<? super Number>形式，其含义与类型通配符上限正好相反
+
+```java
+public class GenericTest {
+
+    public static void main(String[] args) {
+
+        Box<String> name = new Box<String>("corn");
+        Box<Integer> age = new Box<Integer>(712);
+        Box<Number> number = new Box<Number>(314);
+
+        getData(name);
+        getData(age);
+        getData(number);
+
+        //getUpperNumberData(name); // 1
+        getUpperNumberData(age);    // 2
+        getUpperNumberData(number); // 3
+    }
+
+    public static void getData(Box<?> data) {
+        System.out.println("data :" + data.getData());
+    }
+
+    public static void getUpperNumberData(Box<? extends Number> data){
+        System.out.println("data :" + data.getData());
+    }
+
+}
+```
 【注意点】
-1.对象实例化时不指定泛型，默认为：Object。
-2.泛型不同的引用不能相互赋值。
-3.加入集合中的对象类型必须与指定的泛型类型一致。
-4.静态方法中不能使用类的泛型。
-5.如果泛型类是一个接口或抽象类，则不可创建泛型
-  类的对象。
-6.不能在catch中使用泛型
-7.从泛型类派生子类，泛型类型需具体化
+1. 对象实例化时不指定泛型，默认为：Object。  
+2. 泛型不同的引用不能相互赋值。  
+3. 加入集合中的对象类型必须与指定的泛型类型一致。  
+4. 静态方法中不能使用类的泛型。  
+5. 如果泛型类是一个接口或抽象类，则不可创建泛型类的对象。  
+6. 不能在catch中使用泛型  
+7. 从泛型类派生子类，泛型类型需具体化  
+8. 并且还要注意的一点是，Java中没有所谓的泛型数组一说。
 
 
 4.泛型与继承的关系
@@ -200,7 +323,7 @@ A类是B类的子类，G是带泛型声明的类或接口。则G<?> 是G<A>、G<
        ? super A:可以将List<A>的对象或List<B>的对象赋给List<? extends A>。其中B 是A的父类
 
 
-       一、枚举类
+   一、枚举类
 1.如何自定义枚举类。 枚举类：类的对象是有限个的，确定的。
    1.1 私有化类的构造器，保证不能在类的外部创建其对象
    1.2 在类的内部创建枚举类的实例。声明为：public static final

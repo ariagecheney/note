@@ -1,4 +1,17 @@
-# 判断一个变量是否为对象
+### 如何启用Source map
+正如前文所提到的，只要在转换后的代码尾部，加上一行就可以了。  
+`//@ sourceMappingURL=/path/to/file.js.map`　  
+map文件可以放在网络上，也可以放在本地文件系统。  
+[参考 by ruanyf](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)
+### 最新的浏览器提供了自动生成和解析base64的方法
+```js
+btoa('a:a')
+// => "YTph"
+atob('YTph')
+// => "a:a"
+```
+
+### 判断一个变量是否为对象
 
 ```javascript
 function isObject(o){
@@ -8,7 +21,7 @@ isObject([]) // true
 isObject(true) // false
 ```
 
-# 枚举对象属性、计算对象属性个数
+### 枚举对象属性、计算对象属性个数
 
 ```javascript
 // 枚举
@@ -22,7 +35,7 @@ Object.keys(a).length // 2
 Object.getOwnPropertyNames(a).length // 3
 ```
 
-# [].splice(startIndex,countToRemove,newEleToInsert);
+### [].splice(startIndex,countToRemove,newEleToInsert);
 
 ```javascript
 splice的第一个参数是删除的起始位置，第二个参数是被删除的元素个数。如果后面还有更多的参数，则表示这些就是要被插入数组的新元素。
@@ -65,7 +78,7 @@ a
 // [1, 2]
 ```
 
-# 判断某对象是不是数组
+### 判断某对象是不是数组
 
 ```javascript
 var a = [];
@@ -73,7 +86,7 @@ typeof a; // object
 Array.isArray(a); // true
 ```
 
-# [].toString()方法返回数组的字符串形式。
+### [].toString()方法返回数组的字符串形式。
 
 ```javascript
 var a = [1, 2, 3];
@@ -83,7 +96,7 @@ var a = [1, 2, 3, [4, 5, 6]];
 a.toString() // "1,2,3,4,5,6"
 ```
 
-# 字符串和数组 转换
+### 字符串和数组 转换
 
 ```javascript
 split方法还可以接受第二个参数，限定返回数组的最大成员数。
@@ -125,7 +138,7 @@ Array.prototype.join.call('hello', '-')
 // "h-e-l-l-o"
 ```
 
-# [].shift() 和 [].unshift()
+### [].shift() 和 [].unshift()
 
 ```javascript
 shift()
@@ -159,4 +172,15 @@ unshift方法可以在数组头部添加多个元素。
 var arr = [ 'c', 'd' ];
 arr.unshift('a', 'b') // 4
 arr // [ 'a', 'b', 'c', 'd' ]
+```
+### 自调用匿名函数(两种写法)
+```javascript
+(function() {
+    console.info( this );
+    console.info( arguments );
+}( window ) );
+(function() {
+    console.info( this );
+    console.info( arguments );
+})( window );
 ```

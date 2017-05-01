@@ -2,6 +2,35 @@
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)  
 [runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
 
+###  mysql 并发控制
+* 悲观锁
+> 在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。
+>如果加锁失败，说明该记录正在被修改，那么当前查询可能要等待或者抛出异常。 具体响应方式由开发者根据实际需要决定。
+> 如果成功加锁，那么就可以对记录做修改，事务完成后就会解锁了。
+> 其间如果有其他对该记录做修改或加排他锁的操作，都会等待我们解锁或直接抛出异常。
+
+```sql
+//0.开始事务
+begin;/begin work;/start transaction; (三者选一就可以)
+//1.查询出商品信息
+select status from t_goods where id=1 for update; //开启排它锁
+//2.根据商品信息生成订单
+insert into t_orders (id,goods_id) values (null,1);
+//3.修改商品status为2
+update t_goods set status=2;
+//4.提交事务
+commit;/commit work;
+// MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住
+```
+
+* 乐观锁
+>它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。
+>相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本。
+
+
+### 集合运算
+A∩(B∪C)=(A∩B)∪(A∩C) 　　A∪(B∩C)=(A∪B)∩(A∪C)
+
 ### sql查找mysql安装目录
 `select @@basedir;`
 ### sql查看链接数
@@ -9,6 +38,7 @@
 ### cmd查看mysql版本
 `mysql -V`
 ### 将MySQL 添加到服务中。
+
 
 在Windows Run中输入cmd，这时上面有提示（cmd.exe），右键单击cmd.exe, 选择Run as administrator，进入路径： d:/appspace/mysql /bin>
 
@@ -31,6 +61,13 @@ net start/stop mysql
 ### 删除数据库
 `drop database if exists drop_database`
 
+### 删除数据库所有表
+```sql
+use information_schema;
+select concat('drop table ',table_name,';') from tables where TABLE_SCHEMA = 'nxpt';
+# 拼接删除SQL
+SET FOREIGN_KEY_CHECKS=0;#取消外键约束状态
+```
 ### 创建表
 ```sql
 CREATE TABLE `user` (
@@ -48,7 +85,7 @@ sql 对大小写不敏感
 日期
 基于集合理论
 
-## 在创建mysql数据库的时候如何支持UTF-8编码
+### 在创建mysql数据库的时候如何支持UTF-8编码
 
 1. 用工具  
 CHARSET 选择 utf8
@@ -57,16 +94,19 @@ COLLATION 选择 utf8_general_ci
 GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
 UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-## 解决cmd下，乱码问题
-你也可以使用 在 windows 中 dos 中 mysql -uroot --default-character-set=gbk ...
-
+### 解决cmd下，乱码问题
+你也可以使用 在 windows 中 dos 中 mysql -uroot --default-character-set=gbk
 连接方式 （注意 在Windows 下 不管你的数据是什么格式的 都得用gbk ,原因是 dos 中文只支持 gbk ）
 
- order by排序 返回游标不能做表达式 select atime, deathnumber, province from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东' order by 2
+ ### order by排序 返回游标不能做表达式
+ `select atime, deathnumber, province from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东' order by 2`
 
-不同值统计 select count(distinct deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东';
+### 不同值计数
+`select count(distinct deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东';`
 
-分组统计 select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province;
+### 分组求和
+`select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province;`
+```sql
 +----------+------------------+
 | province | sum(deathnumber) |
 +----------+------------------+
@@ -103,8 +143,9 @@ UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_c
 | 黑龙江   | 984              |
 +----------+------------------+
 31 rows in set
-当我们选不只一个栏位，且其中至少一个栏位有包含函数的运用时，我们就需要用到 GROUP BY 这个指令。在这个情况下，我们需要确定我们有 GROUP BY 所有其他的栏位。换句话说，除了有包括函数的栏位外，我们都需要将其放在 GROUP BY 的子句中。
-或者
+```
+### 分组计数
+```sql
 select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd;
 
 +----------+---------------+
@@ -117,9 +158,10 @@ select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd;
 | 654321   |             1 |
 | yr910118 |             1 |
 +----------+---------------+
-
-对函数的结果进行筛选不一定需要group子句    select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province having sum(deathnumber) <200
-;
+```
+### 分组过滤
+```sql
+select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province having sum(deathnumber) <200;
 +----------+------------------+
 | province | sum(deathnumber) |
 +----------+------------------+
@@ -130,7 +172,6 @@ select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd;
 | 海南     | 151              |
 +----------+------------------+
 5 rows in set
-或者
 
 select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd having count(pwd) <= 2;
 | pwd      | count(t1.pwd) |
@@ -141,30 +182,31 @@ select t1.pwd ,count(t1.pwd) from newuser t1 group by t1.pwd having count(pwd) <
 | 654321   |             1 |
 | yr910118 |             1 |
 +----------+---------------+
-列别名 有空格时用‘’ 及表格别名。
 
-当我们在 WHERE 子句或 HAVING 子句中插入另一个 SQL 语句时，我们就有一个 subquery 的架构。第一，它可以被用来连接表格。另外，有的时候 subquery 是唯一能够连接两个表格的方式。
+```
+
+### 子查询
+```sql
+-- 当我们在 WHERE 子句或 HAVING 子句中插入另一个 SQL 语句时，我们就有一个 subquery 的架构。第一，它可以被用来连接表格。另外，有的时候 subquery 是唯一能够连接两个表格的方式。
 
 SELECT SUM(Sales) FROM Store_Information WHERE Store_name IN (SELECT store_name FROM Geography
 WHERE region_name = 'West');
+```
+### UNION
+```sql
+--  该指令的目的是将两个 SQL 语句的结果合并起来。从这个角度来看， UNION 跟 JOIN 有些许类似，因为这两个指令都可以由多个表格中撷取资料。 UNION 的一个限制是两个 SQL 语句所产生的列需要是同样的资料种类和个数。另外，当我们用 UNION 这个指令时，我们只会看到不同的资料值 (类似 SELECT DISTINCT)。  
 
+-- UNION ALL 这个指令的目的也是要将两个 SQL 语句的结果合并在一起。 UNION ALL 和 UNION 不同之处在于 UNION ALL 会将每一笔符合条件的资料都列出来，无论资料值有无重复。
 
-UNION 指令的目的是将两个 SQL 语句的结果合并起来。从这个角度来看， UNION 跟 JOIN 有些许类似，因为这两个指令都可以由多个表格中撷取资料。 UNION 的一个限制是两个 SQL 语句所产生的列需要是同样的资料种类和个数。另外，当我们用 UNION 这个指令时，我们只会看到不同的资料值 (类似 SELECT DISTINCT)。
+-- 和 UNION 指令类似，INTERSECT 也是对两个 SQL 语句所产生的结果做处理的。不同的地方是， UNION 基本上是一个 OR (如果这个值存在于第一句或是第二句，它就会被选出)，而 INTERSECT 则比较像 AND ( 这个值要存在于第一句和第二句才会被选出)。UNION 是联集，而 INTERSECT 是交集。
+-- 请注意，在 INTERSECT 指令下，不同的值只会被列出一次。
+```
 
-UNION ALL 这个指令的目的也是要将两个 SQL 语句的结果合并在一起。 UNION ALL 和 UNION 不同之处在于 UNION ALL 会将每一笔符合条件的资料都列出来，无论资料值有无重复。
+### mysql 命令下执行脚本
 
-和 UNION 指令类似，INTERSECT 也是对两个 SQL 语句所产生的结果做处理的。不同的地方是， UNION 基本上是一个 OR (如果这个值存在于第一句或是第二句，它就会被选出)，而 INTERSECT 则比较像 AND ( 这个值要存在于第一句和第二句才会被选出)。UNION 是联集，而 INTERSECT 是交集。
-请注意，在 INTERSECT 指令下，不同的值只会被列出一次。
+第一种方式：在未连接数据库的情况下，输入 `mysql -h localhost -u root -p 123456 database < d:\book.sql` 回车即可；
 
-ifconfig eth0 192.168.254.200 netmask 255.255.255.0
-
-网卡配置文件
-
-mysql 命令下执行脚本
-
-第一种方式：在未连接数据库的情况下，输入 mysql -h localhost -u root -p 123456 database < d:\book.sql 回车即可；
-
-第二种方式：在已连接数据库的情况下，此时命令提示符为mysql>，输入 source d:\book.sql  或者 \. d:\book.sql 回车即可。
+第二种方式：在已连接数据库的情况下，此时命令提示符为mysql>，输入` source d:\book.sql`   回车即可。
 
 ### 聚合查询`oracle`
 ```sql
@@ -204,8 +246,7 @@ AND s.ZYKCJZ = 1 -- 1 -> 原油, 2 -> 天然气
 GROUP BY
 	QY.qydz;
 ```
-* mysqlimport
-* 乱码
+
 ### EXISTS
 将外查询表的每一行，代入内查询作为检验，如果内查询返回的结果取非空值，则EXISTS子句返回TRUE，这一行行可作为外查询的结果行，否则不能作为结果。
 ### NULL处理
@@ -253,4 +294,80 @@ ALTER TABLE `message`
 	MODIFY COLUMN `temp` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '当type为3（维修单）时，此字段存储维修单id' AFTER `last_modify_time`,
 	MODIFY COLUMN `temp2` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '当type为3（维修单）时，此字段存储维修单所属的订单id' AFTER `temp`;
 
+```
+## stored procedure
+* 语法
+```sql
+CREATE
+    [DEFINER = { user | CURRENT_USER }]
+    PROCEDURE sp_name ([proc_parameter[,...]])
+    [characteristic ...] routine_body
+
+CREATE
+    [DEFINER = { user | CURRENT_USER }]
+    FUNCTION sp_name ([func_parameter[,...]])
+    RETURNS type
+    [characteristic ...] routine_body
+
+proc_parameter:
+    [ IN | OUT | INOUT ] param_name type
+
+func_parameter:
+    param_name type
+
+type:
+    Any valid MySQL data type
+
+characteristic:
+    COMMENT 'string'
+  | LANGUAGE SQL
+  | [NOT] DETERMINISTIC
+  | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+  | SQL SECURITY { DEFINER | INVOKER }
+
+routine_body:
+    Valid SQL routine statement
+```
+
+* example  
+
+```sql
+-- ----------------------------
+-- Procedure structure for `proc_adder`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `proc_adder`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_adder`(IN a int, IN b int, OUT sum int)
+BEGIN
+    #Routine body goes here...
+
+    DECLARE c int;
+    if a is null then set a = 0;
+    end if;
+
+    if b is null then set b = 0;
+    end if;
+
+    set sum  = a + b;
+END
+;;
+DELIMITER ;
+```
+* 存储过程中变量赋值  
+语法1：  
+SET var_name=expr [, var_name=expr]...;  
+语法2：  
+SELECT col_name[,...] INTO var_name[,...] from table [WHERE...];  
+
+## stored function  
+* example
+```sql
+DELIMITER //
+CREATE FUNCTION addTwoNumber(x SMALLINT UNSIGNED, Y SMALLINT UNSIGNED)
+RETURNS SMALLINT
+BEGIN
+DECLARE a, b SMALLINT UNSIGNED DEFAULT 10;
+SET  a = x, b = y;
+RETURN a+b;
+END//
 ```
