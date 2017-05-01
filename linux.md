@@ -1,3 +1,16 @@
+# 查看系统信息
+* 发行版本：cat /etc/issue  或者 cat /etc/debian_version 
+* 内核版本：cat /proc/version
+* 设置http代理：  export http_proxy=http://hostname:port
+* 修改当前用户密码：  
+修改用户密码步骤：  
+1、命令行下输入命令passwd 用户名  
+2、提示你输入当前用户的当前密码  
+3、输入新密码  
+4、再次输入新密码  
+5、输入命令exit退出  
+6、用新密码登录
+
 # 快捷键
 * Ctrl+d	键盘输入结束或退出终端
 * Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
@@ -484,7 +497,7 @@ vim /etc/hostname
 ```bash
 ls -i  myInfo.txt
 3814056 myInfo.txt
-find / -inum 3814056 
+find / -inum 3814056
 /home/homer/me/myInfo.txt
 /home/homer/me/.me/myInfo.txt_ln
 /home/homer/bin/myInfo.txt

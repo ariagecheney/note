@@ -8,6 +8,33 @@
 `show full processlist;`
 ### cmd查看mysql版本
 `mysql -V`
+
+### my.cnf 配置
+```
+[mysqld]
+
+port = 3308
+
+character-set-server=utf8
+
+#basedir=D:/soft/package/mysql-5.6
+
+#datadir=D:/soft/package/mysql-5.6/data
+
+default-storage-engine=INNODB
+
+collation-server=utf8_general_ci
+[mysql]
+
+default-character-set=utf8
+
+```
+### 允许root用户远程登陆
+```sql
+use mysql
+update user set host='%' where User='root' and host='localhost' limit 1;
+flush privileges;
+```
 ### 将MySQL 添加到服务中。
 
 在Windows Run中输入cmd，这时上面有提示（cmd.exe），右键单击cmd.exe, 选择Run as administrator，进入路径： d:/appspace/mysql /bin>
@@ -54,7 +81,7 @@ sql 对大小写不敏感
 CHARSET 选择 utf8
 COLLATION 选择 utf8_general_ci
 2. 用SQL语句  
-GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
+GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;  
 UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 ## 解决cmd下，乱码问题
