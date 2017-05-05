@@ -135,3 +135,33 @@ Arrow keys: Move the ruler by 1 pixel in any direction
 + Ctrl (Command) + Alt: Shrink the ruler inwards by 1 pixel
 + Shift + Ctrl (Command) + Alt: Shrink the ruler inwards by 10 pixels
 * cssviewer    chrome单独设置  alt+v
+
+## window path
+```dos
+Path=D:\soft\install\python\;  
+D:\soft\install\python\Scripts;  
+C:\Windows\system32;  
+C:\Windows;C:\Windows\System32\Wbem;   
+C:\Windows\System32\WindowsPowerShell\v1.0\;  
+D:\soft\install\Vim\vim74;  
+D:\soft\package\mysql-5.6\bin;
+C:\Program Files (x86)\Spoon\Cmd;D:\soft\install\apache-maven-3.3.9\bin;
+D:\soft\install\SVN\bin;
+D:\soft\install\java\jdk\bin;C:\Android;
+D:\soft\install\Git\cmd;D:\soft\package\nodejs\;
+D:\soft\install\gradle-2.10\bin;
+D:\soft\install\Tesseract-OCR;
+D:\me\redis;
+C:\Windows\system32;
+C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPow
+erShell\v1.0\;
+D:\soft\install\Vim\vim74;  
+D:\soft\package\mysql-5.6\bin;C:\Program Files (x86)\Spoon\Cmd;
+D:\soft\install\SVN\bin;
+D:\soft\package\mysql-5.5\bin;C:\
+Program Files (x86)\QuickTime\QTSystem\;
+D:\soft\install\svn\bin;
+C:\Users\Adminis
+trator\AppData\Local\atom\bin;
+C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
+```
