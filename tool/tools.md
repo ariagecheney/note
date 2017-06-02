@@ -1,6 +1,6 @@
 ## 1. atom
 ### setting
-1. tab length 设置为4
+1. Editor tab length 设置为4
 
 
 ### Packages
@@ -28,45 +28,37 @@
 
 ## 2. win softwire
 * dev  
-    1.tomcat  
-    2.Git  
-    3.eclipse  
-    4.idea  
+    1. Git  
+    2. vscode or atom or sublime  
+    3. jdk  
+    4. tomcat  
+    5. maven  
+    6. idea  
         config  
-    5.pycharm  
-    6.emacs  
-    7.xshell  
-    8.hbuilder  
-    9.jdk  
-    10.maven  
-    11.mongodb  
-    12.mysql  
-    13.node  
-    14.ps   
-    15.python  
-    16.svn  
-    18.lantern  
-    19.altrun  
-    20.atom sublime  
-    21.filezilla  
+    7. mysql  
+    8. navicat -百度网盘  
+    9. xshell  
+    10. lantern  
+    11. altrun - 坚果云  
+    12. eclipse  
+    13. node  
+    14. svn  
+    15. smartgit
 
 * user  
-    1.cclear  
-    2.compare  
-    3.fscapcher  
-    4.wiz evernote  
-    5.mychrom  
-    6.potplayer  
-    9.sougou  
-    10.qq  
-    11.teamviewer  
-    12.youdao  
-    13.pdf  
-    14.office wps  
-    15.kwifi  
-    16.kms  
-    18.VC REDIST INSTALLER  
-    19aliqintao
+    1. zip
+    2. compare  
+    3. fscapcher  
+    4. wiz evernote  
+    5. mychrom  
+    6. potplayer  
+    9. sougou  
+    10. qq  
+    11. teamviewer  
+    12. youdao  
+    13. pdf  
+    14. office wps  
+    18. VC REDIST INSTALLER  
 
 ## 3. idea
 * 坚果云配置（${idea.home}/bin/idea.properties）
@@ -144,24 +136,22 @@ C:\Windows\system32;
 C:\Windows;C:\Windows\System32\Wbem;   
 C:\Windows\System32\WindowsPowerShell\v1.0\;  
 D:\soft\install\Vim\vim74;  
-D:\soft\package\mysql-5.6\bin;
 C:\Program Files (x86)\Spoon\Cmd;D:\soft\install\apache-maven-3.3.9\bin;
 D:\soft\install\SVN\bin;
-D:\soft\install\java\jdk\bin;C:\Android;
+D:\soft\install\java\jdk\bin;
+C:\Android;
 D:\soft\install\Git\cmd;D:\soft\package\nodejs\;
 D:\soft\install\gradle-2.10\bin;
 D:\soft\install\Tesseract-OCR;
 D:\me\redis;
 C:\Windows\system32;
-C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPow
-erShell\v1.0\;
+C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;
 D:\soft\install\Vim\vim74;  
-D:\soft\package\mysql-5.6\bin;C:\Program Files (x86)\Spoon\Cmd;
+C:\Program Files (x86)\Spoon\Cmd;
 D:\soft\install\SVN\bin;
-D:\soft\package\mysql-5.5\bin;C:\
-Program Files (x86)\QuickTime\QTSystem\;
+D:\soft\package\mysql-5.5\bin;
+C:\Program Files (x86)\QuickTime\QTSystem\;
 D:\soft\install\svn\bin;
-C:\Users\Adminis
-trator\AppData\Local\atom\bin;
+C:\Users\Administrator\AppData\Local\atom\bin;
 C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
 ```

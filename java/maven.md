@@ -100,6 +100,7 @@ www
 ### nexus私服配置
 ```xml
 <!-- 私服的配置推荐用profile配置而不是mirror（毕竟mirror是镜像，私服其实是n个镜像及自己的开发库等的合集） -->
+  <profiles>
     <profile>
       <id>nexus</id>
       <repositories>
@@ -130,7 +131,106 @@ www
   </profiles>
   <activeProfiles>
     <activeProfile>nexus</activeProfile>
+    <!-- <activeProfile>nexus</activeProfile> 可以同时激活多个，相同配置项取值规则：根据profile定义的先后顺序来进行覆盖取值的，后面定义的会覆盖前面定义-->
   </activeProfiles>
+```
+* `mvn help:active-profiles`查看处于激活状态的profile
+* 参考 [maven profile介绍 by Elim](http://elim.iteye.com/blog/1900568)
+* 参考 [maven profile使用 by 每日懂一点](http://www.cnblogs.com/lzxianren/p/maven-profile.html)
+
+### 开发、测试、生产环境 配置分离
+* 参考 [Maven 打包实现生产环境与测试环境配置分离 by 有爱的小止](https://ixiaozhi.com/java-maven-archive-different-profile/)
+
+```xml
+<profiles>
+        <profile>
+            <id>product</id>
+            <properties>
+              <sys.jdbc.config.path>file:/home/config/iBase4J/jdbc-sys.properties</sys.jdbc.config.path>
+              <system.config.path>file:/home/config/iBase4J/system.properties</system.config.path>
+            </properties>
+            <build>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-product.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-test.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+            <finalName>${project.name}</finalName>
+            <resources>
+              <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                  <include>**/*.properties</include>
+                  <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+              </resource>
+              <resource>
+                <directory>src/main/resources</directory>
+              </resource>
+            </resources>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-test.properties</filter>
+                </filters>
+                <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+              <executions>
+                <execution>
+                  <id>run-war-only</id>
+                  <phase>pre-integration-test</phase>
+                  <goals>
+                    <goal>run-war-only</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <warDirectory>target/${project.name}</warDirectory>
+                <path>/</path>
+                <contextReloadable>true</contextReloadable>
+                <uriEncoding>UTF-8</uriEncoding>
+                <port>${server.port}</port>
+                <url>http://localhost:${server.port}/manager</url>
+                <server>tomcat</server>
+                <username>admin</username>
+                <password>admin</password>
+                <contextReloadable>true</contextReloadable>
+                <systemProperties>
+                  <webapps>
+                    <webapp>
+                      <groupId>${project.name}</groupId>
+                      <artifactId>${project.name}</artifactId>
+                      <version>${project.version}</version>
+                      <type>${project.packaging}</type>
+                      <asWebapp>true</asWebapp>
+                      <contextPath>/</contextPath>
+                    </webapp>
+                  </webapps>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 ```
 ### 什么鬼，待查
 ```xml
