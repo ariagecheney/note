@@ -136,6 +136,21 @@ COLLATION 选择 utf8_general_ci
 GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
 UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+### 导出
+```sql
+mysqldump -h localhost -u root -p mydb >e:\mysql\mydb.sql
+- 然后输入密码，等待一会导出就成功了，可以到目标文件中检查是否成功。
+- 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
+mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
+- 3.将数据库mydb的结构导出到e:\mysql\mydb_stru.sql文件中：
+mysqldump -h localhost -u root -p mydb --add-drop-table >e:\mysql\mydb_stru.sql
+```
+
+### 导入
+```sql
+mysql -h localhost -u root -p mydb2 < e:\mysql\mydb2.sql
+然后输入密码，就OK了。
+```
 ### 解决cmd下，乱码问题
 你也可以使用 在 windows 中 dos 中 mysql -uroot --default-character-set=gbk
 连接方式 （注意 在Windows 下 不管你的数据是什么格式的 都得用gbk ,原因是 dos 中文只支持 gbk ）
