@@ -1,23 +1,11 @@
 ## TODO List
 ### work
-- [x] linux 变量 `source` `.bashrc`
-- [x] linux git upgrade,complet and prompt
-- [x] linux ssh teamviewer
-- [ ] linux shell线程, 加密GPG SSH
-- [ ] linux 开发环境配置
-- [ ] 项目源码
-- [ ] 网络编程
-- [ ] java 解析xml
-- [ ] log4j 配置slf4j
-- [ ] 阿里云数据库
-- [ ] q-dirfile:///C:/Users/ADMINI~1/AppData/Local/Temp/tmp_htm__q_dir_hlp_z.html
-
-### life
 - [ ] 三端统一工作生活系统
 
 
 
 ## Resource List
+* [css探索之旅](http://blog.doyoe.com/archives/)
 * [菊部受审](http://www.jubushoushen.com/ "科学上网") `网络资源`
 * [Linux 折腾](http://www.cnblogs.com/youxia/tag/Linux/ "京山游侠")
 * [eclipse 插件svn](http://subclipse.tigris.org/ "svn plugin")
@@ -44,3 +32,43 @@
 * [javaEE spring](http://jinnianshilongnian.iteye.com/)
 * [javascriptctolib](http://javascript.ctolib.com/)
 * [gotgit](http://www.worldhello.net/gotgit/#id1)
+
+* http://ourcoders.com/home/   我们程序员  
+* http://www.listary.com/      file explore  
+* http://javascript.ruanyifeng.com/stdlib/regexp.html    js regexp  
+* http://getfirebug.com/faq/   firebug docs
+* http://www.yyyweb.com/ web frontend
+* http://www.html5tricks.com/ html5tricks
+* http://fex.baidu.com/  baidu frontend
+* https://css-tricks.com/ `css`
+* http://wallpaperswide.com/  mac wallpapers
+* http://yanhaijing.com/   颜海镜 webfront
+* http://getawesomeness.com/ github
+* http://blog.csdn.net/eclipsexys  csdn android
+* http://www.imooc.com/space/teacher/id/347333 mooc android
+* https://www.zybuluo.com/mdeditor cmd mdeditor
+* https://www.zybuluo.com/mwumli/note/129337 android env
+* http://public.lizhenwang.com/  googlehost update
+* http://www.infoq.com/cn/articles/subversion-front-end-ui-development-framework-react  react 理解
+* https://reduxframework.com/  react and flux
+* http://react-bootstrap.github.io/  react-bootstrap
+* http://react-components.com/  react-components
+* http://blog.jobbole.com/77703/ react and kendoUI
+* http://top.jobbole.com/15576/ reac Resource
+* http://reactjs.cn/ reac 中文文档
+* http://piliyu.com/01-react-setup-first-project/ `reac 实战`
+* https://github.com/piliyu/react-getting-started `reac 实战源码`
+* http://www.ruanyifeng.com/blog/essays/  `history`
+* http://ruby.taobao.org/ `ruby taobao images`
+* http://www.kekenet.com/grammar/ `English grammar`
+* http://www.yuantengfei123.com/mp33/ `袁腾飞历史`
+* http://v.163.com/special/opencourse/aspacetimeodyssey.html `宇宙时空之旅`
+* https://rawgit.com/ `free cdn services about github resources`
+* https://www.maxcdn.com `cdn services`
+* http://necolas.github.io/normalize.css/ `shim of css`
+* http://cdn.code.baidu.com/ `百度cdn`
+* https://redislabs.com/academy/redis-in-action `redis learn`
+* http://zz563143188.iteye.com/blog/1825168  `java 资料`
+* http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`
+* http://blog.csdn.net/doymm2008/article/details/13288067  `设计模式`
+* http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`

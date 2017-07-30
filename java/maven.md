@@ -27,8 +27,8 @@ mvn clean--》mvn package   编译》打包
 
 * 传递性依赖：scope 依赖的范围--》编译范围（compile），已提供范围（provided），运行时范围（runtime），测试范围（test），系统范围（system）
 
-* maven仓库：一个存放了所有依赖的仓库，其通过依赖的坐标对其进行管理。--》mvn install --》pom里远程仓库配置，开源中国
-http://search.maven.org/   maven central repo  maven.oschina.net
+* maven仓库：一个存放了所有依赖的仓库，其通过依赖的坐标对其进行管理。--》mvn install --》pom里远程仓库配置
+http://search.maven.org/   maven central repo
 
 * 项目站点报告：在项目pom里配置 site插件
 ```xml
@@ -63,7 +63,6 @@ mvn archetype:generate -->mvn package--》war包放在tomcat下webapps目录下�
 
 
 * maven常用命令
-
 mvn clean   
 说明:清理项目生产的临时文件,一般是模块下的target目录   
 mvn package   
@@ -75,32 +74,65 @@ mvn install
 供其他模块使用`-Dmaven.test.skip=true` 跳过测试(同时会跳过test compile)  
 mvn deploy   
 说明: 发布命令 ，将打包的文件发布到远程参考,提供其他人员进行下载依赖
-
-* otehr  
-
 mvn dependency:resolve   
 查看项目依赖情况   
-mvn dependency:tree   
-打印出项目的整个依赖树   
+mvn clean dependency:tree | grep log
+打印出项目的整个依赖树 并查找特定jar包  
 mvn dependency:analyze   
 帮助你分析依赖关系, 用来取出无用, 重复依赖的好帮手   
 ```cmd
 www
 ```
 ## 4. 实战
-### maven多模块项目搭建
+### maven用库顺序
+当前项目的repository，然后找本地，然后再找私服，最后找中央仓库
 
-> spring-webmvc4.2.8 依赖以下jar包
-spring-beans:
-spring-context:
-spring-aop:
-spring-core:
-spring-web:
-spring-expression:
-commons-logging:
-aopalliance:
+### 阿里云镜像
+```xml
+<mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>        
+</mirror>
+```
 
-
+### nexus私服配置
+```xml
+<!-- 私服的配置推荐用profile配置而不是mirror（毕竟mirror是镜像，私服其实是n个镜像及自己的开发库等的合集） -->
+    <profile>
+      <id>nexus</id>
+      <repositories>
+        <repository>
+          <id>nexus</id>
+          <url>http://192.168.163.xx:xx/nexus/content/groups/public/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>nexus</id>
+          <url>http://192.168.163.xx:xx/nexus/content/groups/public/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+```
+### 什么鬼，待查
 ```xml
 <dependencyManagement>
     <dependencies>
@@ -113,25 +145,4 @@ aopalliance:
         </dependency>
     </dependencies>
 </dependencyManagement>
-<!-- 镜像 -->
-<mirror>
-        <id>CN</id>
-        <name>OSChina Central</name>
-        <url>http://maven.oschina.net/content/groups/public/</url>
-        <mirrorOf>central</mirrorOf>
-      </mirror>
- <mirror>
-        <id>repo2</id>
-        <mirrorOf>central</mirrorOf>
-        <name>Human Readable Name for this Mirror.</name>
-        <url>http://repo2.maven.org/maven2/</url>
-      </mirror>
-
- <mirror>
-        <id>osc_thirdparty</id>
-        <mirrorOf>thirdparty</mirrorOf>
-        <url>http://maven.oschina.net/content/repositories/thirdparty/
-        </url>
-</mirror>
-http://wx.banmahz.com:80/operate/invite?inviterId=13ae8cd622eb4ae9b5f287fcd84fa804&oid=fe4cc3a0e1514b6fac71af7a5ebde478&kid=55b78f12c5654b1ba48ab5851a3a98a7
 ```
