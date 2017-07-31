@@ -32,6 +32,9 @@
 * [javaEE spring](http://jinnianshilongnian.iteye.com/)
 * [javascriptctolib](http://javascript.ctolib.com/)
 * [gotgit](http://www.worldhello.net/gotgit/#id1)
+* [Java 编程思想 gitbook by http://quanke.name](https://java.quanke.name/)
+* [设计模式Java版 by http://quanke.name](https://www.gitbook.com/book/quanke/design-pattern-java/details)
+
 
 * http://ourcoders.com/home/   我们程序员  
 * http://www.listary.com/      file explore  
@@ -69,6 +72,3 @@
 * http://cdn.code.baidu.com/ `百度cdn`
 * https://redislabs.com/academy/redis-in-action `redis learn`
 * http://zz563143188.iteye.com/blog/1825168  `java 资料`
-* http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`
-* http://blog.csdn.net/doymm2008/article/details/13288067  `设计模式`
-* http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`

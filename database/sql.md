@@ -2,6 +2,48 @@
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)  
 [runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
 
+### SQL四种语言：DDL,DML,DCL,TCL
+
+1. DDL（Data Definition Language）数据库定义语言  
+DDL是SQL语言的四大功能之一。用于定义数据库的三级结构，包括外模式、概念模式、内模式及其相互之间的映像，定义数据的完整性、安全控制等约束.   
+DDL不需要commit.    
+CREATE  
+ALTER  
+DROP  
+TRUNCATE  
+COMMENT  
+RENAME  
+
+2. DML（Data Manipulation Language）数据操纵语言  
+由DBMS提供，用于让用户或程序员使用，实现对数据库中数据的操作。  
+DML分成交互型DML和嵌入型DML两类。  
+依据语言的级别，DML又可分成过程性DML和非过程性DML两种。  
+需要commit.  
+SELECT  
+INSERT  
+UPDATE  
+DELETE  
+MERGE  
+CALL  
+EXPLAIN PLAN  
+LOCK TABLE  
+
+3. DCL（Data Control Language）数据库控制语言  
+授权，角色控制等
+GRANT 授权  
+REVOKE 取消授权  
+
+4. TCL（Transaction Control Language）事务控制语言  
+SAVEPOINT 设置保存点  
+ROLLBACK  回滚  
+SET TRANSACTION  
+
+SQL主要分成四部分：  
+（1）数据定义。（SQL DDL）用于定义SQL模式、基本表、视图和索引的创建和撤消操作。  
+（2）数据操纵。（SQL DML）数据操纵分成数据查询和数据更新两类。数据更新又分成插入、删除、和修改三种操作。  
+（3）数据控制。包括对基本表和视图的授权，完整性规则的描述，事务控制等内容。  
+（4）嵌入式SQL的使用规定。涉及到SQL语句嵌入在宿主语言程序中使用的规则。  
+
 ###  mysql 并发控制
 * 悲观锁
 > 在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。
@@ -64,7 +106,7 @@ net start/stop mysql
 ### 删除数据库所有表
 ```sql
 use information_schema;
-select concat('drop table ',table_name,';') from tables where TABLE_SCHEMA = 'nxpt';
+select concat('drop table ',table_name,';') from tables where TABLE_SCHEMA = '数据库名'; // 注意有空格
 # 拼接删除SQL
 SET FOREIGN_KEY_CHECKS=0;#取消外键约束状态
 ```
@@ -94,9 +136,34 @@ COLLATION 选择 utf8_general_ci
 GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
 UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+### 导出
+```sql
+mysqldump -h localhost -u root -p mydb >e:\mysql\mydb.sql
+- 然后输入密码，等待一会导出就成功了，可以到目标文件中检查是否成功。
+- 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
+mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
+- 3.将数据库mydb的结构导出到e:\mysql\mydb_stru.sql文件中：
+mysqldump -h localhost -u root -p mydb --add-drop-table >e:\mysql\mydb_stru.sql
+```
+
+### 导入
+```sql
+mysql -h localhost -u root -p mydb2 < e:\mysql\mydb2.sql
+然后输入密码，就OK了。
+```
 ### 解决cmd下，乱码问题
 你也可以使用 在 windows 中 dos 中 mysql -uroot --default-character-set=gbk
 连接方式 （注意 在Windows 下 不管你的数据是什么格式的 都得用gbk ,原因是 dos 中文只支持 gbk ）
+
+### 删除表数据
+1. truncate table wp_comments;
+2. delete * from wp_comments;  
+
+其中truncate操作中的table可以省略，delete操作中的*可以省略。这两者都是将wp_comments表中数据清空，不过也是有区别的，如下：
+* truncate是整体删除（速度较快）， delete是逐条删除（速度较慢）。  
+* truncate不写服务器log，delete写服务器log，也就是truncate效率比delete高的原因。  
+* truncate不激活trigger(触发器)，但是会重置Identity（标识列、自增字段），相当于自增列会被置为初始值，又重新从1开始记录，而不是接着原来的ID数。而delete删除以后，Identity依旧是接着被删除的最近的那一条记录ID加1后进行记录。  
+如果只需删除表中的部分记录，只能使用DELETE语句配合where条件。 DELETE FROM wp_comments WHERE ...
 
  ### order by排序 返回游标不能做表达式
  `select atime, deathnumber, province from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东' order by 2`

@@ -62,7 +62,7 @@ mvn archetype:generate -->mvn package--》war包放在tomcat下webapps目录下�
 其他参数可以通过mvn help 获取  
 
 
-* maven常用命令
+* maven常用命令  
 mvn clean   
 说明:清理项目生产的临时文件,一般是模块下的target目录   
 mvn package   
@@ -73,10 +73,10 @@ mvn install
 说明:模块安装命令,将打包的的jar/war文件复制到你的本地仓库中,
 供其他模块使用`-Dmaven.test.skip=true` 跳过测试(同时会跳过test compile)  
 mvn deploy   
-说明: 发布命令 ，将打包的文件发布到远程参考,提供其他人员进行下载依赖
+说明: 发布命令 ，将打包的文件发布到远程仓库,提供其他人员进行下载依赖  
 mvn dependency:resolve   
-查看项目依赖情况   
-mvn clean dependency:tree | grep log
+处理项目依赖情况   
+mvn clean dependency:tree | grep log   
 打印出项目的整个依赖树 并查找特定jar包  
 mvn dependency:analyze   
 帮助你分析依赖关系, 用来取出无用, 重复依赖的好帮手   
@@ -85,7 +85,8 @@ www
 ```
 ## 4. 实战
 ### maven用库顺序
-当前项目的repository，然后找本地，然后再找私服，最后找中央仓库
+* 当前项目的repository，然后找本地，然后再找私服，最后找中央仓库
+* [mirror 和 repository 区别](http://www.cnblogs.com/jiuyi/p/6207246.html)
 
 ### 阿里云镜像
 ```xml
@@ -96,10 +97,21 @@ www
       <mirrorOf>central</mirrorOf>        
 </mirror>
 ```
-
+### 引用本地jar包
+```xml
+<dependency>
+            <groupId>com.zzxapi</groupId>
+            <artifactId>api</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ZzxOAuthMobileServerApi-2.3.jar</systemPath>
+        </dependency>
+```
 ### nexus私服配置
+* [nexux 使用 ](http://blog.csdn.net/huxu981598436/article/details/54945589)
 ```xml
 <!-- 私服的配置推荐用profile配置而不是mirror（毕竟mirror是镜像，私服其实是n个镜像及自己的开发库等的合集） -->
+  <profiles>
     <profile>
       <id>nexus</id>
       <repositories>
@@ -130,7 +142,162 @@ www
   </profiles>
   <activeProfiles>
     <activeProfile>nexus</activeProfile>
+    <!-- <activeProfile>nexus</activeProfile> 可以同时激活多个，相同配置项取值规则：根据profile定义的先后顺序来进行覆盖取值的，后面定义的会覆盖前面定义-->
   </activeProfiles>
+
+  <!--项目发布到私服，maven项目使用命令：mvn clean deploy；需要在pom文件中配置一下代码；-->
+  <distributionManagement>
+          <repository>
+              <id>user-release</id>
+              <name>User Project Release</name>
+              <url>http://192.168.1.103:8081/nexus/content/repositories/releases/</url>
+          </repository>
+  
+          <snapshotRepository>
+              <id>user-snapshots</id>
+             <name>User Project SNAPSHOTS</name>             <url>http://192.168.1.103:8081/nexus/content/repositories/snapshots/</url>
+         </snapshotRepository>
+     </distributionManagement>
+<!--注意还需要配置mvn发布的权限，否则会报401错误，在settings.xml中配置权限，其中id要与pom文件中的id一致-->
+<server>
+      <id>user-release</id>
+      <username>admin</username>
+      <password>admin123</password>
+  </server>
+  <server>
+      <id>user-snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+ </server>
+
+ <build>  
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-release-plugin</artifactId>  
+            <version>2.4.1</version>  
+        </plugin>  
+        <!--打包jar包-->  
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-deploy-plugin</artifactId>  
+            <version>2.7</version>  
+            <configuration>  
+                <updateReleaseInfo>true</updateReleaseInfo>  
+            </configuration>  
+        </plugin>  
+        <!--打包源码-->  
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-source-plugin</artifactId>  
+            <version>2.2.1</version>  
+            <executions>  
+                <execution>  
+                    <phase>package</phase>  
+                    <goals>  
+                        <goal>jar</goal>  
+                    </goals>  
+                </execution>  
+            </executions>  
+        </plugin>   
+</build>  
+```
+* `mvn help:active-profiles`查看处于激活状态的profile
+* 参考 [maven profile介绍 by Elim](http://elim.iteye.com/blog/1900568)
+* 参考 [maven profile使用 by 每日懂一点](http://www.cnblogs.com/lzxianren/p/maven-profile.html)
+
+### 开发、测试、生产环境 配置分离
+* 参考 [Maven 打包实现生产环境与测试环境配置分离 by 有爱的小止](https://ixiaozhi.com/java-maven-archive-different-profile/)
+
+```xml
+<profiles>
+        <profile>
+            <id>product</id>
+            <properties>
+              <sys.jdbc.config.path>file:/home/config/iBase4J/jdbc-sys.properties</sys.jdbc.config.path>
+              <system.config.path>file:/home/config/iBase4J/system.properties</system.config.path>
+            </properties>
+            <build>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-product.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-test.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+            <finalName>${project.name}</finalName>
+            <resources>
+              <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                  <include>**/*.properties</include>
+                  <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+              </resource>
+              <resource>
+                <directory>src/main/resources</directory>
+              </resource>
+            </resources>
+                <filters>
+                    <filter>${basedir}/filters/jdbc-test.properties</filter>
+                </filters>
+                <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+              <executions>
+                <execution>
+                  <id>run-war-only</id>
+                  <phase>pre-integration-test</phase>
+                  <goals>
+                    <goal>run-war-only</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <warDirectory>target/${project.name}</warDirectory>
+                <path>/</path>
+                <contextReloadable>true</contextReloadable>
+                <uriEncoding>UTF-8</uriEncoding>
+                <port>${server.port}</port>
+                <url>http://localhost:${server.port}/manager</url>
+                <server>tomcat</server>
+                <username>admin</username>
+                <password>admin</password>
+                <contextReloadable>true</contextReloadable>
+                <systemProperties>
+                  <webapps>
+                    <webapp>
+                      <groupId>${project.name}</groupId>
+                      <artifactId>${project.name}</artifactId>
+                      <version>${project.version}</version>
+                      <type>${project.packaging}</type>
+                      <asWebapp>true</asWebapp>
+                      <contextPath>/</contextPath>
+                    </webapp>
+                  </webapps>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 ```
 ### 什么鬼，待查
 ```xml

@@ -201,137 +201,17 @@ Set<Map.Entry<String,Integer>> set = map.entrySet();
 		System.out.println(o.getKey() + "--->" + o.getValue());
 	}
 
-### 泛型
-* 泛型，即“参数化类型”。  
-一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。
-
+# 枚举类: 类的对象是有限个的，确定的  
+1. 如何自定义枚举类。  
+   1.1 私有化类的构造器，保证不能在类的外部创建其对象  
+   1.2 在类的内部创建枚举类的实例。声明为：public static final  
+   1.3 若类有属性，那么属性声明为：private final 。此属性在构造器中赋值。  
+2. 使用enum关键字定义枚举类  
+2.1其中常用的方法：values()  valueOf(String name);  
+2.2枚举类如何实现接口   
+①让类实现此接口，类的对象共享同一套接口的抽象方法的实现。  
+①让类的每一个对象都去实现接口的抽象方法，进而通过类的对象调用被重写的抽象方法时，执行的效果不同  
 ```java
-class Box<T> {
-
-    private T data;
-
-    public Box() {
-
-    }
-
-    public Box(T data) {
-        setData(data);
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-}
-```
-* 类型擦除   
-究其原因，在于Java中的泛型这一概念提出的目的，导致其只是作用于代码编译阶段，在编译过程中，对于正确检验泛型结果后，会将泛型的相关信息擦出，也就是说，成功编译过后的class文件中是不包含任何泛型信息的。泛型信息不会进入到运行时阶段。所以：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。
-```java
-public class GenericTest {
-
-    public static void main(String[] args) {
-
-        Box<String> name = new Box<String>("corn");
-        Box<Integer> age = new Box<Integer>(712);
-
-        System.out.println("name class:" + name.getClass());      // com.qqyumidi.Box
-        System.out.println("age class:" + age.getClass());        // com.qqyumidi.Box
-        System.out.println(name.getClass() == age.getClass());    // true
-
-    }
-
-}
-}
-```
-* 类型通配符  
-类型通配符一般是使用 ? 代替具体的类型实参。注意了，此处是类型实参，而不是类型形参！且Box<?>在逻辑上是Box<Integer>、Box<Number>...等所有Box<具体类型实参>的父类。由此，我们依然可以定义泛型方法，来完成此类需求。  
-
-```java
-public class GenericTest {
-
-    public static void main(String[] args) {
-
-        Box<String> name = new Box<String>("corn");
-        Box<Integer> age = new Box<Integer>(712);
-        Box<Number> number = new Box<Number>(314);
-
-        getData(name);
-        getData(age);
-        getData(number);
-    }
-
-    public static void getData(Box<?> data) {
-        System.out.println("data :" + data.getData());
-    }
-}
-```
-* 类型通配符上限、下限  
-类型通配符上限通过形如Box<? extends Number>形式定义，相对应的，类型通配符下限为Box<? super Number>形式，其含义与类型通配符上限正好相反
-
-```java
-public class GenericTest {
-
-    public static void main(String[] args) {
-
-        Box<String> name = new Box<String>("corn");
-        Box<Integer> age = new Box<Integer>(712);
-        Box<Number> number = new Box<Number>(314);
-
-        getData(name);
-        getData(age);
-        getData(number);
-
-        //getUpperNumberData(name); // 1
-        getUpperNumberData(age);    // 2
-        getUpperNumberData(number); // 3
-    }
-
-    public static void getData(Box<?> data) {
-        System.out.println("data :" + data.getData());
-    }
-
-    public static void getUpperNumberData(Box<? extends Number> data){
-        System.out.println("data :" + data.getData());
-    }
-
-}
-```
-【注意点】
-1. 对象实例化时不指定泛型，默认为：Object。  
-2. 泛型不同的引用不能相互赋值。  
-3. 加入集合中的对象类型必须与指定的泛型类型一致。  
-4. 静态方法中不能使用类的泛型。  
-5. 如果泛型类是一个接口或抽象类，则不可创建泛型类的对象。  
-6. 不能在catch中使用泛型  
-7. 从泛型类派生子类，泛型类型需具体化  
-8. 并且还要注意的一点是，Java中没有所谓的泛型数组一说。
-
-
-4.泛型与继承的关系
-A类是B类的子类，G是带泛型声明的类或接口。那么G<A>不是G<B>的子类！
-
-5.通配符:?
-A类是B类的子类，G是带泛型声明的类或接口。则G<?> 是G<A>、G<B>的父类！
-①以List<?>为例，能读取其中的数据。因为不管存储的是什么类型的元素，其一定是Object类的或其子类的。
-①以List<?>为例，不可以向其中写入数据。因为没有指明可以存放到其中的元素的类型！唯一例外的是：null
-
-6*.  List<？ extends A> :可以将List<A>的对象或List<B>的对象赋给List<? extends A>。其中B 是A的子类
-       ? super A:可以将List<A>的对象或List<B>的对象赋给List<? extends A>。其中B 是A的父类
-
-
-   一、枚举类
-1.如何自定义枚举类。 枚举类：类的对象是有限个的，确定的。
-   1.1 私有化类的构造器，保证不能在类的外部创建其对象
-   1.2 在类的内部创建枚举类的实例。声明为：public static final
-   1.3 若类有属性，那么属性声明为：private final 。此属性在构造器中赋值。
-2.使用enum关键字定义枚举类
-	>2.1其中常用的方法：values()  valueOf(String name);
-	>2.2枚举类如何实现接口  ：①让类实现此接口，类的对象共享同一套接口的抽象方法的实现。
-						 ①让类的每一个对象都去实现接口的抽象方法，进而通过类的对象调用被重写的抽象方法时，执行的效果不同
 public class TestSeason1 {
 	public static void main(String[] args) {
 		Season1 spring = Season1.SPRING;
@@ -409,7 +289,7 @@ enum Season1 implements Info{
 //		System.out.println("这是一个季节");
 //	}
 }
-
+```
 
 二、注解Annotation
 1.JDK提供的常用的三个注解

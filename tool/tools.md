@@ -1,6 +1,6 @@
 ## 1. atom
 ### setting
-1. tab length 设置为4
+1. Editor tab length 设置为4
 
 
 ### Packages
@@ -28,45 +28,39 @@
 
 ## 2. win softwire
 * dev  
-    1.tomcat  
-    2.Git  
-    3.eclipse  
-    4.idea  
+    1. Git  
+    2. vscode or atom or sublime  
+    3. jdk  
+    4. tomcat  
+    5. maven  
+    6. idea  
         config  
-    5.pycharm  
-    6.emacs  
-    7.xshell  
-    8.hbuilder  
-    9.jdk  
-    10.maven  
-    11.mongodb  
-    12.mysql  
-    13.node  
-    14.ps   
-    15.python  
-    16.svn  
-    18.lantern  
-    19.altrun  
-    20.atom sublime  
-    21.filezilla  
+    7. mysql  
+    8. navicat -百度网盘  
+    9. xshell  
+    10. lantern  
+    11. altrun - 坚果云  
+    12. eclipse  
+    13. node  
+    14. svn  
+    15. smartgit
 
 * user  
-    1.cclear  
-    2.compare  
-    3.fscapcher  
-    4.wiz evernote  
-    5.mychrom  
-    6.potplayer  
-    9.sougou  
-    10.qq  
-    11.teamviewer  
-    12.youdao  
-    13.pdf  
-    14.office wps  
-    15.kwifi  
-    16.kms  
-    18.VC REDIST INSTALLER  
-    19aliqintao
+    1. zip
+    2. compare  
+    3. fscapcher  
+    4. wiz evernote  
+    5. mychrom  
+    6. potplayer  
+    9. sougou  
+    10. qq  
+    11. teamviewer  
+    12. youdao  
+    13. pdf  
+    14. office wps  
+    18. VC REDIST INSTALLER  
+    19. clower
+    20. alt run
 
 ## 3. idea
 * 坚果云配置（${idea.home}/bin/idea.properties）
@@ -79,21 +73,31 @@
     1. sout: println
     2. psvm: main
     3. collections.for: forEach
-* jrebel
+* TranslationPlugin 翻译
+* jrebel [参考](http://blog.csdn.net/garfielder007/article/details/53591480)
+    
     1. [plugin download](https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij)
     2. 激活
-        * `http://idea.qinxi1992.cn/pmz` 加 邮箱
+        * `http://idea.qinxi1992.cn/pmz` (idea.goxz.gq)加 邮箱
         * 切换离线模式和关闭日志反馈  
     3. 使用
+        * http://blog.lanyus.com/archives/133.html
         * 设置 on frame deactivation 为 Update classes and resources
         * [usage1](https://zeroturnaround.com/software/jrebel/quickstart/intellij/?run=ide#!/project-configuration)  
         * [usage2](http://manuals.zeroturnaround.com/license-server/install/index.html#getting-started)  
         * [maven project-configuration](http://manuals.zeroturnaround.com/jrebel/standalone/maven.html)     
-
-4. 破解
+    4. tomcat server.xml 的配置
+    <Context path="/helloapp" docBase="helloapp" reloadable="true"/> 
+* 注意
+一般Jrebel有15天免费试用期，不过Jrebel对于个人是免费的，在Google上搜索myJrebel然后注册就会送个人免费注册码，   
+传送带：https://my.jrebel.com/
+* spring boot
+http://www.jianshu.com/p/97dd8978482f
+* 破解
     1. `license-server http://phxism.top:41017/`
 
-
+* keymap
+alt + insert ： getter and setter  
 Ctrl+E，可以显示最近编辑的文件列表  
 Ctrl+F12，可以显示当前文件的结构  
 Ctrl+N，可以快速打开类  
@@ -116,6 +120,12 @@ CTRL+SHIFT+UP/DOWN 代码向上/下移动。
 ESC 光标返回编辑框  
 F11 mark  
 
+## 4 vsc
+### 快捷键
+* 格式化 c+k c+f
+* getter，setter alt+insert
+* go to line c+g
+
 ## chrome plugins
 * 划词翻译   ctrl+q
 * colorZilla   提取css颜色 ctrl + alt + z  与qq冲突
@@ -135,3 +145,31 @@ Arrow keys: Move the ruler by 1 pixel in any direction
 + Ctrl (Command) + Alt: Shrink the ruler inwards by 1 pixel
 + Shift + Ctrl (Command) + Alt: Shrink the ruler inwards by 10 pixels
 * cssviewer    chrome单独设置  alt+v
+
+## window path
+```dos
+Path=D:\soft\install\python\;  
+D:\soft\install\python\Scripts;  
+C:\Windows\system32;  
+C:\Windows;C:\Windows\System32\Wbem;   
+C:\Windows\System32\WindowsPowerShell\v1.0\;  
+D:\soft\install\Vim\vim74;  
+C:\Program Files (x86)\Spoon\Cmd;D:\soft\install\apache-maven-3.3.9\bin;
+D:\soft\install\SVN\bin;
+D:\soft\install\java\jdk\bin;
+C:\Android;
+D:\soft\install\Git\cmd;D:\soft\package\nodejs\;
+D:\soft\install\gradle-2.10\bin;
+D:\soft\install\Tesseract-OCR;
+D:\me\redis;
+C:\Windows\system32;
+C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;
+D:\soft\install\Vim\vim74;  
+C:\Program Files (x86)\Spoon\Cmd;
+D:\soft\install\SVN\bin;
+D:\soft\package\mysql-5.5\bin;
+C:\Program Files (x86)\QuickTime\QTSystem\;
+D:\soft\install\svn\bin;
+C:\Users\Administrator\AppData\Local\atom\bin;
+C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
+```
