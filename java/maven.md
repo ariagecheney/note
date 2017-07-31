@@ -71,7 +71,7 @@ mvn test
 说明:测试命令,或执行src/test/java/下junit的测试用例.   
 mvn install   
 说明:模块安装命令,将打包的的jar/war文件复制到你的本地仓库中,
-供其他模块使用`-Dmaven.test.skip=true` 跳过测试(同时会跳过test compile)  
+供其他模块使用`-Dmaven.test.skip=true` 跳过测试(同时会跳过test compile) mvn package -Dmaven.test.failture.ignore=true  
 mvn deploy   
 说明: 发布命令 ，将打包的文件发布到远程仓库,提供其他人员进行下载依赖  
 mvn dependency:resolve   

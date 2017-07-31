@@ -15,3 +15,12 @@
 
 ![idea-tomcat1](../assets/idea-tomcat1.jpg)
 ![idea-tomcat2](../assets/idea-tomcat2.jpg)
+
+
+## tomcat 日志乱码
+ `bin/catalina.sh`
+```
+if [ -z "$LOGGING_MANAGER" ]; then
+  LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Dfile.encoding=UTF8 -Dsun.jnu.encoding=UTF8"
+fi
+```

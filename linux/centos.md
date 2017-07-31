@@ -1,3 +1,12 @@
+## 设置别名
+```shell
+alias cd1="cd ../"
+alias cd2="cd ../../"
+alias cd4="cd ../../../../"
+alias cd3="cd ../../../"
+alias grep="grep --color"
+```
+
 ## 配置dns
 vi /etc/resolv.conf 文件内容   
 nameserver 8.8.8.8  
@@ -15,7 +24,9 @@ service network restart 或 /etc/init.d/network restart
 使用命令：chkconfig sshd on 设置为开机启动
 使用命令：chkconfig --list |grep sshd查看设置结果，
 service sshd start
-
+## 查看外网 ip
+* `curl ifconfig.me`  
+* `curl cip.cc`
 ## 查看位数
 file /sbin/init 或者 file /bin/ls   
 uname -a:
@@ -25,8 +36,11 @@ uname -a:
 rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
 
 rpm -ivh --force --nodeps package.rpm
-
+rpm -Uvh pac.rpm
 rpm -ql 包名 安装列表
+
+rpm -qpi package.rpm 查询软件描述信息
+rpm -qpl package.rpm 列出软件文件信息
 
 rpm -e mysql　　// 普通删除模式
 rpm -e --nodeps mysql　　// 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除

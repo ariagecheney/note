@@ -12,6 +12,7 @@
 * db.createCollection("testcollection");
 * db.dropDatabase()
 * db.colName.drop()
+* db.temp_add_user.renameCollection('temp_add_client')
 * db.version() 查看mongodb版本
 
 ```shell
@@ -104,3 +105,11 @@ db.col.remove({'title':'MongoDB 教程'})
 * db.collection.find(query, projection)
 * db.col.find().pretty()
 * 除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
+
+## 导入 到出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
+* `./mongoexport -h [IP]:[port] -d [db] -c [collection] -u [user] -p [password]--port 27018 -q '{insertDate:{$gt:ISODate("2017-07-18T11:00:00.603Z")}}' -o ./HeartLogin.dat`
+
+* `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --type=csv -f phone,insertDate > HeartLogin.csv`
+
+* `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`
+

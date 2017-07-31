@@ -1,3 +1,14 @@
+## Listory
+* 启动  
+    1. 文件管理器模式：直接输入 双击
+    2. 启动器模式： ct 两下  
+* 快捷键  
+    ↓ 键 或 Ctrl + N：选择下一项；
+
+    ↑ 键 或 Ctrl + P：选择上一项；
+
+    → 键 或 Ctrl + O：打开选中项的动作菜单。
+
 ## 1. atom
 ### setting
 1. Editor tab length 设置为4
@@ -173,3 +184,20 @@ D:\soft\install\svn\bin;
 C:\Users\Administrator\AppData\Local\atom\bin;
 C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
 ```
+## win10
+* win+shift+s 和 ct + sh printscreen
+* win+空格 切换输入法
+* Ct + Sh + b 表情 ct + 方向键 切换
+* cmd 支持 ct+v
+* win+g 录屏
+* Win + Ctrl + D 虚拟桌面
+* win+tab 任务视图
+* Win+A 操作中心
+* Win+S cortana
+* Win+I 设置面板
+* Win+X 
+* Win+K 无线设备搜索
+* Win+P 投影
+* Win+↑/↓/←/→ 固定并移动窗口
+* Alt+↑/←/→ 文件导航
+* Alt+空格+N 最小化 r 还原 x最大化
