@@ -1,6 +1,26 @@
 ## 安装
 * mongod.exe --logpath "D:\install\mongo3.4\data\log\mongodb.log" --logappend --dbpath "D:\install\mongo3.4\data\db" --serviceName "MongoDB" --install
-
+## 安全配置
+```shell
+1. 配置文件 加上 权限开启参数 
+security:
+   authorization: enabled
+或者启动mongod时 加上 --auth 参数
+2. 在admin数据库里 添加用户和并赋给root角色
+use amdin
+db.createUser({user:"root",pwd:"123456",roles:[{role:"root",db:"admin"}]});
+3. 重启服务
+service mongod stop
+mongod -f /etc/mongod.conf
+4. 登陆 
+//必须在你上一步创建用户时，配置用户所属的数据库下 登陆才行
+./mongo
+use admin
+db.auth("root","123456")
+//或者 连接server时登陆
+mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
+5. 此时你就拥有了，该用户所属的角色、权限
+```
 ## some
 * MongoDB 中默认的数据库为 test，如果你没有创建新的数据库，集合将存放在 test 数据库中。
 
@@ -111,5 +131,6 @@ db.col.remove({'title':'MongoDB 教程'})
 
 * `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --type=csv -f phone,insertDate > HeartLogin.csv`
 
+* `mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json`
 * `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`
 

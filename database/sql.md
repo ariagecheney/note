@@ -2,83 +2,39 @@
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)  
 [runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
 
-### SQL四种语言：DDL,DML,DCL,TCL
-
-1. DDL（Data Definition Language）数据库定义语言  
-DDL是SQL语言的四大功能之一。用于定义数据库的三级结构，包括外模式、概念模式、内模式及其相互之间的映像，定义数据的完整性、安全控制等约束.   
-DDL不需要commit.    
-CREATE  
-ALTER  
-DROP  
-TRUNCATE  
-COMMENT  
-RENAME  
-
-2. DML（Data Manipulation Language）数据操纵语言  
-由DBMS提供，用于让用户或程序员使用，实现对数据库中数据的操作。  
-DML分成交互型DML和嵌入型DML两类。  
-依据语言的级别，DML又可分成过程性DML和非过程性DML两种。  
-需要commit.  
-SELECT  
-INSERT  
-UPDATE  
-DELETE  
-MERGE  
-CALL  
-EXPLAIN PLAN  
-LOCK TABLE  
-
-3. DCL（Data Control Language）数据库控制语言  
-授权，角色控制等
-GRANT 授权  
-REVOKE 取消授权  
-
-4. TCL（Transaction Control Language）事务控制语言  
-SAVEPOINT 设置保存点  
-ROLLBACK  回滚  
-SET TRANSACTION  
-
-SQL主要分成四部分：  
-（1）数据定义。（SQL DDL）用于定义SQL模式、基本表、视图和索引的创建和撤消操作。  
-（2）数据操纵。（SQL DML）数据操纵分成数据查询和数据更新两类。数据更新又分成插入、删除、和修改三种操作。  
-（3）数据控制。包括对基本表和视图的授权，完整性规则的描述，事务控制等内容。  
-（4）嵌入式SQL的使用规定。涉及到SQL语句嵌入在宿主语言程序中使用的规则。  
-
-###  mysql 并发控制
-* 悲观锁
-> 在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。
->如果加锁失败，说明该记录正在被修改，那么当前查询可能要等待或者抛出异常。 具体响应方式由开发者根据实际需要决定。
-> 如果成功加锁，那么就可以对记录做修改，事务完成后就会解锁了。
-> 其间如果有其他对该记录做修改或加排他锁的操作，都会等待我们解锁或直接抛出异常。
-
-```sql
-//0.开始事务
-begin;/begin work;/start transaction; (三者选一就可以)
-//1.查询出商品信息
-select status from t_goods where id=1 for update; //开启排它锁
-//2.根据商品信息生成订单
-insert into t_orders (id,goods_id) values (null,1);
-//3.修改商品status为2
-update t_goods set status=2;
-//4.提交事务
-commit;/commit work;
-// MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住
-```
-
-* 乐观锁
->它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。
->相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本。
-
-
-### 集合运算
-A∩(B∪C)=(A∩B)∪(A∩C) 　　A∪(B∩C)=(A∪B)∩(A∪C)
-
 ### sql查找mysql安装目录
 `select @@basedir;`
 ### sql查看链接数
 `show full processlist;`
 ### cmd查看mysql版本
 `mysql -V`
+
+### my.cnf 配置
+```
+[mysqld]
+
+port = 3308
+
+character-set-server=utf8
+
+#basedir=D:/soft/package/mysql-5.6
+
+#datadir=D:/soft/package/mysql-5.6/data
+
+default-storage-engine=INNODB
+
+collation-server=utf8_general_ci
+[mysql]
+
+default-character-set=utf8
+
+```
+### 允许root用户远程登陆
+```sql
+use mysql
+update user set host='%' where User='root' and host='localhost' limit 1;
+flush privileges;
+```
 ### 将MySQL 添加到服务中。
 
 
@@ -127,7 +83,7 @@ sql 对大小写不敏感
 日期
 基于集合理论
 
-### 在创建mysql数据库的时候如何支持UTF-8编码
+## 在创建mysql数据库的时候如何支持UTF-8编码
 
 1. 用工具  
 CHARSET 选择 utf8
@@ -168,12 +124,9 @@ mysql -h localhost -u root -p mydb2 < e:\mysql\mydb2.sql
  ### order by排序 返回游标不能做表达式
  `select atime, deathnumber, province from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东' order by 2`
 
-### 不同值计数
-`select count(distinct deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) and province='山东';`
-
-### 分组求和
-`select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province;`
+### 分组统计
 ```sql
+ select province, sum(deathnumber) from full_accident_tbl where (deathnumber>=5 and deathnumber<=10) group by province;  
 +----------+------------------+
 | province | sum(deathnumber) |
 +----------+------------------+

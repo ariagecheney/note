@@ -26,6 +26,8 @@ sudo apt-get remove git
 	//git config crud
 	git config --global --add or --unset or name value or --get
 ```
+## git ignore
+`git rm --cached --force .idea/compiler.xml`
 
 ## git 工作流程
 

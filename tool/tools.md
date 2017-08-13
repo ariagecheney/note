@@ -88,8 +88,8 @@
 * jrebel [参考](http://blog.csdn.net/garfielder007/article/details/53591480)
     
     1. [plugin download](https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij)
-    2. 激活
-        * `http://idea.qinxi1992.cn/pmz` (idea.goxz.gq)加 邮箱
+    2. 激活 使用license server 方式激活
+        * `http://idea.qinxi1992.cn/pmz` (idea.goxz.gq) 和 email
         * 切换离线模式和关闭日志反馈  
     3. 使用
         * http://blog.lanyus.com/archives/133.html
@@ -109,7 +109,9 @@ http://www.jianshu.com/p/97dd8978482f
 
 * keymap
 alt + insert ： getter and setter  
-Ctrl+E，可以显示最近编辑的文件列表  
+Ctrl+E，可以显示最近编辑的文件列表
+ctrl+F9 编译整个项目
+ctrl+shift+F9 编译当先文件  
 Ctrl+F12，可以显示当前文件的结构  
 Ctrl+N，可以快速打开类  
 Ctrl+Shift+N，可以快速打开文件  
@@ -185,7 +187,7 @@ C:\Users\Administrator\AppData\Local\atom\bin;
 C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
 ```
 ## win10
-* win+shift+s 和 ct + sh printscreen
+* win+shift+s  和 ctrl + shift + printscreen 截屏
 * win+空格 切换输入法
 * Ct + Sh + b 表情 ct + 方向键 切换
 * cmd 支持 ct+v

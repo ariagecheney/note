@@ -1,4 +1,3 @@
-<<<<<<< HEAD:linux.md
 # 查看系统信息
 * 发行版本：cat /etc/issue  或者 cat /etc/debian_version 
 * 内核版本：cat /proc/version
@@ -514,7 +513,6 @@ find / -inum 3814056
 紫色－图形文件
 黄色－设备文件
 棕色－FIFO文件（先进先出，命令管道）
-=======
 # 快捷键
 * Ctrl+d	键盘输入结束或退出终端
 * Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
@@ -1017,4 +1015,3 @@ find / -inum 3814056
 紫色－图形文件
 黄色－设备文件
 棕色－FIFO文件（先进先出，命令管道）
->>>>>>> 9d1f339947fe19a4e4f741a182af0490a7b2c0c8:linux/linux.md

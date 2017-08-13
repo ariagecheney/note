@@ -1,4 +1,8 @@
-## 设置别名
+## 查看发行版信息
+`cat /etc/issue`
+
+
+## 设置别名 /etc/bashrc
 ```shell
 alias cd1="cd ../"
 alias cd2="cd ../../"
@@ -30,13 +34,14 @@ service sshd start
 ## 查看位数
 file /sbin/init 或者 file /bin/ls   
 uname -a:
-
+## 安装ftp客户端
+`rpm -Uvh http://mirror.centos.org/centos/6/os/x86_64/Packages/ftp-0.17-54.el6.x86_64.rpm`
 ## rpm
 ```shell
 rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
 
 rpm -ivh --force --nodeps package.rpm
-rpm -Uvh pac.rpm
+rpm -Uvh pac.rpm 升级
 rpm -ql 包名 安装列表
 
 rpm -qpi package.rpm 查询软件描述信息
