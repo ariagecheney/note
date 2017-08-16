@@ -5,6 +5,6 @@
 ![session重连设置](../assets/SecureCrt1.png)
 
 2. 如果要所有会话都起作用，则点击Options －>Global Options－－>General－－>Default Session ,点击 Edit Default Settings
-![Global重连设置1](../assets/SecureCrt2.png)
+![Global重连设置1](../assets/SecureCRT2.png)
 3. 此时会出现 与 session 设置 相似的界面，如图，重复第一步操作即可
-![Global重连设置2](../assets/SecureCrt3.png)
+![Global重连设置2](../assets/SecureCRT3.png)
