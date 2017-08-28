@@ -1,7 +1,14 @@
 ## 查看发行版信息
 `cat /etc/issue`
 
+## lrzsz
+* rz -be
+* sz
+`yum install lrzsz`
 
+## 测试ip和端口是否通
+* wget ip:port
+* ssh -v -p port ip
 ## 设置别名 /etc/bashrc
 ```shell
 alias cd1="cd ../"
@@ -9,6 +16,7 @@ alias cd2="cd ../../"
 alias cd4="cd ../../../../"
 alias cd3="cd ../../../"
 alias grep="grep --color"
+alias egrep="egrep --color"
 ```
 
 ## 配置dns

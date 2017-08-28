@@ -14,21 +14,44 @@
  * pom：项目的属性，依赖，构建配置被抽象成pom--》基本组成：项目基本信息，构建环境（开发，生产），pom关系（依赖，继承），构建设置（更改默认设置）
 --》
 * 项目坐标groupid：artifactid：packaging：vsrsion
+### 为了看清楚可以在一个子模块 pom 所在目录下，执行以下命令,可以看到最终起效果的 pom ，这在找错时很有效
 * mvn help:effective-pom
 
-* 插件与目标：
-    1. 调用插件目标的两种方式:将插件目标与生命周期绑定，执行生命周期，
-    2. 直接执行插件目标--》插件列表表http://maven.apache.org/plugins/index.html
-http://www.mojohaus.org/plugins.html
-
+### 插件与目标
+1. 调用插件目标的两种方式:将插件目标与生命周期绑定，执行生命周期，
+2. 直接执行插件目标。
+3. 插件列表[apache](http://maven.apache.org/plugins/index.html) or [mojohaus](http://www.mojohaus.org/plugins.html)
+4. 注：依赖的远程仓库    ！=  插件的远程仓库，Maven会区别对待他们。  
+Maven需要的依赖在本地仓库中不存在时，Maven会去配置的远程仓库中查找  
+Maven需要的插件在本地仓库中不存在时，Maven不会去这些远程仓库查找。 
+```xml
+// 所以要进行配置
+<pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+</pluginRepositories>
+``` 
 * 项目的生命周期：指项目的构建过程，包含了一系列有序阶段，而一个阶段就是构建过程的一个步骤。很多种生命周期，maven默认生命周期：验证生命完整性，
 一个生命周期阶段可以绑定多个插件目标
 mvn clean--》mvn package   编译》打包
 
-* 传递性依赖：scope 依赖的范围--》编译范围（compile），已提供范围（provided），运行时范围（runtime），测试范围（test），系统范围（system）
+### 传递性依赖：scope 依赖的范围
+* 编译范围（compile）
+* 已提供范围（provided）
+* 运行时范围（runtime）
+* 测试范围（test）
+* 系统范围（system）
+* [Maven的继承以及import作用域](http://www.cnblogs.com/techroad4ca/p/6512591.html)
 
 * maven仓库：一个存放了所有依赖的仓库，其通过依赖的坐标对其进行管理。--》mvn install --》pom里远程仓库配置
 http://search.maven.org/   maven central repo
+
 
 * 项目站点报告：在项目pom里配置 site插件
 ```xml
@@ -99,6 +122,7 @@ www
 ```
 ### 引用本地jar包
 ```xml
+//groupId和artifactId以及version都是可以随便填写的 ，scope必须填写为system，而systemPath我们现在我们jar包的目录地址就可以了
 <dependency>
             <groupId>com.zzxapi</groupId>
             <artifactId>api</artifactId>
@@ -106,6 +130,45 @@ www
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ZzxOAuthMobileServerApi-2.3.jar</systemPath>
         </dependency>
+```
+### 将jar包安装到本地repository中
+```shell
+mvn install:install-file  
+-Dfile= jar文件所存放的地址     
+-DgroupId= jar文件所属的group：包名   
+-DartifactId=  jar的项目名 名称，一般就是去掉后缀的文件名     
+-Dversion=版本号  
+-Dpackaging=jar：此包的打包形式，就是jar  
+-DgeneratePom=true  
+<!-- 例如 -->
+mvn install:install-file -Dfile=D:\JAR_LIB\rabbitmq-client.jar -DgroupId=com.rabbitmq -DartifactId=client -Dversion=3.5.0 -Dpackaging=jar  -DgeneratePom=true -DcreateChecksum=true
+<!-- 之后就可以正常引用 -->
+```
+## 添加 in project repository
+```xml
+设置项目的库目录
+<repository>
+
+    <id>in-project</id>
+
+    <name>In Project Repo</name>
+
+    <url>file://${project.basedir}/lib</url>
+
+</repository>
+添加依赖：
+
+
+<dependency>
+
+    <groupId>com.rabbitmq</groupId>
+
+    <artifactId>client</artifactId>
+
+    <version>3.5.0</version>
+
+</dependency>
+<!-- 本例中： lib/com/rabbitmq/client/3.5.0/rabbitmq-client-3.5.0.jar -->
 ```
 ### nexus私服配置
 * [nexux 使用 ](http://blog.csdn.net/huxu981598436/article/details/54945589)
@@ -209,6 +272,7 @@ www
 * 参考 [Maven 打包实现生产环境与测试环境配置分离 by 有爱的小止](https://ixiaozhi.com/java-maven-archive-different-profile/)
 
 ```xml
+<!-- pom.xml -->
 <profiles>
         <profile>
             <id>product</id>

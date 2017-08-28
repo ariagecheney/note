@@ -25,6 +25,8 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * MongoDB 中默认的数据库为 test，如果你没有创建新的数据库，集合将存放在 test 数据库中。
 
 ## shell command
+* db.collection.help()
+* db.help()
 * show dbs
 * use dbname 切换或创建 db
 * db
@@ -34,6 +36,8 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * db.colName.drop()
 * db.temp_add_user.renameCollection('temp_add_client')
 * db.version() 查看mongodb版本
+* db.collection.getIndexes() 查看索引
+* db.users.find( { name : { $exists: false } } )
 
 ```shell
 // 后台运行时，关闭mongod
@@ -74,7 +78,7 @@ config = { _id:"replset", members:[
 
  // 登录另一台
  mongo localhost:27018
- rs.status();
+ rs.status(); 查看副本集状态
 
  //再启动原来旧的primary库27017端口的mongodb（如果是实际上的坏了就是修复后启动），27017就会自动变成secondary状态。
 ```
@@ -122,15 +126,33 @@ db.col.remove({'title':'MongoDB 教程'})
 >db.col.remove({})
 
 ### find
-* db.collection.find(query, projection)
+* db.collection.find(query, projection) 例如：
+```js
+db.inventory.find(
+   { type: "food", item:/^c/ },
+   { item: 1, _id: 0 }
+)
+```
 * db.col.find().pretty()
 * 除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
-
-## 导入 到出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
+### [distinct](http://docs.mongoing.com/manual-zh/reference/method/db.collection.distinct.html)
+`db.collection.distinct(field, query, options);`
+## 导入 导出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
 * `./mongoexport -h [IP]:[port] -d [db] -c [collection] -u [user] -p [password]--port 27018 -q '{insertDate:{$gt:ISODate("2017-07-18T11:00:00.603Z")}}' -o ./HeartLogin.dat`
 
-* `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --type=csv -f phone,insertDate > HeartLogin.csv`
-
+* `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --sort '{createDate:-1}'--type=csv -f phone,insertDate > HeartLogin.csv`
+* `./mongoimport -u root -p eversec123098 --host 192.168.200.67:27010 --authenticationDatabase=admin -d test -c aaa --file /home/pmz/tmp/用户感染事件0817记录.csv --type csv --headerline`  
+* `./mongoexport -d CallCloudManager -c V2_PushRecordAll -q '{createDate:{$gte:ISODate("2017-08-17T16:00:00.000Z")},proCode:{$exists:false}}' -u root -p pwd --host 192.168.243.140:27017 --authenticationDatabase=admin --out /home/pmz/temp/push.json`
+<!-- 注意正则表达式 元字符要转义 -->
 * `mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json`
 * `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`
 
+### 聚合
+```js
+// 按时间分组（本地时间：北京，东八区）貌似网上很少有人提到时区这个问题，
+// $dateToString 日期这个格式化，是utc时间，所以单纯格式化，不是本地时间，暂时没找到好的办法，所以 用$project 映射一下，在原有日期字段加八个小时，在做后边的分组查询
+db.V2_PushRecordAll.aggregate([{$project:{ctime:{$add:["$createDate",8*60*60*1000]},status:1,proCode:1,content:1}},{$match:{status:1,content:{$regex:/\"uuid\":26/},ctime:{$gte:ISODate("2017-08-17T00:00:00"),$lt:ISODate("2017-08-24T00:00:00")}}},{$group:{_id:{date:{ $dateToString: { format: "%Y-%m-%d", date: "$ctime"} },proCode:"$proCode"},pushNum:{$sum:1 } } },{$sort:{"_id.date":-1}}])
+// 分组 在分组，实现类似 distinct的功能
+db.V2_PushRecordAll.aggregate([{$match:{status:1,content:{$regex:/\"uuid\":26/},createDate:{$gte:ISODate("2017-08-17T16:00:00"),$lt:ISODate("2017-08-23T16:00:00")}}},{$group:{_id:{proCode:"$proCode",imsi:"$imsi"}}},{$group:{_id:{proCode:"$_id.proCode"},num:{$sum:1}}}])
+
+```
