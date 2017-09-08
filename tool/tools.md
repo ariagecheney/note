@@ -107,31 +107,32 @@ http://www.jianshu.com/p/97dd8978482f
 * 破解
     1. `license-server http://phxism.top:41017/`
 
-* keymap
-alt + insert ： getter and setter  
-Ctrl+E，可以显示最近编辑的文件列表
-ctrl+F9 编译整个项目
-ctrl+shift+F9 编译当先文件  
-Ctrl+F12，可以显示当前文件的结构  
+* keymap(eclipse 模式)  
+> alt + insert ： getter and setter    
+Ctrl+E，可以显示最近编辑的文件列表  
+CTRL+H 全局文本查找  
+CTRL+O 显示类结构  
+ctrl+F9 编译整个项目  
+ctrl+shift+F9 编译当前文件  
+Ctrl+T，接口方法的实现   
+Ctrl+F12，可以显示当前文件的结构    
 Ctrl+N，可以快速打开类  
 Ctrl+Shift+N，可以快速打开文件  
 Ctrl+W可以选择单词继而语句继而行继而函数  
 Ctrl+P，可以显示参数信息  
 CTRL+SHIFT+ALT+N 查找类中的方法或变量  
-CTRL+G 定位行  
+CTRL+G 查找调用栈  
 CTRL+R 在 当前窗口替换文本  
 F3 向下查找关键字出现位置  
 SHIFT+F3 向上一个关键字出现位置  
 F4 查找变量来源  
-CTRL+D 复制行  
-CTRL+X 剪切,删除行  
+CTRL+D 剪切,删除行   
 CTRL+/ 注释//  
 CTRL+SHIFT+/ 注释/*...*/  
-CTRL+H 显示类结构图  
-CTRL+Q 显示注释文档  
-CTRL+SHIFT+UP/DOWN 代码向上/下移动。  
-ESC 光标返回编辑框  
 F11 mark  
+* debug keymap
+> f6 下一步  
+  f9 下一个断点
 
 ## 4 vsc
 ### 快捷键

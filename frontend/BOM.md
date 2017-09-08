@@ -1,3 +1,26 @@
+### 判断用户将页面滚动到底部 [参考](http://www.cnblogs.com/zxjwlh/p/6284330.html)
+* 滚动底部的条件是: 滚动的高度 + windows 窗口高度 >= 滚动条总高度
+```js
+//原生JavaScript：
+
+ $(window).scroll(function(event){  
+    var wScrollY = window.scrollY; // 当前滚动条位置    
+    var wInnerH  = window.innerHeight; // 设备窗口的高度（不会变）    
+    var bScrollH = document.body.scrollHeight; // 滚动条总高度        
+    if (wScrollY + wInnerH >= bScrollH) {            
+        console.log("到底了.");
+    }    
+});
+//JQuery ：
+
+$(window).scroll(function () {
+    if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+        console.log("到底了.");
+    }
+});
+```
+* js 滚动页面到底部  
+`window.scrollTo(0,document.body.scrollHeight - window.innerHeight)`
 ### 事件是可以被javascript检测到的行为
 * 在事件值里直接写js代码  
 onchange   文本内容改变事件  

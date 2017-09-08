@@ -1,11 +1,20 @@
 ## 查看发行版信息
 `cat /etc/issue`
 
+## [理解Linux系统/etc/init.d目录和/etc/rc.local脚本](http://blog.csdn.net/acs713/article/details/7322082)
 ## lrzsz
 * rz -be
 * sz
 `yum install lrzsz`
 
+## ssh 远程登陆超时自动退出 时间配置 
+`vim /etc/profile`
+```shell
+# 单位毫秒，0 
+TMOUT=0
+export TMOUT
+```
+`source /etc/profile`
 ## 测试ip和端口是否通
 * wget ip:port
 * ssh -v -p port ip
@@ -110,65 +119,13 @@ yum clean oldheaders 清除缓存目录下旧的 headers
 yum clean, yum clean all (= yum clean packages; yum clean oldheaders) 清除缓存目录下的软件包及旧的headers
 ```
 
-## ssh
+## scp
+* 命令基本格式： scp [可选参数] file_source file_target 
 * ssh -p port user@host
-* scp -P10022 CommGuard.sql evercloud@202.107.70.9:/home/evercloud/
-命令基本格式： 
-       scp [可选参数] file_source file_target 
-
-====== 
-从 本地 复制到 远程 
-====== 
-* 复制文件： 
-        * 命令格式： 
-                scp local_file remote_username@remote_ip:remote_folder 
-                或者 
-                scp local_file remote_username@remote_ip:remote_file 
-                或者 
-                scp local_file remote_ip:remote_folder 
-                或者 
-                scp local_file remote_ip:remote_file 
-
-                第1,2个指定了用户名，命令执行后需要再输入密码，第1个仅指定了远程的目录，文件名字不变，第2个指定了文件名； 
-                第3,4个没有指定用户名，命令执行后需要输入用户名和密码，第3个仅指定了远程的目录，文件名字不变，第4个指定了文件名； 
-        * 例子： 
-                scp /home/space/music/1.mp3 root@www.cumt.edu.cn:/home/root/others/music 
-                scp /home/space/music/1.mp3 root@www.cumt.edu.cn:/home/root/others/music/001.mp3 
-                scp /home/space/music/1.mp3 www.cumt.edu.cn:/home/root/others/music 
-                scp /home/space/music/1.mp3 www.cumt.edu.cn:/home/root/others/music/001.mp3 
-
-* 复制目录： 
-        * 命令格式： 
-                scp -r local_folder remote_username@remote_ip:remote_folder 
-                或者 
-                scp -r local_folder remote_ip:remote_folder 
-
-                第1个指定了用户名，命令执行后需要再输入密码； 
-                第2个没有指定用户名，命令执行后需要输入用户名和密码； 
-        * 例子： 
-                scp -r /home/space/music/ root@www.cumt.edu.cn:/home/root/others/ 
-                scp -r /home/space/music/ www.cumt.edu.cn:/home/root/others/ 
-
-                上面 命令 将 本地 music 目录 复制 到 远程 others 目录下，即复制后有 远程 有 ../others/music/ 目录 
-
-
-====== 
-从 远程 复制到 本地 
-====== 
-从 远程 复制到 本地，只要将 从 本地 复制到 远程 的命令 的 后2个参数 调换顺序 即可； 
-
-例如： 
-        scp root@www.cumt.edu.cn:/home/root/others/music /home/space/music/1.mp3 
-        scp -r www.cumt.edu.cn:/home/root/others/ /home/space/music/
-
-最简单的应用如下 : 
-
-scp 本地用户名 @IP 地址 : 文件名 1 远程用户名 @IP 地址 : 文件名 2 
-
-[ 本地用户名 @IP 地址 :] 可以不输入 , 可能需要输入远程用户名所对应的密码 . 
-
-可能有用的几个参数 : 
-
+* scp -r /home/space/music/ root@www.cumt.edu.cn:/home/root/others/   
+ 上面 命令 将 本地 music 目录 复制 到 远程 others 目录下，即复制后有 远程 有 ../others/music/ 目录 
+* 可选参数  
+```shell
 -v 和大多数 linux 命令中的 -v 意思一样 , 用来显示进度 . 可以用来查看连接 , 认证 , 或是配置错误 . 
 
 -C 使能压缩选项 . 
@@ -180,12 +137,12 @@ scp 本地用户名 @IP 地址 : 文件名 1 远程用户名 @IP 地址 : 文件
 -6 强行使用 IPV6 地址 .
 
 -2 强制scp命令使用协议ssh2
- 
+```
 
-注意两点：
-1.如果远程服务器防火墙有特殊限制，scp便要走特殊端口，具体用什么端口视情况而定，命令格式如下：
-#scp -P 4588 remote@www.abc.com:/usr/local/sin.sh /home/administrator
-2.使用scp要注意所使用的用户是否具有可读取远程服务器相应文件的权限。
+* 注意两点：  
+1. 如果远程服务器防火墙有特殊限制，scp便要走特殊端口，具体用什么端口视情况而定，命令格式如下：  
+`scp -P 4588 remote@www.abc.com:/usr/local/sin.sh /home/administrator`   
+2. 使用scp要注意所使用的用户是否具有可读取远程服务器相应文件的权限。
 
 ## msyql yum install
 * 查看msyql 运行状态  
@@ -196,7 +153,9 @@ ps aux |grep mysqld
 service mysqld start  
 service mysqld restart  
 * 是不是开机启动   
-chkconfig --list |grep mysqld  
+chkconfig --list |grep mysqld
+* chkconfig --list如果列表中没有mysqld这个，需要先用这个命令添加：
+chkconfig add mysqld  
 * 设置开机启动   
  chkconfig mysqld on  
 *  为root账号设置密码   
