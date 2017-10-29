@@ -33,6 +33,7 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * show tables
 * db.createCollection("testcollection");
 * db.dropDatabase()
+* db.kx_persons.renameCollection("kx_phones")
 * db.colName.drop()
 * db.temp_add_user.renameCollection('temp_add_client')
 * db.version() 查看mongodb版本
@@ -155,4 +156,30 @@ db.V2_PushRecordAll.aggregate([{$project:{ctime:{$add:["$createDate",8*60*60*100
 // 分组 在分组，实现类似 distinct的功能
 db.V2_PushRecordAll.aggregate([{$match:{status:1,content:{$regex:/\"uuid\":26/},createDate:{$gte:ISODate("2017-08-17T16:00:00"),$lt:ISODate("2017-08-23T16:00:00")}}},{$group:{_id:{proCode:"$proCode",imsi:"$imsi"}}},{$group:{_id:{proCode:"$_id.proCode"},num:{$sum:1}}}])
 
+```
+## mongo-drives-java
+```java
+AggregationOptions options = AggregationOptions
+                .builder().allowDiskUse(true).maxTime(1L, TimeUnit.HOURS).build();
+        List<DBObject> pipes = new ArrayList<DBObject>();
+        BasicDBList add = new BasicDBList();
+        add.add("$createDate");
+        add.add((8 * 60 * 60 * 1000L));
+        BasicDBObject project = new BasicDBObject("ctime",new BasicDBObject("$add",add)).append("status",1).append("proCode",1).append("content",1);
+        BasicDBObject match = new BasicDBObject("status",1).append("content",new BasicDBObject("$regex", Pattern.compile("\\\"uuid\\\":26")))
+                .append("ctime",new BasicDBObject("$gte",st).append("$lt",ed));
+        BasicDBObject group = new BasicDBObject("_id",new BasicDBObject("date",new BasicDBObject("$dateToString",new BasicDBObject("format","%Y-%m-%d").append("date","$ctime")))
+                .append("proCode","$proCode")).append("pushNum",new BasicDBObject("$sum", 1));
+
+        pipes.add(new BasicDBObject("$project",project));
+        pipes.add(new BasicDBObject("$match",match));
+        pipes.add(new BasicDBObject("$group",group));
+        BasicDBObject col = new BasicDBObject();
+        Cursor cursor =  pushRecord.aggregate(pipes,options);
+        while (cursor.hasNext()){
+            BasicDBObject obj = (BasicDBObject)cursor.next();
+            BasicDBObject g = (BasicDBObject)obj.get("_id");
+            log.info(g.getString("date"));
+            log.info(g.getString("proCode"));
+        } 
 ```

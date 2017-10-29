@@ -2,6 +2,10 @@
 `cat /etc/issue`
 
 ## [理解Linux系统/etc/init.d目录和/etc/rc.local脚本](http://blog.csdn.net/acs713/article/details/7322082)
+
+## 关机or重启
+`shutdown -h now`  
+`sudo shutdown -r +1 "off"`
 ## lrzsz
 * rz -be
 * sz
@@ -53,6 +57,8 @@ file /sbin/init 或者 file /bin/ls
 uname -a:
 ## 安装ftp客户端
 `rpm -Uvh http://mirror.centos.org/centos/6/os/x86_64/Packages/ftp-0.17-54.el6.x86_64.rpm`
+* ftp 登陆命令  
+`ftp ip port`
 ## rpm
 ```shell
 rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
@@ -169,7 +175,9 @@ mysql -u root -p
 
 * 查看端口  
 netstat -anp   
-
+## mysql 
+* [linux mysql 更改MySQL数据库目录位置](http://blog.csdn.net/qq_36040184/article/details/53889856)
+* whereis   
 初始化 MySQL 数据库： WARNING: The host 'AQWSnginx' could not be looked up with resolveip.
 This probably means that your libc libraries are not 100 % compatible
 with this binary MySQL version. The MySQL daemon, mysqld, should work

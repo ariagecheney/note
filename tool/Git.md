@@ -31,33 +31,33 @@ sudo apt-get remove git
 
 ## git 工作流程
 
-* `git config --global user.name "Your Name"
-$ git config --global user.email "email@example.com"`
+* 配置用户名   
+`git config --global user.name "Your Name"`  
+`git config --global user.email "email@example.com"`  
+user.name pmzgit user.email pmz00  
+因为是分布式所以必须每台机器进行认证,注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+* git config -l --local 列出该仓库下的参数  
+* 配置有三个级别，优先级由高到低 --local --global(当前用户) --system（当前系统所有用户）
 
-	因为是分布式所以必须每台机器进行认证,注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
-git config -l --local 列出该仓库下的参数
-user.name pmzgit user.email pmz00
-配置有三个级别，优先级由高到低 --local --global(当前用户) --system（当前系统所有用户）
+* git 使用40个16进制字符的	SHA-1 Hash 来唯一标识对象。	git 有四种对象：tag -> commit -> tree > blob (tree包含tree和blob对象，树形结构)
 
-* git 使用40个16进制字符的	SHA-1 Hash 来唯一标识对象。
-	git 有四种对象：tag -> commit -> tree > blob (tree包含tree和blob对象，树形结构)
-
-* 初始化一个Git仓库，1. 使用git init命令。在当前文件夹下初始化 `git init`. 2. git clone local_repo dist_dir_name
+* 初始化一个Git仓库（两种方式）
+1. 使用git init命令。在当前文件夹下初始化 `git init`. 
+2. git clone local_repo dist_dir_name
 
 * 添加文件到Git仓库，分两步:    
-第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件 `git add a.md b.txt`；
+第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件 `git add a.md b.txt`；  
 第二步，使用命令git commit，完成。
 
-
-* 要随时掌握工作区的状态，使用git status命令。
-如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。  
-`git diff`:工作区与暂存区差异
-`git diff --cached`: 暂存区与历史记录差异
-`git diff HEAD~2 -- path`: 历史记录与工作区差异，指定文件的
-`git diff --cached HEAD~2`: 暂存区与历史记录差异
-`git diff HEAD HEAD~2`:当前历史记录与上一个历史记录差异（横向，注意顺序）
-`git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command
-`git diff --word-diff` :强烈推荐，增减，不同颜色
+* 要随时掌握工作区的状态，使用git status命令。  
+如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。    
+`git diff`:工作区与暂存区差异  
+`git diff --cached`: 暂存区与历史记录差异  
+`git diff HEAD~2 -- path`: 历史记录与工作区差异，指定文件的  
+`git diff --cached HEAD~2`: 暂存区与历史记录差异  
+`git diff HEAD HEAD~2`:当前历史记录与上一个历史记录差异（横向，注意顺序）  
+`git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command  
+`git diff --word-diff` :强烈推荐，增减，不同颜色  
 
 * HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commit_id，工作区和暂存区在当前commit_id之后的修改都被丢掉。 (--mixed 只修改暂存区，--soft只移动master和head)
 穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)  
@@ -126,7 +126,7 @@ git checkout
 `git clone git@github.com:michaelliao/gitskills.git （destion dir）`克隆到的仓库会有一个origin/master（远程跟踪分支，用户只读），据其还会产生一个master分支（跟踪分支，用户可写），指向最新commit（HEAD）
 
 * Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
-
+## git 分支
 * Git鼓励大量使用分支：分支只是指向某个commit对象的引用
 
 查看当前分支：git branch
@@ -139,10 +139,12 @@ git checkout
 
 删除分支：git branch -d name
 
-* 合并某分支到当前分支：git merge name (当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)这两个操作=git pull  推荐分开，因为可以用git diff origin/master master 查看远程的版本与本地历史区别
+* 合并某分支到当前分支  
+git merge name   
+(当远程分支有新的commit，首先要git fetch origin下来，这时候本地的origin/master移向最新的commit，所以要用git merge origin/master（线性历史） 使本地master指向最新的提交)  
+这两个操作=git pull  推荐分开，因为可以用git diff origin/master master 查看远程的版本与本地历史区别
 
 > [remote "origin"]  
-
 	url = git@github.com:pmzgit/note.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 		远程仓库master分支（refs/heads/master：commit SHA1 hash）
@@ -151,18 +153,18 @@ git checkout
 		否则别人fetch时（此时强制+）
 
 
-当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。或者放弃本次合并操作： `git merge --abort`
+* 当Git无法自动合并分支时，就必须首先解决冲突。  
+解决冲突后，再提交，合并完成。或者放弃本次合并操作： `git merge --abort`
 
-用git log --graph命令可以看到分支合并图。 git log --graph --pretty=oneline --abbrev-commit
+* 用git log --graph命令可以看到分支合并图。   
+`git log --graph --pretty=oneline --abbrev-commit`
 
 
 * 分支管理策略  
 在实际开发中，我们应该按照几个基本原则进行分支管理：
-
-* 首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+1. 首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
 那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；  
 你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。
-
 
 Git分支十分强大，在团队开发中应该充分应用。
 

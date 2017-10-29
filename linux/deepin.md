@@ -1,6 +1,47 @@
-### zsh
-* `apt-get install libncurses5-dev`
-* 更新博客需要提前安装git
+## 切换2D模式
+* `Super + Shift + Tab`
+
+## 终端环境之`oh-my-zsh`
+### 1. install `zsh`
+
+* 源码安装（貌似官方推荐安装最新的zsh）
+* download: [官方源码zsh-5.2.tar.gz](http://zsh.sourceforge.net/Arc/source.html)   
+* install:
+
+```bash
+//1. 解压
+tar xzvf zsh-5.2.tar.gz
+cd zsh-5.2/
+//2. 编译安装
+./configure // 提示缺少以下依赖库，先安装
+`apt-get install libncurses5-dev`
+make
+sudo make install //不知道为什么网上有的教程不加sudo？？
+//3. 可以查看zsh版本，但是我编译安装后，安装到/usr/local/bin/zsh 不知道为什么，所以一系列的坑由此开始。。。
+zsh --version //提示zsh 不在/usr/bin/zsh 位置，当然不在
+cd /usr/local/bin/ //到这个目录后 执行 `./zsh` 成功进入zsh，但首次执行会提示`.~/.zshrc` 不存在，所以你看到的界面貌似是zsh添加这个配置文件的程序，根据提示操作 
+//4. make zsh your default shell 用`chsh`命令
+//首先你可以查看ubuntu里面都安装了哪些shell
+cat /etc/shells
+chsh -s $(which zsh) //fail，因为zsh并没有添加到上面那个文件里
+//所以zsh必须添加到`/etc/shells`里，才能把zsh改成登陆用户默认的shell
+sudo vim /etc/shells // 添加`/usr/local/bin/zsh`
+chsh -s $(which zsh) //输入密码 
+// 重启系统，打开shell 你会看到已经进入到zsh
+echo $SHELL // 查看当前正在运行的shell
+=/usr/local/bin/zsh
+```
+
+* 参考：[install zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
+ 
+### 2. 使用`oh-my-zsh`的配置文件  
+```bash
+// 执行下面命令
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+* 参考:[github oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+* 需要提前安装git
 
 ### git
 * apt-get 源安装

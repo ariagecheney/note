@@ -1,4 +1,4 @@
-# 查看系统信息
+### 查看系统信息
 * 发行版本：cat /etc/issue  或者 cat /etc/debian_version 
 * 内核版本：cat /proc/version
 * 设置http代理：  export http_proxy=http://hostname:port
@@ -11,7 +11,7 @@
 5、输入命令exit退出  
 6、用新密码登录
 
-# 快捷键
+### 快捷键
 * Ctrl+d	键盘输入结束或退出终端
 * Ctrl+s	暂定当前程序，暂停后按下任意键恢复运行
 * Ctrl+z	将当前程序放到后台运行，恢复到前台为命令fg
@@ -34,17 +34,53 @@
 * alt + f7 ： 激活移动窗口功能，方向键移动，enter键确定
 * alt + enter ： 显示文件属性
 
-Shell 常用通配符：
+### linux shell通配符(wildcard) [转载](http://www.cnblogs.com/chengmo/archive/2010/10/17/1853344.html)
+通配符是由shell处理的（不是由所涉及到命令语句处理的，其实我们在shell各个命令中也没有发现有这些通配符介绍）, 它只会出现在 命令的“参数”里（它不用在 命令名称里， 也不用在 操作符上）。当shell在“参数”中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行代换(路径扩展)；否则就将该通配符作为一个普通字符传递给“命令”，然后再由命令进行处理。总之，通配符 实际上就是一种shell实现的路径扩展功能。在 通配符被处理后, shell会先完成该命令的重组，然后再继续处理重组后的命令，直至执行该命令。
 
-字符	含义
-*	匹配 0 或多个字符
-?	匹配任意一个字符
-[list]	匹配 list 中的任意单一字符
-[!list]	匹配 除list 中的任意单一字符以外的字符
-[c1-c2]	匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]
-{string1,string2,...}	匹配 sring1 或 string2 (或更多)其一字符串
-{c2..c2}	匹配 c1-c2 中全部字符 如{1..10}
+## 字符	含义
+* `*`	匹配 0 或多个字符 
+* **表示任意一层子目录 
+* ?	匹配任意一个字符  
+* [list]	匹配 list 中的任意单一字符  
+* [!list]	匹配 除list 中的任意单一字符以外的字符  
+* [c1-c2]	匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]  
+* {string1,string2,...}	匹配 sring1 或 string2 (或更多)其一字符串
+* {c2..c2}	匹配 c1-c2 中全部字符 如{1..10}  
+#### 需要说明的是：通配符看起来有点象正则表达式语句，但是它与正则表达式不同的，不能相互混淆。把通配符理解为shell 特殊代号字符就可。而且涉及的只有，*,? [] ,{} 这几种。
 
+## shell元字符（特殊字符 Meta）
+* IFS	由 <space> 或 <tab> 或 <enter> 三者之一组成(我们常用 space )。  
+* CR	由 <enter> 产生。  
+* =	设定变量。  
+* $	作变量或运算替换(请不要与 shell prompt 搞混了)。  
+* `>`	重导向 stdout。 *  
+* <	重导向 stdin。 *  
+* |	命令管线。 *  
+* &	重导向 file descriptor ，或将命令置于背境执行。或并行执行执行命令。例如：`npm run script1.js & npm run script2.js`  
+* ( )	将其内的命令置于 nested subshell 执行，或用于运算或命令替换。 *  
+* { }	将其内的命令置于 non-named function 中执行，或用在变量替换的界定范围。  
+* ;	在前一个命令结束时，而忽略其返回值，继续执行下一个命令。 *  
+* &&	在前一个命令结束时，若返回值为 true，继续执行下一个命令。 *  
+* ||	在前一个命令结束时，若返回值为 false，继续执行下一个命令。 *  
+* !	执行 history 列表中的命令。*  
+#### 加入”*” 都是作用在命令名直接。可以看到shell 元字符，基本是作用在命令上面，用作多命令分割（或者参数分割）。因此看到与通配符有相同的字符，但是实际上作用范围不同。所以不会出现混淆。
+
+#### 以下是man bash 得到的英文解析：
+```shell
+metacharacter  
+              A character that, when unquoted, separates words.  One of the following:  
+              |  & ; ( ) < > space tab  
+control operator   
+              A token that performs a control function.  It is one of the following symbols:
+              || & && ; ;; ( ) | <newline>
+```
+
+## nohup 和 $ 后台执行 [转载](http://blog.csdn.net/zhang_red/article/details/52789691)
+* nohup是永久执行
+* & 是指在后台运行
+* 就是指，用nohup运行命令可以使命令永久的执行下去，和用户终端没有关系，例如我们断开SSH连接都不会影响他的运行，注意了nohup没有后台运行的意思；&才是后台运行
+* 那么，我们可以巧妙的吧他们结合起来用就是 `nohup COMMAND &`这样就能使命令永久的在后台执行
+* nohup执行后，会产生日志文件，把命令的执行中的消息保存到这个文件中，一般在当前目录下，如果当前目录不可写，那么自动保存到执行这个命令的用户的home目录下，例如root的话就保存在/root/下
 
 在Research UNIX、BSD、OS X 和 Linux 中，手册通常被分为8个区段，安排如下：
 

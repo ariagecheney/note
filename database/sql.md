@@ -34,6 +34,14 @@ default-character-set=utf8
 use mysql
 update user set host='%' where User='root' and host='localhost' limit 1;
 flush privileges;
+
+```
+或者
+用root用户 进入 mysql
+
+```sql
+grant all on CommGuard.* to 'root'@'localhost' IDENTIFIED BY '你的密码';
+flush privileges;
 ```
 ### 将MySQL 添加到服务中。
 
@@ -99,7 +107,9 @@ mysqldump -h localhost -u root -p mydb >e:\mysql\mydb.sql
 - 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
 mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
 - 3.将数据库mydb的结构导出到e:\mysql\mydb_stru.sql文件中：
-mysqldump -h localhost -u root -p mydb --add-drop-table >e:\mysql\mydb_stru.sql
+mysqldump -h localhost -u root -p mydb  --add-drop-table >e:\mysql\mydb_stru.sql
+- 3.将数据库mydb中 某表的表结构导出到e:\mysql\mydb_stru.sql文件中：
+mysqldump -h localhost -u root -p -B mydb --table tableName --opt >e:\mysql\mydb_stru.sql
 ```
 
 ### 导入

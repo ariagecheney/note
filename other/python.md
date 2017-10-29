@@ -1,3 +1,6 @@
+## 小象学院 资料
+数据集 链接: https://pan.baidu.com/s/1bP2mSI 密码: q7mu  
+
 还有同学问，能不能像.exe文件那样直接运行.py文件呢？在Windows上是不行的，但是，在Mac和Linux上是可以的，方法是在.py文件的第一行加上：#!/usr/bin/env python
 # -*- coding: utf-8 -*-告诉解释器用utf-8读取源代码
 默认参数 必须指向不变对象！l=None 函数被定义的时候已经被计算，否则运行会有逻辑错误！

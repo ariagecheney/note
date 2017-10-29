@@ -23,6 +23,8 @@
 
 注：如果是当前路径下操作，可以省略路径。如：rd 新建文件夹 或 del 新建文件.txt
 * 新建文件   type nul > log.txt
+## 系统信息
+* systeminfo
 ## 测试ip和端口是否通
 * telnet ip port
 ## 重定向 管道

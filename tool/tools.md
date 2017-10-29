@@ -74,7 +74,12 @@
     20. alt run
 
 ## 3. idea
-* 坚果云配置（${idea.home}/bin/idea.properties）
+### jetbrains toolbox 路径  
+`C:\Users\eversec\AppData\Local\JetBrains\Toolbox`
+### 中文乱码
+* [参考](http://blog.csdn.net/u013361445/article/details/51113692)
+* [参考](http://blog.csdn.net/frankcheng5143/article/details/50779149)
+### 坚果云配置（${idea.home}/bin/idea.properties）
 * acejump Ctrl+ALT+; target word
 * Find Action Ctrl+Shift+A
     1. Search everywhere   跳转到任意地方  
@@ -110,11 +115,13 @@ http://www.jianshu.com/p/97dd8978482f
 * keymap(eclipse 模式)  
 > alt + insert ： getter and setter    
 Ctrl+E，可以显示最近编辑的文件列表  
+ctrl+alt+v 生成变量名 比较有用
 CTRL+H 全局文本查找  
 CTRL+O 显示类结构  
 ctrl+F9 编译整个项目  
 ctrl+shift+F9 编译当前文件  
-Ctrl+T，接口方法的实现   
+Ctrl+T，接口方法的实现  
+Ctrl+Tab 打开idea各种panel 例如terminal，maven 
 Ctrl+F12，可以显示当前文件的结构    
 Ctrl+N，可以快速打开类  
 Ctrl+Shift+N，可以快速打开文件  

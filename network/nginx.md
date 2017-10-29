@@ -11,6 +11,7 @@
 
 ### 3. Nginx启动关闭
 ```shell
+start nginx
 nginx -s stop       快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。
 nginx -s quit       平稳关闭Nginx，保存相关信息，有安排的结束web服务。
 nginx -s reload     因改变了Nginx相关配置，需要重新加载配置而重载。

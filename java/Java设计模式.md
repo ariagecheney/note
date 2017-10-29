@@ -6,7 +6,7 @@
 
 ### **重要提示！** 此文档只是学习Java设计模式时，自己做的简要笔记，非常简陋，可以与代码一同参考，代码地址: [github designpattern](https://github.com/pmzgit/parent/tree/master/common-util/src/test/java/designpattern)
 
-## 创建型
+## 一、 创建型
 #### 工厂模式
 
 1. 静态工厂方法模式
@@ -144,6 +144,6 @@ public class Singleton {
 
 
 
-### 行为型
+## 二、行为型
 #### 策略模式（strategy）
 * 策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口。
