@@ -15,32 +15,29 @@ $ sudo npm install -g supervisor
 $ chmod u+x myscript.js
 $ ./foo.js arg1 arg2 ...
 ```
+# semver
+* [语义化版本规范](https://cnodejs.org/topic/570f8331510629637266685a)
 # npm 模块
+* “该用require还是import？”这个问题，因为这个问题就目前而言，根本没法回答，因为目前所有的引擎都还没有实现import，我们在node中使用babel支持ES6，也仅仅是将ES6转码为ES5再执行，import语法会被转码为require。这也是为什么在模块导出时使用module.exports，在引入模块时使用import仍然起效，因为本质上，import会被转码为require去执行。
 * 而当我们使用全局模式安装时，npm 会将包安装到系统目录，譬如 /usr/local/lib/node_modules/，同时 package.json 文件中 bin 字段包含的文件会被链接到 /usr/local/bin/。/usr/local/bin/ 是在PATH 环境变量中默认定义的，因此就可以直接在命令行中使用
 * （此描述有待验证）使用全局模式安装的包并不能直接在 JavaScript 文件中用 require 获得，因为 require 不会搜索 /usr/local/lib/node_modules/。
 * 如果把包安装到全局，可以提高程序的重复利用程度，避免同样的内容的多份副本，但坏处是难以处理不同的版本依赖。
 * 如果把包安装到当前目录，或者说本地，则不会有不同程序依赖不同版本的包的冲突问题，同时还减轻了包作者的 API 兼容性压力，但缺陷则是同一个包可能会被安装许多次。
-
-
 * require 不会重复加载模块，模块一旦被加载以后，就会被系统缓存。如果第二次还加载该模块，则会返回缓存中的版本，这意味着模块实际上只会执行一次。如果希望模块执行多次，则可以让模块返回一个函数，然后多次调用该函数。
 * 如果模块目录中没有package.json文件，node.js会尝试在模块目录中寻找index.js或index.node文件进行加载。
-
 * exports 实际上只是一个和 module.exports 指向同一个对象的变量，它本身会在模块执行结束后释放，但 module 不会，因此只能通过指定module.exports 来改变访问接口。不可以通过对 exports 直接赋值代替对 module.exports 赋值。
-
 * package.json文件可以手工编写，也可以使用npm init命令自动生成。  
 * npm help config   查看npm 命令文档
-
 * npm info underscore description  查看某个模块的信息
-
 * npm install sax@latest
 * npm install sax@0.1.1
 * npm install sax@">=0.1.0 <0.2.0"   选择安装模块的特定版本
 ```sh
 npm install express --save
-npm install express --save-dev
+npm install express --save-dev  // 或 npm i -D packageName
 ```
 上面代码表示单独安装express模块，--save参数表示将该模块写入dependencies属性，--save-dev表示将该模块写入devDependencies属性。
-
+* npm一次性安装多个依赖模块，模块之间用空格隔开
 * npm允许使用特殊符号，指定所要使用的版本范围，假定当前版本是1.0.4。
 只接受补丁包：1.0 或者 1.0.x 或者 ~1.0.4  
 只接受小版本和补丁包：1 或者 1.x 或者 ^1.0.4  
@@ -64,7 +61,21 @@ git://github.com/package/path.git Git地址
 user/repo
 注意，如果使用连字号，它的两端必须有空格。如果不带空格，会被npm理解成预发布的tag，比如1.0.0-rc.1。
 ```
-* npm update uninstall  更新和卸载模块（-g） 参数全局
+* npm update
+```
+This command will update all the packages listed to the latest version (specified by the tag config), respecting semver.
+
+It will also install missing packages. As with all commands that install packages, the --dev flag will cause devDependencies to be processed as well.
+
+If the -g flag is specified, this command will update globally installed packages.
+
+If no package name is specified, all packages in the specified location (global or local) will be updated.
+
+As of npm@2.6.1, the npm update will only inspect top-level packages. Prior versions of npm would also recursively inspect all dependencies. To get the old behavior, use npm --depth 9999 update.
+
+```
+
+*  uninstall  更新和卸载模块（-g） 参数全局
 
 * npm list -g 
 
@@ -79,6 +90,13 @@ user/repo
 * 执行顺序   
 "build": "npm run build-js && npm run build-css"
 上面的写法是先运行npm run build-js，然后再运行npm run build-css，两个命令中间用&&连接。如果希望两个命令同时平行执行，它们中间可以用&连接。
+
+# ESLint
+* [配置](https://eslint.org/docs/user-guide/configuring)
+* [ide 集成](https://eslint.org/docs/user-guide/integrations)
+# css Moudles
+* [阮一峰](http://www.ruanyifeng.com/blog/2016/06/css_modules.html)
+* [插件](https://github.com/css-modules/css-modules/blob/master/docs/get-started.md)
 # 自定义node 包
 * 例如创建一个名为 byvoidmodule 的目录，然后在这个目录中运行npm init：这样就在 byvoidmodule 目录中生成一个符合 npm 规范的 package.json 文件。
 * 创建一个index.js 作为包的接口，一个简单的包就制作完成了。
@@ -86,6 +104,8 @@ user/repo
 * 接下来，在 package.json 所在目录下运行 npm publish，稍等片刻就可以完成发布了。
 * 打开浏览器，访问 http://search.npmjs.org/ 就可以找到自己刚刚发布的包了。现在我们可以在世界的任意一台计算机上使用 npm install byvoidmodule 命令来安装它。
 * 如果你的包将来有更新，只需要在 package.json 文件中修改 version 字段，然后重新使用 npm publish 命令就行了。如果你对已发布的包不满意（比如我们发布的这个毫无意义的包），可以使用 npm unpublish 命令来取消发布。
+
+
 
 # 调试
 在命令行下执行 node debug debug.js，

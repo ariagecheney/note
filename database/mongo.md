@@ -138,17 +138,18 @@ db.inventory.find(
 * 除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
 ### [distinct](http://docs.mongoing.com/manual-zh/reference/method/db.collection.distinct.html)
 `db.collection.distinct(field, query, options);`
+`db.media.distinct( key, query, <optional params> ) - e.g. db.media.distinct( 'x' ), optional parameters are: maxTimeMS`
 ## 导入 导出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
 * `./mongoexport -h [IP]:[port] -d [db] -c [collection] -u [user] -p [password]--port 27018 -q '{insertDate:{$gt:ISODate("2017-07-18T11:00:00.603Z")}}' -o ./HeartLogin.dat`
 
 * `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --sort '{createDate:-1}'--type=csv -f phone,insertDate > HeartLogin.csv`
-* `./mongoimport -u root -p eversec123098 --host 192.168.200.67:27010 --authenticationDatabase=admin -d test -c aaa --file /home/pmz/tmp/用户感染事件0817记录.csv --type csv --headerline`  
+* `./mongoimport -u root -p pwd --host 192.168.200.67:27010 --authenticationDatabase=admin -d test -c aaa --file /home/pmz/tmp/用户感染事件0817记录.csv --type csv --headerline`  
 * `./mongoexport -d CallCloudManager -c V2_PushRecordAll -q '{createDate:{$gte:ISODate("2017-08-17T16:00:00.000Z")},proCode:{$exists:false}}' -u root -p pwd --host 192.168.243.140:27017 --authenticationDatabase=admin --out /home/pmz/temp/push.json`
 <!-- 注意正则表达式 元字符要转义 -->
 * `mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json`
 * `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`
 
-### 聚合
+# 聚合
 ```js
 // 按时间分组（本地时间：北京，东八区）貌似网上很少有人提到时区这个问题，
 // $dateToString 日期这个格式化，是utc时间，所以单纯格式化，不是本地时间，暂时没找到好的办法，所以 用$project 映射一下，在原有日期字段加八个小时，在做后边的分组查询
@@ -182,4 +183,20 @@ AggregationOptions options = AggregationOptions
             log.info(g.getString("date"));
             log.info(g.getString("proCode"));
         } 
+```
+
+## spring-data-mongo
+```java
+MatchOperation match = Aggregation.match(Criteria.where("status").is(1).and("content").regex("\"uuid\":26").and("createDate").gte(st).lt(ed));
+        ProjectionOperation project = Aggregation.project("proCode").and("createDate").plus(8*60*60*1000).as("addtime");
+        ProjectionOperation projectTime = Aggregation.project("proCode").and("addtime").dateAsFormattedString("%Y-%m-%d").as("ctime");
+        GroupOperation group = Aggregation.group("ctime", "proCode").count().as("pushNum");
+        SortOperation sort = Aggregation.sort(Sort.Direction.ASC, "_id.ctime");
+        Aggregation agg = Aggregation.newAggregation(match,project,projectTime,group,sort);
+        log.info("countPushNum-agg={}",agg.toString());
+        AggregationResults<BasicDBObject> v2_pushRecordAll = mongoTemplate.aggregate(agg, "V2_PushRecordAll", BasicDBObject.class);
+        List<BasicDBObject> mappedResults = v2_pushRecordAll.getMappedResults();
+        for (BasicDBObject basicDBObject: mappedResults){
+            System.out.println(basicDBObject.toJson());
+        }
 ```

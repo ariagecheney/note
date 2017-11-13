@@ -8,12 +8,33 @@
     ↑ 键 或 Ctrl + P：选择上一项；
 
     → 键 或 Ctrl + O：打开选中项的动作菜单。
+## cmder
+### 添加至右键菜单  [参考](http://www.cnblogs.com/zqzjs/archive/2016/12/19/6188605.html)
 
-## 1. atom
+进入cmder的根目录执行注册要右键菜单即可。
+
+C:\Windows\system32>d:
+
+D:\>cd cmder
+
+D:\cmder>Cmder.exe /REGISTER ALL
+
+### 快捷键
+* Ctrl + ` : Global Summon from taskbar
+* shift + Alt + number : Fast new tab:
+1. CMD
+2. PowerShell
+* Ctrl + w : Close tab
+### 设置中文显示
+* set LANG=zh_CN.UTF-8
+
+## svn
+### 解除版本控制
+* 在要解除版本控制的文件夹右键TortoiseSVN–>Export–>选择同一个文件夹（目标文件夹一定要和你右击的文件夹是同一个文件夹），这时就会出现“是否解除版本控制”的对话框。 
+
+##  Atom
 ### setting
 1. Editor tab length 设置为4
-
-
 ### Packages
 
 1. atom-beautify

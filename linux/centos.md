@@ -3,6 +3,18 @@
 
 ## [理解Linux系统/etc/init.d目录和/etc/rc.local脚本](http://blog.csdn.net/acs713/article/details/7322082)
 
+## 中文语言
+* echo $LANG 
+查看当前语言
+* locale -a
+查看是否安装中文语言包（zh_CN.UTF-8）  
+* 安装中文语言包  
+`yum groupinstall chinese-support`  
+
+* `vim  /etc/sysconfig/i18n` 配置文件   
+设置 `LANG="zh_CN.UTF-8"`
+重启
+* 临时设置 LANG 环境变量也可，即时生效
 ## 关机or重启
 `shutdown -h now`  
 `sudo shutdown -r +1 "off"`
@@ -123,6 +135,29 @@ yum clean packages 清除缓存目录/var/cache/yum下的软件包
 yum clean headers 清除缓存目录下的 headers
 yum clean oldheaders 清除缓存目录下旧的 headers
 yum clean, yum clean all (= yum clean packages; yum clean oldheaders) 清除缓存目录下的软件包及旧的headers
+```
+## centos 编译安装git
+```sh
+卸载自带的git
+yum remove git
+下载最新版git
+wget https://www.kernel.org/pub/software/scm/git/git-2.15.0.tar.gz
+解压
+tar zxvf git-2.15.0.tar.gz
+cd git-2.15.0
+编译安装
+make configure
+./configure --prefix=/usr/local/git --with-iconv=/usr/local/libiconv
+make all doc
+sudo make install install-doc install-html
+修改环境变量
+sudo vim /etc/profile
+在最后一行添加
+export PATH=/usr/local/git/bin:$PATH
+保存后使其立即生效
+source /etc/profile
+查看是否安装成功
+git --version
 ```
 
 ## scp

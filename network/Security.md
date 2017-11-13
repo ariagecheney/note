@@ -33,9 +33,130 @@
 
 ## HTTPS
 [https by 腾讯Bugly](https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=402615812&idx=1&sn=b6dae639119bb66e7025321254b8d973&scene=1&srcid=122439MA3l7gRwfjgNOB76pA#rd)
+## 数字证书文件格式（cer和pfx）的区别 [转载](http://blog.csdn.net/wangjun_pfc/article/details/5493900)
+* 作为文件形式存在的证书一般有这几种格式：   
+1. 带有私钥的证书  
+　　由Public Key Cryptography Standards #12，PKCS#12标准定义，包含了公钥和私钥的二进制格式的证书形式，以pfx作为证书文件后缀名。  
+2. 二进制编码的证书  
+证书中没有私钥，扩展名DER用于二进制DER编码的证书。这些证书也可以用CER或者CRT作为扩展名。比较合适的说法是“我有一个DER编码的证书”，而不是“我有一个DER证书”。
+3. Base64编码的证书  
+证书中没有私钥，BASE64 编码格式的证书文件（各种X.509 v3 证书），也是以cer作为证书文件后缀名。  
 
-## https双向认证，客户端使用与服务端协商好的自签证书
-参考微信支付文档,和ClientCustomSSL.java, `../assets/下相关文件`
+* 由定义可以看出，只有pfx格式的数字证书是包含有私钥的，cer格式的数字证书里面只有公钥没有私钥。
+ 
+* 在pfx证书的导入过程中有一项是“标志此密钥是可导出的。这将您在稍候备份或传输密钥”。一般是不选中的，如果选中，别人就有机会备份你的密钥了。如果是不选中，其实密钥也导入了，只是不能再次被导出。这就保证了密钥的安全。
+* 如果导入过程中没有选中这一项，做证书备份时“导出私钥”这一项是灰色的，不能选。只能导出cer格式的公钥。如果导入时选中该项，则在导出时“导出私钥”这一项就是可选的。
+* 如果要导出（pfx)私钥,是需要输入密码的，这个密码就是对私钥再次加密，这样就保证了私钥的安全，别人即使拿到了你的证书备份（pfx),不知道加密私钥的密码，也是无法导入证书的。相反，如果只是导入导出cer格式的证书，是不会提示你输入密码的。因为公钥一般来说是对外公开的，不用加密
+* der类型的不用在编码解码，直接就是二进制的数据可以直接使用；
+* pem类型的数据要根据base64编码解码后，得到的数据需要进行增加或裁剪特殊字符-、\n、\r、begin信息、end信息等。
+## 证书文件格式标准 [转载](http://blog.csdn.net/xiao_zhu_kuai_pao/article/details/45675509)
+* PEM是OpenSSL和许多其他SSL工具的标准格式，OpenSSL 使用PEM 文件格式存储证书和密钥。这种格式被设计用来安全的包含在ascii甚至富文本文档中，如电子邮件。这意味着您可以简单的复制和粘贴pem文件的内容到另一个文档中。
+* PEM文件是Base64编码的证书。PEM证书通常用于web服务器，因为他们可以通过一个简单的文本编辑器，很容易地转换成可读的数据。通常当一个PEM编码在文本编辑器中打开文件,它会包含不同的页眉和页脚。：
+
+1. CSR(证书签名请求)  
+-----BEGIN CERTIFICATE REQUEST-----   
+xxx   
+-----END CERTIFICATEREQUEST-----    
+
+2. 私钥   
+-----BEGIN RSA PRIVATE KEY-----  
+xxx   
+-----END RSA PRIVATEKEY-----  
+
+3. 证书文件  
+-----BEGIN CERTIFICATE-----  
+ xxx  
+-----END CERTIFICATE-----  
+4. PKCS #8: Private-Key Information Syntax（语法） Standard（标准）
+
 
 ## [openssl](https://baike.baidu.com/item/openssl/5454803?fr=aladdin)
+* OpenSSL：是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。
+* OpenSSL整个软件包大概可以分成三个主要的功能部分：密码算法库、SSL协议库以及应用程序。OpenSSL的目录结构自然也是围绕这三个功能部分进行规划的。
 ``
+* 命令选项  
+![](../assets/openssl-options.png)
+## 实战
+1. 生成 rsa 私钥  （原始私钥）
+`openssl genrsa -out rsa_privateKey.pem 1024`
+* 文件内容如图：  
+![](../assets/rsa-privateKey.png)
+2. RSA私钥转换成PKCS8格式  
+`openssl pkcs8 -topk8 -inform PEM -in rsa_privateKey.pem -outform PEM -nocrypt`
+* std 输出   
+![](../assets/rsa-to-pkcs8.png)
+
+* 使用该命令，将私钥转成PKCS#8格式，但原rsa_privateKey.pem文件中的私钥字符串并没有任何变化。但控制台输出的private key，跟rsa_privateKey.pem文件中的private key，不一样。若需使用PKCS8格式的私钥，即控制台中显示的私钥，将其拷贝出来即可。
+* 注意，begin 与end 区别
+3.  在转换的时候对私钥加密  
+`openssl pkcs8 -topk8 -inform PEM -in rsa_privateKey.pem -outform PEM`   
+去掉 -nocrypt 选项即可  
+* 此时，控制台打印出的内容  
+-----BEGIN ENCRYPTED PRIVATE KEY-----开头，-----END ENCRYPTED PRIVATE KEY-----结尾的字符串，这个就是加了密的PKCS#8格式的私钥。  因为输入了密码，转换后的字符串不一样，会比加了-nocrypt的长一些，所以原来的程序解析不了该私钥字符串，会出错。 
+* 注意，begin 与end 区别
+4. 生成与rsa原始私钥对应的RSA公钥  
+` openssl rsa -in rsa_privateKey.pem -pubout -out rsa_publicKey.pem`
+* 如图   
+![](../assets/rsa-publicKey.png)
+### 从apiclient_cert.p12中导出证书部分的文件，为pem格式
+* `openssl pkcs12 -clcerts -nokeys -in apiclient_cert.p12 -out apiclient_cert.pem`
+* 文件内容如图
+![](../assets/pkcs12-cert-pem.png)
+### 从apiclient_key.pem中导出密钥部分的文件，为pem格式
+* `openssl pkcs12 -nocerts -in apiclient_cert.p12 -out apiclient_key.pem`
+* 文件内容如图
+![](../assets/pkcs12-pkcs8-pem.png)
+## Java使用pem文件内容，示例代码
+```java
+1）私钥签名
+a）获取私钥
+//获取KeyFactory，指定RSA算法
+KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//将BASE64编码的私钥字符串进行解码
+BASE64Decoder decoder = new BASE64Decoder();
+byte[] encodeByte = decoder.decodeBuffer(priKey);
+//将BASE64解码后的字节数组，构造成PKCS8EncodedKeySpec对象，生成私钥对象
+PrivateKey privatekey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(encodeByte));
+        
+b）使用私钥，对数据进行签名
+         //获取Signature实例，指定签名算法（本例使用SHA1WithRSA）
+Signature signature = Signature.getInstance("SHA1WithRSA");
+//加载私钥
+signature.initSign(privatekey);
+//更新待签名的数据
+signature.update(plain.getBytes("UTF-8"));
+//进行签名
+byte[] signed = signature.sign();
+//将加密后的字节数组，转换成BASE64编码的字符串，作为最终的签名数据
+BASE64Encoder encoder = new BASE64Encoder();
+return encoder.encode(signed);
+ 
+2）公钥验签
+a）获取公钥
+//获取KeyFactory，指定RSA算法
+KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+   //将BASE64编码的公钥字符串进行解码
+BASE64Decoder decoder = new BASE64Decoder();
+byte[] encodeByte = decoder.decodeBuffer(pubKey);
+//将BASE64解码后的字节数组，构造成X509EncodedKeySpec对象，生成公钥对象
+PublicKey publicKey = keyFactory.generatePublic(new X509EncodedKeySpec(encodeByte));
+ 
+b）使用公钥，进行验签
+//获取Signature实例，指定签名算法(与之前一致)
+Signature signature = Signature.getInstance("SHA1WithRSA");
+//加载公钥
+signature.initVerify(publicKey);
+//更新原数据
+signature.update(plain.getBytes("UTF-8"));
+//公钥验签（true-验签通过；false-验签失败）
+BASE64Decoder decoder = new BASE64Decoder();
+returnsignature.verify(decoder.decodeBuffer(sign));
+        
+         备注：
+验签时，签名数据需要先BASE64解码
+```
+
+## [java keytool证书工具使用小结](http://www.micmiu.com/lang/java/keytool-start-guide/)
+## JKS_密钥对生成与读取方法[转载](http://blog.csdn.net/xiao_zhu_kuai_pao/article/details/45441853)
+## https双向认证，客户端使用与服务端协商好的自签证书
+参考微信支付文档,和ClientCustomSSL.java, `../assets/下相关文件`
