@@ -24,7 +24,7 @@ D:\cmder>Cmder.exe /REGISTER ALL
 * shift + Alt + number : Fast new tab:
 1. CMD
 2. PowerShell
-* Ctrl + w : Close tab
+* Ctrl + w : 与vim 冲突，建议修改[issues](https://github.com/cmderdev/cmder/issues/293)
 ### 设置中文显示
 * set LANG=zh_CN.UTF-8
 

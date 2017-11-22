@@ -43,16 +43,24 @@ alias cd3="cd ../../../"
 alias grep="grep --color"
 alias egrep="egrep --color"
 ```
+## CentOS ping: unknown host 解决方法
 
-## 配置dns
+1. 配置dns
 vi /etc/resolv.conf 文件内容   
 nameserver 8.8.8.8  
- nameserver 8.8.4.4   
- search localdomain  
-//重启网络  
+nameserver 8.8.4.4
+   
+2. 确保路由表正常  
+netstat -rn
+如果未设置, 则通过如下方式增加网关:
+route add default gw 192.168.1.1
+3. 确保可用dns解析
+grep hosts /etc/nsswitch.conf 
+> hosts:      files dns  
+4. 重启网络  
 service network restart 或 /etc/init.d/network restart 
 
-* 查看运行级别用：runlevel  /etc/inittab  startx或者xinit 
+## 查看运行级别用：runlevel  /etc/inittab  startx或者xinit 
 0：停止系统运行。init 0〈回车〉相当于 halt〈回车〉。
 6：重启系统。init 6〈回车〉相当于 reboot〈回车〉。
 
