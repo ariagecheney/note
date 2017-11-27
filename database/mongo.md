@@ -31,6 +31,10 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * use dbname 切换或创建 db
 * db
 * show tables
+* show users  #显示用户
+* db.stats()  #显示当前db状态
+* db.getMongo()  ＃查看当前db的链接机器地址
+* db.serverStatus()  #查看数据库服务器的状态
 * db.createCollection("testcollection");
 * db.dropDatabase()
 * db.kx_persons.renameCollection("kx_phones")

@@ -1,14 +1,29 @@
 # 参考 
-[](http://harttle.com/2015/11/06/tmux-startup.html)
+[tmux 使用](http://harttle.com/2015/11/06/tmux-startup.html)
 
 # 安装
 ## 编译安装（centos6.6）
-### 1 依赖
+### 1 下载依赖(最新版本)
 * [libevent](http://libevent.org/)
 * [ncurses](http://ftp.gnu.org/pub/gnu/ncurses/)
-
+### 2 编译安装
+```sh
+分别解压。
+tar xzvf libevent.tar.gz
+进入 libevent 目录，分别执行以下命令：
+sudo ./configure
+sudo make
+sudo make install
+// 然后 ncurses ，tmux 都执行上述步骤，进行编译安装
+```
+### 测试是否成功
+`tmux -V`
+## yum 源安装
+### 1. 添加remi 和 epel 源 (参考我之前的note)
+### 2. `yum install tmux `
 # 使用
 * `prefix ?` 显示keymap
+* `tmux kill-server` kill tmux server
 ## Session相关操作
 * `tmux new -s name` 创建指定session名
 * `<prefix> d` 退出(detach)当前session
