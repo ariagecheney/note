@@ -1,5 +1,7 @@
-## 安装
+## window 安装服务
 * mongod.exe --logpath "D:\install\mongo3.4\data\log\mongodb.log" --logappend --dbpath "D:\install\mongo3.4\data\db" --serviceName "MongoDB" --install
+## centos 安装： 下载，解压，即可
+`curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.6.0.tgz`
 ## 安全配置
 ```shell
 1. 配置文件 加上 权限开启参数 
@@ -43,7 +45,37 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * db.version() 查看mongodb版本
 * db.collection.getIndexes() 查看索引
 * db.users.find( { name : { $exists: false } } )
+## mongo 配置文件 （包含副本集配置项）
+```yml
+systemLog:
+   destination: file
+   path: "/home/pmz/pac/mongodb3.4.10/log/mongod.log47017"
+   logAppend: true
+storage:
+   dbPath: "/home/pmz/pac/mongodb3.4.10/data47017"
+   engine: wiredTiger
+   wiredTiger:
+      engineConfig:
+         journalCompressor: snappy
+   directoryPerDB: true
+   journal:
+      enabled: true
+processManagement:
+   fork: true
+net:
+   bindIp: 0.0.0.0 // 允许远程访问，注意把此注释去掉
+   port: 47017
+#   ssl:
+#      mode: disabled
+setParameter:
+   enableLocalhostAuthBypass: false
+security:
+   authorization: disabled 
+replication:
+   oplogSizeMB: 30720
+   replSetName: test_repl
 
+```
 ```shell
 // 后台运行时，关闭mongod
 use admin
@@ -71,7 +103,7 @@ config = { _id:"replset", members:[
 
  // 设置副本集节点可读
  use yes_db
- db.getMongo().setSlaveOk();
+ db.getMongo().setSlaveOk(); 或者 rs.slaveOk()
  show tables;
  db.yes_users.find();  
 
@@ -144,6 +176,7 @@ db.inventory.find(
 `db.collection.distinct(field, query, options);`
 `db.media.distinct( key, query, <optional params> ) - e.g. db.media.distinct( 'x' ), optional parameters are: maxTimeMS`
 ## 导入 导出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
+* `./mongoexport --help` 
 * `./mongoexport -h [IP]:[port] -d [db] -c [collection] -u [user] -p [password]--port 27018 -q '{insertDate:{$gt:ISODate("2017-07-18T11:00:00.603Z")}}' -o ./HeartLogin.dat`
 
 * `./mongoexport -d CommGuard -c HeartLogin -q '{insertDate:{$gte:ISODate("2017-07-19T16:00:00.000Z"),$lt:ISODate("2017-07-24T16:00:00.000Z")}}' --sort '{createDate:-1}'--type=csv -f phone,insertDate > HeartLogin.csv`
@@ -151,7 +184,12 @@ db.inventory.find(
 * `./mongoexport -d CallCloudManager -c V2_PushRecordAll -q '{createDate:{$gte:ISODate("2017-08-17T16:00:00.000Z")},proCode:{$exists:false}}' -u root -p pwd --host 192.168.243.140:27017 --authenticationDatabase=admin --out /home/pmz/temp/push.json`
 <!-- 注意正则表达式 元字符要转义 -->
 * `mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json`
-* `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`
+* `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`  
+* 大文件导入: 因为Mongo对单次处理好像有大小限制（16m）好像是，
+所以大文件会出问题,这应该是个Bug mongoimport 默认会10000条 为一个批量导入数据，但实际上单条数据太大了,每10000条导入一次肯定是不行的.
+参数 --batchSize 可以指定每次批量导入的条数 设置小一些就OK了，可设置为 --batchSize：50
+* --numInsertionWorkers 并发执行线程数，最好设置成cpu 核数
+* `./mongoimport -d CallCloudManager -c V2_OperationLog1711 -u user -p pwd --host 192.168.243.142:27017 --authenticationDatabase=admin --file ./V2_OperationLog.json --mode upsert --stopOnError --numInsertionWorkers 4 --batchSize：50`
 
 # 聚合
 ```js

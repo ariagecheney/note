@@ -82,7 +82,9 @@ var box = new Box();
 box.startAnimation();
 ````
 
-### css常用操作
+### [flex](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+### [css 布局](http://zh.learnlayout.com/toc.html)
 
 - 盒子模型
 
@@ -92,11 +94,11 @@ box.startAnimation();
 - 对齐
 
   > - margin 水平
-  > - position 4个值  
-  >   static  
+  > - position 4个值  [参考](http://zh.learnlayout.com/position.html)  
+  >   static  默认
   >   absolute 脱离文档流  
   >   relative  
-  >   fixed  
+  >   fixed  脱离文档流，相对于视窗
   > - float 左右  
   >   inline-block 脱离文档流  
   >   .clearfix { overflow: auto; zoom: 1; }

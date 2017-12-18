@@ -1,3 +1,13 @@
+### Bash Shell 中文件名不同颜色的含义
+* 蓝色－目录
+* 绿色－可执行文件
+* 红色－压缩文件
+* 浅蓝色－链接文件
+* 灰色－其他文件
+* 紫色－图形文件
+* 黄色－设备文件
+* 棕色－FIFO文件（先进先出，命令管道）
+
 ### 查看系统信息
 * 发行版本：cat /etc/issue  或者 cat /etc/debian_version 
 * 内核版本：cat /proc/version
@@ -466,15 +476,6 @@ $ sudo apt-get -f install
 $ sudo dpkg -L emacs24
 `sudo dpkg -l | grep soft_name` 搜索系统中安装的指定软件
 
-linux 查看硬件信息
-lscpu 查看cpu统计信息 或者 cat /proc/cpuinfo 查看每个cpu信息，如cpu型号，主频
-
-查看概要内存情况 free -h 查看内存详细使用情况 cat /proc/meminfo
-
-查看内存硬件（主板槽位信息）dmidecode -t memeory
-* `getconf LONG_BIT` 查看操作系统位数  
-`lsb_release -a` 查看当前系统版本信息
-`uname -a` 查看系统内核信息
 
 ## jdk install
 我们把JDK安装到这个路径：/usr/lib/jvm
@@ -842,8 +843,7 @@ tar -rvf shiyanlou.tar file_extra.txt
 tar -czf shiyanlou.tar.gz ~
 tar -xzf shiyanlou.tar.gz
 
-查看磁盘容量  df -h
-查看目录容量  du -h -d（目录深度0-一级 1-二级）
+
 
 1.创建虚拟磁盘
 dd命令用于转换和复制文件，，dd 也可以读取自和/或写入到这些文件。这样，dd也可以用在备份硬件的引导扇区、获取一定数量的随机数据或者空数据等任务中。dd程序也可以在复制时处理数据，例如转换字节序、或在 ASCII 与 EBCDIC 编码间互换。
@@ -968,15 +968,7 @@ $ sudo apt-get -f install
 $ sudo dpkg -L emacs24
 `sudo dpkg -l | grep soft_name` 搜索系统中安装的指定软件
 
-linux 查看硬件信息
-lscpu 查看cpu统计信息 或者 cat /proc/cpuinfo 查看每个cpu信息，如cpu型号，主频
 
-查看概要内存情况 free -h 查看内存详细使用情况 cat /proc/meminfo
-
-查看内存硬件（主板槽位信息）dmidecode -t memeory
-* `getconf LONG_BIT` 查看操作系统位数  
-`lsb_release -a` 查看当前系统版本信息
-`uname -a` 查看系统内核信息
 
 ## jdk install
 我们把JDK安装到这个路径：/usr/lib/jvm
@@ -1066,14 +1058,7 @@ find / -inum 3814056
 /home/homer/me/.me/myInfo.txt_ln
 /home/homer/bin/myInfo.txt
 ```
-
-### Bash Shell 中文件名不同颜色的含义
-
-> 蓝色－目录
-绿色－可执行文件
-红色－压缩文件
-浅蓝色－链接文件
-灰色－其他文件
-紫色－图形文件
-黄色－设备文件
-棕色－FIFO文件（先进先出，命令管道）
+### strings 命令
+* 在对象文件或二进制文件查找可打印的字符串
+`Print all strings in a binary: strings file`
+`strings /usr/lib64/libssl.so |grep OpenSSL`

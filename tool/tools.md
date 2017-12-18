@@ -1,4 +1,4 @@
-## Listory
+# Listory
 * 启动  
     1. 文件管理器模式：直接输入 双击
     2. 启动器模式： ct 两下  
@@ -8,7 +8,7 @@
     ↑ 键 或 Ctrl + P：选择上一项；
 
     → 键 或 Ctrl + O：打开选中项的动作菜单。
-## cmder
+# cmder
 ### 添加至右键菜单  [参考](http://www.cnblogs.com/zqzjs/archive/2016/12/19/6188605.html)
 
 进入cmder的根目录执行注册要右键菜单即可。
@@ -24,15 +24,16 @@ D:\cmder>Cmder.exe /REGISTER ALL
 * shift + Alt + number : Fast new tab:
 1. CMD
 2. PowerShell
+* ctrl + tab 切换窗口
 * Ctrl + w : 与vim 冲突，建议修改[issues](https://github.com/cmderdev/cmder/issues/293)
 ### 设置中文显示
 * set LANG=zh_CN.UTF-8
 
-## svn
+# svn
 ### 解除版本控制
 * 在要解除版本控制的文件夹右键TortoiseSVN–>Export–>选择同一个文件夹（目标文件夹一定要和你右击的文件夹是同一个文件夹），这时就会出现“是否解除版本控制”的对话框。 
 
-##  Atom
+#  Atom
 ### setting
 1. Editor tab length 设置为4
 ### Packages
@@ -58,43 +59,8 @@ D:\cmder>Cmder.exe /REGISTER ALL
 ### 快捷键（vim插件环境下）
 * 注释 ctrl+/
 
-## 2. win softwire
-* dev  
-    1. Git  
-    2. vscode or atom or sublime  
-    3. jdk  
-    4. tomcat  
-    5. maven  
-    6. idea  
-        config  
-    7. mysql  
-    8. navicat -百度网盘  
-    9. xshell  
-    10. lantern  
-    11. altrun - 坚果云  
-    12. eclipse  
-    13. node  
-    14. svn  
-    15. smartgit
 
-* user  
-    1. zip
-    2. compare  
-    3. fscapcher  
-    4. wiz evernote  
-    5. mychrom  
-    6. potplayer  
-    9. sougou  
-    10. qq  
-    11. teamviewer  
-    12. youdao  
-    13. pdf  
-    14. office wps  
-    18. VC REDIST INSTALLER  
-    19. clower
-    20. alt run
-
-## 3. idea
+#  idea
 ### jetbrains toolbox 路径  
 `C:\Users\eversec\AppData\Local\JetBrains\Toolbox`
 ### 中文乱码
@@ -132,6 +98,7 @@ D:\cmder>Cmder.exe /REGISTER ALL
 http://www.jianshu.com/p/97dd8978482f
 * 破解
     1. `license-server http://phxism.top:41017/`
+    2. http://xidea.online/
 
 * keymap(eclipse 模式)  
 > alt + insert ： getter and setter    
@@ -142,6 +109,7 @@ CTRL+O 显示类结构
 ctrl+F9 编译整个项目  
 ctrl+shift+F9 编译当前文件  
 Ctrl+T，接口方法的实现  
+Alt+左方向键 返回上一个编辑位置，相反亦然
 Ctrl+Tab 打开idea各种panel 例如terminal，maven 
 Ctrl+F12，可以显示当前文件的结构    
 Ctrl+N，可以快速打开类  
@@ -162,11 +130,12 @@ F11 mark
 > f6 下一步  
   f9 下一个断点
 
-## 4 vsc
+# vsc
 ### 快捷键
 * 格式化 c+k c+f
 * getter，setter alt+insert
 * go to line c+g
+* 全局搜索 C+Sh+f
 
 ## chrome plugins
 * 划词翻译   ctrl+q
@@ -187,8 +156,43 @@ Arrow keys: Move the ruler by 1 pixel in any direction
 + Ctrl (Command) + Alt: Shrink the ruler inwards by 1 pixel
 + Shift + Ctrl (Command) + Alt: Shrink the ruler inwards by 10 pixels
 * cssviewer    chrome单独设置  alt+v
+# win softwire
+* dev  
+    1. Git  
+    2. vscode or atom or sublime  
+    3. jdk  
+    4. tomcat  
+    5. maven  
+    6. idea  
+        config  
+    7. mysql  
+    8. navicat -百度网盘  
+    9. xshell  
+    10. lantern  
+    11. altrun - 坚果云  
+    12. eclipse  
+    13. node  
+    14. svn  
+    15. smartgit
 
-## window path
+* user  
+    1. zip
+    2. compare  
+    3. fscapcher  
+    4. wiz evernote  
+    5. mychrom  
+    6. potplayer  
+    9. sougou  
+    10. qq  
+    11. teamviewer  
+    12. youdao  
+    13. pdf  
+    14. office wps  
+    18. VC REDIST INSTALLER  
+    19. clower
+    20. alt run
+
+# window path
 ```dos
 Path=D:\soft\install\python\;  
 D:\soft\install\python\Scripts;  
@@ -215,7 +219,7 @@ D:\soft\install\svn\bin;
 C:\Users\Administrator\AppData\Local\atom\bin;
 C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin
 ```
-## win10
+# win10
 * win+shift+s  和 ctrl + shift + printscreen 截屏
 * win+空格 切换输入法
 * Ct + Sh + b 表情 ct + 方向键 切换

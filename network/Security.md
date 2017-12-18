@@ -73,9 +73,45 @@ xxx
 ## [openssl](https://baike.baidu.com/item/openssl/5454803?fr=aladdin)
 * OpenSSL：是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。
 * OpenSSL整个软件包大概可以分成三个主要的功能部分：密码算法库、SSL协议库以及应用程序。OpenSSL的目录结构自然也是围绕这三个功能部分进行规划的。
-``
+### centos6 升级 openssl 详解
+#### 1 编译安装
+* 下载最新 `wget https://www.openssl.org/source/openssl-1.0.2-latest.tar.gz`
+* 解压 `tar xzvf openssl-1.0.2n.tar.gz` ,并进入解压后的目录
+* 执行文件夹中的config文件，这里openssl的安装目录默认是/usr/local/ssl（由于系统环境差异路径可能不一致，下同），注意添加zlib-dynamic参数，使其编译成动态库  
+`./config shared zlib-dynamic`  
+`make`  
+`make install`  
+#### 2 更新相关执行文件、库文件 
+* 重命名原来的openssl命令
+`mv /usr/bin/openssl  /usr/bin/openssl.old`
+* 重命名原来的openssl目录
+`mv /usr/include/openssl  /usr/include/openssl.old`
+* 将安装好的openssl 的openssl命令软连到/usr/bin/openssl
+`ln -s /usr/local/ssl/bin/openssl  /usr/bin/openssl`
+* 将安装好的openssl 的openssl目录软连到/usr/include/openssl
+`ln -s /usr/local/ssl/include/openssl  /usr/include/openssl`
+
+* 修改系统自带的openssl库文件。可以看到：  
+Centos6.5 的是在/usr/lib/libssl.so  和/usr/lib/libssl.so.1.0.1
+其中/usr/lib/libssl.so是/usr/lib/libssl.so.1.0.1的软连接
+只需要把/usr/local/ssl/lib/libssl.so.1.0.0替换为/usr/lib/libssl.so.1.0.1即可。  
+`mv /usr/lib/libssl.so.1.0.0  /usr/lib/libssl_so.1.0.0_bak`  
+`cp  /usr/local/ssl/lib/libssl.so.1.0.0  /usr/lib/libssl.so.1.0.0`  
+* 同样，更新 /usr/lib64/libcrypto.so.1.0.0 为新的/usr/local/ssl/lib/libcrypto.so.1.0.0 库文件
+* 检查是否操作正确
+执行命令查看openssl依赖库版本是否为1.0.2n：
+`strings /usr/lib64/libssl.so |grep OpenSSL`
+#### 3 配置
+* 在/etc/ld.so.conf文件中写入openssl库文件的搜索路径（先检查是否已经配置好）
+`echo "/usr/local/ssl/lib" >> /etc/ld.so.conf`
+* 使修改后的/etc/ld.so.conf生效 
+`ldconfig -v`
+#### 4 查看现在openssl的版本是否是升级后的版本,并重启依赖openssl的服务
+* `openssl version`
+* 此外还需要重启其他与OpenSSL相关的服务
 * 命令选项  
 ![](../assets/openssl-options.png)
+* 参考 [官网](https://www.openssl.org/source/)
 ## 实战
 1. 生成 rsa 私钥  （原始私钥）
 `openssl genrsa -out rsa_privateKey.pem 1024`

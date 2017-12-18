@@ -1,6 +1,24 @@
 ## 查看发行版信息
 `cat /etc/issue`
+or
+`lsb_release -a` 查看当前系统版本信息
+## linux 查看硬件信息
+* `cat /proc/cpuinfo or lscpu` 查看cpu统计信息 
+```
+socket：物理CPU的插槽
+Core per Socket：每一个插槽对应的物理CPU上有多少个核
+Thread per Core：每个核上有多少个线程
 
+看个图：（几核几线程就是指有多少个“Core per Socket”多少个“Thread per Core”,当后者比前者多时，
+说明启用了超线程技术）
+```
+* `free` 查看概要内存情况  
+* `cat /proc/meminfo` 查看内存详细使用情况 
+* `dmidecode -t memory` 查看内存硬件（主板槽位信息）
+* `getconf LONG_BIT` 查看操作系统位数  
+* `uname -a` 查看系统内核信息
+* `df -h` 查看磁盘容量  
+* `du -sh` Show the size of a single folder, in human readable units:
 ## [理解Linux系统/etc/init.d目录和/etc/rc.local脚本](http://blog.csdn.net/acs713/article/details/7322082)
 
 ## 中文语言

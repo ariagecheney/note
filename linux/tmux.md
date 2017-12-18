@@ -37,6 +37,7 @@ sudo make install
 ## Window相关操作
 * `	prefix c` 新建窗口
 * `prefix &` 关闭一个窗口
+* `prefix ,` 窗口重命名
 * `prefix 窗口号` 使用窗口号切换
 * `Prefix+p (p for previous)`切换到上一个window 
 * `Prefix+n (n for next):` 切换到下一个window
