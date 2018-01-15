@@ -47,7 +47,7 @@ public class Test {
 * 一般扩展场景：需要能够增加新的产品时。可以增加新的产品类（实现产品功能接口），增加新的工厂类（方法返回 为 新的产品 组合接口）.
 * 缺点： 
 
-#### 单例模式：保证在一个JVM中，该对象只有一个实例存在
+#### 单例模式：保证在一个JVM中，该对象只有一个实例存在[参考](http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/)
 1. 使用场景
 * 需要全局共享，并唯一的数据和功能，例如：核心引擎
 * 减少复杂类，大类的实例创建，减轻系统开销
@@ -55,20 +55,22 @@ public class Test {
 ```java
 public class Singleton {  
   
-    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */  
-    private static Singleton instance = null;  
-  
+    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 
+       volatile： 禁止指令重排序优化 ,**可选**
+    */  
+    // private volatile  static Singleton instance = null;  
+    private static Singleton instance = null;
     /* 私有构造方法，防止被实例化 */  
     private Singleton() {  
     }  
-  
+    // 双重检验锁模式（double checked locking pattern）
     private static synchronized void syncInit() {  
         if (instance == null) {  
-            instance = new SingletonTest();  
+            instance = new Singleton();  
         }  
     }  
-  //原因： jvm 中 分配空间，赋值 和 初始化 分开进行
-    public static SingletonTest getInstance() {  
+  //原因： jvm 中 分配空间，赋值 和 初始化 分开进行，并不是一个原子操作，多线程环境下会出现问题
+    public static Singleton getInstance() {  
         if (instance == null) {  
             syncInit();  
         }  
@@ -81,7 +83,7 @@ public class Singleton {
     }  
 }  
 ```
-3. 用静态内部类的方式初始化单例（原因：jvm中类加载过程中，能够保证线程互斥）
+3. 用静态内部类的方式初始化单例（原因：jvm中类加载过程中，能够保证线程互斥.这种写法仍然使用JVM本身机制保证了线程安全问题；由于 SingletonHolder 是私有的，除了 getInstance() 之外没有办法访问它，因此它是懒汉式的；同时读取实例的时候不会进行同步，没有性能缺陷；也不依赖 JDK 版本。
 ```java
 public class Singleton {  
   
@@ -95,7 +97,7 @@ public class Singleton {
     }  
   
     /* 获取实例 */  
-    public static Singleton getInstance() {  
+    public static final Singleton getInstance() {  
         return SingletonFactory.instance;  
     }  
   

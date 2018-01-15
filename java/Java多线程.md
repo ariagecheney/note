@@ -5,7 +5,10 @@
 * 进程让操作系统的并发性成为可能，而线程让进程的内部并发成为可能。
 * 一个进程虽然包括多个线程，但是这些线程是共同享有进程占有的资源和地址空间的。进程是操作系统进行资源分配的基本单位，而线程是操作系统进行调度的基本单位。
 * Java 中的多线程是抢占式的
-
+## java 堆 和 栈
+* [Java堆和栈看这篇就够](https://iamjohnnyzhuang.github.io/java/2016/07/12/Java%E5%A0%86%E5%92%8C%E6%A0%88%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F.html)
+* [Java 堆内存](http://www.blogjava.net/fancydeepin/archive/2013/09/29/jvm_heep.html)
+* [Java虚拟机的内存组成以及堆内存介绍](http://www.hollischuang.com/archives/80)
 ## [ Java内存管理](http://blog.csdn.net/u013142781/article/details/50830754)
 ## 实现线程的主要3种方式:
 使用内核线程实现，使用用户线程实现，使用用户线程加轻量级进程混合实现。

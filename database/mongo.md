@@ -43,6 +43,7 @@ mongo --port 27017 -u "root" -p "123456" --authenticationDatabase "admin"
 * db.colName.drop()
 * db.temp_add_user.renameCollection('temp_add_client')
 * db.version() 查看mongodb版本
+* db.collection.createIndex({Version:1},{background:true}) 创建索引（后台运行，不影响集合其他操作，副本集时，需在主节点操作）
 * db.collection.getIndexes() 查看索引
 * db.users.find( { name : { $exists: false } } )
 ## mongo 配置文件 （包含副本集配置项）
@@ -124,7 +125,7 @@ config = { _id:"replset", members:[
 * db.COLLECTION_NAME.insert(document)  
 如果该集合不在该数据库中， MongoDB 会自动创建该集合并插入文档。
 * 插入文档你也可以使用 db.col.save(document) 命令。如果不指定 _id 字段 save() 方法类似于 insert() 方法。如果指定 _id 字段，则会更新该 _id 的数据。
-### update
+### update 巨坑的规范，与mysql不一样：要更新匹配的多条数据，要加选项（看示例），否则只更新匹配的第一条数据
 
 ```js
 db.collection.update(
@@ -185,7 +186,7 @@ db.inventory.find(
 <!-- 注意正则表达式 元字符要转义 -->
 * `mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json`
 * `./mongoimport -d CommGuard -c HeartLogin ./HeartLogin.dat`  
-* 大文件导入: 因为Mongo对单次处理好像有大小限制（16m）好像是，
+* 大文件导入: 因为Mongo对单次处理好像有大小限制（16m）
 所以大文件会出问题,这应该是个Bug mongoimport 默认会10000条 为一个批量导入数据，但实际上单条数据太大了,每10000条导入一次肯定是不行的.
 参数 --batchSize 可以指定每次批量导入的条数 设置小一些就OK了，可设置为 --batchSize：50
 * --numInsertionWorkers 并发执行线程数，最好设置成cpu 核数

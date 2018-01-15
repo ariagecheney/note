@@ -37,8 +37,8 @@ Thread per Core：每个核上有多少个线程
 `shutdown -h now`  
 `sudo shutdown -r +1 "off"`
 ## lrzsz
-* rz -be
-* sz
+* rz -bey ：上传
+* sz 文件  ：下载
 `yum install lrzsz`
 
 ## ssh 远程登陆超时自动退出 时间配置 
@@ -235,7 +235,8 @@ mysql -u root -p
 /etc/my.cnf  
 
 * 查看端口  
-netstat -anp   
+netstat -altnup   
+
 ## mysql 
 * [linux mysql 更改MySQL数据库目录位置](http://blog.csdn.net/qq_36040184/article/details/53889856)
 * whereis   

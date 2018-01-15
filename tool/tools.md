@@ -80,9 +80,8 @@ D:\cmder>Cmder.exe /REGISTER ALL
 * jrebel [参考](http://blog.csdn.net/garfielder007/article/details/53591480)
     
     1. [plugin download](https://plugins.jetbrains.com/plugin/4441-jrebel-for-intellij)
-    2. 激活 使用license server 方式激活
-        * `http://idea.qinxi1992.cn/pmz` (idea.goxz.gq) 和 email
-        * 切换离线模式和关闭日志反馈  
+    2. 激活 
+    [使用Facebook 注册登陆后得到激活码](https://my.jrebel.com/account/how-to-activate)
     3. 使用
         * http://blog.lanyus.com/archives/133.html
         * 设置 on frame deactivation 为 Update classes and resources

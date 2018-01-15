@@ -14,12 +14,12 @@
     ```
 
 2. linux
-1. 查看Redis 进程命令：
-ps -ax|grep redis
-本地 6379 端口号已被 redis 监听。
-$ netstat -an | grep 6379
-2、Redis服务的重启操作：（先pkill掉redis-server进程，再启动）
-pkill掉redis-server进程：pkill redis-server
+1. 查看Redis 进程命令：  
+ps -ax|grep redis  
+本地 6379 端口号已被 redis 监听。  
+$ netstat -an | grep 6379  
+2、Redis服务的重启操作：（先pkill掉redis-server进程，再启动）  
+pkill掉redis-server进程：pkill redis-server  
 启动：
 /home/redis-3.2.1/src/redis-server /home/redis-3.2.1/redis.conf &     
 

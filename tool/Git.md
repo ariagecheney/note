@@ -82,6 +82,29 @@ sudo apt-get remove git
 * 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有该分支时，使用这个命令可以完成本地新分支与远程新分支的跟踪）
 * 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 
+## git diff 查看文件内容修改
+* 要随时掌握工作区的状态，使用git status命令。 
+* 如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。
+
+`git diff filename`:工作区与暂存区差异     
+`git diff <branch> <filename>`也可查看和另一分支的区别。
+
+
+`git diff --cached filename`: 暂存区与历史记录差异  
+`git diff --cached HEAD~2 filename`: 暂存区与历史记录差异 
+
+
+`git diff HEAD filename`: 工作区 与 历史记录 差异  
+
+
+`git diff HEAD HEAD~2`:当前历史记录与上一个历史记录差异（横向，注意顺序）  
+`git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command  
+`git diff --word-diff` :强烈推荐，增减，不同颜色  
+
+* HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commit_id，工作区和暂存区在当前commit_id之后的修改都被丢掉。 (--mixed 只修改暂存区，--soft只移动master和head)
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)  
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。 
+
 ## git 工作流程
 
 * 配置用户名   
@@ -102,19 +125,7 @@ user.name pmzgit user.email pmz00
 第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件 `git add a.md b.txt`；  
 第二步，使用命令git commit，完成。
 
-* 要随时掌握工作区的状态，使用git status命令。  
-如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。    
-`git diff`:工作区与暂存区差异  
-`git diff --cached`: 暂存区与历史记录差异  
-`git diff HEAD~2 -- path`: 历史记录与工作区差异，指定文件的  
-`git diff --cached HEAD~2`: 暂存区与历史记录差异  
-`git diff HEAD HEAD~2`:当前历史记录与上一个历史记录差异（横向，注意顺序）  
-`git diff --color-words`: 同一行单词差异，不同颜色，推荐用此command  
-`git diff --word-diff` :强烈推荐，增减，不同颜色  
-
-* HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id（例如git reset --hard HEAD～返回上一个版本）。此时，head和分支指向当前commit_id，工作区和暂存区在当前commit_id之后的修改都被丢掉。 (--mixed 只修改暂存区，--soft只移动master和head)
-穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。git log --decorate --graph --oneline --all(查看所有分支commit，tag信息)  
-要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。  
+ 
 
 
 版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。

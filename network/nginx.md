@@ -19,6 +19,7 @@
 
 ### 4. nginx 配置
 * [nginx配置、虚拟主机、负载均衡和反向代理](https://www.zybuluo.com/phper/note/89391)
+* [正确配置Linux系统ulimit值的方法](https://www.cnblogs.com/ibook360/archive/2012/05/11/2495405.html#undefined)
 ### 5. Nginx启动关闭
 ```shell
 start nginx
