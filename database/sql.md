@@ -7,7 +7,8 @@
 ### sql查看链接数
 `show full processlist;`
 ### cmd查看mysql版本
-`mysql -V`
+`mysql -V`  
+`select version()`
 
 ### my.cnf 配置
 ```
@@ -401,3 +402,28 @@ SET  a = x, b = y;
 RETURN a+b;
 END//
 ```
+
+# [索引](https://segmentfault.com/a/1190000003072424)
+
+```sql
+SHOW FULL PROCESSLIST ;
+SHOW VARIABLES LIKE 'long%';
+SET LONG_QUERY_TIME = 2;
+
+SHOW VARIABLES LIKE 'slow%';
+SET GLOBAL SLOW_QUERY_LOG = 'ON';
+
+
+```
+* 确定字符串索引长度  
+ count(distinct left(列名, 索引长度))/count(*)  
+* 字段区分度计算  
+SELECT count(DISTINCT(bill_id))/count(*) AS Selectivity FROM p_order;
+
+
+* [查询分析](https://cloud.tencent.com/developer/article/1005175)
+* [查询优化](https://cloud.tencent.com/developer/article/1004912)
+* [sleep(n)](https://blog.csdn.net/zyz511919766/article/details/42241211)
+
+* [MySQL的filesort](http://mingxinglai.com/cn/2016/04/mysql-filesort/)  
+`SHOW variables LIKE '%sort%';`

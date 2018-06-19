@@ -15,7 +15,51 @@
 
 
 ### 3.2编译安装
+
+```sh
+前提：Linux软件编译安装必须的依赖安装包  
+ 
+* yum -y  install  gcc   gcc-c++  make 
+* yum -y install  pcre  pcre-devel openssl  openssl-devel   zlib 
+
+// 下载到 /home/pmz/pac 目录下
+wget -P /home/pmz/pac http://nginx.org/download/nginx-1.12.2.tar.gz
+// 解压 
+tar xzvf nginx-1.12.2.tar.gz -C /home/pmz/pac
+// 进入到解压后的根目录
+cd ./nginx-1.12.2
+// 检测环境
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre
+```sh
+Configuration summary
+  + using system PCRE library
+  + using system OpenSSL library
+  + using system zlib library
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
+
+```
+//编译安装  
+make   
+make install
+
+```
+#### 参考
 * [yum 和 源码包 安装的 区别](https://segmentfault.com/a/1190000007116797)
+* [llinux 环境安装编译 nginx (源码安装包)](http://www.cnblogs.com/zoulongbin/p/6253568.html)
+
 
 ### 4. nginx 配置
 * [nginx配置、虚拟主机、负载均衡和反向代理](https://www.zybuluo.com/phper/note/89391)
@@ -63,3 +107,12 @@ server {
 user  root root; # 用户，用户组 防止访问时出现 403 forbidden
 ```
 * 启动后，访问 `http://ip:8000/images/`
+
+## NGINX ciphers 配置
+* [NGINX ciphers 配置](https://blog.csdn.net/makenothing/article/details/63768914) 
+* [专业配置建议](https://cipherli.st/)
+
+## 配置
+```
+client_max_body_size 20m;
+```

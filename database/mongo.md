@@ -119,6 +119,26 @@ config = { _id:"replset", members:[
  rs.status(); 查看副本集状态
 
  //再启动原来旧的primary库27017端口的mongodb（如果是实际上的坏了就是修复后启动），27017就会自动变成secondary状态。
+ -----------------分割线---------------------------------------
+登陆主节点服务:
+use admin
+删节点:
+rs.remove("192.168.200.67:27019")
+
+加节点:
+rs.add("192.168.200.67:27019")
+
+修改节点优先级,priority值越大优先级越高,最大的为主节点:
+cfg=rs.conf()
+cfg.members[2].priority=10
+rs.reconfig(cfg)
+
+-----------------分割线---------------------------------------
+关闭节点服务:
+use admin;
+db.shutdownServer();
+
+注:如果不行,用kill吧.
 ```
 ### insert
 
@@ -144,6 +164,7 @@ db.collection.save(
    }
 )
 db.col.update({'title':'MongoDB 教程'},{$set:{'title':'MongoDB'}},false,true)
+ db.order.update({orderId:'20180312080841605P0001'},{$set:{busiStatus:'requestFail'}},false,false)
 ```
 
 ### remove
@@ -176,6 +197,74 @@ db.inventory.find(
 ### [distinct](http://docs.mongoing.com/manual-zh/reference/method/db.collection.distinct.html)
 `db.collection.distinct(field, query, options);`
 `db.media.distinct( key, query, <optional params> ) - e.g. db.media.distinct( 'x' ), optional parameters are: maxTimeMS`
+
+# 数据库目录迁移
+
+## 迁移记录
+
+1. 在home创建数据库目录：mkdir -p /home/data/mongodb_27017_newdata
+2. 查找mongodb数据库相关目录：ps -ef|grep mongodb
+3. cd /var/data/mongodb/bin/
+4. 备份mongod.config文件：sz mongod.config 
+5. 关闭本机mongod服务（不行，用kill）：./mongod --shutdown --dbpath /var/data/mongodb/data
+6. 修改mongod.config文件：vi /var/data/mongodb/bin/mongod.config  
+dbPath: /var/data/mongodb/data   
+修改成：dbPath: /home/data/mongodb_27017_newdata  
+7. 启动服务：./mongod -f mongod.config
+
+
+## 测试
+
+1.登陆：  ./mongo ip:27017/badurl  
+2. use badurl  
+3. db.getMongo().setSlaveOk();  
+4. show tables  
+5. db.dpi_bad_url.find()  
+
+
+
+
+
+# 数据库集群添加用户密码
+参照文档:http://blog.csdn.net/monkey_four/article/details/50854410
+
+1. 创建root用户  
+use admin   
+db.createUser({ user: "root", pwd: "ever123", roles: [ { role: "root", db: "admin" } ] })
+
+2. 创建badurl库的普通用户:ever,密码:ever123  
+use badurl  
+db.createUser({'user':'ever', pwd:'ever123', roles:[{ role: "readWrite", db: "badurl" }]})  
+
+3. 生成mongodb-keyfile  
+openssl rand -base64 741 > /var/data/mongodb/mongodb-keyfile  
+chmod 600 /var/data/mongodb/mongodb-keyfile  
+
+将mongodb-keyfile 复制到从节点中,再给个600权限;  
+
+
+4.  修改mongod.config  
+主和从节点添加:  
+security:   
+ authorization: enabled   
+ keyFile: /data/mongodb/mongodb-keyfile  
+
+5.  重新启动主和从节点服务  
+
+6. 测试认证  
+use admin  
+db.auth("root", "ever123")   
+返回1表示认证成功．  
+rs.status();  
+
+7. 密码登陆测试  
+./mongo -u root -p ever123 --host 192.168.171.131:27017 --authenticationDatabase=admin  
+./mongo -u ever -p ever123 --host 192.168.171.131:27017 --authenticationDatabase=badurl  
+use admin  
+db.auth("root", "ever123")    
+rs.status();  
+
+
 ## 导入 导出 [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/)
 * `./mongoexport --help` 
 * `./mongoexport -h [IP]:[port] -d [db] -c [collection] -u [user] -p [password]--port 27018 -q '{insertDate:{$gt:ISODate("2017-07-18T11:00:00.603Z")}}' -o ./HeartLogin.dat`
@@ -200,6 +289,12 @@ db.V2_PushRecordAll.aggregate([{$project:{ctime:{$add:["$createDate",8*60*60*100
 // 分组 在分组，实现类似 distinct的功能
 db.V2_PushRecordAll.aggregate([{$match:{status:1,content:{$regex:/\"uuid\":26/},createDate:{$gte:ISODate("2017-08-17T16:00:00"),$lt:ISODate("2017-08-23T16:00:00")}}},{$group:{_id:{proCode:"$proCode",imsi:"$imsi"}}},{$group:{_id:{proCode:"$_id.proCode"},num:{$sum:1}}}])
 
+```
+
+## 求和
+```js
+// 单纯求某个数值类型字段(例如column_a)值的和
+db.table.aggregate([{$group:{_id:null,total:{$sum:"$column_a"} } }])m
 ```
 ## mongo-drives-java
 ```java

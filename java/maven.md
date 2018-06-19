@@ -107,6 +107,7 @@ mvn dependency:analyze
 www
 ```
 ## 4. 实战
+### [ pom.xml的继承、聚合与依赖](http://elim.iteye.com/blog/2055745)
 ### maven用库顺序
 * 当前项目的repository，然后找本地，然后再找私服，最后找中央仓库
 * [mirror 和 repository 区别](http://www.cnblogs.com/jiuyi/p/6207246.html)

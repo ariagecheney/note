@@ -120,11 +120,26 @@ A类是B类的子类，G是带泛型声明的类或接口。那么`G<A>`不是`G
 
 * List<? extends A>,可以将`List<A>`的对象或`List<B>`的对象赋给`List<? extends A>`。其中B 是A的子类
 * List<? super A>, 可以将`List<A>`的对象或`List<B>`的对象赋给`List<? super A>`。其中B 是A的父类
+```java
+通配符的使用可以对泛型参数做出某些限制，使代码更安全，对于上边界和下边界限定的通配符总结如下：
 
+使用 List<? extends C> list 这种形式，表示 list 可以引用一个 ArrayList ( 或者其它 List 的 子类 ) 的对象，这个对象包含的元素类型是 C 的子类型 ( 包含 C 本身）的一种。
+使用 List<? super C> list 这种形式，表示 list 可以引用一个 ArrayList ( 或者其它 List 的 子类 ) 的对象，这个对象包含的元素就类型是 C 的超类型 ( 包含 C 本身 ) 的一种。
+
+public class Collections { 
+  public static <T> void copy(List<? super T> dest, List<? extends T> src) 
+  {
+      for (int i=0; i<src.size(); i++) 
+        dest.set(i,src.get(i)); 
+  } 
+}
+扩展说一下 PECS(Producer Extends Consumer Super)原则：第一、频繁往外读取内
+容的，适合用<? extends T>。第二、经常往里插入的，适合用<? super T>
+```
 
 ## 进阶
-* 参考（个人认为写的非常好）
 * [java 泛型总结 by polly](https://juejin.im/entry/58f044ccb123db023928d626)
+* [参考（个人认为写的非常好）](https://segmentfault.com/a/1190000005179147)
 
 ### 其中一些观点
 * 泛型类：泛型擦除机制 导致 子类无法重载父类

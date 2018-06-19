@@ -1,4 +1,6 @@
 # 参考 
+[tmux github wiki](https://github.com/tmux/tmux/wiki)
+
 [tmux 使用](http://harttle.com/2015/11/06/tmux-startup.html)
 
 # 安装
@@ -17,7 +19,11 @@ sudo make install
 // 然后 ncurses ，tmux 都执行上述步骤，进行编译安装
 ```
 ### 测试是否成功
-`tmux -V`
+`tmux -V`  
+可能会出现：
+tmux: error while loading shared libraries: libevent-2.1.so.6: cannot open shared object file: No such file or directory   
+解决办法：建立相应的symbol link  
+`ln -s /usr/local/lib/libevent-2.1.so.6 /usr/lib64/libevent-2.1.so.6`
 ## yum 源安装
 ### 1. 添加remi 和 epel 源 (参考我之前的note)
 ### 2. `yum install tmux `

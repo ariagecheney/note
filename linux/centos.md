@@ -1,7 +1,8 @@
 ## 查看发行版信息
-`cat /etc/issue`
-or
-`lsb_release -a` 查看当前系统版本信息
+`cat /etc/issue`  
+`cat /etc/centos-release `  
+or  
+`lsb_release -a` 查看当前系统版本信息  
 ## linux 查看硬件信息
 * `cat /proc/cpuinfo or lscpu` 查看cpu统计信息 
 ```
@@ -12,7 +13,7 @@ Thread per Core：每个核上有多少个线程
 看个图：（几核几线程就是指有多少个“Core per Socket”多少个“Thread per Core”,当后者比前者多时，
 说明启用了超线程技术）
 ```
-* `free` 查看概要内存情况  
+* `free -h` 查看概要内存情况  
 * `cat /proc/meminfo` 查看内存详细使用情况 
 * `dmidecode -t memory` 查看内存硬件（主板槽位信息）
 * `getconf LONG_BIT` 查看操作系统位数  
@@ -66,7 +67,8 @@ alias egrep="egrep --color"
 1. 配置dns
 vi /etc/resolv.conf 文件内容   
 nameserver 8.8.8.8  
-nameserver 8.8.4.4
+nameserver 8.8.4.4  
+1.1.1.1和1.0.0.1
    
 2. 确保路由表正常  
 netstat -rn
@@ -97,85 +99,22 @@ uname -a:
 `rpm -Uvh http://mirror.centos.org/centos/6/os/x86_64/Packages/ftp-0.17-54.el6.x86_64.rpm`
 * ftp 登陆命令  
 `ftp ip port`
-## rpm
-```shell
-rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
 
-rpm -ivh --force --nodeps package.rpm
-rpm -Uvh pac.rpm 升级
-rpm -ql 包名 安装列表
-
-rpm -qpi package.rpm 查询软件描述信息
-rpm -qpl package.rpm 列出软件文件信息
-
-rpm -e mysql　　// 普通删除模式
-rpm -e --nodeps mysql　　// 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除
-
-which mysql 找出可执行文件
-
-rpm -qilf `which 程序名` 安装来源
-
-```
-
-## yum
-```shell
-
-yum的命令形式一般是如下：yum [options] [command] [package ...]
-其中的[options]是可选的，选项包括-h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。[command]为所要进行的操作，[package ...]是操作的对象。
-
-概括了部分常用的命令包括：
-
-自动搜索最快镜像插件：   yum install yum-fastestmirror
-安装yum图形窗口插件：    yum install yumex
-查看可能批量安装的列表： yum grouplist
-
-1 安装
-yum install 全部安装
-yum install package1 安装指定的安装包package1
-yum groupinsall group1 安装程序组group1
-
-2 更新和升级
-yum update 全部更新
-yum update package1 更新指定程序包package1
-yum check-update 检查可更新的程序
-yum upgrade package1 升级指定程序包package1
-yum groupupdate group1 升级程序组group1
-
-3 查找和显示
-yum info package1 显示安装包信息package1
-yum list 显示所有已经安装和可以安装的程序包
-yum list updates 列出所有可更新的软件包
-yum list installed 列出所有已安装的软件包
-yum list extras 列出所有已安装但不在 Yum Repository 內的软件包
-yum list package1 显示指定程序包安装情况package1
-yum groupinfo group1 显示程序组group1信息
-yum search string 根据关键字string查找安装包
-
-4 删除程序
-yum remove &#124; erase package1 删除程序包package1
-yum groupremove group1 删除程序组group1
-yum deplist package1 查看程序package1依赖情况
-
-5 清除缓存
-yum clean packages 清除缓存目录/var/cache/yum下的软件包
-yum clean headers 清除缓存目录下的 headers
-yum clean oldheaders 清除缓存目录下旧的 headers
-yum clean, yum clean all (= yum clean packages; yum clean oldheaders) 清除缓存目录下的软件包及旧的headers
-```
 ## centos 编译安装git
 ```sh
-卸载自带的git
+// 卸载自带的git
 yum remove git
+// 依赖
+yum install curl-devel expat-devel gettext-devel \
+  openssl-devel zlib-devel
 下载最新版git
-wget https://www.kernel.org/pub/software/scm/git/git-2.15.0.tar.gz
+wget https://www.kernel.org/pub/software/scm/git/git-2.17.0.tar.gz
 解压
-tar zxvf git-2.15.0.tar.gz
-cd git-2.15.0
+tar zxvf git-2.17.0.tar.gz
+cd git-2.17.0
 编译安装
-make configure
-./configure --prefix=/usr/local/git --with-iconv=/usr/local/libiconv
-make all doc
-sudo make install install-doc install-html
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
 修改环境变量
 sudo vim /etc/profile
 在最后一行添加

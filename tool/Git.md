@@ -3,9 +3,9 @@
 2. 每个历史版本存储完整的文件，svn存储文件差异
 3. git有更强的撤销修改和修改版本历史的能力
 
-## git [官方网站](http://git-scm.com/)  
+## [git 官方网站](http://git-scm.com/)  
 * git-windows 2.8.3 没有乱码问题（from坚果云）
-
+## [起步-安装-Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git#%E4%BB%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85)
 ## ubuntu 安装,升级或卸载Git
 ```
 sudo add-apt-repository ppa:git-core/ppa

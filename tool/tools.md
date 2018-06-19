@@ -102,7 +102,7 @@ http://www.jianshu.com/p/97dd8978482f
 * keymap(eclipse 模式)  
 > alt + insert ： getter and setter    
 Ctrl+E，可以显示最近编辑的文件列表  
-ctrl+alt+v 生成变量名 比较有用
+ctrl+alt+v 生成变量名 比较有用 冲突自定义成n  
 CTRL+H 全局文本查找  
 CTRL+O 显示类结构  
 ctrl+F9 编译整个项目  
@@ -129,12 +129,17 @@ F11 mark
 > f6 下一步  
   f9 下一个断点
 
+### 阿里巴巴 规约插件
+* Ctrl+Shift+Alt+J 触发代码扫码
+
 # vsc
 ### 快捷键
 * 格式化 c+k c+f
 * getter，setter alt+insert
 * go to line c+g
 * 全局搜索 C+Sh+f
+### 覆盖默认配置
+* "editor.wordWrap": "on", 自动换行
 
 ## chrome plugins
 * 划词翻译   ctrl+q

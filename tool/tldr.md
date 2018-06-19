@@ -1,5 +1,6 @@
 # Simplified and community-driven man pages
 * [官网](http://tldr.sh/)
+* [github](https://github.com/tldr-pages/tldr)
 # 安装
 ## 只需安装client 即可
 1. [web 端](https://tldr.ostera.io/)
@@ -12,5 +13,8 @@
     //If the location is not in $PATH, you need to specify the path to run it.
     
     ```
+3. [nodejs clent] 
+    `npm install -g tldr` 
+    需要python
 # 使用
 * `tldr` 显示使用参数 

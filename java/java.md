@@ -1,4 +1,147 @@
-### ocr 识别
+## jar 
+* jar命令  
+有生成、查看、更新、解开jar包的作用，包含META-INF/MANIFEST.MF文件。
+它是jar包生成的时候，自动创建的，主要负责指定jar包的main文件位置和当前文件夹。
+```sh
+jar --help
+Usage: jar {ctxui}[vfmn0PMe] [jar-file] [manifest-file] [entry-point] [-C dir] files ...
+Options:
+    -c  create new archive
+    -t  list table of contents for archive
+    -x  extract named (or all) files from archive
+    -u  update existing archive
+    -v  generate verbose output on standard output
+    -f  specify archive file name
+    -m  include manifest information from specified manifest file
+    -n  perform Pack200 normalization after creating a new archive
+    -e  specify application entry point for stand-alone application 
+        bundled into an executable jar file
+    -0  store only; use no ZIP compression
+    -P  preserve leading '/' (absolute path) and ".." (parent directory) components from file names
+    -M  do not create a manifest file for the entries
+    -i  generate index information for the specified jar files
+    -C  change to the specified directory and include the following file
+If any file is a directory then it is processed recursively.
+The manifest file name, the archive file name and the entry point name are
+specified in the same order as the 'm', 'f' and 'e' flags.
+
+Example 1: to archive two class files into an archive called classes.jar: 
+       jar cvf classes.jar Foo.class Bar.class 
+Example 2: use an existing manifest file 'mymanifest' and archive all the
+           files in the foo/ directory into 'classes.jar': 
+       jar cvfm classes.jar mymanifest -C foo/ .
+
+
+```
+## [java 反编译 之JAD ](https://varaneckas.com/jad/)
+* 下载  
+`wget https://varaneckas.com/jad/jad158e.linux.intel.zip`
+`unzip jad158e.linux.intel.zip -d jad`
+* 安装
+无需安装，直接运行
+`./jad `  
+	1. show error:    
+./jad: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory   
+fix： `yum install glibc.i686`  
+	2. show error:  
+./jad: error while loading shared libraries: libstdc++-libc6.2-2.so.3: cannot open shared object file: No such file or directory  
+fix:
+`yum -y install compat-libstdc++-296`
+* 使用  
+`jad -o -r -sjava -dsrc 'tree/**/*.class' `
+
+## [java 反编译之CFR](http://www.benf.org/other/cfr/)
+* `wget http://www.benf.org/other/cfr/cfr_0_129.jar`
+* `java -jar cfr_0_129.jar --help`
+* class  
+`java -jar ../pac/cfr_0_129.jar ChildController.class > ChildController.java
+`
+* jar  
+`java -jar cfr_0_129.jar /path/to/aa.jar --outputdir /path/to/aa`
+
+## [java 反编译之 在线](http://www.javadecompilers.com/)
+## [Java封箱拆箱的一些问题](https://www.cnblogs.com/xiaozhang2014/p/5347407.html#undefined)
+
+## [JAVA不可变类(immutable)机制与String的不可变性](https://www.cnblogs.com/jaylon/p/5721571.html)
+
+## java equals and hashcode
+### 重写equals必须注意：
+*   1 自反性：对于任意的引用值x，x.equals(x)一定为true
+*   2  对称性：对于任意的引用值x 和 y，当x.equals(y)返回true，y.equals(x)也一定返回true
+*   3 传递性：对于任意的引用值x、y和ｚ，如果x.equals(y)返回true，并且y.equals(z)也返回true，那么x.equals(z)也一定返   回 true
+* 4 一致性：对于任意的引用值x 和 y，如果用于equals比较的对象信息没有被修改，多次调用x.equals(y)要么一致地返回true，要么一致地返回false
+*   5 非空性：对于任意的非空引用值x，x.equals(null)一定返回false
+### [7.编写一个完美equals()的几点建议](https://blog.csdn.net/javazejian/article/details/51348320)
+
+下面给出编写一个完美的equals方法的建议（出自Java核心技术 第一卷：基础知识）：
+
+1) 显式参数命名为otherObject,稍后需要将它转换成另一个叫做other的变量（参数名命名，强制转换请参考建议5）
+
+2) 检测this与otherObject是否引用同一个对象 ：if(this == otherObject) return true;（存储地址相同，肯定是同个对象，直接返回true）
+
+3) 检测otherObject是否为null ，如果为null,返回false.if(otherObject == null) return false;
+
+4) 比较this与otherObject是否属于同一个类 （视需求而选择）
+
+	* 如果equals的语义在每个子类中有所改变，就使用getClass检测 ：if(getClass()!=otherObject.getClass()) return false; (参考前面分析的第6点)
+
+	* 如果所有的子类都拥有统一的语义，就使用instanceof检测 ：if(!(otherObject instanceof ClassName)) return false;（即前面我们所分析的父类car与子类bigCar混合比，我们统一了批次相同即相等）
+
+5) 将otherObject转换为相应的类类型变量：ClassName other = (ClassName) otherObject;
+
+6) 现在开始对所有需要比较的域进行比较 。使用==比较基本类型域，使用equals比较对象域。如果所有的域都匹配，就返回true，否则就返回flase。
+
+	* 如果在子类中重新定义equals，就要在其中包含调用super.equals(other)
+
+当此方法被重写时，通常有必要重写 hashCode 方法，以维护 hashCode 方法的常规协定，该协定声明 相等对象必须具有相等的哈希码 。
+
+###  在java中进行比较，我们需要根据比较的类型来选择合适的比较方式：
+
+     1) 对象域，使用equals方法 。 
+       2) 类型安全的枚举，使用equals或== 。 
+      3) 可能为null的对象域 : 使用 == 和 equals 。 
+     4) 数组域 : 使用 Arrays.equals 。 
+     5) 除float和double外的原始数据类型 : 使用 == 。 
+     6) float类型: 使用Float.foatToIntBits转换成int类型，然后使用==。  
+      7) double类型: 使用Double.doubleToLongBit转换成long类型，然后使用==。
+
+### jdk实现 hashcode 
+```java
+# Objects.hash(values)
+public static int hash(Object... values) {
+        return Arrays.hashCode(values);
+    }
+# Arrays.hashCode(values)
+public static int hashCode(Object a[]) {
+        if (a == null)
+            return 0;
+
+        int result = 1;
+
+        for (Object element : a)
+            result = 31 * result + (element == null ? 0 : element.hashCode());
+
+        return result;
+    }
+```
+
+## [java string replace](https://blog.csdn.net/wangpeng047/article/details/8985236)
+
+```txt
+1. replace的参数是char和CharSequence，即可以支持字符的替换，也支持字符串的替换（CharSequence即字符串序列的意思,说白了也就是字符串）；
+
+replaceAll的参数是regex，即基于规则表达式的替换，比如：可以通过replaceAll("\\d", "*")把一个字符串所有的数字字符都换成星号；
+
+相同点：都是全部替换，即把源字符串中的某一字符或字符串全部换成指定的字符或字符串；
+
+不同点：replaceAll支持正则表达式，因此会对参数进行解析（两个参数均是），如replaceAll("\\d", "*")，而replace则不会，replace("\\d","*")就是替换"\\d"的字符串，而不会解析为正则。
+
+2. “\”在java中是一个转义字符，所以需要用两个代表一个。例如System.out.println( "\\" ) ;只打印出一个"\"。但是“\”也是正则表达式中的转义字符，需要用两个代表一个。所以：\\\\被java转换成\\，\\又被正则表达式转换成\，因此用replaceAll替换“\”为"\\"，就要用replaceAll("\\\\","\\\\\\\\")，而replace则replace("\\","\\\\")。
+
+3. 如果只想替换第一次出现的，可以使用replaceFirst()，这个方法也是基于规则表达式的替换，但与replaceAll()不同的是，只替换第一次出现的字符串。
+
+```
+## ocr 识别
 #### tesseract-ocr
 * tesseract --list-langs
 * tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile...]  
@@ -118,7 +261,8 @@ socket通信有一个服务端，一个客服端
 [残夜](http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html)
 ## tomcat 参数配置
 * ide 中  
-//-Xms1024m -Xmx2048m -XX:MaxNewSize=512m -XX:MaxPermSize=512m
+//-Xms1024m -Xmx2048m -XX:MaxNewSize=512m -XX:MaxPermSize=512m  
+//-Xms256m -Xmx256m -XX:MaxNewSize=64m -XX:MaxPermSize=64m
 * tomcat [参考](http://outofmemory.cn/c/java-outOfMemoryError)  
 `JAVA_OPTS="-server -XX:PermSize=512M -XX:MaxPermSize=512m"`
 * tomcat   
@@ -353,7 +497,7 @@ Inherited
 URIEncoding="UTF-8"
  */
 
- ### 内部类
+ ## 内部类
  ```java
  public interface Father {
 

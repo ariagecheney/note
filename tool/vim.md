@@ -1,3 +1,11 @@
+## [vimrc](https://github.com/amix/vimrc)
+```sh
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+
+sh ~/.vim_runtime/install_basic_vimrc.sh
+```
+
+
 ## gvim 安装vundle
 https://github.com/VundleVim/Vundle.vim
 
@@ -33,6 +41,28 @@ set guifont=Consolas\ 12 设置默认字体
 :set ic  // 忽略
 :set noic // 大小写敏感
 ```
+# vim 查找替换
+vi/vim 中可以使用 :s 命令来替换字符串
+
+:s/vivian/sky/ 替换当前行第一个 vivian 为 sky
+
+:s/vivian/sky/g 替换当前行所有 vivian 为 sky
+
+:n,$s/vivian/sky/ 替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky
+
+:n,$s/vivian/sky/g 替换第 n 行开始到最后一行中每一行所有 vivian 为 sky
+
+n 为数字，若 n 为 .，表示从当前行开始到最后一行
+
+:%s/vivian/sky/（等同于 :g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky
+
+:%s/vivian/sky/g（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky
+
+可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符
+
+:s#vivian/#sky/# 替换当前行第一个 vivian/ 为 sky/
+
+:%s+/oradata/apras/+/user01/apras1+ （使用+ 来 替换 / ）： /oradata/apras/替换成/user01/apras1/
 ## vim 重加载文件
 配置：`set autoread`  
 或者  `:e!`
@@ -80,13 +110,53 @@ set guifont=Consolas\ 12 设置默认字体
 	* 普通模式下Ctrl-w + 增加视窗的高度
 ## 文件比较 vimdiff [转载](http://www.cnblogs.com/MuyouSome/archive/2013/04/28/3049661.html)
 ```shell
-// 命令行模式
+1 命令行模式
+vimdiff  FILE_LEFT  FILE_RIGHT
+vim -d  FILE_LEFT  FILE_RIGHT
+或者
 :vertical diffsplit FILE_RIGHT
-//可以使用快捷键在各个差异点之间快速移动。跳转到下一个差异点：
+
+2 如果希望交换两个窗口的位置，或者希望改变窗口的分割方式，可以使用下列命令：
+
+1. Ctrl-w K（把当前窗口移到最上边）
+2.	Ctrl-w H（把当前窗口移到最左边）
+3.	Ctrl-w J（把当前窗口移到最下边）
+4.	Ctrl-w L（把当前窗口移到最右边）
+
+其中1和3两个操作会把窗口改成水平分割方式。
+3 可以使用快捷键在各个差异点之间快速移动。跳转到下一个差异点：
 ]c
 //反向跳转是：
 [c
 如果在命令前加上数字的话，可以跳过一个或数个差异点，从而实现跳的更远。比如如果在位于第一个差异点的行输入"2]c"，将越过下一个差异点，跳转到第三个差异点。
+4 文件合并
+文件比较的最终目的之一就是合并，以消除差异。如果希望把一个差异点中当前文件的内容复制到另一个文件里，可以使用命令
+dp （diff "put"）
+如果希望把另一个文件的内容复制到当前行中，可以使用命令
+do (diff "get"，之所以不用dg，是因为dg已经被另一个命令占用了)
+如果希望手工修改某一行，可以使用通常的vim操作。如果希望在两个文件之间来回跳转，可以用下列命令序列：
+Ctrl-w, w
+在修改一个或两个文件之后，vimdiff会试图自动来重新比较文件，来实时反映比较结果。但是也会有处理失败的情况，这个时候需要手工来刷新比较结果：
+:diffupdate
+如果希望撤销修改，可以和平常用vim编辑一样，直接
+<ESC>, u
+但是要注意一定要将光标移动到需要撤销修改的文件窗口中。
+5 同时操作两个文件
+在比较和合并告一段落之后，可以用下列命令对两个文件同时进行操作。比如同时退出：
+:qa （quit all）
+如果希望保存全部文件：
+:wa （write all）
+或者是两者的合并命令，保存全部文件，然后退出：
+:wqa （write, then quit all）
+如果在退出的时候不希望保存任何操作的结果：
+:qa! （force to quit all）
+6 上下文的展开和查看
+比较和合并文件的时候经常需要结合上下文来确定最终要采取的操作。Vimdiff 缺省是会把不同之处上下各 6 行的文本都显示出来以供参考。其他的相同的文本行被自动折叠。如果希望修改缺省的上下文行数，可以这样设置：
+:set diffopt=context:3
+可以用简单的折叠命令来临时展开被折叠的相同的文本行：
+zo （folding open，之所以用z这个字母，是因为它看上去比较像折叠着的纸）
+然后可以用下列命令来重新折叠：
+zc （folding close）
 ```
 
 
