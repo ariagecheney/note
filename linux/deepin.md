@@ -153,3 +153,19 @@ nginx -t -c /etc/nginx/nginx.conf
 * http://www.ruanyifeng.com/blog/2013/07/gpg.html
 * https://albertlauncher.github.io/docs/installing/
 * alt+x
+
+### todo
+* VMware虚拟机：C:\Users\eversec\Documents\Virtual Machines\Debian 8.x
+* postman
+* handshaker
+* redisdesk
+* robo3t
+* secure3t
+* tim
+* vsc
+* 热点
+* 企业微信
+* 邮箱大师
+* 有道词典
+* 微信web开发 https://github.com/cytle/wechat_web_devtools
+* 有道云笔记
