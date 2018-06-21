@@ -134,14 +134,19 @@ F11 mark
 
 # vsc
 ### 快捷键
+* 文管 c+sh+e
+* 全局搜索 C+Sh+f
+* git c+sh+g
+* debug c+sh+d
+* 扩展 c+sh+x
+* 预览 c+k v
 * 格式化 c+k c+f
 * getter，setter alt+insert
 * go to line c+g
-* 全局搜索 C+Sh+f
 ### 覆盖默认配置
 * "editor.wordWrap": "on", 自动换行
 
-## chrome plugins
+# chrome plugins
 * 划词翻译   ctrl+q
 * colorZilla   提取css颜色 ctrl + alt + z  与qq冲突
 * pageRuler  

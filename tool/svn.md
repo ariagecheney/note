@@ -1,3 +1,5 @@
+## 安装见../linux/deepin.md
+
 ```sh
 usage: svn <subcommand> [options] [args]                              
 Subversion command-line client.                                       
@@ -67,4 +69,7 @@ svn import project_dir http://192.168.1.2/svn/remote_dir -m "必填, 不填此�
 svn mkdir  http://192.168.200.225/svn/product/Project/sun_daemon_V1.0.0/01_Development/05_Code/01_Source_Code/trunk/ShanDong/EverChildNet -m "mv"
 
 svn mv  http://192.168.200.225/svn/product/Project/sun_daemon_V1.0.0/01_Development/05_Code/01_Source_Code/trunk/ShanDong/src http://192.168.200.225/svn/product/Project/sun_daemon_V1.0.0/01_Development/05_Code/01_Source_Code/trunk/ShanDong/EverChildNet -m "mv"
+
+## svn checkout
+* svn co url
 

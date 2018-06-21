@@ -262,7 +262,7 @@ socket通信有一个服务端，一个客服端
 ## tomcat 参数配置
 * ide 中  
 //-Xms1024m -Xmx2048m -XX:MaxNewSize=512m -XX:MaxPermSize=512m  
-//-Xms256m -Xmx256m -XX:MaxNewSize=64m -XX:MaxPermSize=64m
+//-Xms128m -Xmx128m -XX:MaxNewSize=32m -XX:MaxPermSize=32m
 * tomcat [参考](http://outofmemory.cn/c/java-outOfMemoryError)  
 `JAVA_OPTS="-server -XX:PermSize=512M -XX:MaxPermSize=512m"`
 * tomcat   

@@ -44,15 +44,27 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 * 需要提前安装git
 
 ### git
-* apt-get 源安装
-* 看截图
+* sudo apt-get install git
 * git clone git@github.com:pmzgit/note.git
-* smartgit 商店
+### [官网](https://www.syntevo.com/smartgit/download/)
+* [deepin 仓库](https://wiki.deepin.org/index.php?title=SmartGit) 
+* `sudo apt-get install smartgit`
+* 安装后jdk 指向jdk9 ，但是仓库版本（17.1）只能用jdk8 所以用sudo update-alternatives --config java 重新指向jdk8
+* [破解](https://www.jianshu.com/p/79ff2d63ddc6)
 * github auth `b0dadc04b6fc856a6a75` linux `42e22f76d67d2f145ee7` win7
 
+### vsc
+* [官网](https://code.visualstudio.com/) 
+* `dpkg -i vsc.deb`
+* 快捷键 见 `../tool/tools.md`
+
+### 有道云笔记
+* 还是老实用官方网页版吧 
 
 ### lantern
-* `lantern`
+* [releases](https://github.com/getlantern/lantern/releases/tag/latest)
+* dpkg -i deb
+* `lantern 命令失败，需要安装下面的包`
 * `apt-cache search libappindicator3`
 * `apt-get install libappindicator3-1`
 
@@ -61,47 +73,62 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 
 ### vim
 * vim --version
-* vim —version | grep xterm_clipboard 是否支持系统剪切板寄存器
+* vim —version 里如果有 xterm_clipboard 支持系统剪切板寄存器
 * sudo apt-get install vim-gui-common 能支持"+ 剪切板
 * /usr/bin/vim .gvim
 ### teamviewer
 * 商店
 
 ### jdk
-* /usr/lib/jvm
-* /usr/bin/java
+* mkdir /usr/lib/jvm
+* 下载jdk tar 文件
+* sudo tar xzvf jdk-8u172-linux-x64.tar.gz -C /usr/lib/jvm/
+* sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_172/bin/java 100
+* sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_172/bin/javac 100
+* java -version
+* javac -version
 * update-altenativess --display java
 * update-altenativess --config java
-* /etc/profile
+* sudo vim /etc/profile
 ```Shell
-# java path
-export JAVA_HOME=/usr/lib/jvm/jdk1.7
+#java
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_172
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
-export IDEA_JDK_64=/usr/lib/jvm/jdk1.8
-export IDEA_JDK=/usr/lib/jvm/jdk1.8
+#export IDEA_JDK_64=/usr/lib/jvm/jdk1.8
+#export IDEA_JDK=/usr/lib/jvm/jdk1.8
 export PATH=${JAVA_HOME}/bin:$PATH
 # maven
-export MAVEN_HOME=/home/pmz/maven3.3.9
+export MAVEN_HOME=/home/pmz/code/apache-maven-3.5.3
 export PATH=${PATH}:${MAVEN_HOME}/bin
 # tomcat
-export TOMCAT_HOME=/opt/tomcat7
-export CATALINA_HOME=/opt/tomcat7
+export TOMCAT_HOME=/home/pmz/code/apache-tomcat-8.0.52
+export CATALINA_HOME=/home/pmz/code/apache-tomcat-8.0.52
 ```
+* . /etc/profile // 使配置生效
+
+### svn 客户端和服务端
+* `sudo apt-get install subversion`
+* 后边idea 需要用svn 命令行
+
+### idea
+* 商店安装 JetBrains Toolbox
+* 然后 安装idea datagrap 之类的
+* 注意/etc/hosts
+
+~~[本地服务器激活](http://blog.lanyus.com/archives/174.html)~~  
+~~`/usr/local/bin/idea`~~  
+~~sudo ./IntelliJIDEALicenseServer_linux_amd64~~ 
+~~`./Downloads/idea-IU-163.12024.16/bin/idea.sh `~~
 
 ### tomcat
-* /opt/tomcat
-* /etc/profile
+* 下载解压
+* . /etc/profile // 配置环境变量，见上面，并运行此命令使配置生效
+* idea 先配置tomcat
 * /bin/Catalina.sh java_home
 * tomcat-users.xml
 
-### idea
-* 商店
-* [本地服务器激活](http://blog.lanyus.com/archives/174.html)
-* `/usr/local/bin/idea`
-* sudo ./IntelliJIDEALicenseServer_linux_amd64
-* Linux version 在 download 目录，运行直接在bin/.idea.sh
-* `./Downloads/idea-IU-163.12024.16/bin/idea.sh `
+
 
 ### mysql
 * sudo apt-get install mysql-server mysql-client
