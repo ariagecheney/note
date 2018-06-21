@@ -5,21 +5,21 @@
 ### 1. install `zsh`
 
 * 源码安装（貌似官方推荐安装最新的zsh）
-* download: [官方源码zsh-5.2.tar.gz](http://zsh.sourceforge.net/Arc/source.html)   
+* download: [官方源码zsh-5.5.1.tar.gz](http://zsh.sourceforge.net/Arc/source.html)   
 * install:
 
 ```bash
 //1. 解压
-tar xzvf zsh-5.2.tar.gz
-cd zsh-5.2/
+tar xzvf zsh-5.5.1.tar.gz
+cd zsh-5.5.1/
 //2. 编译安装
-./configure // 提示缺少以下依赖库，先安装
-`apt-get install libncurses5-dev`
+sudo ./configure // 提示缺少以下依赖库，先安装
+sudo `apt-get install libncurses5-dev`
 make
 sudo make install //不知道为什么网上有的教程不加sudo？？
-//3. 可以查看zsh版本，但是我编译安装后，安装到/usr/local/bin/zsh 不知道为什么，所以一系列的坑由此开始。。。
+(3. 这个版本无此情况：可以查看zsh版本，但是我编译安装后，安装到/usr/local/bin/zsh 不知道为什么，所以一系列的坑由此开始。。。
 zsh --version //提示zsh 不在/usr/bin/zsh 位置，当然不在
-cd /usr/local/bin/ //到这个目录后 执行 `./zsh` 成功进入zsh，但首次执行会提示`.~/.zshrc` 不存在，所以你看到的界面貌似是zsh添加这个配置文件的程序，根据提示操作 
+cd /usr/local/bin/ //到这个目录后 执行 `./zsh` 成功进入zsh，)但首次执行会提示`.~/.zshrc` 不存在，所以你看到的界面貌似是zsh添加这个配置文件的程序，可以直接退出，因为后面的oh-my-zsh 会替换这个配置文件 
 //4. make zsh your default shell 用`chsh`命令
 //首先你可以查看ubuntu里面都安装了哪些shell
 cat /etc/shells
@@ -43,6 +43,10 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 * 参考:[github oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 * 需要提前安装git
 
+### tmux 
+* `sudo apt-get install tmux`
+* 使用 见`./tmux.md`
+
 ### git
 * sudo apt-get install git
 * git clone git@github.com:pmzgit/note.git
@@ -52,12 +56,16 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 * 安装后jdk 指向jdk9 ，但是仓库版本（17.1）只能用jdk8 所以用sudo update-alternatives --config java 重新指向jdk8
 * [破解](https://www.jianshu.com/p/79ff2d63ddc6)
 * github auth `b0dadc04b6fc856a6a75` linux `42e22f76d67d2f145ee7` win7
-
+* [环境变量http_proxy/https_proxy代理问题](https://blog.csdn.net/a1059682127/article/details/78632900)
 ### vsc
 * [官网](https://code.visualstudio.com/) 
 * `dpkg -i vsc.deb`
 * 快捷键 见 `../tool/tools.md`
 
+### [note](https://github.com/pmzgit/note.git)
+* 自己的笔记库
+### [dotfiles](https://github.com/pmzgit/dotfiles.git)
+* 自己的配置库
 ### 有道云笔记
 * 还是老实用官方网页版吧 
 
@@ -74,6 +82,12 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 ### vim
 * vim --version
 * vim —version 里如果有 xterm_clipboard 支持系统剪切板寄存器
+* vim 配置见 `../tool/vim.md`
+* 添加行号
+```sh
+" 注释
+set nu
+```
 * sudo apt-get install vim-gui-common 能支持"+ 剪切板
 * /usr/bin/vim .gvim
 ### teamviewer
@@ -181,18 +195,17 @@ nginx -t -c /etc/nginx/nginx.conf
 * https://albertlauncher.github.io/docs/installing/
 * alt+x
 
-### todo
-* VMware虚拟机：C:\Users\eversec\Documents\Virtual Machines\Debian 8.x
-* postman
-* handshaker
-* redisdesk
-* robo3t
-* secure3t
-* tim
-* vsc
-* 热点
-* 企业微信
-* 邮箱大师
-* 有道词典
-* 微信web开发 https://github.com/cytle/wechat_web_devtools
-* 有道云笔记
+### 企业邮箱
+* 网页版吧
+### 企业微信，Tim
+* 商店
+
+### [postman](https://www.getpostman.com/apps)
+* 解压直接执行根目录下的 Postman
+
+### Redis Desktop Manager
+* 商店
+### Robo 3T
+* 商店
+
+### [微信web开发](https://github.com/cytle/wechat_web_devtools) 
