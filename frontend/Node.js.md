@@ -2,6 +2,16 @@
 * Node.js是一个事件驱动非阻塞型I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。  
 * [Node.js概述 by阮一峰](http://javascript.ruanyifeng.com/nodejs/basic.html)   
 * [CommonJS规范 by阮一峰](http://javascript.ruanyifeng.com/nodejs/module.html)  
+## yarn / npm 国内源
+```sh
+yarn config get registry
+
+yarn config set registry https://registry.npm.taobao.org
+
+npm config set registry=https://registry.npm.taobao.org
+
+```
+* 下载cnpm：npm install -g cnpm --registry=https://registry.npm.taobao.org
 ## 事件循环 
 * Node.js 的事件循环对开发者不可见，由 libev 库实现。libev
 支持多种类型的事件，如 ev_io、ev_timer、ev_signal、ev_idle 等，在 Node.js 中均被EventEmitter 封装。libev 事件循环的每一次迭代，在 Node.js 中就是一次 Tick，libev 不断检查是否有活动的、可供检测的事件监听器，直到检测不到时才退出事件循环，进程结束。

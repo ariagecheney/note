@@ -248,7 +248,9 @@ unzip -l shiyanlou.zip
 unzip -O GBK 中文压缩文件.zip 
 ``` 
 ## rar
-rar a 添加一个目录  d删除某个文件 l 查看不解压  
+rar a 添加一个目录  
+d删除某个文件   
+l 查看不解压    
 rar a shiyanlou.rar .  
 rar d shiyanlou.rar .zshrc  
 rar l shiyanlou.rar  

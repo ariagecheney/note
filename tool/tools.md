@@ -72,6 +72,8 @@ D:\cmder>Cmder.exe /REGISTER ALL
     1. Search everywhere   跳转到任意地方  
     2. java class 新建java类
     3. fix doc 添加java注释
+* [背景护眼色](https://blog.csdn.net/sunhuaqiang1/article/details/62222225)
+* [智能提示忽略大小写](https://blog.csdn.net/gaoqiao1988/article/details/73299670)
 * Postfix
     1. sout: println
     2. psvm: main

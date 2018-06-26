@@ -169,17 +169,63 @@ export CATALINA_HOME=/home/pmz/code/apache-tomcat-8.0.52
 
 ### nvm
 * https://github.com/creationix/nvm
-* `wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash`
-* => Appending nvm source string to /home/pmz/.zshrc
+* 安装 `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
+* 使用 [用 apt-get 安装 node 和用 nvm 安装 node 的区别](https://www.jianshu.com/p/aab54ffdd060)
+```sh
+. ~/.nvm/nvm.sh
+nvm ls-remote
+nvm install 8.11.3
+nvm ls
+nvm use 
+```
 * => Close and reopen your terminal to start using nvm or run the following to use it now:
+
+### yarn
+* [安装](https://yarnpkg.com/zh-Hans/docs/install#debian-stable)
+```sh
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update
+
+// 如果你使用nvm，可通过以下操作来避免node的安装
+
+sudo apt-get install --no-install-recommends yarn
+
+yarn --version
+
+```
+* 见 node.js.md
+
+### [cerebro](https://github.com/KELiON/cerebro)
+
+* 先安装nvm ，node，yarn
+* 安装g++  
+sudo apt-get install g++
+* 安装
+```sh
+git clone https://github.com/KELiON/cerebro.git cerebro
+
+cd cerebro && yarn && cd ./app && yarn && cd ../
+
+// Run
+yarn run dev
+```
+### [deepin-topbar](https://github.com/kirigayakazushin/deepin-topbar/wiki)
+
 
 ### nginx
 * `apt-get install nginx`
 * 配置文件地址 /etc/nginx/nginx.conf
+注释掉默认配置
 * 测试nginx配置文件
-nginx -t -c /etc/nginx/nginx.conf
+sudo nginx -t -c /etc/nginx/nginx.conf
 * 测试通过，重启nginx服务器
 /etc/init.d/nginx restart
+
+### lsof
+* `sudo apt-get install lsof`
 
 
 ### aria2
@@ -194,7 +240,8 @@ nginx -t -c /etc/nginx/nginx.conf
 * http://www.ruanyifeng.com/blog/2013/07/gpg.html
 * https://albertlauncher.github.io/docs/installing/
 * alt+x
-
+### teamviewer
+* 商店
 ### 企业邮箱
 * 网页版吧
 ### 企业微信，Tim
@@ -209,3 +256,6 @@ nginx -t -c /etc/nginx/nginx.conf
 * 商店
 
 ### [微信web开发](https://github.com/cytle/wechat_web_devtools) 
+* [安装wine](https://wiki.deepin.org/index.php?title=Wine)
+* [参考教程](https://www.cnblogs.com/cisum/p/7810346.html)
+* [nwjs 下载地址](https://dl.nwjs.io/)

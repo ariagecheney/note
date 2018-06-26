@@ -216,4 +216,11 @@ cd /usr/mysql-test ; perl mysql-test-run.pl
 
 Please report any problems with the /usr/bin/mysqlbug script!
 
+## [rar/unrar](https://www.rarlab.com/download.htm)
+* rar软件不需要安装，直接解压到/usr/local下，以下操作需要有root权限。
+
+* 然后执行以下命令  
+`ln -s /usr/local/rar/rar /usr/local/bin/rar;ln -s /usr/local/rar/unrar /usr/local/bin/unrar` 
+`
+
                       
