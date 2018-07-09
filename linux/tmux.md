@@ -66,3 +66,10 @@ tmux: error while loading shared libraries: libevent-2.1.so.6: cannot open share
 
 `source-file ~/.tmux.conf`
 * 推荐配置 [gpakosz](https://github.com/gpakosz/.tmux)
+
+## [插件安装](https://github.com/tmux-plugins/tpm)
+
+* [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+* [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)
+
+* 注意安装时耐心等待

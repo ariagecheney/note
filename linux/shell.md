@@ -187,3 +187,17 @@ sudo add-apt-repository \
    stable"
 ```
 
+## date
+* date "+%Y-%m-%d %H:%M:%S"
+* 时间同步  
+`ntpdate -u ntp.api.bz`
+* 查看时区  
+`date "+%Z"`
+## tar 加密
+```sh
+tar -zcvf - $date.sql|openssl des3 -salt -k password -out $tarBackup/$date.tar.gz
+或者
+tar -zcvf - pma|openssl des3 -salt -k password | dd of=pma.des3
+解压
+dd if=pma.des3 |openssl des3 -d -k password|tar zxf -
+```

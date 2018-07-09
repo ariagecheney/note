@@ -129,8 +129,16 @@ www
             <artifactId>api</artifactId>
             <version>1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ZzxOAuthMobileServerApi-2.3.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/webapp/WEB-INF/lib/ZzxOAuthMobileServerApi-2.3.jar</systemPath>
         </dependency>
+
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <includeSystemScope>true</includeSystemScope>
+    </configuration>
+</plugin>
 ```
 ### 将jar包安装到本地repository中
 ```shell

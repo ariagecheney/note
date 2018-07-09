@@ -1,6 +1,8 @@
 ## 切换2D模式
 * `Super + Shift + Tab`
-
+* `sudo deepin-feedback-cli` 日志收集
+### 设置root 密码
+`sudo password root //设置root密码`
 ## 终端环境之`oh-my-zsh`
 ### 1. install `zsh`
 
@@ -154,11 +156,15 @@ export CATALINA_HOME=/home/pmz/code/apache-tomcat-8.0.52
 * sudo /usr/bin/mysqladmin -uroot -p shutdown
 * sudo nohup /usr/bin/mysqld_safe &  启动
 
-### dbeaver
+### dbeaver **推荐datagrip**
 * 商店
 * 需要jdk8
 
+## catfish
+`sudo apt install catfish`
 
+## 触摸板驱动
+`synclient HorizTwoFingerScroll=1`
 ### navicat
 * https://www.navicat.com/download/navicat-for-mysql
 * sudo /opt/navicat112_mysql_en_x64/start_navicat
@@ -198,7 +204,7 @@ yarn --version
 ```
 * 见 node.js.md
 
-### [cerebro](https://github.com/KELiON/cerebro)
+### [cerebro](https://github.com/KELiON/cerebro) **不推荐**
 
 * 先安装nvm ，node，yarn
 * 安装g++  
@@ -235,7 +241,7 @@ sudo nginx -t -c /etc/nginx/nginx.conf
   [aria2 配置详解](http://aria2c.com/usage.html)
   [aria2.conf 示例文件](http://aria2c.com/archiver/aria2.conf)
 
-### albert
+### albert(亲测效果不行)
 * http://man.linuxde.net/apt-key
 * http://www.ruanyifeng.com/blog/2013/07/gpg.html
 * https://albertlauncher.github.io/docs/installing/
@@ -255,7 +261,34 @@ sudo nginx -t -c /etc/nginx/nginx.conf
 ### Robo 3T
 * 商店
 
+### 
+* 官网下载，dpkg -i 安装
+* 依赖安装`sudo apt install libjpeg8-dev`
+* /usr/bin/SecureCRT 启动
+* `sudo perl securecrt_linux_crack.pl /usr/bin/SecureCRT`
+* 破解
+```sh
+	Name:		xiaobo_l
+	Company:	www.boll.me
+	Serial Number:	03-94-294583
+	License Key:	ABJ11G 85V1F9 NENFBK RBWB5W ABH23Q 8XBZAC 324TJJ KXRE5D
+	Issue Date:	04-20-2017
+// 手动填写lisence
+```
+* 不能用vbs 脚本？那我安装它干嘛。。。。。
+
 ### [微信web开发](https://github.com/cytle/wechat_web_devtools) 
 * [安装wine](https://wiki.deepin.org/index.php?title=Wine)
 * [参考教程](https://www.cnblogs.com/cisum/p/7810346.html)
 * [nwjs 下载地址](https://dl.nwjs.io/)
+
+## 看图
+* viewnior 商店
+## todo
+* 沙拉查词-网页划词翻译
+* Tampermonkey
+* 谷歌访问助手
+* Proxy SwitchyOmega
+* 微博图床
+* https://laod.cn/hosts/2018-google-hosts.html
+*  `sudo systemctl restart NetworkManager`
