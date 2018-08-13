@@ -118,47 +118,8 @@ console.log('someDataAttr' in el.dataset);//true
 data-属性选择器同样适用于 js和css  '[data-text-colour="red"]'
 
 
-charAt方法返回一个字符串的给定位置的字符，位置从0开始编号。
 
-var s = new String("abc");
-
-s.charAt(1) // "b"
-s.charAt(s.length-1) // "c"
-这个方法完全可以用数组下标替代。
-
-"abc"[1] // "b"
-
-localeCompare  字符串方法 比较两个字母大小  ASCII码
-
-split方法还可以接受第二个参数，限定返回数组的最大成员数。
-"a|b|c".split("|", 2) // ["a", "b"]
-"a|b|c".split("|", 3) // ["a", "b", "c"]
-"a|b|c".split("|", 4) // ["a", "b", "c"]
-
-如果分割规则为空字符串，则返回数组的成员是原字符串的每一个字符。
-
-"a|b|c".split("")
-// ["a", "|", "b", "|", "c"]
-
-如果满足分割规则的两个部分紧邻着（即中间没有其他字符），则返回数组之中会有一个空字符串。
-
-"a||c".split("|")
-// ["a", "", "c"]
-
-["a","b","c"].toString()
-"a,b,c"
-
-join方法以参数作为分隔符，将所有数组成员组成一个字符串返回。如果不提供参数，默认用逗号分隔。
-
-var a = [1,2,3,4];
-
-a.join() // "1,2,3,4"
-a.join('') // '1234'
-a.join("|") // "1|2|3|4"
-通过函数的call方法，join方法（即Array.prototype.join）也可以用于字符串。
-
-Array.prototype.join.call('hello', '-')
-// "h-e-l-l-o"
+\
 
 与搜索和替换相关的有4个方法，它们都允许使用正则表达式。
 
@@ -176,61 +137,6 @@ replace方法用于替换匹配的子字符串，一般情况下只替换第一�
 
 "aaa".replace("a", "b")
 // "baa"
-
-split：将字符串按照给定规则分割，返回一个由分割出来的各部分组成的新数组。
-
-
-Array.slice方法返回指定位置的数组成员组成的新数组，原数组不变。
-
-Array.splice();
-splice方法用于删除元素，并可以在被删除的位置添加入新的数组元素。它的返回值是被删除的元素。需要特别注意的是，该方法会改变原数组。
-
-slice方法的一个重要应用，是将类似数组的对象转为真正的数组。
-
-Array.prototype.slice.call({ 0: 'a', 1: 'b', length: 2 })
-// ['a', 'b']
-
-Array.prototype.slice.call(document.querySelectorAll("div"));
-
-Array.prototype.slice.call(arguments);
-splice的第一个参数是删除的起始位置，第二个参数是被删除的元素个数。如果后面还有更多的参数，则表示这些就是要被插入数组的新元素。
-
-var a = ["a","b","c","d","e","f"];
-
-a.splice(4,2)
-// ["e", "f"]
-
-a
-// ["a", "b", "c", "d"]
-上面代码从原数组位置4开始，删除了两个数组成员。
-
-var a = ["a","b","c","d","e","f"];
-
-a.splice(4,2,1,2)
-// ["e", "f"]
-
-a
-// ["a", "b", "c", "d", 1, 2]
-上面代码除了删除成员，还插入了两个新成员。
-
-如果只是单纯地插入元素，splice方法的第二个参数可以设为0。
-
-var a = [1,1,1];
-
-a.splice(1,0,2)
-// []
-
-a
-// [1, 2, 1, 1]
-如果只提供第一个参数，则实际上等同于将原数组在指定位置拆分成两个数组。
-
-var a = [1,2,3,4];
-
-a.splice(2)
-// [3, 4]
-
-a
-// [1, 2]
 
 window.open('http://www.sina.com','_blank');
 这句代码的实际意思是把一个连接在一个指定的框架（frame）内打开，_self
@@ -316,3 +222,4 @@ function inheritedPropertyNames(obj) {
 
 inheritedPropertyNames(Date)
 // ["caller", "constructor", "toString", "UTC", "call", "parse", "prototype", "__defineSetter__", "__lookupSetter__", "length", "arguments", "bind", "__lookupGetter__", "isPrototypeOf", "toLocaleString", "propertyIsEnumerable", "valueOf", "apply", "__defineGetter__", "name", "now", "hasOwnProperty"]
+

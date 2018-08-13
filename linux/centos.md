@@ -53,23 +53,21 @@ export TMOUT
 ## 测试ip和端口是否通
 * wget ip:port
 * ssh -v -p port ip
-## 设置别名 /etc/bashrc
-```shell
-alias cd1="cd ../"
-alias cd2="cd ../../"
-alias cd4="cd ../../../../"
-alias cd3="cd ../../../"
-alias grep="grep --color"
-alias egrep="egrep --color"
-```
+
 ## CentOS ping: unknown host 解决方法
 
-1. 配置dns
-vi /etc/resolv.conf 文件内容   
-nameserver 8.8.8.8  
-nameserver 8.8.4.4  
-1.1.1.1和1.0.0.1
-   
+1. 配置dns   
+您必须是管理员root或者具有管理员权限   
+sudo vim /etc/resolv.conf   
+nameserver 8.8.8.8    
+nameserver 8.8.4.4
+nameserver 1.1.1.1  
+nameserver 1.0.0.1                                
+nameserver 223.5.5.5  
+nameserver 223.6.6.6  
+* 保存退出，然后使用dig 验证:  
+dig www.taobao.com +short  
+若出现结果则表示正常。  
 2. 确保路由表正常  
 netstat -rn
 如果未设置, 则通过如下方式增加网关:
@@ -89,9 +87,7 @@ service network restart 或 /etc/init.d/network restart
 使用命令：chkconfig sshd on 设置为开机启动
 使用命令：chkconfig --list |grep sshd查看设置结果，
 service sshd start
-## 查看外网 ip
-* `curl ifconfig.me`  
-* `curl cip.cc`
+
 ## 查看位数
 file /sbin/init 或者 file /bin/ls   
 uname -a:

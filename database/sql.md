@@ -111,6 +111,9 @@ mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
 mysqldump -h localhost -u root -p mydb  --add-drop-table >e:\mysql\mydb_stru.sql
 - 3.将数据库mydb中 某表的表结构导出到e:\mysql\mydb_stru.sql文件中：
 mysqldump -h localhost -u root -p -B mydb --table tableName --opt >e:\mysql\mydb_stru.sql
+
+show variables like '%secure%';
+select phone,create_date from table  into outfile '/var/lib/mysql-files/p_wechat_bind.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 ```
 
 ### 导入

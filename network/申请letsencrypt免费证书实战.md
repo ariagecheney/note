@@ -1,3 +1,61 @@
+## [SSL For Free](https://www.sslforfree.com/)
+
+## ca,系统信任根证书的保存位置
+debain:"/etc/ssl/certs/"  
+redhat:"/etc/pki/tls/certs/ca-bundle.crt" 
+* [OCSP_stapling_enabled](http://www.vpnhosting.cz/ocsp/)
+* [How To Configure OCSP Stapling on Apache and Nginx](https://www.digitalocean.com/community/tutorials/how-to-configure-ocsp-stapling-on-apache-and-nginx)
+
+
+
+
+## [jdk 根证书](https://docs.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html)
+* 查找其中是否包含特定主题Subject/签发者（issuer）CN（Common Name）/的可信证书  
+keytool -list -v -keystore $JAVA_HOME/jre/lib/security/cacerts
+* 说明：证书序列号的显示方式一般有两种，一种是带":"的，以两个16进制数一组；一种是不带":"的，与前一种表示方法相比，其数值相同，但是最左边的0会被省略。
+* 添加根证书到cacerts  
+keytool -keystore $JAVA_HOME/jre/lib/security/cacerts -importcert -alias CAFriendlyName -file rootca-cert.pem 
+--注：rootca-cert.pem为PEM格式的根CA证书文件，请使用表1中链接下载PEM格式根证书，CAFriendlyName是计划给此根CA的友好名称/别名，您可以用根证书主题名称代替,这个别名在一个jks中必须唯一。
+* Java中一般使用如下几种方式来指定trustStore：  
+
+1. 代码中设定，示例代码：
+System.setProperty("javax.net.ssl.trustStore", "<same .jks file>");
+2. 设置系统变量javax.net.ssl.trustStore
+3. 修改JVM启动选项："-Djavax.net.ssl.trustStore=-Djavax.net.ssl.trustStore=<some .jks file>"
+
+## 中间证书及证书链
+中间证书，其实也叫中间 CA （中间证书颁发机构， Intermediate certificate authority, Intermedia CA ），对应的是根证书颁发机构（ Root certificate authority ， Root CA ）。为了验证证书是否可信，必须确保证书的颁发机构在设备的可信 CA 中。如果证书不是由可信 CA 签发，则会检查颁发这个 CA 证书的上层 CA 证书是否是可信 CA ，客户端将重复这个步骤，直到证明找到了可信 CA （将允许建立可信连接）或者证明没有可信 CA （将提示错误）。
+
+为了构建信任链，每个证书都包括字段：“使用者”和“颁发者”。 中间 CA 将在这两个字段中显示不同的信息，显示设备如何获得下一个 CA 证书，重复检查是否是可信 CA 。
+
+根证书，必然是一个自签名的证书，“使用者”和“颁发者”都是相同的，所以不会进一步向下检查，如果根 CA 不是可信 CA ，则将不允许建立可信连接，并提示错误。
+
+例如：一个服务器证书 domain.com ，是由 Intermedia CA 签发，而 Intermedia CA 的颁发者 Root CA 在 WEB 浏览器可信 CA 列表中，则证书的信任链如下：
+
+证书 1 - 使用者： domain.com ；颁发者： Intermedia CA
+
+证书 2 - 使用者： Intermedia CA ；颁发者： Root CA
+
+证书 3 - 使用者： Root CA ； 办法和： Root CA
+
+当 Web 浏览器验证到证书 3 ： Root CA 时，发现是一个可信 CA ，则完成验证，允许建立可信连接。当然有些情况下， Intermedia CA 也在可信 CA 列表中，这个时候，就可以直接完成验证，建立可信连接。
+
+但如果 Web 浏览器在验证过程中，没有找到这个 Intermedia CA ，那即使 Root CA 本身是可信 CA ，但因为 WEB 浏览器无法通过中间证书来发现这个 Root CA ，最后也会导致无法完成验证，无法建立可信连接。
+
+要获得中间证书，一般有两种方式：第一种、由客户端自动下载中间证书；第二种、由服务器推送中间证书。
+* [证书链检查](https://www.myssl.cn/tools/check-server-cert.html)
+* 获取服务端配置的证书链
+openssl s_client -connect es.broaddeep.com.cn:443 -servername es.broaddeep.com.cn  -showcerts  
+
+openssl s_client -connect 127.0.0.1:443 -cert cert/sm2/sm21.cer -key cert/sm2/sm21.key -CAfile cert/sm2/sm2root.cer -dcert cert/sm2/sm22.cer -dkey cert/sm2/sm22.key -cipher ECDHE-SM4-SM3 -top1.1
+
+openssl  s_server -cert cert/sm2/sm22.cer -key cert/sm2/sm22.key   -dcert cert/sm2/sm21.cer -dkey cert/sm2/sm21.key  -Verify 1  -CAfile cert/sm2/sm2root.cer   -port 443 -cipher ECDHE-SM4-SM3 -top1.1
+
+
+* 由服务器推送中间证书
+顺序 server.pem > 中间证书.pem
+
+
 
 
 ./certbot-auto certonly --webroot --agree-tos -v -t --email pmz010@126.com -w ./ -d www.isuosuo.cn

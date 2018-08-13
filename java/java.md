@@ -1,3 +1,8 @@
+## java format 
+* %[argument_index$][flags][width][.precision]conversion
+* [javadoc](https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax)
+* [ref](https://dzone.com/articles/java-string-format-examples)
+
 ## jar 
 * jar命令  
 有生成、查看、更新、解开jar包的作用，包含META-INF/MANIFEST.MF文件。
@@ -141,6 +146,9 @@ replaceAll的参数是regex，即基于规则表达式的替换，比如：可�
 3. 如果只想替换第一次出现的，可以使用replaceFirst()，这个方法也是基于规则表达式的替换，但与replaceAll()不同的是，只替换第一次出现的字符串。
 
 ```
+
+## tomcat servlet-api 版本
+* http://tomcat.apache.org/whichversion.html
 ## ocr 识别
 #### tesseract-ocr
 * tesseract --list-langs

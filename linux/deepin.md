@@ -71,6 +71,10 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 ### 有道云笔记
 * 还是老实用官方网页版吧 
 
+### shadowsocks
+* [github](https://github.com/loliMay/shadowsocks-client)
+* sudo dpkg -i shadowsocks-client_1.2.1_amd64.deb ; sudo aptitude update &&  sudo aptitude full-upgrade
+
 ### lantern
 * [releases](https://github.com/getlantern/lantern/releases/tag/latest)
 * dpkg -i deb
@@ -229,7 +233,9 @@ yarn run dev
 sudo nginx -t -c /etc/nginx/nginx.conf
 * 测试通过，重启nginx服务器
 /etc/init.d/nginx restart
-
+### [ngrok](http://ngrok.ciqiuwl.cn/)
+* 下载并解压，赋予执行权限
+* `./ngrok -config=ngrok.cfg -subdomain 自己的自定义域名 80`
 ### lsof
 * `sudo apt-get install lsof`
 
@@ -242,7 +248,6 @@ sudo nginx -t -c /etc/nginx/nginx.conf
   [aria2.conf 示例文件](http://aria2c.com/archiver/aria2.conf)
 
 ### albert(亲测效果不行)
-* http://man.linuxde.net/apt-key
 * http://www.ruanyifeng.com/blog/2013/07/gpg.html
 * https://albertlauncher.github.io/docs/installing/
 * alt+x
@@ -255,13 +260,14 @@ sudo nginx -t -c /etc/nginx/nginx.conf
 
 ### [postman](https://www.getpostman.com/apps)
 * 解压直接执行根目录下的 Postman
-
+* 或者  
+`alias postman='sh -c "/home/pmz/soft/Postman/Postman"'`
 ### Redis Desktop Manager
 * 商店
 ### Robo 3T
 * 商店
 
-### 
+### SecureCRT
 * 官网下载，dpkg -i 安装
 * 依赖安装`sudo apt install libjpeg8-dev`
 * /usr/bin/SecureCRT 启动
@@ -284,11 +290,16 @@ sudo nginx -t -c /etc/nginx/nginx.conf
 
 ## 看图
 * viewnior 商店
-## todo
-* 沙拉查词-网页划词翻译
-* Tampermonkey
-* 谷歌访问助手
-* Proxy SwitchyOmega
-* 微博图床
+
+## [科学上网](https://noparkinghere.top/2017/01/25/2017/2017-01-25-ss-linux%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/)
+# chrome 扩展
+## [沙拉查词-网页划词翻译](https://github.com/crimx/crx-saladict/wiki)
+
+## 谷歌访问助手 chrome 
+
+## [Proxy SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega/releases)
+## 微博图床 
+
+# 其他
 * https://laod.cn/hosts/2018-google-hosts.html
 *  `sudo systemctl restart NetworkManager`

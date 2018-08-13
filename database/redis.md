@@ -14,6 +14,18 @@
     ```
 
 2. linux
+
+* Download, extract and compile Redis with:
+```sh
+$ wget http://download.redis.io/releases/redis-4.0.10.tar.gz
+$ tar xzf redis-4.0.10.tar.gz
+$ cd redis-4.0.10
+$ make
+```
+* The binaries that are now compiled are available in the src directory. Run Redis with:
+```sh
+$ src/redis-server
+```
 ##  查看Redis 进程命令：  
 ps -ax|grep redis  
 本地 6379 端口号已被 redis 监听。  
@@ -42,6 +54,9 @@ auth：简单密码认证
 * 批量模糊删除 key  
 `redis-cli -p 6389 -a pwd keys "child_device:*" |xargs redis-cli -p 6389 -a pwd del`
 
+
+## 持久化
+* https://www.jianshu.com/p/bedec93e5a7b
 ### 参考
 * [runoob](http://www.runoob.com/redis/redis-intro.html)
 * [redis 中文网](http://www.redis.cn/)

@@ -102,6 +102,7 @@ As of npm@2.6.1, the npm update will only inspect top-level packages. Prior vers
 上面的写法是先运行npm run build-js，然后再运行npm run build-css，两个命令中间用&&连接。如果希望两个命令同时平行执行，它们中间可以用&连接。
 
 # ESLint
+* [ref](https://www.jianshu.com/p/22e6197e5cff)
 * [配置](https://eslint.org/docs/user-guide/configuring)
 * [ide 集成](https://eslint.org/docs/user-guide/integrations)
 # css Moudles

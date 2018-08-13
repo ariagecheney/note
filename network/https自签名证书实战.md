@@ -44,7 +44,7 @@ Compression: Uncompressed, ZIP, ZLIB, BZIP2
 
 ## 导入gpg 密钥
 * `curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | sudo apt-key add -`
-* apt-key  
+* [apt-key](http://man.linuxde.net/apt-key)  
 ```sh
 Usage: apt-key [--keyring file] [command] [arguments]
 
@@ -64,3 +64,25 @@ If no specific keyring file is given the command applies to all keyring files.
 ```
 
 http://www.ruanyifeng.com/blog/2013/07/gpg.html
+
+## 导入证书
+
+
+1）centos系统
+
+wget https://dl.cacerts.digicert.com/BaltimoreCyberTrustRoot.crt
+openssl x509 -inform der -in BaltimoreCyberTrustRoot.crt >> /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+update-ca-trust
+
+
+
+2）ubuntu系统
+
+sudo cp BaltimoreCyberTrustRoot.crt /usr/local/share/ca-certificates/BaltimoreCyberTrustRoot.crt
+sudo update-ca-certificates
+
+
+
+3）windows系统
+
+下载更证书文件后，直接打开文件按照提示操作安装即可。

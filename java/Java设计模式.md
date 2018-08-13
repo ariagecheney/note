@@ -32,6 +32,7 @@
     * 如果基本功能在不断改变，那么就需要使用抽象类。如果不断改变基本功能并且使用接口，那么就需要改变所有实现了该接口的类。
 * Java8中的默认方法和静态方法  
 Oracle已经开始尝试向接口中引入默认方法和静态方法，以此来减少抽象类和接口之间的差异。现在，我们可以为接口提供默认实现的方法了并且不用强制子类来实现它。
+* [浅谈 Java 8 接口默认方法和静态方法的设计](https://blog.csdn.net/ziwang_/article/details/78680446)
 ### 参考
 * [http://blog.csdn.NET/zhangerqing](http://blog.csdn.net/zhangerqing/article/details/8194653)
 
@@ -103,7 +104,7 @@ public class Singleton {
             instance = new Singleton();  
         }  
     }  
-  //原因： jvm 中 分配空间，赋值 和 初始化 分开进行，并不是一个原子操作，多线程环境下会出现问题
+  //不能简单用双重检验锁。原因： jvm 中 分配内存空间，把内存地址分配给变量 和 初始化 分开进行，并不是一个原子操作，多线程环境下会出现问题，所以才会如此用，如果用volatile 修饰变量，可简单使用双重检验锁
     public static Singleton getInstance() {  
         if (instance == null) {  
             syncInit();  
