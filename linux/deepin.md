@@ -1,8 +1,11 @@
 ## 切换2D模式
 * `Super + Shift + Tab`
 * `sudo deepin-feedback-cli` 日志收集
-### 设置root 密码
+## 设置root 密码
 `sudo password root //设置root密码`
+## 包是否已安装
+`dpkg -l openssh-client` 
+
 ## 终端环境之`oh-my-zsh`
 ### 1. install `zsh`
 
