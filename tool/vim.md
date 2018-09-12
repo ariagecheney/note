@@ -19,7 +19,7 @@ https://github.com/VundleVim/Vundle.vim
 * `:!ls` 用于显示当前目录的内容
 * `:!rm FILENAME` 用于删除名为 FILENAME 的文件
 * `:w FILENAME` 可将当前 VIM 中正在编辑的文件另存为 FILENAME 文件
-
+* `:w !sudo tee %`  vim保存时获得sudo权限
 ## 获取vim配置
 
 命令行模式下输入:set或者:se显示所有修改过的配置  
@@ -56,7 +56,13 @@ n 为数字，若 n 为 .，表示从当前行开始到最后一行
 
 :%s/vivian/sky/（等同于 :g/vivian/s//sky/） 替换每一行的第一个 vivian 为 sky
 
-:%s/vivian/sky/g（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky
+:%s/vivian/sky/g（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky 
+
+:.,.+8s/dog/cat/g 以下命令指定只在后续9行内进行替换
+
+:/FROM/,/;/s/=/<>/g 你还可以将特定字符做为替换范围。比如，将SQL语句从FROM至分号部分中的所有等号（=）替换为不等号（<>）：	
+
+在可视化模式下，首先选择替换范围, 然后输入:进入命令模式，就可以利用s命令在选中的范围内进行文本替换
 
 可以使用 # 作为分隔符，此时中间出现的 / 不会作为分隔符
 

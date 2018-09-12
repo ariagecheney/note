@@ -1,20 +1,3 @@
-## TODO List
-### work
-- [x] linux 变量 `source` `.bashrc`
-- [x] linux git upgrade,complet and prompt
-- [x] linux ssh teamviewer
-- [ ] linux shell线程, 加密GPG SSH
-- [ ] linux 开发环境配置
-- [ ] 项目源码
-- [ ] 网络编程
-- [ ] java 解析xml
-- [ ] log4j 配置slf4j
-- [ ] 阿里云数据库
-- [ ] q-dirfile:///C:/Users/ADMINI~1/AppData/Local/Temp/tmp_htm__q_dir_hlp_z.html
-### life
-- [ ] 三端统一工作生活系统
-
-
 
 ## Resource List
 * [css探索之旅](http://blog.doyoe.com/archives/)

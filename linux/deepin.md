@@ -127,6 +127,15 @@ export CATALINA_HOME=/home/pmz/code/apache-tomcat-8.0.52
 ```
 * . /etc/profile // 使配置生效
 
+### ssh  安装卸载 
+ * `sudo apt-get install openssh-server`
+* `sudo apt-get remove openssh-client`
+* `sudo apt-get remove openssh-server`  
+* 配置文件  
+/etc/ssh/sshd_config  
+PermitRootLogin yes # 允许root 登录
+* 是否启动  
+/etc/init.d/ssh status
 ### svn 客户端和服务端
 * `sudo apt-get install subversion`
 * 后边idea 需要用svn 命令行

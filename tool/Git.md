@@ -82,6 +82,8 @@ sudo apt-get remove git
 * 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；（第一次推送远程仓库没有该分支时，使用这个命令可以完成本地新分支与远程新分支的跟踪）
 * 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 
+* https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E5%8D%8F%E8%AE%AE
+
 ## git diff 查看文件内容修改
 * 要随时掌握工作区的状态，使用git status命令。 
 * 如果git status告诉你有文件被修改过，用git diff可以查看修改内容,注意，从上到下看。

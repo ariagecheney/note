@@ -18,8 +18,8 @@ Thread per Core：每个核上有多少个线程
 * `dmidecode -t memory` 查看内存硬件（主板槽位信息）
 * `getconf LONG_BIT` 查看操作系统位数  
 * `uname -a` 查看系统内核信息
-* `df -h` 查看磁盘容量  
-* `du -sh` Show the size of a single folder, in human readable units:
+* `df -ahT` 查看磁盘容量  
+* `du -sh dir` Show the size of a single folder, in human readable units:
 ## [理解Linux系统/etc/init.d目录和/etc/rc.local脚本](http://blog.csdn.net/acs713/article/details/7322082)
 
 ## 中文语言

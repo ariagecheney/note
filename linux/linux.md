@@ -42,7 +42,9 @@
 * Shift+PgDn	将终端显示向下滚动
 ---
 历史命令
-* Ctrl + r	向后搜索历史命令
+* Ctrl + r	向后搜索历史命令，再次按下 ctrl + r 组合键将向上查询另一条包含指定字符串的命令。  
+* !!  直接调用上一条命令。
+* 输入“!9527”，回调 history 列表中的第 9527 条命令    
 * Ctrl + g	退出搜索
 ---
 * crtl + alt + 方向键 ：工作区切换
@@ -54,61 +56,9 @@
 * alt + f7 ： 激活移动窗口功能，方向键移动，enter键确定
 * alt + enter ： 显示文件属性
 
-# linux shell通配符(wildcard) [转载](http://www.cnblogs.com/chengmo/archive/2010/10/17/1853344.html)
-通配符是由shell处理的（不是由所涉及到命令语句处理的，其实我们在shell各个命令中也没有发现有这些通配符介绍）, 它只会出现在 命令的“参数”里（它不用在 命令名称里， 也不用在 操作符上）。当shell在“参数”中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行代换(路径扩展)；否则就将该通配符作为一个普通字符传递给“命令”，然后再由命令进行处理。总之，通配符 实际上就是一种shell实现的路径扩展功能。在 通配符被处理后, shell会先完成该命令的重组，然后再继续处理重组后的命令，直至执行该命令。
 
-## 字符	含义
-* `*`	匹配 0 或多个字符 
-* **表示任意一层子目录 
-* ?	匹配任意一个字符  
-* [list]	匹配 list 中的任意单一字符  
-* [!list]	匹配 除list 中的任意单一字符以外的字符  
-* [c1-c2]	匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]  
-* {string1,string2,...}	匹配 sring1 或 string2 (或更多)其一字符串
-* {c2..c2}	匹配 c1-c2 中全部字符 如{1..10}  
-#### 需要说明的是：通配符看起来有点象正则表达式语句，但是它与正则表达式不同的，不能相互混淆。把通配符理解为shell 特殊代号字符就可。而且涉及的只有，*,? [] ,{} 这几种。
 
-## shell元字符（特殊字符 Meta）
-* IFS	由 `<space>` 或 `<tab>` 或 `<enter>` 三者之一组成(我们常用 space )。  
-* CR	由 `<enter>` 产生。  
-* =	设定变量。  
-* $	作变量或运算替换(请不要与 shell prompt 搞混了)。  
-* `>`	重导向 stdout。 *  
-* <	重导向 stdin。 *  
-* |	命令管线。 *  
-* &	重导向 file descriptor ，或将命令置于背境执行。或并行执行执行命令。例如：`npm run script1.js & npm run script2.js`  
-* ( )	将其内的命令置于 nested subshell 执行，或用于运算或命令替换。 *  
-* { }	将其内的命令置于 non-named function 中执行，或用在变量替换的界定范围。  
-* ;	在前一个命令结束时，而忽略其返回值，继续执行下一个命令。 *  
-* &&	在前一个命令结束时，若返回值为 true，继续执行下一个命令。 *  
-* ||	在前一个命令结束时，若返回值为 false，继续执行下一个命令。 *  
-* !	执行 history 列表中的命令。*  
-#### 加入”*” 都是作用在命令名直接。可以看到shell 元字符，基本是作用在命令上面，用作多命令分割（或者参数分割）。因此看到与通配符有相同的字符，但是实际上作用范围不同。所以不会出现混淆。
 
-#### 以下是man bash 得到的英文解析：
-```shell
-metacharacter  
-              A character that, when unquoted, separates words.  One of the following:  
-              |  & ; ( ) < > space tab  
-control operator   
-              A token that performs a control function.  It is one of the following symbols:
-              || & && ; ;; ( ) | <newline>
-```
-
-# source命令
-
-* source命令也称为“点命令”，也就是一个点符号（.）。source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。  
-`source filename 或 . filename`
-* 把一个文件的内容当成shell来执行.可以在当前进程执行另一个脚本，因此当前上下文的变量对该脚本是可见的。
-
-```sh
-# 在当前进程执行脚本
-url=http://harttle.land
-
-source ./spider.sh
-# 等价于
-. ./spider.sh
-```
 
 # nohup 和 & 后台执行 [转载](http://blog.csdn.net/zhang_red/article/details/52789691)
 * nohup是永久执行
@@ -148,7 +98,10 @@ To save output to FILE, use `nohup COMMAND > FILE'.
 $ man 3 printf
 
 
-通常 man 手册中的内容很多，你可能不太容易找到你想要的结果，不过幸运的是你可以在 man 中使用搜索，/<你要搜索的关键字>，查找到后你可以使用n键切换到下一个关键字所在处，shift+n为上一个关键字所在处。使用Space(空格键)翻页，Enter(回车键)向下滚动一行，或者使用j,k（vim编辑器的移动键）进行向前向后滚动一行。按下h键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下q退出。
+通常 man 手册中的内容很多，你可能不太容易找到你想要的结果，不过幸运的是你可以在 man 中使用搜索，/<你要搜索的关键字>，查找到后你可以使用n键切换到下一个关键字所在处，shift+n为上一个关键字所在处。使用Space(空格键)翻页，Enter(回车键)向下滚动一行，或者使用j,k（vim编辑器的移动键）进行向前向后滚动一行,按f 或 space 向下翻一页,按b向前翻一页, F 实时刷新。按下h键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下q退出。
+* m 小写字母   加书签
+* '(单引号) 小写字母  引用书签
+* :e 打开另一个文件；：n 下一个文件； ：p 上一个文件
 
 想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用--help参数，大部分命令都会带有这个参数
 # 作业管理
@@ -178,6 +131,8 @@ signal：表示给后台的作业什么指示，用man 7 signal可知
 -9：立刻强制删除一个作业  
 -15：以正常方式终止一项作业。与-9不一样。  
 
+6. 特殊参数!，将扩展为最近执行的后台命令的进程号   
+`echo $!`
 # find
 ### 1. 注意 find 命令的路径是作为第一个参数的， 基本命令格式为  
 find [path] [option] [表达式] [action]
@@ -225,11 +180,12 @@ $ find ~ -newer /home/shiyanlou/Code
 * -perm	匹配权限（mode为完全匹配，-mode为包含即可）
 * -user	匹配所有者
 * -group	匹配所有组
+
+* find . -type f -name "*.png" -exec rm -f {} \;
 ### 参考
 * [find 文档](http://man.linuxde.net/find "find")
 * [Linux 命令行：find 的 26 个用法示例](http://www.codebelief.com/article/2017/02/26-examples-of-find-command-on-linux/)
 
-# grep
 
 # 文件压缩
 ## zip unzip 
@@ -241,7 +197,7 @@ zip -r -9 -q -o shiyanlou_9.zip /home/shiyanlou -x ~/*.zip
 * -e 加密 -l参数将LF转换为CR+LF 兼容windows  
 * du命令查看打包后文件的大小  du -h -d 0 *.zip ~ | sort  
 -d, --max-depth（所查看文件的深度）
-* unzip -d 目标目录 -l 不解压只查看压缩包内容 -O（大写） 指定编码 
+* unzip -d 目标目录 -l 不解压只查看压缩包内容 -O（大写） 指定编码  -o  overwrite existing files without prompting -j     junk paths.  The archive's directory structure is not recreated; all files are deposited in the extraction directory (by default, the current one).
 ```sh 
 unzip -q shiyanlou.zip -d ziptest  
 unzip -l shiyanlou.zip  
@@ -279,8 +235,14 @@ tar -czf shiyanlou.tar.gz ~
 tar -xzf shiyanlou.tar.gz  
 
 ### uniq
-> 管道过滤唯一字符  
+* 用于移除或发现文件中重复的条目 -u / -d
 
+### tr
+* tr 命令用于转换字符、删除字符和压缩重复的字符。它从标准输入读取数据并将结果输出到标准输出。 
+* tr a-z A-Z
+* tr -s [:space:] '\t'
+* tr -d a-z
+* tr -cd a-z  删除指定的字符外的其他字符
 ### ln [创建链接：官方文档](http://man.linuxde.net/ln)
 
 * Linux具有为一个文件起多个名字的功能，称为链接。被链接的文件可以存放在相同的目录下，但是必须有不同的文件名，而不用在硬盘上为同样的数据重复备份。另外，被链接的文件也可以有相同的文件名，但是存放在不同的目录下，这样只要对一个目录下的该文件进行修改，就可以完成对所有目录下同名链接文件的修改。对于某个文件的各链接文件，我们可以给它们指定不同的存取权限，以控制对信息的共享和增强安全性。
@@ -482,3 +444,39 @@ chmod 4511 -rwS--x—x suid、文件属主具有读、写的权限，所有其�
 
 注意，chmod命令不进行必要的完整性检查，可以给某一个没用的文件赋予任何权限，但 chmod 命令并不会对所设置的权限组合做什么检查。因此，不要看到一个文件具有执行权限，就认为它一定是一个程序或脚本。
 
+## 端口是否占用
+* `ss -pl |grep 8002`
+* `lsof -i :8002`
+
+## ssh，scp免密登陆linux服务器&别名登陆
+
+```sh
+# 免密登录
+# 1 本地使用指定用户生成公私钥
+ssh-keygen -t rsa
+# 连续按三次回车键，不需要输入密码,也可以指定邮箱-C "youremail@example.com"
+# ~/.ssh/id_rsa.pub文件存在，会提示是否覆盖，如果不存在，则会生成该文件。
+
+# 2 把公钥写入服务器指定用户主目录下~/.ssh/authorized_keys 文件中
+ssh-copy-id eversec@192.168.200.67
+or
+scp ~/.ssh/id_rsa.pub eversec@192.168.200.67:~/.ssh
+cat id_rsa.pub >> .ssh/authorized_keys
+
+# 别名登录
+# 1 在本地~/.ssh目录下新建config文件
+vi ~/.ssh/config
+# 2 写入下面配置
+
+Host 67 
+
+HostName 192.168.200.67
+
+User eversec
+
+IdentityFile ~/.ssh/id_rsa
+#其中67是你设置的别名，192.168.200.67是你的服务器的公用ip，root是远程服务器的登录用户，IdentityFile是本地生成的私钥。这个地方一定不要弄成公钥
+
+ssh 67 # 免密别名登录
+
+```
