@@ -10,60 +10,60 @@
 
 ## mysql
 * [MySQL数据类型](./database/MySQL数据类型.md)
-* [sql语句](/home/pmz/me/note/database/sql.md)
-* [基于角色的权限表设计](/home/pmz/me/note/database/rbac.sql)
+* [sql语句](./database/sql.md)
+* [基于角色的权限表设计](./database/rbac.sql)
 
 ## redis
-* [redis](/home/pmz/me/note/database/redis.md)
+* [redis](./database/redis.md)
 
 ## mongo
-* [mongo](/home/pmz/me/note/database/mongo.md)
+* [mongo](./database/mongo.md)
 
 # 前端（哥一直致力于后端，无奈常常前后端一起撸）
-* [ES5 or ES6](/home/pmz/me/note/frontend/ES.md)
-* [BOM](/home/pmz/me/note/frontend/BOM.md)
-* [Node.js](/home/pmz/me/note/frontend/Node.js.md)
-* [css （很基础，没有什么价值）](/home/pmz/me/note/frontend/css.md)
+* [ES5 or ES6](./frontend/ES.md)
+* [BOM](./frontend/BOM.md)
+* [Node.js](./frontend/Node.js.md)
+* [css （很基础，没有什么价值）](./frontend/css.md)
 
 # java
-* [java 基础](/home/pmz/me/note/java/java.md)
-* [泛型](/home/pmz/me/note/java/java泛型.md)
-* [设计模式java版](/home/pmz/me/note/java/Java设计模式.md)
-* [数据结构和算法](/home/pmz/me/note/other/数据结构和算法.md)
-* [多线程](/home/pmz/me/note/java/Java多线程.md)
-* [Java8 特性](/home/pmz/me/note/java/java8.md)
-* [maven](/home/pmz/me/note/java/maven.md)
-* [spring-boot](/home/pmz/me/note/java/spring-learn.md)
+* [java 基础](./java/java.md)
+* [泛型](./java/java泛型.md)
+* [设计模式java版](./java/Java设计模式.md)
+* [数据结构和算法](./other/数据结构和算法.md)
+* [多线程](./java/Java多线程.md)
+* [Java8 特性](./java/java8.md)
+* [maven](./java/maven.md)
+* [spring-boot](./java/spring-learn.md)
 
 # Linux
-* [Linux 基础](/home/pmz/me/note/linux/linux.md)
-* [shell编程](/home/pmz/me/note/linux/shell.md)
-* [deepin（自己用的系统，应该好好了解）](/home/pmz/me/note/linux/deepin.md)
-* [centos](/home/pmz/me/note/linux/centos.md)
-* [centos添加常用yum源](/home/pmz/me/note/linux/centos添加常用yum源.md)
-* [json_处理之jq](/home/pmz/me/note/linux/json_处理之jq.md)
-* [tmux](/home/pmz/me/note/linux/tmux.md)
-* [虚拟机](/home/pmz/me/note/linux/虚拟机.md)
+* [Linux 基础](./linux/linux.md)
+* [shell编程](./linux/shell.md)
+* [deepin（自己用的系统，应该好好了解）](./linux/deepin.md)
+* [centos](./linux/centos.md)
+* [centos添加常用yum源](./linux/centos添加常用yum源.md)
+* [json_处理之jq](./linux/json_处理之jq.md)
+* [tmux](./linux/tmux.md)
+* [虚拟机](./linux/虚拟机.md)
 
 # 网络
-* [nginx](/home/pmz/me/note/network/nginx.md)
-* [加解密基础概念](/home/pmz/me/note/network/加解密概念.md)
-* [https自签名证书实战](/home/pmz/me/note/network/https自签名证书实战.md)
-* [tomcat8.5_https_配置](/home/pmz/me/note/network/tomcat8.5_https_配置.md)
+* [nginx](./network/nginx.md)
+* [加解密基础概念](./network/加解密概念.md)
+* [https自签名证书实战](./network/https自签名证书实战.md)
+* [tomcat8.5_https_配置](./network/tomcat8.5_https_配置.md)
 
 # 微服务
-* [docker](/home/pmz/me/note/SOA/docker.md)
-* [spring_cloud](/home/pmz/me/note/SOA/spring_cloud.md)
+* [docker](./SOA/docker.md)
+* [spring_cloud](./SOA/spring_cloud.md)
 
 # 工具使用
-* [git](/home/pmz/me/note/tool/Git.md)
-* [svn](/home/pmz/me/note/tool/svn.md)
-* [vim](/home/pmz/me/note/tool/vim.md)
-* [dos](/home/pmz/me/note/tool/dos.md)
-* [Listary_totual_zh](/home/pmz/me/note/tool/Listary_totual_zh.md)
-* [SecureCRT自动重连设置](/home/pmz/me/note/tool/SecureCRT自动重连设置.md)
-* [tools](/home/pmz/me/note/tool/tools.md)
-* [tldr](/home/pmz/me/note/tool/tldr.md)
+* [git](./tool/Git.md)
+* [svn](./tool/svn.md)
+* [vim](./tool/vim.md)
+* [dos](./tool/dos.md)
+* [Listary_totual_zh](./tool/Listary_totual_zh.md)
+* [SecureCRT自动重连设置](./tool/SecureCRT自动重连设置.md)
+* [tools](./tool/tools.md)
+* [tldr](./tool/tldr.md)
 
 
 
