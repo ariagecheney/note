@@ -50,10 +50,6 @@ TMOUT=0
 export TMOUT
 ```
 `source /etc/profile`
-## 测试ip和端口是否通
-* wget ip:port
-* ssh -v -p port ip
-
 ## CentOS ping: unknown host 解决方法
 
 1. 配置dns   
@@ -168,9 +164,7 @@ mysql -u root -p
 
 * 配置  
 /etc/my.cnf  
-
-* 查看端口  
-netstat -atunlp   
+   
 
 ## mysql 
 * [linux mysql 更改MySQL数据库目录位置](http://blog.csdn.net/qq_36040184/article/details/53889856)

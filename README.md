@@ -52,6 +52,8 @@
 * [tomcat8.5_https_配置](./network/tomcat8.5_https_配置.md)
 
 # 微服务
+* [kafka](./SOA/kafka.md)
+* [zookeeper](./SOA/zookeeper.md)
 * [docker](./SOA/docker.md)
 * [spring_cloud](./SOA/spring_cloud.md)
 
