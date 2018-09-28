@@ -170,7 +170,7 @@ mysql -u root -p
 /etc/my.cnf  
 
 * 查看端口  
-netstat -altnup   
+netstat -atunlp   
 
 ## mysql 
 * [linux mysql 更改MySQL数据库目录位置](http://blog.csdn.net/qq_36040184/article/details/53889856)

@@ -538,3 +538,7 @@ URIEncoding="UTF-8"
       4、内部类并没有令人迷惑的“is-a”关系，他就是一个独立的实体。
 
       5、内部类提供了更好的封装，除了该外围类，其他类都不能访问。
+
+
+# java 引用
+* https://www.cnblogs.com/absfree/p/5555687.html

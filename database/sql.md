@@ -430,3 +430,9 @@ SELECT count(DISTINCT(bill_id))/count(*) AS Selectivity FROM p_order;
 
 * [MySQL的filesort](http://mingxinglai.com/cn/2016/04/mysql-filesort/)  
 `SHOW variables LIKE '%sort%';`
+
+
+## shell 中sql
+```sql
+mysql -uroot -pxxx db --skip-column-names -se "sql"
+```

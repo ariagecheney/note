@@ -3,9 +3,9 @@
 * `sudo deepin-feedback-cli` 日志收集
 ## 设置root 密码
 `sudo password root //设置root密码`
-## 包是否已安装
-`dpkg -l openssh-client` 
-
+## dpkg
+`dpkg -l openssh-client`   
+`sudo dpkg -P shadowsocks-client`
 ## 终端环境之`oh-my-zsh`
 ### 1. install `zsh`
 
@@ -120,13 +120,16 @@ export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
 #export IDEA_JDK_64=/usr/lib/jvm/jdk1.8
 #export IDEA_JDK=/usr/lib/jvm/jdk1.8
-export PATH=${JAVA_HOME}/bin:$PATH
+
 # maven
 export MAVEN_HOME=/home/pmz/code/apache-maven-3.5.3
-export PATH=${PATH}:${MAVEN_HOME}/bin
+
 # tomcat
 export TOMCAT_HOME=/home/pmz/code/apache-tomcat-8.0.52
 export CATALINA_HOME=/home/pmz/code/apache-tomcat-8.0.52
+
+export PATH=${JAVA_HOME}/bin:${MAVEN_HOME}/bin:$PATH
+
 ```
 * . /etc/profile // 使配置生效
 

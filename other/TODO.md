@@ -1,5 +1,6 @@
 
 ## Resource List
+* [http://ningg.top/](http://ningg.top/)
 * [css探索之旅](http://blog.doyoe.com/archives/)
 * [菊部受审](http://www.jubushoushen.com/ "科学上网") `网络资源`
 * [Linux 折腾](http://www.cnblogs.com/youxia/tag/Linux/ "京山游侠")

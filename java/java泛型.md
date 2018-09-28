@@ -121,6 +121,7 @@ A类是B类的子类，G是带泛型声明的类或接口。那么`G<A>`不是`G
 * List<? extends A>,可以将`List<A>`的对象或`List<B>`的对象赋给`List<? extends A>`。其中B 是A的子类
 * List<? super A>, 可以将`List<A>`的对象或`List<B>`的对象赋给`List<? super A>`。其中B 是A的父类
 ```java
+java 中数组是协变的，所以子类型的数组可以赋值给父类型的数组，编译期无法对coder做出限制，发现问题；尽管 Apple 是 Fruit 的子类型，但是 ArrayList<Apple> 不是 ArrayList<Fruit> 的子类型，泛型不支持协变；但是通配符是折中方案，既能限制，又能赋值；
 通配符的使用可以对泛型参数做出某些限制，使代码更安全，对于上边界和下边界限定的通配符总结如下：
 
 使用 List<? extends C> list 这种形式，表示 list 可以引用一个 ArrayList ( 或者其它 List 的 子类 ) 的对象，这个对象包含的元素类型是 C 的子类型 ( 包含 C 本身）的一种。
@@ -133,6 +134,8 @@ public class Collections {
         dest.set(i,src.get(i)); 
   } 
 }
+List<? super T> dest中，我们不知道实际类型是什么，但是这个类型肯定是 T 的父类型。因此，我们可以知道向这个 List 添加一个 T 或者其子类型的对象是安全的，这些对象都可以向上转型为 T;
+
 扩展说一下 PECS(Producer Extends Consumer Super)原则：第一、频繁往外读取内
 容的，适合用<? extends T>。第二、经常往里插入的，适合用<? super T>
 ```

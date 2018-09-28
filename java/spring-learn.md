@@ -32,7 +32,7 @@ spring中提供了一些Aware结尾的接口，比如：BeanFactoryAware、BeanN
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8111"
 
 ## mvn spring-boot:help -Dgoal=run -Ddetail=true
-
+* mvn clean install -Dmaven.test.skip=true
 ## servlet URL
 ```java
 basePath:http://localhost:8080/test/
@@ -51,3 +51,6 @@ String lastAccessUrl = request.getRequestURL() + "?" + request.getQueryString();
 
 
 ```
+
+# aop
+* https://www.cnblogs.com/liaojie970/p/7883687.html
