@@ -65,7 +65,7 @@ nameserver 223.6.6.6
 dig www.taobao.com +short  
 若出现结果则表示正常。  
 2. 确保路由表正常  
-netstat -rn
+netstat -rn (route -n 获取网关)
 如果未设置, 则通过如下方式增加网关:
 route add default gw 192.168.1.1
 3. 确保可用dns解析
@@ -206,11 +206,27 @@ cd /usr/mysql-test ; perl mysql-test-run.pl
 
 Please report any problems with the /usr/bin/mysqlbug script!
 
+
+2018-10-12T07:45:06.692094Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2018-10-12T07:45:06.692194Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2018-10-12T07:45:06.692203Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2018-10-12T07:45:07.838275Z 0 [Warning] InnoDB: New log files created, LSN=45790
+2018-10-12T07:45:08.101388Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+2018-10-12T07:45:08.241585Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: bda6f64e-cdf2-11e8-ba63-a0369fc0ee22.
+2018-10-12T07:45:08.271693Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2018-10-12T07:45:08.272820Z 1 [Note] A temporary password is generated for root@localhost: EtmkBtbL5>Mz
+
+
+EtmkBtbL5>Mz
+
 ## [rar/unrar](https://www.rarlab.com/download.htm)
 * rar软件不需要安装，直接解压到/usr/local下，以下操作需要有root权限。
 
 * 然后执行以下命令  
 `ln -s /usr/local/rar/rar /usr/local/bin/rar;ln -s /usr/local/rar/unrar /usr/local/bin/unrar` 
 `
+
+# centos 7
+* yum upgrade && yum install net-tools
 
                       

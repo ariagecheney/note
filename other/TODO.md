@@ -68,3 +68,7 @@
 * http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`
 * http://blog.csdn.net/doymm2008/article/details/13288067  `设计模式`
 * http://www.cnblogs.com/hnrainll/archive/2011/12/29/2305582.html `设计模式`
+
+* Python核心编程（第3版）
+* C++完全参考手册
+* 精通正则表达式

@@ -22,16 +22,37 @@
 $ wget http://download.redis.io/releases/redis-4.0.10.tar.gz
 $ tar xzf redis-4.0.10.tar.gz
 $ cd redis-4.0.10
+yum -y  install  gcc   gcc-c++  make
 make test
 $ make 
 or make distclean
 ```
-* The binaries that are now compiled are available in the src directory. Run Redis with:
+* 配置文件 ./redis.conf
 ```sh
+# 密码
+requirepass 
+
+port 6379
+daemonize yes
+logfile /home/eversec/env/redis-4.0.11/logs/log
+dir ./
+```
+* 启动 The binaries that are now compiled are available in the src directory. Run Redis with:
+```sh
+src/redis-server ./redis.conf &
 src/redis-server --daemonize yes
 
 src/redis-cli -c -h ip -p port shutdown
+pkill redis-server
 ```
+## [命令](http://redisdoc.com/)
+* redis-cli -h 127.0.0.1 -p 6379 -a myRedis
+* config get requirepass
+* 批量模糊删除 key  
+`redis-cli -p 6389 -a pwd keys "child_device:*" |xargs redis-cli -p 6389 -a pwd del`
+
+* DBSIZE 当前数据库的 key 的数量
+
 
 3. docker
 
@@ -96,12 +117,7 @@ lindex 相当于 Java 链表的get(int index)方法，它需要对链表进行�
 根据分值区间 (-∞, 8.91] 遍历 zset，同时返回分值。inf 代表 infinite，无穷大的意思。
 
 
-## [命令](http://redisdoc.com/)
 
-* 批量模糊删除 key  
-`redis-cli -p 6389 -a pwd keys "child_device:*" |xargs redis-cli -p 6389 -a pwd del`
-
-* DBSIZE 当前数据库的 key 的数量
 ## 持久化
 * https://www.jianshu.com/p/bedec93e5a7b
 

@@ -542,3 +542,10 @@ URIEncoding="UTF-8"
 
 # java 引用
 * https://www.cnblogs.com/absfree/p/5555687.html
+
+# commons-pool2
+* https://throwsnew.com/2017/06/12/commons-pool/
+* https://zhuanlan.zhihu.com/p/36216932
+
+# 远程调试
+* https://www.jianshu.com/p/f902ac5d29e4

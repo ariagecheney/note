@@ -19,7 +19,7 @@ https://github.com/VundleVim/Vundle.vim
 * `:!ls` 用于显示当前目录的内容
 * `:!rm FILENAME` 用于删除名为 FILENAME 的文件
 * `:w FILENAME` 可将当前 VIM 中正在编辑的文件另存为 FILENAME 文件
-* `:w !sudo tee %`  vim保存时获得sudo权限
+* `:w !sudo tee %`  vim保存时获得sudo权限， 询问后，输入O，此时文件已经保存完毕，q! 强制退出即可。
 ## 获取vim配置
 
 命令行模式下输入:set或者:se显示所有修改过的配置  

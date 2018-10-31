@@ -74,10 +74,18 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 ### 有道云笔记
 * 还是老实用官方网页版吧 
 
+### 文件、文件夹比较工具
+* sudo aptitude install meld
 ### shadowsocks
 * [github](https://github.com/loliMay/shadowsocks-client)
 * sudo dpkg -i shadowsocks-client_1.2.1_amd64.deb ; sudo aptitude update &&  sudo aptitude full-upgrade
 
+### [CopyQ](https://github.com/hluk/CopyQ/releases)
+* sudo dpkg -i copyq_3.6.1_Debian_9.0-1_amd64.deb
+* sudo aptitude install -f
+
+### zeal 文档查看
+* sudo apt-get install zeal
 ### lantern
 * [releases](https://github.com/getlantern/lantern/releases/tag/latest)
 * dpkg -i deb
@@ -102,6 +110,8 @@ set nu
 ### teamviewer
 * 商店
 
+### anydesk
+* sudo apt-get install -f
 ### jdk
 * mkdir /usr/lib/jvm
 * 下载jdk tar 文件

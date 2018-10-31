@@ -19,17 +19,20 @@
 ```sh
 前提：Linux软件编译安装必须的依赖安装包  
  
-* yum -y  install  gcc   gcc-c++  make 
-* yum -y install  pcre  pcre-devel openssl  openssl-devel   zlib 
+* yum -y  install  gcc   gcc-c++  make pcre  pcre-devel openssl  openssl-devel   zlib 
+* 
 
 // 下载到 /home/pmz/pac 目录下
-wget -P /home/pmz/pac http://nginx.org/download/nginx-1.12.2.tar.gz
+wget -P /home/pmz/pac http://nginx.org/download/nginx-1.15.5.tar.gz
 // 解压 
 tar xzvf nginx-1.12.2.tar.gz -C /home/pmz/pac
 // 进入到解压后的根目录
 cd ./nginx-1.12.2
 // 检测环境
 ./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre
+
+添加模块重新编译安装即可：
+nginx -V            显示 nginx 的版本，编译器版本和配置参数。
 ```sh
 Configuration summary
   + using system PCRE library
@@ -117,6 +120,7 @@ user  root root; # 用户，用户组 防止访问时出现 403 forbidden
 client_max_body_size 20m;
 ```
 * 获取客户端真实ip  
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header Host $host;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;  
+proxy_set_header Host $host;    
+proxy_set_header X-Forwarded-For  $proxy_add_x_forwarded_for;  
+proxy_set_header X-Forwarded-Proto  $scheme;

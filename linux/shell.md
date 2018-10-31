@@ -482,16 +482,24 @@ set +x # 关闭
 
 
 ## 用户 用户组
-useradd test
-
-passwd test  
+* 添加用户  
+useradd test  
+passwd test    
 增加用户test，有一点要注意的，useradd增加一个用户后，不要忘了给他设置密码，不然不能登录的。  
 
 usermod -d /home/test -G test2 test  
 
 将test用户的登录目录改成/home/test，并加入test2组，注意这里是大G。  
-userdel test  
+* 删除用户  
+userdel -r test
+
+find / -user lee -exec rm {} \;      
+find / -nouser  -exec rm {} \; 删除没有用户的文件            
+find / -nogroup -exec rm {} \; 删除没有组的文件      
+
 cat /etc/passwd
+* 分配用户用户组  
+chown -R user:usergroup dir
 
 gpasswd -a test test2 将用户test加入到test2组  
 gpasswd -d test test2 将用户test从test2组中移出  
@@ -500,10 +508,11 @@ groupadd  test
 groupmod -n test2  test  
 将test组的名子改成test2  
 groupdel test2  
-查看当前登录用户所在的组 groups，查看apacheuser所在组groups apacheuser   
+* 查看当前登录用户所在的组   
+groups apacheuser   
 所有组 cat /etc/group  
 
-查看当前登录用户 w whoami  
+* 查看当前登录用户 w whoami  
 id apacheuser  
 last 查看登录成功的用户记录  
 lastb 查看登录不成功的用户记录  
@@ -1085,6 +1094,22 @@ tar -zcvf - pma|openssl des3 -salt -k password | dd of=pma.des3
 解压
 dd if=pma.des3 |openssl des3 -d -k password|tar zxf -
 ```
+## 分卷压缩解压
+```sh
+# 分卷压缩gz
+tar zcf - 2017.log |split -d -C 100m - logs.tar.gz.
+# 生成文件： 
+logs.tar.gz.00 logs.tar.gz.01
+# 分卷压缩bz2
+tar jcf - 2017.log |split -d -b 100m - logs.tar.bz2.
+# 生成文件：
+logs.tar.bz2.00 logs.tar.bz2.01
+# 解压gz分卷
+cat logs.tar.gz* | tar zx
+# 解压bz2分卷
+cat logs.tar.gz* | tar jx
+
+``` 
 
 ## tee
 把stdin 重定向到给定文件和stdout上。  
@@ -1179,3 +1204,6 @@ who 命令，不指定参数，将显示当前登录的所有用户的信息
 * d 删除当前邮件，指针并下移。 d 1-100 删除第1到100封邮件
 * x 退出mail命令平台，并不保存之前的操作，比如删除邮件
 * q 退出mail命令平台,保存之前的操作，比如删除已用d删除的邮件，已阅读邮件会转存到当前用户家目
+
+## split
+split -b 10k date.file -d -a 3 split_file

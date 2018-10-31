@@ -223,3 +223,23 @@ function inheritedPropertyNames(obj) {
 inheritedPropertyNames(Date)
 // ["caller", "constructor", "toString", "UTC", "call", "parse", "prototype", "__defineSetter__", "__lookupSetter__", "length", "arguments", "bind", "__lookupGetter__", "isPrototypeOf", "toLocaleString", "propertyIsEnumerable", "valueOf", "apply", "__defineGetter__", "name", "now", "hasOwnProperty"]
 
+function getWeekNumber(y, m, d) {
+    var targetDay = new Date(y, m - 1, d);
+    var year = targetDay.getFullYear();
+    var month = targetDay.getMonth();
+    var days = targetDay.getDate();
+    //那一天是那一年中的第多少天
+    for (var i = 1; i < m; i++) {
+        days += getMonthDays(year, i);
+    }
+    //那一年第一天是星期几
+    var yearFirstDay = new Date(year, 0, 1).getDay();
+    //计算是第几周
+    days += yearFirstDay;
+    var week = Math.ceil(days / 7);
+    return week;
+}
+
+1. 北京移动服务说明修改，绑定页面按钮往上挪，上网控制发短信20s
+2. 新app分析页面，包括今天，本周，本月
+3. ios 新需求调研

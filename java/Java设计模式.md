@@ -1,3 +1,7 @@
+## 参考
+* [java-design-patterns](http://java-design-patterns.com/)
+* [设计模式](https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/decorator.html)
+
 ## 接口和抽象类
 * 在interface里面的变量默认都是public static final 的。所以可以直接省略修饰符：`String param="ssm"；//变量需要初始化`
 * 假如可以是非static的话，因一个类可以继承多个接口，出现重名的变量，如何区分呢？

@@ -16,7 +16,7 @@ sudo apt-get remove git
 ```
 ```
 	git --version
-	//git help
+	//git help clone
 	git config --help
 	man git-config
 	//alias

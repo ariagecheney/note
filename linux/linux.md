@@ -29,8 +29,9 @@
 * Ctrl + xx	当前位置与行首之间光标切换
 ---
 剪切粘贴
-* Ctrl+k	剪切从光标所在位置到行末 Ctrl+u,相反  
-* CTRL + W - 剪切光标前一个单词
+* Ctrl+k	剪切从光标所在位置到行末 
+* Ctrl+u 与上面相反  
+* CTRL + w - 剪切光标前一个单词
 * ctrl + y 粘贴上一次删除的文本
 ---
 终端指令
@@ -42,7 +43,8 @@
 * Shift+PgDn	将终端显示向下滚动
 ---
 历史命令
-* Ctrl + r	向后搜索历史命令，再次按下 ctrl + r 组合键将向上查询另一条包含指定字符串的命令。  
+* Ctrl + r	向后搜索历史命令，再次按下 ctrl + r 组合键将向上查询另一条包含指定字符串的命令。 
+* 按左键或者右键，退出搜索模式 
 * !!  直接调用上一条命令。
 * 输入“!9527”，回调 history 列表中的第 9527 条命令    
 * Ctrl + g	退出搜索
@@ -195,8 +197,6 @@ $ find ~ -newer /home/shiyanlou/Code
 -r 递归打包 -o 输出文件，其后紧跟打包输出文件名 -q安静模式 -【1-9】压缩级别，默认为最高9  -x 排除文件不压缩，只能使用绝对路径，否则不起作用。  
 zip -r -9 -q -o shiyanlou_9.zip /home/shiyanlou -x ~/*.zip
 * -e 加密 -l参数将LF转换为CR+LF 兼容windows  
-* du命令查看打包后文件的大小  du -h -d 0 *.zip ~ | sort  
--d, --max-depth（所查看文件的深度）
 * unzip -d 目标目录 -l 不解压只查看压缩包内容 -O（大写） 指定编码  -o  overwrite existing files without prompting -j     junk paths.  The archive's directory structure is not recreated; all files are deposited in the extraction directory (by default, the current one).
 ```sh 
 unzip -q shiyanlou.zip -d ziptest  
@@ -233,6 +233,14 @@ tar -rvf shiyanlou.tar file_extra.txt
   
 tar -czf shiyanlou.tar.gz ~  
 tar -xzf shiyanlou.tar.gz  
+
+### du
+--max-depth（所查看文件的深度）  
+-s    summarize
+```sh
+du -h --max-depth=1 dir # 只显示指定目录中文件和目录大小，不显示子目录内容。另外会显示该目录的汇总大小
+du -sh      # 显示当前目录总的大小信息，不显示该目录下文件和子目录的大小信息
+```
 
 ### uniq
 * 用于移除或发现文件中重复的条目 -u / -d

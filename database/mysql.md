@@ -1,3 +1,37 @@
+## mysql解压版（5.7）安装
+```sh
+groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+
+mkdir /home/data
+chown -R mysql:mysql data
+chmod 750 data
+
+tar zxvf /path/to/mysql-VERSION-OS.tar.gz -C /home/env
+# ln -s full-path-to-mysql-VERSION-OS mysql
+mv /home/env/mysql-mysql-VERSION-OS /home/env/mysql
+cd /home/env/mysql
+cp 
+
+bin/mysqld --initialize --user=mysql 
+bin/mysql_ssl_rsa_setup              
+./bin/mysqld_safe --defaults-file=/home/ygsh/mysql-5.7/my.cnf --user=mysql &
+
+mysql -u root --skip-password
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+set password =password(‘123456‘);
+
+flush privileges;
+
+mysqladmin -u root password “666666”;
+
+# Next command is optional
+cp support-files/mysql.server /etc/init.d/mysql.server
+```
+
+
 [mysql manual in chinase](http://doc.mysql.cn/mysql5/refman-5.1-zh.html-chapter/ "中文")  
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)  
 [runoob mysql manual](http://www.runoob.com/mysql/mysql-database-import.html)
@@ -103,7 +137,7 @@ UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_c
 
 ### 导出
 ```sql
-mysqldump -h localhost -u root -p mydb >e:\mysql\mydb.sql
+mysqldump -h localhost -P3306 -u root -p mydb >e:\mysql\mydb.sql
 - 然后输入密码，等待一会导出就成功了，可以到目标文件中检查是否成功。
 - 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
 mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
@@ -436,3 +470,9 @@ SELECT count(DISTINCT(bill_id))/count(*) AS Selectivity FROM p_order;
 ```sql
 mysql -uroot -pxxx db --skip-column-names -se "sql"
 ```
+
+## varchar 转 langint
+select crc32('hello_world');
+
+## 数据库表结构导出工具
+* https://github.com/voidint/tsdump

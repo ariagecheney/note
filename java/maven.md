@@ -100,7 +100,8 @@ mvn deploy
 mvn dependency:resolve   
 处理项目依赖情况   
 mvn clean dependency:tree | grep log   
-打印出项目的整个依赖树 并查找特定jar包  
+打印出项目的整个依赖树 并查找特定jar包
+-Doutput=*.txt   
 mvn dependency:analyze   
 帮助你分析依赖关系, 用来取出无用, 重复依赖的好帮手   
 ```cmd
@@ -155,6 +156,8 @@ mvn install:install-file
 <!-- 例如 -->
 mvn install:install-file -Dfile=D:\JAR_LIB\rabbitmq-client.jar -DgroupId=com.rabbitmq -DartifactId=client -Dversion=3.5.0 -Dpackaging=jar  -DgeneratePom=true -DcreateChecksum=true
 <!-- 之后就可以正常引用 -->
+
+mvn install:install-file -Dfile=lib/jmxtools-1.2.1.jar -DgroupId=com.sun.jdmk -DartifactId=jmxtools -Dversion=1.2.1 -Dpackaging=jar
 ```
 ## 添加 in project repository
 ```xml
