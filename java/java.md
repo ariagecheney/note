@@ -1,3 +1,9 @@
+## 阻塞队列
+* 超时退出   
+队列为空时进行出队操作,进行出队操作的线程将被阻塞,直至超时退出(线程也会退出)  
+队列已满时进行入队操作,进行入队操作的线程将被阻塞,直至超时退出(线程也会退出)
+![](../assets/block_queue.webp)
+
 ## java format 
 * %[argument_index$][flags][width][.precision]conversion
 * [javadoc](https://docs.oracle.com/javase/1.5.0/docs/api/java/util/Formatter.html#syntax)
@@ -109,7 +115,7 @@ fix:
      5) 除float和double外的原始数据类型 : 使用 == 。 
      6) float类型: 使用Float.foatToIntBits转换成int类型，然后使用==。  
       7) double类型: 使用Double.doubleToLongBit转换成long类型，然后使用==。
-
+	* 原始类型和包装类 进行比较时：堆中的Integer自动拆箱（xx.intValue，在栈中创建内存空间，值一样的话内存引用一样）为int类型的数据，然后进行==比较，引用一致
 ### jdk实现 hashcode 
 ```java
 # Objects.hash(values)
@@ -538,6 +544,8 @@ URIEncoding="UTF-8"
       4、内部类并没有令人迷惑的“is-a”关系，他就是一个独立的实体。
 
       5、内部类提供了更好的封装，除了该外围类，其他类都不能访问。
+
+	  * 内部类成员可以直接访问外部类的私有数据,静态内部类，不能访问外部类的实例成员，只能访问外部类的类成员,非静态内部类中不允许定义静态成员
 
 
 # java 引用

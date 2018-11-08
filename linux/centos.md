@@ -166,59 +166,6 @@ mysql -u root -p
 /etc/my.cnf  
    
 
-## mysql 
-* [linux mysql 更改MySQL数据库目录位置](http://blog.csdn.net/qq_36040184/article/details/53889856)
-* whereis   
-初始化 MySQL 数据库： WARNING: The host 'AQWSnginx' could not be looked up with resolveip.
-This probably means that your libc libraries are not 100 % compatible
-with this binary MySQL version. The MySQL daemon, mysqld, should work
-normally with the exception that host name resolving will not work.
-This means that you should use IP addresses instead of hostnames
-when specifying MySQL privileges !
-Installing MySQL system tables...
-OK
-Filling help tables...
-OK
-
-To start mysqld at boot time you have to copy
-support-files/mysql.server to the right place for your system
-
-PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !
-To do so, start the server, then issue the following commands:
-
-/usr/bin/mysqladmin -u root password 'new-password'
-/usr/bin/mysqladmin -u root -h AQWSnginx password 'new-password'
-
-Alternatively you can run:
-/usr/bin/mysql_secure_installation
-
-which will also give you the option of removing the test
-databases and anonymous user created by default.  This is
-strongly recommended for production servers.
-
-See the manual for more instructions.
-
-You can start the MySQL daemon with:
-cd /usr ; /usr/bin/mysqld_safe &
-
-You can test the MySQL daemon with mysql-test-run.pl
-cd /usr/mysql-test ; perl mysql-test-run.pl
-
-Please report any problems with the /usr/bin/mysqlbug script!
-
-
-2018-10-12T07:45:06.692094Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-2018-10-12T07:45:06.692194Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
-2018-10-12T07:45:06.692203Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
-2018-10-12T07:45:07.838275Z 0 [Warning] InnoDB: New log files created, LSN=45790
-2018-10-12T07:45:08.101388Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
-2018-10-12T07:45:08.241585Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: bda6f64e-cdf2-11e8-ba63-a0369fc0ee22.
-2018-10-12T07:45:08.271693Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
-2018-10-12T07:45:08.272820Z 1 [Note] A temporary password is generated for root@localhost: EtmkBtbL5>Mz
-
-
-EtmkBtbL5>Mz
-
 ## [rar/unrar](https://www.rarlab.com/download.htm)
 * rar软件不需要安装，直接解压到/usr/local下，以下操作需要有root权限。
 
@@ -228,5 +175,10 @@ EtmkBtbL5>Mz
 
 # centos 7
 * yum upgrade && yum install net-tools
+
+## 开放端口
+* firewall-cmd --zone=public --add-port=80/tcp --permanent
+* 重启防火墙：firewall-cmd --reload
+* 查看已经开放端口：firewall-cmd --list-ports
 
                       

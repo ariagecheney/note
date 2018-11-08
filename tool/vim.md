@@ -42,6 +42,9 @@ set guifont=Consolas\ 12 设置默认字体
 :set noic // 大小写敏感
 ```
 # vim 查找替换
+* 全词匹配  
+“\>” 是一个特殊的记号，表示只匹配单词末尾。类似地，”\<” 只匹配单词的开头。
+
 vi/vim 中可以使用 :s 命令来替换字符串
 
 :s/vivian/sky/ 替换当前行第一个 vivian 为 sky

@@ -95,7 +95,7 @@ public class Test {
 public class Singleton {  
   
     /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 
-       volatile： 禁止指令重排序优化 ,**可选**
+       volatile： 禁止指令重排序优化 ,**可选** 当使用双重检验锁时，内部采用调用同步方法而不是写同步块时，可以不用volatile修饰，否则双重检验锁有问题
     */  
     // private volatile  static Singleton instance = null;  
     private static Singleton instance = null;

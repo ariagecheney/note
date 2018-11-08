@@ -10,7 +10,7 @@
 
 ## mysql
 * [MySQL数据类型](./database/MySQL数据类型.md)
-* [sql语句](./database/sql.md)
+* [sql语句](./database/mysql.md)
 * [基于角色的权限表设计](./database/rbac.sql)
 
 ## redis
@@ -19,6 +19,8 @@
 ## mongo
 * [mongo](./database/mongo.md)
 
+## fastdfs
+* [fastdfs](./database/fastdfs.md)
 # 前端（哥一直致力于后端，无奈常常前后端一起撸）
 * [ES5 or ES6](./frontend/ES.md)
 * [BOM](./frontend/BOM.md)
@@ -35,6 +37,8 @@
 * [maven](./java/maven.md)
 * [spring-boot](./java/spring-learn.md)
 
+
+
 # Linux
 * [Linux 基础](./linux/linux.md)
 * [shell编程](./linux/shell.md)
@@ -50,7 +54,8 @@
 * [加解密基础概念](./network/加解密概念.md)
 * [https自签名证书实战](./network/https自签名证书实战.md)
 * [tomcat8.5_https_配置](./network/tomcat8.5_https_配置.md)
-
+* [nio,aio](./network/javaIO.md)
+* [tcp](./network/socket.md)
 # 微服务
 * [kafka](./SOA/kafka.md)
 * [zookeeper](./SOA/zookeeper.md)

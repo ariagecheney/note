@@ -3,34 +3,89 @@
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
 
-mkdir /home/data
-chown -R mysql:mysql data
-chmod 750 data
+tar zxvf /path/to/mysql-VERSION-OS.tar.gz -C /home/
+mv /home/env/mysql-mysql-VERSION-OS /home/mysql
 
-tar zxvf /path/to/mysql-VERSION-OS.tar.gz -C /home/env
-# ln -s full-path-to-mysql-VERSION-OS mysql
-mv /home/env/mysql-mysql-VERSION-OS /home/env/mysql
-cd /home/env/mysql
-cp 
 
-bin/mysqld --initialize --user=mysql 
-bin/mysql_ssl_rsa_setup              
-./bin/mysqld_safe --defaults-file=/home/ygsh/mysql-5.7/my.cnf --user=mysql &
+mkdir -p /home/mysql/{data,log,etc,run}
+touch /home/mysql/log/mysql_error.log
+touch /home/mysql/etc/my.cnf
 
-mysql -u root --skip-password
+chown -R mysql:mysql /home/mysql
+chmod 750 /home/mysql/{data,log,etc,run}
+
+# my.cnf
+[client]
+port = 3306
+socket = /home/mysql/run/mysql.sock
+
+[mysqld]
+basedir = /home/mysql
+datadir = /home/mysql/data
+port = 3306
+socket = /home/mysql/run/mysql.sock
+pid_file = /home/mysql/run/mysql.pid
+default_storage_engine = InnoDB
+log-error = /home/mysql/log/mysql_error.log
+log-bin = /home/mysql/log/mysql_bin.log
+
+skip-name-resolve
+server_id = 1
+
+cd /home/mysql
+./bin/mysqld --initialize  --user=mysql --datadir=/home/mysql/data --basedir=/home/mysql
+
+# stdout 保存最后的临时root 密码 
+2018-11-06T10:38:58.716208Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2018-11-06T10:38:58.716297Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2018-11-06T10:38:58.716305Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2018-11-06T10:39:00.192116Z 0 [Warning] InnoDB: New log files created, LSN=45790
+2018-11-06T10:39:00.446269Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+2018-11-06T10:39:00.561369Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 2c2061e0-e1b0-11e8-ad3c-fa163e2f72d5.
+2018-11-06T10:39:00.583874Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2018-11-06T10:39:00.584786Z 1 [Note] A temporary password is generated for root@localhost: gUhYy71rdV#4
+
+# bin/mysql_ssl_rsa_setup 
+
+./bin/mysqld_safe --defaults-file=/home/mysql/etc/my.cnf --user=mysql &
+
+ln -s /home/mysql/run/mysql.sock /tmp/mysql.sock 
+             
+./bin/mysql -u root --skip-password
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
-
-set password =password(‘123456‘);
-
+grant all privileges  on *.* to root@'%' identified by "new_password";
 flush privileges;
-
-mysqladmin -u root password “666666”;
+use mysql 
+select * from user;
+update user set host='%' where host='localhost' and user = 'root'；
 
 # Next command is optional
 cp support-files/mysql.server /etc/init.d/mysql.server
+set password =password(‘123456‘);
+mysqladmin -u root password “666666”;
 ```
 
+
+## 自启
+```sh
+# mysqld.service
+
+[Unit]
+Description=MySQL3306
+After=network.target
+After=syslog.target
+
+[Service]
+User=mysql # 此用户必须存在，即为启动mysql的用户
+PIDFile=/var/run/mysqld/mysqld.pid
+Type=forking
+ExecStart=/home/ygsh/env/mysql/bin/mysqld_safe --defaults-file=/etc/my.cnf --user=mysql &
+LimitNOFILE=5000
+
+[Install]
+WantedBy=multi-user.target
+```
 
 [mysql manual in chinase](http://doc.mysql.cn/mysql5/refman-5.1-zh.html-chapter/ "中文")  
 [w3c mysql manual](http://www.w3school.com.cn/sql/sql_alter.asp)  
@@ -134,15 +189,19 @@ COLLATION 选择 utf8_general_ci
 2. 用SQL语句  
 GBK: CREATE DATABASE `test1` DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
 UTF-8: CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-
+XHG!;3sM2cPQ
 ### 导出
 ```sql
+mysqldump [OPTIONS] database [tables]
+mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+mysqldump [OPTIONS] --all-databases [OPTIONS]
+
 mysqldump -h localhost -P3306 -u root -p mydb >e:\mysql\mydb.sql
 - 然后输入密码，等待一会导出就成功了，可以到目标文件中检查是否成功。
 - 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
 mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
 - 3.将数据库mydb的结构导出到e:\mysql\mydb_stru.sql文件中：
-mysqldump -h localhost -u root -p mydb  --add-drop-table >e:\mysql\mydb_stru.sql
+mysqldump -h localhost -u root -p mydb -d --add-drop-database --add-drop-table >e:\mysql\mydb_stru.sql
 - 3.将数据库mydb中 某表的表结构导出到e:\mysql\mydb_stru.sql文件中：
 mysqldump -h localhost -u root -p -B mydb --table tableName --opt >e:\mysql\mydb_stru.sql
 
