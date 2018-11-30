@@ -42,7 +42,7 @@ dir ./
 src/redis-server ./redis.conf &
 src/redis-server --daemonize yes
 
-src/redis-cli -c -h ip -p port shutdown
+src/redis-cli -c -h ip -p port shutdown save
 pkill redis-server
 ```
 ## [命令](http://redisdoc.com/)
@@ -53,7 +53,9 @@ pkill redis-server
 
 * DBSIZE 当前数据库的 key 的数量
 
-
+* INFO [section]  
+Redis 服务器的各种信息和统计数值
+* flushall FLUSHDB
 3. docker
 
 ```sh
@@ -87,7 +89,10 @@ echo：打印
 select：切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值  
 quit：关闭连接（connection）  
 auth：简单密码认证  
-
+* 直接运行redis-cli 不加任何选项，可以查看cli doc：
+```sh
+"help <tab>" to get a list of possible help topics
+```
 ## 数据结构
 
 ### list
@@ -195,11 +200,127 @@ auto-aof-rewrite-min-size 64mb
 * AOF更安全，可将数据及时同步到文件中，但需要较多的磁盘IO，AOF文件尺寸较大，文件内容恢复相对较慢， 也更完整。
 * RDB持久化，安全性较差(redis挂了，从上次RDB文件生成到Redis停机这段时间的数据全部丢掉了))，它是正常时期数据备份及 master-slave数据同步的最佳手段，文件尺寸较小，且是二进制的，恢复数度较快。
 
+### 问题
+* Redis bgsave 失败后，导致redis 不能执行写命令  
+config set stop-writes-on-bgsave-error no
+
 # 主从
 redis支持master-slave模式，一主多从，redis server可以设置另外多个redis server为slave，从机同步主机的数据。配置后，读写分离，主机负责读写服务，从机只负责读。减轻主机的压力。redis实现的是最终会一致性，具体选择强一致性还是弱一致性，取决于业务场景。
 redis 主从同步有两种方式（或者所两个阶段）：全同步和部分同步。
 * 主从同步就是 RDB 文件的上传下载；主机有小部分的数据修改，就把修改记录传播给每个从机。
+* 既然第一次不可以避免，那我们可以选在集群低峰的时间（凌晨）进行slave的挂载。
 * Redis在master是非阻塞模式，也就是说在slave执行数据同步的时候，master是可以接受客户端的请求的，并不影响同步数据的一致性，然而在slave端是阻塞模式的，slave在同步master数据时，并不能够响应客户端的查询。
+* 版本要求从库至少和主库一样新，否则主库的新指令同步过去从库不能识别，同步就会出错，所以升级版本时应该先升级从库，再升级主库
+* redis的slave buffer（replication buffer，master端上）存放的数据是下面三个时间内所有的master数据更新操作。
+
+1）master执行rdb bgsave产生snapshot的时间
+
+2）master发送rdb到slave网络传输时间
+
+3）slave load rdb文件把数据恢复到内存的时间
+
+replication buffer由client-output-buffer-limit slave设置，当这个值太小会导致主从复制链接断开。
+
+1）当master-slave复制连接断开，server端会释放连接相关的数据结构。replication buffer中的数据也就丢失了，此时主从之间重新开始复制过程。
+
+2）还有个更严重的问题，主从复制连接断开，导致主从上出现rdb bgsave和rdb重传操作无限循环。
+
+* 当主服务器进行命令传播的时候，maser不仅将所有的数据更新命令发送到所有slave的replication buffer，还会写入replication backlog。当断开的slave重新连接上master的时候，slave将会发送psync命令（包含复制的偏移量offset），请求partial resync。如果请求的offset不存在，那么执行全量的sync操作，相当于重新建立主从复制。
+
+replication backlog是一个环形缓冲区，整个master进程中只会存在一个，所有的slave公用。backlog的大小通过repl-backlog-size参数设置，默认大小是1M，其大小可以根据每秒产生的命令、（master执行rdb bgsave） +（ master发送rdb到slave） + （slave load rdb文件）时间之和来估算积压缓冲区的大小，repl-backlog-size值不小于这两者的乘积。
+
+# sentinel
+* 从节点挂了，主节点没事,整个系统仍然能提供读写
+* 主节点读写，从节点只能读
+* 保证主从节点和哨兵的密码一致
+* 启动顺序：Master->Slave->Sentinel；shutdown 顺序相反
+* Sentinel去监视一个别名为mymaster的主服务器，将这个主服务器判断为失效至少需要2个Sentinel同意，一般设置为N/2+1(N为Sentinel总数)。只要同意Sentinel的数量不达标，自动故障迁移就不会执行。不过要注意，无论你设置要多少个Sentinel同意才能判断一个服务器失效， 一个Sentinel都需要获得系统中多数Sentinel的支持，才能发起一次自动故障迁移，并新增一个给定的配置纪元。(configuration Epoch ，一个配置纪元就是一个新主服务器配置的版本号)。
+```sh
+sentinel config-epoch mymaster 2
+sentinel leader-epoch mymaster 2
+sentinel current-epoch 2
+```
+
+### master
+```sh
+port 6379
+# bind
+daemonize yes
+dir ./
+logfile ./logs/log
+pidfile ./redis_6379.pid
+
+stop-writes-on-bgsave-error no
+repl-timeout 300
+repl-backlog-size 100mb
+requirepass 
+masterauth 
+maxmemory 10737418240
+maxmemory-policy volatile-lru
+client-output-buffer-limit slave 512mb 512mb 0
+```
+### slaveof
+```sh
+port 6399
+slaveof <masterip> <masterport>
+```
+### sentinel
+```sh
+port 26379
+protected-mode no
+daemonize yes
+dir ./
+logfile ./logs/sentinel.log
+sentinel monitor mymaster 192.168.200.64 6399 2
+sentinel auth-pass mymaster 
+sentinel notification-script mymaster ./sentinel/notify.sh
+```
+
+* 启动后做了如下事情：
+    * Sentinel节点自动发现了从节点、其余Sentinel节点。
+    * 去掉了默认配置，例如：parallel-syncs、failover-timeout。
+    * 新添加了纪元（epoch）参数。
+
+* warn 修复 
+vi /etc/sysctl.conf
+fs.file-max = 100000
+net.core.somaxconn=2048
+vm.overcommit_memory = 1
+sysctl -p
+
+cat /run/redis/redis-server.pid
+cat /proc/PID/limits
+
+
+cat /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+vi /etc/rc.local 在 exit 0 之前增加下述命令
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+   echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+   echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+* sentinel 命令
+```sh
+src/redis-cli -p 26379
+src/redis-cli -p 26379 info sentinel
+sentinel masters
+sentinel get-master-addr-by-name mymaster
+```
+
+
+### slave
+bind
+protect
+slaveof 127.0.0.1 6379
+require
+masterauth 
+* 命令
+redis-cli -h 127.0.0.1 -p 6380 INFO replication
+
+switch-master mymaster
 
 # 集群
 
@@ -250,3 +371,31 @@ config rewrite
 * [runoob](http://www.runoob.com/redis/redis-intro.html)
 * [redis 中文网](http://www.redis.cn/)
 * [redis 命令](http://redisdoc.com/)
+
+## 高可用
+* 雪崩 key 过期时间不一致，二级缓存
+* 缓存穿透 布隆过滤器
+* 缓存预热
+* used_memory_rss和used_memory以及它们的比值mem_fragmentation_ratio。
+
+used_memory: redis当前数据使用的内存，有可能包括SWAP虚拟内存。  
+used_memory_rss: redis当前占用的物理内存，包括内存碎片。
+
+碎片率的计算是 = redis向操作系统申请的内存(used_memory_rss)/redis实际分配出去的内存(used_memory)。
+
+当mem_fragmentation_ratio>1时，说明used_memory_rss-used_memory多出的部分内存并没有用于数据存储，而是被内存碎片所消耗，如果两者相差很大，说明碎片率严重。  
+当mem_fragmentation_ratio<1时，这种情况一般出现在操作系统把Redis内存交换（Swap）到硬盘导致，出现这种情况时要格外关注，由于硬盘速度远远慢于内存，Redis性能会变得很差。
+
+* 每个client 连接都会有一个 output buffer， output buffer受maxmemory的限制，基本不会超过maxmemory设置值.监控redis used_memory如果抖动严重，极有可能是客户端执行大批量数据读取，keys *、smembers、lrange、hgetall；也不能设置太小，这个会导致客户端读取不到数据
+
+* 重启节点可以做到内存碎片重新整理，因此将碎片率过高的主节点转换为从节点，进行安全重启。
+* 编辑/etc/sysctl.conf ，改vm.overcommit_memory=1，然后sysctl -p 使配置文件生效.  
+允许内核可以分配所有的物理内存，防止Redis进程执行fork时因系统剩余内存不足而失败。
+
+* LRU和LFU都是内存管理的页面置换算法。
+
+LRU，即：最近最少使用淘汰算法（Least Recently Used）。LRU是淘汰最长时间没有被使用的页面。
+
+LFU，即：最不经常使用淘汰算法（Least Frequently Used）。LFU是淘汰一段时间内，使用次数最少的页面。
+
+

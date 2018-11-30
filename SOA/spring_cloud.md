@@ -1,3 +1,5 @@
+## 概括 CAP 原理就是——网络分区发生时，一致性和可用性两难全
+
 ## [yaml](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
 
 ## eureka

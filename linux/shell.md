@@ -1084,6 +1084,8 @@ sudo add-apt-repository \
 * date "+%Y-%m-%d %H:%M:%S"
 * 时间同步  
 `ntpdate -u ntp.api.bz`
+hwclock –w 将系统时钟同步到硬件时钟
+hwclock --show 
 * 查看时区  
 `date "+%Z"`
 ## tar 加密
@@ -1137,9 +1139,14 @@ cat logs.tar.gz* | tar jx
 ## shell内置变量 都需要加双引号
 `$*` is a single string, whereas `$@` is an actual array
 
-## 目录下的所有文件中查找字符串
+## 
 
-find .| xargs grep -rn patern 
+* xargs的默认命令是echo，空格是默认定界符。这意味着通过管道传递给xargs的输入将会包含换行和空白，不过通过xargs的处理，换行和空白将被空格取代。xargs是构建单行命令的重要组件之一。使用-I指定一个替换字符串{}，这个字符串在xargs扩展时会被替换掉，当-I与xargs结合使用，每一个参数命令都会被执行一次：
+* 目录下的所有文件中查找字符串  
+find .| xargs grep -rn patern   
+find . -type f -name "*.log" -print0 | xargs -0 rm -f
+* 7天前的日志备份到特定目录
+find . -mtime +7 | xargs -t -I '{}' mv {} /tmp/otc-svr-logs/
 
 
 ## 清空文件

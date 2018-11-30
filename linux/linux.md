@@ -380,8 +380,9 @@ find / -inum 3814056
 1. 在/etc/rc.local 中增加一行 ulimit -SHn 65535
 2. 在/etc/profile 中增加一行 ulimit -SHn 65535
 3. 在/etc/security/limits.conf最后增加如下两行记录
-    * soft nofile 65535
-    * hard nofile 65535
+* soft nofile 65535
+
+* hard nofile 65535
 
 具体使用哪种，试试哪种有效吧，我在 CentOS中使用第1种方式无效果，使用第3种方式有效果，而在Debian中使用第2种有效果
 
@@ -492,4 +493,30 @@ IdentityFile ~/.ssh/id_rsa
 
 ssh 67 # 免密别名登录
 
+```
+
+## Linux下如何确认磁盘是否为SSD
+* cat /sys/block/sda/queue/rotational进行查看，返回值0即为SSD；返回1即为HDD。
+* lsscsi - list SCSI devices (or hosts) and their attributes
+
+## sysctl命令被用于在内核运行时动态地修改内核的运行参数，可用的内核参数在目录/proc/sys中。它包含一些TCP/ip堆栈和虚拟内存系统的高级选项，用sysctl可以读取设置超过五百个系统变量。
+```sh
+sysctl命令
+用法： 
+sysctl [options] [variable[=value] …]
+
+常用选项： 
+-n：打印时只打印值，不打印参数名称； 
+-e：忽略未知关键字错误； 
+-N：打印时只打印参数名称，不打印值； 
+-w：设置参数的值（不过好像不加这个选项也可以直接设置）； 
+-p：从配置文件“/etc/sysctl.conf”加载内核参数设置； 
+-a：打印所有内核参数变量； 
+-A：以表格方式打印所有内核参数变量。
+
+sudo sysctl -w net.core.rmem_max=212992
+sysctl net.core.rmem_max
+sysctl -a | grep rmem_max
+echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
+sysctl -p
 ```

@@ -147,6 +147,7 @@ F11 mark
 * go to line c+g
 ### 覆盖默认配置
 * "editor.wordWrap": "on", 自动换行
+* window.titleBarStyle custom
 
 # chrome plugins
 * 划词翻译   ctrl+q

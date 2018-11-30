@@ -78,7 +78,10 @@ service network restart 或 /etc/init.d/network restart
 0：停止系统运行。init 0〈回车〉相当于 halt〈回车〉。
 6：重启系统。init 6〈回车〉相当于 reboot〈回车〉。
 
-* hostname -i 查看本地ip
+* centos7 修改主机名
+hostnamectl --help
+hostnamectl status
+hostnamectl --static set-hostname [主机名]
 
 使用命令：chkconfig sshd on 设置为开机启动
 使用命令：chkconfig --list |grep sshd查看设置结果，
@@ -176,9 +179,16 @@ mysql -u root -p
 # centos 7
 * yum upgrade && yum install net-tools
 
-## 开放端口
+## [firewall-cmd](https://jpopelka.fedorapeople.org/firewalld/doc/firewalld.richlanguage.html)
+* sudo firewall-cmd --get-active-zones
+* sudo firewall-cmd --zone=public --list-all
+* sudo firewall-cmd --list-rich-rules
+* sudo firewall-cmd --get-services
 * firewall-cmd --zone=public --add-port=80/tcp --permanent
+* firewall-cmd --zone=public --remove-port=12345/tcp --permanent
 * 重启防火墙：firewall-cmd --reload
 * 查看已经开放端口：firewall-cmd --list-ports
 
+
+## [chrony](https://renwole.com/archives/1032)
                       
