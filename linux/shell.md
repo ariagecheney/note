@@ -65,8 +65,9 @@ done
 ### printf
 `printf "%d\t%s %f\n" 123 zorro 1.23`
 
-###　eval  
+### eval  
 eval 命令将会首先扫描命令行进行所有的置换，然后再执行该命令。
+
 ##  fd
 在内核中，文件描述符的数组所直接映射的实际上是文件表，文件表再索引到相关文件的v_node。具体可以参见《UNIX系统高级编程》。  
 shell在产生一个新进程后，新进程的前三个文件描述符都默认指向三个相关文件。这三个文件描述符对应的数组下标分别为0，1，2。0对应的文件叫做标准输入（stdin），1对应的文件叫做标准输出（stdout），2对应的文件叫做标准报错(stderr)。但是实际上，默认跟人交互的输入是键盘、鼠标，输出是显示器屏幕，这些硬件设备对于程序来说都是不认识的，所以操作系统借用了原来“终端”的概念，将键盘鼠标显示器都表现成一个终端文件。于是stdin、stdout和stderr就最重都指向了这所谓的终端文件上。  
@@ -487,7 +488,7 @@ useradd test
 passwd test    
 增加用户test，有一点要注意的，useradd增加一个用户后，不要忘了给他设置密码，不然不能登录的。  
 
-usermod -d /home/test -G test2 test  
+usermod -d /home/test -a -G test2 test  
 
 将test用户的登录目录改成/home/test，并加入test2组，注意这里是大G。  
 * 删除用户  
@@ -1083,9 +1084,10 @@ sudo add-apt-repository \
 ## date
 * date "+%Y-%m-%d %H:%M:%S"
 * 时间同步  
-`ntpdate -u ntp.api.bz`
-hwclock –w 将系统时钟同步到硬件时钟
-hwclock --show 
+`ntpdate -u ntp.api.bz`  
+ntp.aliyun.com  
+hwclock –w 将系统时钟同步到硬件时钟  
+hwclock --show   
 * 查看时区  
 `date "+%Z"`
 ## tar 加密
@@ -1139,7 +1141,7 @@ cat logs.tar.gz* | tar jx
 ## shell内置变量 都需要加双引号
 `$*` is a single string, whereas `$@` is an actual array
 
-## 
+## xargs
 
 * xargs的默认命令是echo，空格是默认定界符。这意味着通过管道传递给xargs的输入将会包含换行和空白，不过通过xargs的处理，换行和空白将被空格取代。xargs是构建单行命令的重要组件之一。使用-I指定一个替换字符串{}，这个字符串在xargs扩展时会被替换掉，当-I与xargs结合使用，每一个参数命令都会被执行一次：
 * 目录下的所有文件中查找字符串  

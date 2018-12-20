@@ -1,4 +1,10 @@
-## []()
+## [参考：Docker — 从入门到实践](https://docker_practice.gitee.io/)
+# [Docker 的版本演进](https://docs.lvrui.io/2017/03/06/Docker-%E7%9A%84%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B/)
+# [debain安装](https://yeasy.gitbooks.io/docker_practice/install/debian.html)
+
+* [deepin 安装docker](https://wiki.deepin.org/index.php?title=Docker)
+* [免sudo使用docker命令](https://www.jianshu.com/p/95e397570896)
+
 ## debain(deepin)
 ```sh
 sudo aptitude update
@@ -31,7 +37,9 @@ docker info
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-## 镜像
+```
+## 镜像，容器，仓库
+```sh
 sudo docker pull user/ubuntu:latest
 docker run -it --rm \
     ubuntu:16.04 \
@@ -111,7 +119,11 @@ character-range:
 
 如 <源路径> 可以是一个 URL，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <目标路径> 去。下载后的文件权限自动设置为 600，如果这并不是想要的权限，那么还需要增加额外的一层 RUN 进行权限调整，另外，如果下载的是个压缩包，需要解压缩，也一样还需要额外的一层 RUN 指令进行解压缩。所以不如直接使用 RUN 指令，然后使用 wget 或者 curl 工具下载，处理权限、解压缩、然后清理无用文件更合理。因此，这个功能其实并不实用，而且不推荐使用。
 
+容器内没有后台服务的概念
+
 如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
+
+CMD 指定容器启动程序及参数 ,CMD指令就是用于指定默认的容器主进程的启动命令的
 对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。
 
 而使用 service nginx start 命令，则是希望 upstart 来以后台守护进程形式启动 nginx 服务。而刚才说了 CMD service nginx start 会被理解为 CMD [ "sh", "-c", "service nginx start"]，因此主进程实际上是 sh。那么当 service nginx start 命令结束后，sh 也就结束了，sh 作为主进程退出了，自然就会令容器退出。
@@ -119,11 +131,31 @@ character-range:
 CMD ["nginx", "-g", "daemon off;"]
 
 docker run image cmd arg
-run 命令，跟在镜像名后面的是 command，运行时会替换 CMD 的默认值。
+run 命令，跟在镜像名后面的是 command，运行时会替换 CMD 的默认值。 
+当存在 ENTRYPOINT 后，CMD 的内容将会作为参数传给 ENTRYPOINT
+
+这些准备工作是和容器 CMD 无关的，无论 CMD 为什么，都需要事先进行一个预处理的工作。这种情况下，可以写一个脚本，然后放入 ENTRYPOINT 中去执行，而这个脚本会将接到的参数（也就是 <CMD>）作为命令，在脚本最后执行。
+
+构建参数和 ENV 的效果一样，都是设置环境变量。所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。但是不要因此就使用 ARG 保存密码之类的信息，因为 docker history 还是可以看到所有值的。
+
+Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 docker build 中用 --build-arg <参数名>=<值> 来覆盖。
+
+VOLUME /data
+这里的 /data 目录就会在运行时自动挂载为匿名卷，任何向 /data 中写入的信息都不会记录进容器存储层，从而保证了容器存储层的无状态化。当然，运行时可以覆盖这个挂载设置。比如：
+
+docker run -d -v mydata:/data xxxx
+
+EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。
 
 之前说过每一个 RUN 都是启动一个容器、执行命令、然后提交存储层文件变更。第一层 RUN cd /app 的执行仅仅是当前进程的工作目录变更，一个内存上的变化而已，其结果不会造成任何文件变更。而到第二层的时候，启动的是一个全新的容器，跟第一层的容器更完全没关系，自然不可能继承前一层构建过程中的内存变化。
 
 因此如果需要改变以后各层的工作目录的位置，那么应该使用 WORKDIR 指令。
+
+格式：USER <用户名>[:<用户组>]
+
+USER 指令和 WORKDIR 相似，都是改变环境状态并影响以后的层。WORKDIR 是改变工作目录，USER 则是改变之后层的执行 RUN, CMD 以及 ENTRYPOINT 这类命令的身份。
+
+当然，和 WORKDIR 一样，USER 只是帮助你切换到指定用户而已，这个用户必须是事先建立好的，否则无法切换。
 
 HEALTHCHECK [选项] CMD <命令>：设置检查容器健康状况的命令
 HEALTHCHECK NONE：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令
@@ -138,6 +170,25 @@ HEALTHCHECK 支持下列选项：
 格式：ONBUILD <其它指令>。
 
 ONBUILD 是一个特殊的指令，它后面跟的是其它指令，比如 RUN, COPY 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。
+
+只构建某一阶段的镜像
+我们可以使用 as 来为某一阶段命名，例如
+
+FROM golang:1.9-alpine as builder
+例如当我们只想构建 builder 阶段的镜像时，我们可以在使用 docker build 命令时加上 --target 参数即可
+
+$ docker build --target builder -t username/imagename:tag .
+
+构建时从其他镜像复制文件
+上面例子中我们使用 COPY --from=0 /go/src/github.com/go/helloworld/app . 从上一阶段的镜像中复制文件，我们也可以复制任意镜像中的文件。
+
+$ COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+
+docker save [OPTIONS] IMAGE [IMAGE...]
+
+docker save alpine | gzip > alpine-latest.tar.gz
+
+docker load -i alpine-latest.tar.gz
 # 容器
 
 简单的说，容器是独立运行的一个或一组应用，以及它们的运行态环境
@@ -164,16 +215,29 @@ docker container logs
 
 终止状态的容器可以用 docker container ls -a 命令看到
 
-在使用 -d 参数时，容器启动后会进入后台。
+在使用 -d 参数时，容器启动后会进入后台。如果想让容器一直运行，而不是停止，可以使用快捷键 ctrl+p ctrl+q 退出，此时容器的状态为Up。
 
-某些时候需要进入容器进行操作，包括使用 docker attach 命令或 docker exec 命令，推荐大家使用 docker exec 命令，原因会在下面说明。
+* 某些时候需要进入容器进行操作，包括使用 docker attach 命令或 docker exec 命令
+attach 与 exec 主要区别如下:
 
+attach 直接进入容器 启动命令 的终端，不会启动新的进程, Ctrl+p 然后 Ctrl+q 组合键退出 attach 终端。
+exec 则是在容器中打开新的终端，并且可以启动新的进程。
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 
 docker exec -it 69d1 bash
 
 如果从这个 stdin 中 exit，不会导致容器的停止
 
+如果想直接在终端中查看启动命令的输出，用 attach；其他情况使用 exec。
+
+当然，如果只是为了查看启动命令的输出，可以使用 docker logs 命令
+
+* 可以使用rm命令，注意：删除镜像前必须先删除以此镜像为基础的容器。
+
+docker rm container_name/container_id
+docker rmi image_name/image_id
+
+docker export 7691a814370e > ubuntu.tar
 docker import [OPTIONS] file|URL|- [REPOSITORY[:TAG]]
 
 用户既可以使用 docker load 来导入镜像存储文件到本地镜像库，也可以使用 docker import 来导入一个容器快照到本地镜像库。这两者的区别在于容器快照文件将丢弃所有的历史记录和元数据信息（即仅保存容器当时的快照状态），而镜像存储文件将保存完整记录，体积也要大。此外，从容器快照文件导入时可以重新指定标签等元数据信息。
@@ -237,7 +301,9 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 
 -p 则可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。支持的格式有 ip:hostPort:containerPort/udp | ip::containerPort | hostPort:containerPort。
 
-docker port nostalgic_morse 5000
+docker port CONTAINER [PRIVATE_PORT[/PROTO]]
+
+docker port cid 5000
 
 docker run -d \
     -p 5000:5000 \
@@ -269,23 +335,13 @@ docker run -it --rm --name busybox1 --network my-net busybox sh
 ```
 
 Docker 运行在 CentOS-6.5 或更高的版本的 CentOS 上，需要内核版本是 2.6.32-431 或者更高版本 ，因为这是允许它运行的指定内核补丁版本。
-# [Docker 的版本演进](https://docs.lvrui.io/2017/03/06/Docker-%E7%9A%84%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B/)
-# [debain安装](https://yeasy.gitbooks.io/docker_practice/install/debian.html)
 
+# [centos7 安装](https://docs.docker.com/install/linux/docker-ce/centos/#install-from-a-package) 
+* https://download.docker.com/linux/centos/7/x86_64/stable/Packages/
 ```sh
-sudo apt-get update
-
-sudo apt-get install \
-     apt-transport-https \
-     ca-certificates \
-     curl \
-     gnupg2 \
-     lsb-release \
-     software-properties-common
-
+yum install docker-ce-selinux-17.03.3.ce-1.el7.noarch.rpm 
+yum install docker-ce-17.03.3.ce-1.el7.x86_64.rpm
 ```
-* [deepin 安装docker](https://wiki.deepin.org/index.php?title=Docker)
-* [免sudo使用docker命令](https://www.jianshu.com/p/95e397570896)
 
 # [CentOS-6.8安装Docker1.7.1](https://www.jianshu.com/p/4e74f11ee309)
 安装完成后，运行下面的命令，验证是否安装成功。
@@ -334,64 +390,21 @@ $ sudo systemctl start docker
 
 ## [容器和镜像](http://dockone.io/article/783)
 
-* 容器存储层  
-
-前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容器存储层。
-
-容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。
-
-按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更高。
-
-数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器删除或者重新运行之后，数据却不会丢失。
-
-docker search centos
-
-docker pull centos
 
 
-docker images
-
-docker ps -a
-
-docker build -t="xianhu/centos:gitdir" .
-
-其中-t用来指定新镜像的用户信息、tag等。最后的点表示在当前目录寻找Dockerfile。
-
-可以使用rm命令，注意：删除镜像前必须先删除以此镜像为基础的容器。
-
-[root@xxx ~]# docker rm container_name/container_id
-[root@xxx ~]# docker rmi image_name/image_id
-
-镜像其他操作指令：
-
-[root@xxx ~]# docker save -o centos.tar xianhu/centos:git    # 保存镜像, -o也可以是--output
-[root@xxx ~]# docker load -i centos.tar    # 加载镜像, -i也可以是--input
-
-Docker中关于容器的基本操作
-在前边镜像的章节中，我们已经看到了如何基于镜像启动一个容器，即docker run操作。
-[root@xxx ~]# docker run -it centos:latest /bin/bash
-这里-it是两个参数：-i和-t。前者表示打开并保持stdout，后者表示分配一个终端（pseudo-tty）。此时如果使用exit退出，则容器的状态处于Exit，而不是后台运行。如果想让容器一直运行，而不是停止，可以使用快捷键 ctrl+p ctrl+q 退出，此时容器的状态为Up。
-
-除了这两个参数之外，run命令还有很多其他参数。其中比较有用的是-d后台运行：
-
-
-[root@xxx ~]# docker run centos:latest /bin/bash -c "while true; do echo hello; sleep 1; done"
-[root@xxx ~]# docker run -d centos:latest /bin/bash -c "while true; do echo hello; sleep 1; done"
-这里第二条命令使用了-d参数，使这个容器处于后台运行的状态，不会对当前终端产生任何输出，所有的stdout都输出到log，可以使用docker logs container_name/container_id查看。
-
-启动、停止、重启容器命令：
-
-[root@xxx ~]# docker start container_name/container_id
-[root@xxx ~]# docker stop container_name/container_id
-[root@xxx ~]# docker restart container_name/container_id
-后台启动一个容器后，如果想进入到这个容器，可以使用attach命令：
-
-[root@xxx ~]# docker attach container_name/container_id
-删除容器的命令前边已经提到过了：
-
-[root@xxx ~]# docker rm container_name/container_id
 # 命令
 ```sh
+# 批量清理已停止的容器
+docker rm -f $(docker ps -qa)
+
+# 删除没有标签的镜像
+docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+
+
+# 批量删除孤单的 volumes
+docker volume ls -qf dangling=true
+docker volume rm $(docker volume ls -qf dangling=true)
+
 容器生命周期管理
 run
 start/stop/restart
@@ -431,3 +444,37 @@ info|version
 info
 version
 ```
+
+# Docker Machine
+## 前提
+* 需要配置root到服务端的无密码ssh登录。可以通过ssh-keygen、ssh-copy-id等命令实现
+* 如果配置无密码登录的用户不是root用户的话，还需要在服务端上实现普通用户的无密码sudo权限。参考下面
+```sh
+
+sudo adduser nick  
+sudo usermod -a -G sudo nick   
+sudo visudo  
+
+把下面一行内容添加到文档的最后并保存文件：
+
+nick   ALL=(ALL:ALL) NOPASSWD: ALL
+
+ssh-copy-id eversec@192.168.200.67
+
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+```
+* [generic](https://docs.docker.com/machine/drivers/generic/)
+```sh
+docker-machine create \
+  --driver generic \
+  --generic-ip-address=203.0.113.81 \
+  --generic-ssh-key ~/.ssh/id_rsa \
+  hostname
+```
+
+* [ssh登录很慢解决方法](https://www.linuxprobe.com/ssh-login-slowly.html)
+## 如何更改 Docker 的默认存储位置？
+
+mv /var/lib/docker /storage/
+ln -s /storage/docker/ /var/lib/docker

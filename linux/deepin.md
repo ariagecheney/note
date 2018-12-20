@@ -185,9 +185,13 @@ PermitRootLogin yes # 允许root 登录
 * sudo /usr/bin/mysqladmin -uroot -p shutdown
 * sudo nohup /usr/bin/mysqld_safe &  启动
 
-### dbeaver **推荐datagrip**
-* 商店
-* 需要jdk8
+### redis-desktop-manager
+```sh
+sudo apt update
+sudo apt install snapd
+sudo snap install redis-desktop-manager
+```
+### [snap 使用](https://www.linuxidc.com/Linux/2018-05/152385.htm)
 
 ## catfish
 `sudo apt install catfish`

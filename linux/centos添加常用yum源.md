@@ -134,6 +134,9 @@ wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 rpm -ivh remi-release-6.rpm
 rpm -ivh epel-release-6-8.noarch.rpm
+
+rhel7
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && rpm -ivh epel-release-latest-7.noarch.rpm
 ```
 ### 安装完运行yum报错：
 

@@ -184,7 +184,7 @@ mysql -u root -p
 * sudo firewall-cmd --zone=public --list-all
 * sudo firewall-cmd --list-rich-rules
 * sudo firewall-cmd --get-services
-* firewall-cmd --zone=public --add-port=80/tcp --permanent
+* firewall-cmd --zone=public --add-port=3306/tcp --permanent
 * firewall-cmd --zone=public --remove-port=12345/tcp --permanent
 * 重启防火墙：firewall-cmd --reload
 * 查看已经开放端口：firewall-cmd --list-ports

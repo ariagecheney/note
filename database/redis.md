@@ -258,6 +258,13 @@ masterauth
 maxmemory 10737418240
 maxmemory-policy volatile-lru
 client-output-buffer-limit slave 512mb 512mb 0
+
+# TCP 监听的最大容纳数量
+# 当系统并发量大并且客户端速度缓慢的时候，你需要把这个值调高以避免客户端连接缓慢的问题。
+# 此值不能大于Linux系统定义的/proc/sys/net/core/somaxconn
+tcp-backlog 511
+# 客户端和Redis服务端的连接超时时间，默认是0，表示永不超时。
+timeout 0
 ```
 ### slaveof
 ```sh
@@ -281,25 +288,25 @@ sentinel notification-script mymaster ./sentinel/notify.sh
     * 去掉了默认配置，例如：parallel-syncs、failover-timeout。
     * 新添加了纪元（epoch）参数。
 
-* warn 修复 
-vi /etc/sysctl.conf
-fs.file-max = 100000
-net.core.somaxconn=2048
-vm.overcommit_memory = 1
-sysctl -p
+## warn 修复 
+vi /etc/sysctl.conf  
+fs.file-max = 100000  
+net.core.somaxconn=2048  
+vm.overcommit_memory = 1  
+sysctl -p  
 
 cat /run/redis/redis-server.pid
 cat /proc/PID/limits
 
+cat /sys/kernel/mm/transparent_hugepage/enabled  
+echo never > /sys/kernel/mm/transparent_hugepage/enabled  
 
-cat /sys/kernel/mm/transparent_hugepage/enabled
-echo never > /sys/kernel/mm/transparent_hugepage/enabled
-vi /etc/rc.local 在 exit 0 之前增加下述命令
-if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
-   echo never > /sys/kernel/mm/transparent_hugepage/enabled
+vi /etc/rc.local 在 exit 0 之前增加下述命令  
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then  
+   echo never > /sys/kernel/mm/transparent_hugepage/enabled  
 fi
-if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
-   echo never > /sys/kernel/mm/transparent_hugepage/defrag
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then  
+   echo never > /sys/kernel/mm/transparent_hugepage/defrag  
 fi
 
 * sentinel 命令
@@ -321,6 +328,21 @@ masterauth
 redis-cli -h 127.0.0.1 -p 6380 INFO replication
 
 switch-master mymaster
+
+### 迁移步骤
+
+```sh
+# 开启现有 Redis 实例的 AOF 功能（如果实例已经启用 AOF 功能则忽略此步骤）
+redis-cli -h old_instance_ip -p old_instance_port config set appendonly yes
+
+# 等待一段时间，比如五分钟，将redis安装目录下的appendonly.aof 文件，复制到redis主节点所在服务器
+
+#通过 AOF 文件将数据导入到新的主节点实例（假定生成的 AOF 文件名为 appendonly.aof）
+redis-cli -p 6379 -a password --pipe < appendonly.aof
+
+# 如果原有的 Redis 实例不需要一直开启 AOF，可在导入完成后通过以下命令关闭。
+redis-cli -h old_instance_ip -p old_instance_port config set appendonly no
+```
 
 # 集群
 

@@ -1,4 +1,7 @@
 ### [教程](https://linux.cn/article-4279-1.html)
+### [官方文档英文](http://nginx.org/en/docs)
+### [文档中文](https://cloud.tencent.com/developer/doc/1158)
+### [教程](https://www.hi-linux.com/tags/#Nginx)
 ### 1. 优点
 * 可以实现高并发
 * 部署简单
@@ -19,7 +22,7 @@
 ```sh
 前提：Linux软件编译安装必须的依赖安装包  
  
-* yum -y  install  gcc   gcc-c++  make pcre  pcre-devel openssl  openssl-devel   zlib 
+* yum -y  install  gcc   gcc-c++  make pcre  pcre-devel openssl  openssl-devel   zlib patch
 * 
 
 // 下载到 /home/pmz/pac 目录下
@@ -29,10 +32,13 @@ tar xzvf nginx-1.12.2.tar.gz -C /home/pmz/pac
 // 进入到解压后的根目录
 cd ./nginx-1.12.2
 // 检测环境
-./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre --add-module=./nginx_upstream_check_module-master
 
-添加模块重新编译安装即可：
+添加模块重新编译安装即可 ：
+[负载均衡下的后端服务健康检查](https://github.com/yaoweibin/nginx_upstream_check_module)
+patch -p1 < ./nginx_upstream_check_module-master/check_1.14.0+.patch
 nginx -V            显示 nginx 的版本，编译器版本和配置参数。
+--add-module=./nginx_upstream_check_module-master
 ```sh
 Configuration summary
   + using system PCRE library
@@ -124,3 +130,40 @@ proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header Host $host;    
 proxy_set_header X-Forwarded-For  $proxy_add_x_forwarded_for;  
 proxy_set_header X-Forwarded-Proto  $scheme;
+
+
+proxy_next_upstream off
+
+```sh
+log_format  main  '$time_local|$request_time|$status|$body_bytes_sent|$remote_addr|$request|$http_referer|$http_user_agent|$http_x_forwarded_for|$upstream_cache_status|$upstream_response_time|$upstream_status|$upstream_addr|$http_x_forwarded_for';
+
+upstream ygsh_prod
+{
+    least_conn
+    server 192.168.40.92:8080 max_fails=5; 
+    server 192.168.40.92:8081 max_fails=5;
+
+}
+upstream ygsh_gray
+{
+    server 192.168.40.92:8081;
+}
+
+location ~ ^/EverChildNet{
+
+        set $ygsh ygsh_prod;
+        if ($remote_addr ~ '61.48.40.26|124.204.43.26') {
+            set $ygsh ygsh_gray;
+        }
+        
+        proxy_pass_header Server;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Scheme $scheme;
+        proxy_pass http://$ygsh;
+    }
+```
+* [proxy_pass绝对路径和相对路径](https://www.jianshu.com/p/b113bd14f584)
+* [nginx的功能](https://www.kancloud.cn/hiyang/nginx/364780)

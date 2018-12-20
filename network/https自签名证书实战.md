@@ -12,18 +12,23 @@ https://www.wosign.com/FAQ/SSL_type_check.htm
 ## 分类
 * https://www.barretlee.com/blog/2016/04/24/detail-about-ca-and-certs/
 
+## openssl 自行签发SSL证书。
 
 ```sh
-openssl genrsa -out server.key 1024
+openssl genrsa -out server.key 4096
 openssl rsa -in server.key -pubout -out server.pem
 cat server.key 
 cat server.pem 
-openssl genrsa -out ca.key 1024
-openssl req -x509 -new -key ca.key -out ca.cer -days 730
+
+openssl genrsa -out ca.key 4096
+openssl req -x509 -new -key ca.key -out ca.cer -days 730 -subj '/C=CN/ST=Shanxi/L=Datong/O=Your Company Name/CN=Your Company Name Docker Registry CA'
+# 以上命令中 -subj 参数里的 /C 表示国家，如 CN；/ST 表示省；/L 表示城市或者地区；/O 表示组织名；/CN 通用名称。
 ifconfig 
 hosts
-openssl req -new -key server.key -out server.csr
-openssl x509 -req -CA ca.cer -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
+
+openssl req -new -key server.key -out server.csr -sha256
+openssl x509 -req -days 365 -sha256 -CA ca.cer -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
+
 openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name "server"
 ```
 

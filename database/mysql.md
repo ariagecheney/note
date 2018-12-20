@@ -48,13 +48,6 @@ cd /home/mysql
 ./bin/mysqld --defaults-file=/home/pmz/mysql/etc/my.cnf --initialize --user=mysql
 
 # stdout 保存最后的临时root 密码 
-2018-11-06T10:38:58.716208Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-2018-11-06T10:38:58.716297Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
-2018-11-06T10:38:58.716305Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
-2018-11-06T10:39:00.192116Z 0 [Warning] InnoDB: New log files created, LSN=45790
-2018-11-06T10:39:00.446269Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
-2018-11-06T10:39:00.561369Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 2c2061e0-e1b0-11e8-ad3c-fa163e2f72d5.
-2018-11-06T10:39:00.583874Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
 2018-11-06T10:39:00.584786Z 1 [Note] A temporary password is generated for root@localhost: gUhYy71rdV#4
 
 # bin/mysql_ssl_rsa_setup 
@@ -163,21 +156,19 @@ mysqldump
 RESET MASTER
 UNLOCK TABLES;
 
+如果有异常,根据异常信息解决掉问题后,两台mysql分别执行以下命令
 STOP SLAVE IO_THREAD
 SHOW PROCESSLIST
-STOP SLAVE and RESET MASTER.
+STOP SLAVE
+RESET MASTER
 
 DROP DATABASE db1;
 
-    DROP DATABASE db2;
-
-    8.导入数据
-
-    SOURCE /root/bak.sql;
-
-    9.重置slave服务
-
-    RESET SLAVE;
+DROP DATABASE db2;
+8.导入数据
+SOURCE /root/bak.sql;
+9.重置slave服务
+RESET SLAVE;
 # 配置主从同步	
 stop slave;
 reset slave;
@@ -194,23 +185,19 @@ MASTER_LOG_FILE='binlog.000001',
 ```
 ### 管理
 
-create table test_repli
-(
-  id         int auto_increment
-    primary key,
-  name  varchar(255) null
-  )
-  collate = utf8_bin;
+* dump
 
- #将指定时间之前的日志清理
+./bin/mysqldump -uygsh -p'pwd' --set-gtid-purged=OFF -B parent_log -d > sql/parent_log.sql
+
+* 将指定时间之前的日志清理  
 purge binary logs before '2018-02-01 12:00:00';
 
-#将指定日志文件之前的日志清除
+* 将指定日志文件之前的日志清除  
 purge binary logs to 'mysql-bin.000003';
 
-show master status\G 
-show slave status\G  
-show variables like 'expire_logs_days';  
+show master status\G   
+show slave status\G    
+show variables like 'expire_logs_days';    
 ## [MySQL的变量分类总结](http://www.cnblogs.com/kerrycode/p/9021378.html)
 局部变量与用户自定义变量的区分在于下面这些方面:
 1.用户自定义变量是以"@"开头的。局部变量没有这个符号。
@@ -343,7 +330,7 @@ XHG!;3sM2cPQ
 ### 导出
 ```sql
 mysqldump [OPTIONS] database [tables]
-mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+mysqldump [OPTIONS] -B [OPTIONS] DB1 [DB2 DB3...]
 mysqldump [OPTIONS] --all-databases [OPTIONS]
 
 -B db1 db2
@@ -353,7 +340,7 @@ mysqldump -h localhost -P3306 -u root -p mydb >e:\mysql\mydb.sql
 - 2.将数据库mydb中的mytable导出到e:\mysql\mytable.sql文件中：
 mysqldump -h localhost -u root -p mydb mytable>e:\mysql\mytable.sql
 - 3.将数据库mydb的结构导出到e:\mysql\mydb_stru.sql文件中：
-mysqldump -h localhost -u root -p mydb -d --add-drop-database --add-drop-table >e:\mysql\mydb_stru.sql
+mysqldump -h localhost -u root -p -B db1 db2  -d  >e:\mysql\mydb_stru.sql
 - 3.将数据库mydb中 某表的表结构导出到e:\mysql\mydb_stru.sql文件中：
 mysqldump -h localhost -u root -p -B mydb --table tableName --opt >e:\mysql\mydb_stru.sql
 
@@ -687,6 +674,9 @@ select crc32('hello_world');
 
 ## 数据库表结构导出工具
 * https://github.com/voidint/tsdump
+```sh
+./tsdump -h 192.168.40.78 -u root -p pswd -V md -o ./p.md parent_busi p_overseas_user
+```
 
 ## mysql data 目录迁移
 

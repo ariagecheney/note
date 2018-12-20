@@ -425,6 +425,9 @@ yum install ncurses
 
 # 用户可以用chmod指令来为文件设置强制位与冒险位。
 
+强制位有：setuid和setgid，主要用于文件及目录  
+冒险位有：sticky，只用于目录，多数是共享目录
+
 – set uid：chmod u+s 文件名
 
 – set gid：chmod g+s 文件名
@@ -519,4 +522,19 @@ sysctl net.core.rmem_max
 sysctl -a | grep rmem_max
 echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
 sysctl -p
+```
+
+## 手动释放cache
+
+```sh
+
+释放方法有三种（系统默认值是0，释放之后你可以再改回0值）：
+
+To free pagecache:  echo 1 > /proc/sys/vm/drop_caches
+
+To free dentries and inodes:  echo 2 > /proc/sys/vm/drop_caches
+
+To free pagecache, dentries and inodes:  echo 3 > /proc/sys/vm/drop_caches
+
+注意：在清空缓存前我们需要在linux系统中执行一下sync命令，将缓存中的未被写入磁盘的内容写到磁盘上
 ```
