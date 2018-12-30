@@ -28,8 +28,9 @@
 * [css （很基础，没有什么价值）](./frontend/css.md)
 
 # java
-* [java 基础](./java/java.md)
+* [基础](./java/java基础.md)
 * [泛型](./java/java泛型.md)
+* [B/N/AIO](./java/javaBIONIOAIO.md)
 * [设计模式java版](./java/Java设计模式.md)
 * [数据结构和算法](./other/数据结构和算法.md)
 * [多线程](./java/Java多线程.md)
@@ -55,8 +56,8 @@
 * [https自签名证书实战](./network/https自签名证书实战.md)
 * [tomcat8.5_https_配置](./network/tomcat8.5_https_配置.md)
 * [keepalived](./network/keepalived.md)
-* [nio,aio](./network/javaIO.md)
 * [tcp](./network/socket.md)
+* [抓包实践](./network/抓包实践.md)
 # 微服务
 * [kafka](./SOA/kafka.md)
 * [zookeeper](./SOA/zookeeper.md)
@@ -66,6 +67,8 @@
 # 大数据
 * [ElasticSearch](./大数据/ElasticSearch.md)
 
+# 其他
+* [支付设计](./java/支付设计.md)
 # 工具使用
 * [git](./tool/Git.md)
 * [svn](./tool/svn.md)

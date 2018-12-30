@@ -1215,4 +1215,17 @@ who 命令，不指定参数，将显示当前登录的所有用户的信息
 * q 退出mail命令平台,保存之前的操作，比如删除已用d删除的邮件，已阅读邮件会转存到当前用户家目
 
 ## split
+split [-bl] file [prefix]  
+-a     generate suffixes of length N (default 2)  
+-d     use numeric suffixes starting at 0, not alphabetic  
+
 split -b 10k date.file -d -a 3 split_file
+
+## cut
+cut [选项] 文件
+
+-f 列号     （ --field 提取第几列,从1 开始，多列用，分隔 ）  
+-d 分隔符    （ --delimiter 按照指定分隔符分割列,cut的默认分割符是制表符 ）
+
+提取系统的用户名和uid：  
+cut -d ":" -f 1,3 /etc/passwd

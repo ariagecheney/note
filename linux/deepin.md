@@ -193,6 +193,8 @@ sudo snap install redis-desktop-manager
 ```
 ### [snap 使用](https://www.linuxidc.com/Linux/2018-05/152385.htm)
 
+## wireshark
+商店
 ## catfish
 `sudo apt install catfish`
 

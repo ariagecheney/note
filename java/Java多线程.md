@@ -1,6 +1,7 @@
 ## 总览
 * [多线程并发实践](https://juejin.im/post/59c4ba6f5188254f962cc934)
-
+* javap -verbose java.class
+* 并发编程有多种风格，除了CSP(通信顺序进程)、Actor等模型外，大家最熟悉的应该是基于线程和锁的共享内存模型了。
 ## [进程和线程之由来](http://www.cnblogs.com/dolphin0520/p/3910667.html)
 * 进程让操作系统的并发性成为可能，而线程让进程的内部并发成为可能。
 * 一个进程虽然包括多个线程，但是这些线程是共同享有进程占有的资源和地址空间的。进程是操作系统进行资源分配的基本单位，而线程是操作系统进行调度的基本单位。
@@ -18,8 +19,9 @@
 ## JMM
 * ![jmm.jpg](../assets/jmm.jpg)  
  Java内存模型(Java Memory Model，JMM) 是对Java并发编程中线程与内存的关系的定义，即线程间的共享变量存储在主内存（Main Memory） 中，每个线程都有一个私有的本地工作内存（Local Memory），线程的本地内存中存储了该线程使用到的共享变量的副本（从主内存复制而来），线程对该变量的所有读/写操作都必须在自己的本地内存中进行，不同的线程之间也无法直接访问对方本地内存中的变量，线程间变量值的传递需要通过与主内存同步来完成。理解Java内存模型，对于编写正确的Java并发程序来说至关重要。  
-[简单的土豆-基础概念&理论](http://www.jianshu.com/p/f4cdcc90290a)
-
+[Java内存模型JMM浅析](https://liuzhengyang.github.io/2017/05/12/javamemorymodel/)
+* 由于存在指令重排序的原因，所以jmm模型下产生happen-before原则
+* happen-before原则是JMM中非常重要的原则，它是判断数据是否存在竞争、线程是否安全的主要依据，保证了多线程环境下的可见性。如果多线程下的代码不符合happen-before原则，既jvm 无法使用happen-before规则的内置实现帮你保证线程安全，必须使用其他手段，来保证线程安全，这样代码执行的结果才正确。
 * [java多线程-内存模型](https://mp.weixin.qq.com/s?__biz=MzI3MTQ1NzU2NA==&mid=2247483922&idx=1&sn=eec86f8487432f7ec33b9429c86b38c5&chksm=eac0ce61ddb747776eac465a32fec5f49bbcf9ecd24b555503d4bcd9e5d369fda85945bde19d&mpshare=1&scene=1&srcid=09232nbYtxYmu9O623W83M0s#rd)
 
 ## 线程状态转换
@@ -30,13 +32,24 @@
 * 在Java里边就是拿到某个同步对象的锁（一个对象只有一把锁）；  
 如果这个时候同步对象的锁被其他线程拿走了，他（这个线程）就只能等了（线程阻塞在锁池等待队列中）。   
 取到锁后，他就开始执行同步代码(被synchronized修饰的代码）；  
-线程执行完同步代码（方法正常返回或者抛异常而终止）后马上就把锁还给同步对象，其他在锁池中等待的某个线程就可以拿到锁执行同步代码了。 
+线程执行完同步代码（方法正常返回或者抛异常而终止）后马上就把锁还给同步对象，其他在锁池中等待的某个线程就可以拿到锁执行同步代码了。   
+同时它还可以保证共享变量的内存可见性  
 这里也体现了用synchronized来加锁的好处，方法抛异常的时候，锁仍然可以由JVM来自动释放。   
 这样就保证了同步代码在同一时刻只有一个线程在执行。
 * 在Java程序运行时环境中，JVM需要对两类线程共享的数据进行协调：  
 1）保存在堆中的实例变量  
 2）保存在方法区中的类变量  
 这两类数据是被所有线程共享的。（程序不需要协调保存在Java 栈当中的数据。因为这些数据是属于拥有该栈的线程所私有的。）
+* 锁  
+普通同步方法，锁是当前实例对象  
+静态同步方法，锁是当前类的class对象  
+同步方法块，锁是括号里面的对象 
+* Java对象头和monitor是实现synchronized的基础
+    * synchronized用的锁是存在Java对象头(Mark Word（标记字段）、Klass Pointer（类型指针）)里的
+    * Mark Word用于存储对象自身的运行时数据，它是实现轻量级锁和偏向锁的关键
+    * Monitor 是线程私有的数据结构，每一个线程都有一个可用monitor record列表，同时还有一个全局的可用列表。每一个被锁住的对象都会和一个monitor关联（对象头的MarkWord中的LockWord指向monitor的起始地址），同时monitor中有一个Owner字段存放拥有该锁的线程的唯一标识，表示该锁被这个线程占用
+
+* jdk1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。锁主要存在四中状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。
 * 对象锁和类锁：
     * 类锁：对象锁是用来控制实例方法之间的同步，类锁是用来控制静态方法（或静态变量互斥体）之间的同步。其实类锁只是一个概念上的东西，并不是真实存在的，它只是用来帮助我们理解锁定实例方法和静态方法的区别的。我们都知道，java类可能会有很多个对象，但是只有1个Class对象，也就是说类的不同实例之间共享该类的Class对象。Class对象其实也仅仅是1个java对象，只不过有点特殊而已。由于每个java对象都有1个互斥锁，而类的静态方法是需要Class对象。所以所谓的类锁，不过是Class对象的锁而已。获取类的Class对象有好几种，最简单的就是MyClass.class的方式。
 
@@ -76,15 +89,28 @@
 * volatile的应用场景  
 [参考](http://www.jianshu.com/p/7798161d7472)
 
+
 ## synchronized和volatile比较
 1)关键字volatile是线程同步的轻量级实现，性能比synchronized好，且volatile只能修饰变量，synchronized可修饰方法和代码块。  
 2)多线程访问volatile不会发生阻塞，synchronized会出现阻塞  
-3)volatile能保证数据可见性，不保证原子性;synchronized可以保证原子性，也可以间接保证可见性，因为synchronized会将私有内存和公共内存中的数据做同步。  
+3)volatile能保证数据可见性，有序性（禁止指令重排序）不保证原子性;synchronized可以保证原子性，也可以间接保证可见性，因为synchronized会将私有内存和公共内存中的数据做同步，但不保证有序性，因为存在指令重排序。  
 4)volatile解决的是变量在多个线程间的可见性，synchronized解决的是多个线程访问资源的同步性。  
 5）原子类:一个原子类型就是一个原子操作可用的类型，可在没有锁的情况下做到线程安全。但原子类也不是完全安全，虽然原子操作是安全的，可方法间的调用却不是原子的，需要用同步。  
 [参考：java多线程核心技术梳理(附源码)](https://brianway.github.io/2016/04/18/javase-multithread-programming-reading-note/#线程间通信)
+
+## synchronized和volatile应用场景：单例模式实现中：dcl用法
+
+## CAS :保证一个共享变量的原子操作
+* 乐观锁，cas 仅仅是一个原子操作，cas失败则不更新共享变量的值；如果配合循环，可以完成多线程安全操作
+* AtomicReference的源码比较简单。它是通过"volatile"和"Unsafe提供的CAS函数实现"原子操作。
+
+(01) value是volatile类型。这保证了：当某线程修改value的值时，其他线程看到的value值都是最新的value值，即修改之后的volatile的值。  
+(02) 通过CAS设置value。这保证了：当某线程池通过CAS函数(如compareAndSet函数)设置value时，它的操作是原子的，即线程在操作value时不会被中断。
+* AtomicStampedReference
+* AtomicIntegerArray
+* 
 ## 线程间通信1：wait 、notify
-* 锁池和等待池
+* 锁池和等待池  
 锁池:假设线程A已经拥有了某个对象(注意:不是类)的锁，而其它的线程想要调用这个对象的某个synchronized方法(或者synchronized块)，由于这些线程在进入对象的synchronized方法之前必须先获得该对象的锁的拥有权，但是该对象的锁目前正被线程A拥有，所以这些线程就进入了该对象的锁池中。  
 等待池:假设一个线程A调用了某个对象的wait()方法，线程A就会释放该对象的锁后，进入到了该对象的等待池中
 * notify和notifyAll  
@@ -114,7 +140,7 @@
 ## ThreadPoolExecutor 、BlockingQueue
 * [线程池的介绍及使用](http://www.cnblogs.com/Seanisme/articles/6164126.html#undefined)
 
-* 任务接口  
+* [Callable、Future、RunnableFuture、FutureTask](https://www.cnblogs.com/nullzx/p/5147004.html)  
 Runnable：在run()方法里完成任务，无返回值，且不会抛出异常。  
 Callable：在call()方法里完成任务，有返回值，且可能抛出异常。  
 

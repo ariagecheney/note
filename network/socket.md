@@ -14,3 +14,24 @@ TIME_WAIT状态维持时间是两个MSL时间长度，也就是在1-4分钟。Wi
 * HTTP/1.1起，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头有加入这行代码：
 Connection:keep-alive  
 Keep-Alive: timeout=20
+
+
+### Socket 编程
+* 概述  
+socket通信是大家耳熟能详的一种进程间通信方式(IPC)，它是一种全双工的通信方式，不同于pipe这种单工方式.这篇文章将深入浅出的讲解一下什么是socket。
+我们常说的socket通信有以下二种,主要会说一下Unix domain socket
+
+* Internet domain socket  
+该socket可以用于不同主机间的通信，就像聊QQ一样只要知道了对方的QQ号就可以聊天了。socket只要知道了对方的ip地址和端口就可以通信了所以这种socket通信是基于网络协议栈的。
+
+* Unix domain socket  
+该socket用于一台主机的进程间通信，不需要基于网络协议，主要是基于文件系统的。与Internet domain socket类似，需要知道是基于哪一个文件（相同的文件路径）来通信的
+unix domain socket有2种工作模式一种是SOCK_STREAM，类似于TCP，可靠的字节流。另一种是SOCK_DGRAM，类似于UDP，不可靠的字节流。
+
+* 工作模型  
+socket通信有一个服务端，一个客服端
+服务端：创建socket—绑定文件（端口）—监听—接受客户端连接—接收/发送数据—…—关闭
+客户端：创建socket—绑定文件（端口）—连接—发送/接收数据—…—关闭
+#### 参考:  
+
+* [Unix Socket by Hly_Coder](http://www.jianshu.com/p/d4bb6d4f8e4c) 
